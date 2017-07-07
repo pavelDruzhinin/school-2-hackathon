@@ -8,7 +8,8 @@ namespace RosCottedge.Models
     public class Reservation
     {
         public int Id { get; set; }
-        public int UserId { get; set; }
+        //Пока не заработают аккаунты, будет глючить.
+        //public int UserId { get; set; }
         public int HouseId { get; set; }
         //Даты пока прописал строковыми значениями, так как не знаю, как их лучше хранить. Исправить, если неверно.
         // ReservationDate - дата оформления бронирования. Удалить, если не нужно.

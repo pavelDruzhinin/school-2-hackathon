@@ -23,6 +23,9 @@ namespace RosCottedge.Models
         public string Accomodations { get; set; }
         public string BookingConditions { get; set; }
         public decimal Rating { get; set; }
-        //Пока что без связи с пользователем, чтобы тот мог регистрировать новые дома.
+        public int UserId { get; set; }
+        //Пока что не подключаем, пока не будут работать аккаунты
+        //(пишет ошибку при попытке создания дома без аккаунта.
+        public User User { get; set; }
     }
 }

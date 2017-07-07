@@ -1,31 +1,27 @@
-﻿@{
+﻿@model IEnumerable<RosCottedge.Models.House>
+@{
     ViewBag.Title = "Home Page";
 }
 
-<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
-</div>
-
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
-    </div>
-</div>
+<table class="table table-bordered" style="text-align:center">
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.Name</td>
+            <td>@item.Price руб. / сутки</td>
+            <td>@item.NumberOfPersons чел.</td>
+            <td>@item.Region</td>
+            <td>@item.Locality</td>
+            <td>@item.Area</td>
+            <td>@item.HouseNumber</td>
+            <td>@item.Description</td>
+            <td>@item.Food</td>
+            <td>@item.Transfer</td>
+            <td>@item.ServicesIncluded</td>
+            <td>@item.AdditionalServices</td>
+            <td>@item.Accomodations</td>
+            <td>@item.BookingConditions</td>
+            <td>@item.Rating</td>
+        </tr>
+    }
+</table>
