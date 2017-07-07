@@ -8,7 +8,7 @@ namespace RosCottedge.Models
     public class Reservation
     {
         public int Id { get; set; }
-        //Пока не заработают аккаунты, будет глючить.
+        //Временно отключено из-за ошибки.
         //public int UserId { get; set; }
         public int HouseId { get; set; }
         //Даты пока прописал строковыми значениями, так как не знаю, как их лучше хранить. Исправить, если неверно.
