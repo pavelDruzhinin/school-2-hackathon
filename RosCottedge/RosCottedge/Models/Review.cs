@@ -11,7 +11,7 @@ namespace RosCottedge.Models
         public string Comment { get; set; }
         public string Rating { get; set; }
         //CommentDate - дата, когда оставлен комментарий.
-        public string CommentDate { get; set; }
+        public DateTime CommentDate { get; set; }
         //Временно отключено из-за ошибки.
         //public int UserId { get; set; }
         public int HouseId { get; set; }
