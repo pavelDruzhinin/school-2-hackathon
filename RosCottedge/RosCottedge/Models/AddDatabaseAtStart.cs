@@ -8,6 +8,8 @@ namespace RosCottedge.Models
 {
     public class AddDatabaseAtStart : DropCreateDatabaseAlways<SiteContext>
     {
+        //Создаёт первичное наполнение базы при запуске проекта.
+
         protected override void Seed(SiteContext db)
         {
             db.Users.Add(new User

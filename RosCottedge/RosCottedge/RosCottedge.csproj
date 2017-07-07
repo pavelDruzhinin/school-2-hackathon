@@ -153,6 +153,11 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201707071314012_HouseUserIdProblemSolved.cs" />
+    <Compile Include="Migrations\201707071314012_HouseUserIdProblemSolved.Designer.cs">
+      <DependentUpon>201707071314012_HouseUserIdProblemSolved.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AddDatabaseAtStart.cs" />
     <Compile Include="Models\House.cs" />
     <Compile Include="Models\Reservation.cs" />
@@ -224,6 +229,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Scripts\jquery-3.1.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201707071314012_HouseUserIdProblemSolved.resx">
+      <DependentUpon>201707071314012_HouseUserIdProblemSolved.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
