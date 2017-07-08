@@ -13,7 +13,7 @@ namespace RosCottedge.Controllers
         
         public ActionResult Index()
         {
-            return View(db.Houses.ToList());
+            return View();
         }
 
         public ActionResult About()

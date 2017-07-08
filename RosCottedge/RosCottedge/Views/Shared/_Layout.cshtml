@@ -13,6 +13,23 @@
   <div id="wrapper">
     <div class="mainMenu">
       <ul>
+          <li>@if (User.Identity.IsAuthenticated)
+          {
+            <a href="javascript:document.getElementById('logoutForm').submit()">Выйти (@User.Identity.Name)</a>
+              using (Html.BeginForm("Logout", "Account", FormMethod.Post, new { id = "logoutForm" }))
+              {
+                @Html.AntiForgeryToken()
+              }
+
+            @Html.ActionLink("Добавить дом", "Create", "House", new { area = "" }, new { @class = "navbar-brand" })
+
+          }
+          else
+          {
+            @Html.ActionLink("Вход", "Login", "Account", new { area = "" }, new { @class = "navbar-brand" })
+
+            @Html.ActionLink("Регистрация", "Register", "Account", new { area = "" }, new { @class = "navbar-brand" })
+          }</li>
         <li><span>Войти</span></li>
         <li><span>Регистрация</span></li>
         <li><span>Сдать дом</span></li>
@@ -89,5 +106,6 @@
      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDJZlsRr82NdMVjqUPb1fVy-t49lPdTgrw&callback=initMap">
    </script>
   <script src="../../Content/script/main.js" charset="utf-8"></script>
+    @RenderSection("scripts", required: false)
 </body>
 </html>

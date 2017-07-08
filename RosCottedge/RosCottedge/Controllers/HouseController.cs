@@ -32,5 +32,28 @@ namespace RosCottedge.Controllers
             db.Reservations.Add(reservation);
             db.SaveChanges();
         }
+        public ActionResult Create()
+        {
+            ViewBag.UserId = new SelectList(db.Users, "Id", "FirstName");
+            return View();
+        }
+        
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create(House house)
+        {
+            if (ModelState.IsValid)
+            {
+                User user
+                 = db.Users.Where
+                        (x => x.Login == User.Identity.Name).FirstOrDefault();
+                house.UserId = user.Id;
+                db.Houses.Add(house);
+                db.SaveChanges();
+                return RedirectToAction("Index","Home");
+            }
+            
+            return View(house);
+        }
     }
 }

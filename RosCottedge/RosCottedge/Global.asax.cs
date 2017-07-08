@@ -14,7 +14,7 @@ namespace RosCottedge
     {
         protected void Application_Start()
         {
-            Database.SetInitializer(new AddDatabaseAtStart());
+            //Database.SetInitializer(new AddDatabaseAtStart());
 
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
