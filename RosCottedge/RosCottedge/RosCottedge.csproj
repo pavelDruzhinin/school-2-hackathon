@@ -150,12 +150,17 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\HouseController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Migrations\201707071314012_HouseUserIdProblemSolved.cs" />
     <Compile Include="Migrations\201707071314012_HouseUserIdProblemSolved.Designer.cs">
       <DependentUpon>201707071314012_HouseUserIdProblemSolved.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201707081815280_ReservationDescription.cs" />
+    <Compile Include="Migrations\201707081815280_ReservationDescription.Designer.cs">
+      <DependentUpon>201707081815280_ReservationDescription.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AddDatabaseAtStart.cs" />
@@ -217,6 +222,7 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\House\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -233,6 +239,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201707071314012_HouseUserIdProblemSolved.resx">
       <DependentUpon>201707071314012_HouseUserIdProblemSolved.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201707081815280_ReservationDescription.resx">
+      <DependentUpon>201707081815280_ReservationDescription.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
