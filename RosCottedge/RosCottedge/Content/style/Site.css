@@ -1,0 +1,223 @@
+*{
+  padding: 0;
+  margin: 0;
+}
+body {
+    font-family: "Roboto", sans-serif;
+    font-size: 16px;
+}
+p{
+  font-size: 16px;
+}
+h1{
+  font-weight: 700;
+}
+h2{
+  font-weight: 500;
+  font-size: 20px;
+}
+h3{
+  font-size: 20px;
+}
+a{
+  text-decoration: none;
+}
+.houses .houseItem .ContentBox h2,
+.houses .houseItem .ContentBox p{
+  opacity: .87;
+}
+ul li{
+  list-style: none;
+}
+/*LAYOUT START*/
+
+/*wrapper*/
+#wrapper{
+  margin-top: 50px;
+}
+
+/*mainMenu*/
+.mainMenu{
+  width: 100%;
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 50px;
+  background-color: #305075;
+  text-align: right;
+  z-index: 1;
+}
+.mainMenu ul{
+  font-size: 0;
+}
+.mainMenu ul li{
+  font-size: 16px;
+  display: inline-block;
+}
+.mainMenu ul li span{
+  display: inline-block;
+  color: #fff;
+  height: 50px;
+  display: block;
+  padding: 0 15px;
+  line-height: 50px;
+  cursor: pointer;
+  transition: .2s;
+}
+.mainMenu ul li span:hover{
+  background-color: #263F5C;
+}
+.mainMenu ul li:last-child span{
+  background-color: #E32444;
+}
+footer{
+  color: #fff;
+  background-color: #305075;
+  margin-top: 80px;
+}
+footer span{
+  opacity: .7;
+}
+footer h3{
+  margin-bottom: 15px;
+}
+footer ul.mainList li{
+  margin-bottom: 7px;
+}
+footer ul.mainList li:last-child{
+  margin-bottom: 0;
+}
+footer .mainFooter{
+  padding: 45px 0;
+}
+footer a{
+  color: #fff;
+  text-decoration: underline;
+}
+
+/*Soc*/
+footer .socBtns{
+  margin-bottom: 15px;
+}
+footer .socBtns li{
+  display: inline-block;
+}
+footer .socBtns li{
+  display: inline-block;
+}
+footer .socBtns li a i{
+  opacity: .7;
+}
+footer .socBtns li a{
+  display: block;
+  width: 36px;
+  height: 36px;
+  border-radius: 36px;
+  margin-left: 7px;
+  background-color: #263F5C;
+  text-align: center;
+  line-height: 36px;
+}
+footer .socBtns li a:first-child{
+  margin-left: 0;
+}
+
+/*share*/
+footer .share{
+  width: 100%;
+  height: 35px;
+  position: relative;
+}
+footer .share .shareBtn{
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 35px;
+  height: 35px;
+  background-color: #E32444;
+  cursor: pointer;
+  background-image: url('../../Content/img/shareBtn.svg');
+}
+footer input{
+  width: 100%;
+  height: 35px;
+  background-color: #EEEEEE;
+  border: none;
+  outline: none;
+  padding-left: 15px;
+}
+footer .cop{
+  margin-top: 30px;
+}
+
+/*bottomFooter*/
+footer .bottomFooter{
+  background-color: #263F5C;
+  padding: 18px 0;
+}
+footer .bottomFooter span{
+  opacity: .3;
+}
+
+/*LAYOUT END*/
+
+/*INDEX START*/
+
+/*Map*/
+#map_canvas{
+  height: 475px;
+  margin-bottom: 45px;
+}
+.houses .houseItem{
+  font-size: 0;
+}
+.houses .houseItem div{
+  display: inline-block;
+  font-size: 16px;
+  vertical-align: top;
+}
+.houses .houseItem .imgBox{
+  height: 264px;
+  width: 50%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.houses .houseItem .ContentBox{
+  height: 264px;
+  width: 50%;
+  position: relative;
+  padding-left: 15px;
+}
+.houses .houseItem .ContentBox .nameHouse{
+  margin-bottom: 10px;
+  margin-top: -5px;
+}
+.houses .houseItem .ContentBox .address{
+  color: #E32444;
+}
+.houses .houseItem .ContentBox .ratingHouse h2{
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+.houses .houseItem .ContentBox .ratingHouse{
+  position: absolute;
+  bottom: 0;
+  left: 15px;
+}
+.houses .houseItem .ContentBox .ratingHouse ul{
+  font-size: 0;
+}
+.houses .houseItem .ContentBox .ratingHouse ul li{
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border-radius: 20px;
+  background-color: #E32444;
+  margin-left: 6px;
+  opacity: .5;
+}
+.houses .houseItem .ContentBox .ratingHouse ul li:first-child{
+  margin-left: 0;
+}
+/*INDEX END*/

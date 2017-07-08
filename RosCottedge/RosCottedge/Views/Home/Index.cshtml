@@ -2,8 +2,32 @@
 @{
     ViewBag.Title = "Home Page";
 }
+<div id="map_canvas"></div>
+<div class="houses">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 houseItem">
+        <div class="imgBox" style="background-image: url('../../Content/img/chubaka.jpg')"></div>
+        <div class="ContentBox">
+          <h2 class="nameHouse">Загородный дом на берегу озера на 29 человек</h2>
+          <span class="address">Ялта, Кацивели</span>
+          <div class="ratingHouse">
+            <h2>Оценка пользователей</h2>
+            <ul>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
-<table class="table table-bordered" style="text-align:center">
+<!--<table class="table table-bordered" style="text-align:center">
     @foreach (var item in Model)
     {
         <tr>
@@ -24,4 +48,4 @@
             <td>@item.Rating</td>
         </tr>
     }
-</table>
+</table>-->

@@ -1,0 +1,16 @@
+<svg id="Group_408" data-name="Group 408" xmlns="http://www.w3.org/2000/svg" viewBox="-3705 10749 35 35">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: none;
+      }
+
+      .cls-2 {
+        fill: #eee;
+        fill-rule: evenodd;
+      }
+    </style>
+  </defs>
+  <path id="Path_683" data-name="Path 683" class="cls-1" d="M0,0H35V35H0Z" transform="translate(-3705 10749)"/>
+  <path id="path" class="cls-2" d="M12,4,10.6,5.4,16.2,11H4v2H16.2l-5.6,5.6L12,20l8-8Z" transform="translate(-3699 10755)"/>
+</svg>

@@ -1,43 +1,93 @@
 ﻿<!DOCTYPE html>
-<html>
+<html lang="ru">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title – приложение ASP.NET</title>
-    @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
+  <meta charset="Windows-1251">
+  <title>Document</title>
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700" rel="stylesheet">
+  <link rel="stylesheet" href="../../Content/libs/bootstrap/bootstrap.css">
+  <link rel="stylesheet" href="../../Content/libs/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="../../Content/style/media.css">
+  <link rel="stylesheet" href="../../Content/style/Site.css">
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Имя приложения", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Домашняя страница", "Index", "Home")</li>
-                    <li>@Html.ActionLink("О программе", "About", "Home")</li>
-                    <li>@Html.ActionLink("Контакт", "Contact", "Home")</li>
-                </ul>
-            </div>
-        </div>
+  <div id="wrapper">
+    <div class="mainMenu">
+      <ul>
+        <li><span>Войти</span></li>
+        <li><span>Регистрация</span></li>
+        <li><span>Сдать дом</span></li>
+      </ul>
     </div>
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year – приложение ASP.NET</p>
-        </footer>
-    </div>
+    @RenderBody()
+    <footer>
+      <div class="container">
+        <div class="mainFooter">
+          <div class="row">
+            <div class="col-md-3 col-xs-12">
+              <h3>Роскоттедж</h3>
+              <span>
+                Давно выяснено, что при оценке
+                дизайна и композиции читаемый
+                текст мешает сосредоточиться.
+                Lorem Ipsum используют потому,
+                что тот обеспечивает более или
+                менее стандартное
+              </span>
+            </div>
+            <div class="col-md-3 col-xs-12">
+              <h3>Контакты</h3>
+              <ul class="mainList">
+                <li><p>Телефон:<span> +7 (911) 700-10-20</span></p></li>
+                <li><p>E-mail:<span> cottage@roscottage.ru</span></p></li>
+                <li><p>Адрес:<span> г. Петрозаводск, ул. Ленина, дом 9, офис 3</span></p></li>
+              </ul>
+            </div>
+            <div class="col-md-3 col-xs-12">
+              <h3>Контакты</h3>
+              <ul class="mainList">
+                <li><a href="#">О нас</a></li>
+                <li><a href="#">Помощь</a></li>
+                <li><a href="#">Рекламодателям</a></li>
+              </ul>
+            </div>
+            <div class="col-md-3 col-xs-12">
+              <h3>Контакты</h3>
+              <ul class="socBtns">
+                <li><a href="#"><i class="fa fa-vk" aria-hidden="true"></i></a></li>
+                <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                <li><a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
+                <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+              </ul>
 
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
+              <h3>Поделиться</h3>
+              <div class="share">
+                <input type="text" name="" value="" placeholder="Введите ваш E-mail">
+                <div class="shareBtn"></div>
+              </div>
+            </div>
+            <div class="col-md-12 cop">
+              <span>
+                Все права защищены  ©<br>
+                Интернет-сайт roscottage.ru разработан в рамках хакатона (форум разработчиков), который проводился организацией РосКвартал в 2017 году.
+                Данный сайт не будет доступен для публичного просмотра, в связи с этим эта надпись тут не требуется. Всем добра.
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="bottomFooter">
+        <div class="container">
+          <span>
+            roscottage.ru - аренда домов по всей России. 2017
+          </span>
+        </div>
+      </div>
+    </footer>
+  </div>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script async defer
+     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDJZlsRr82NdMVjqUPb1fVy-t49lPdTgrw&callback=initMap">
+   </script>
+  <script src="../../Content/script/main.js" charset="utf-8"></script>
 </body>
 </html>
