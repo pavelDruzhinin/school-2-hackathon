@@ -23,8 +23,9 @@ a{
   text-decoration: none;
 }
 .houses .houseItem .ContentBox h2,
-.houses .houseItem .ContentBox p{
-  opacity: .87;
+.houses .houseItem .ContentBox h2 a,
+.houses .houseItem .ContentBox p {
+    opacity: .87;
 }
 ul li{
   list-style: none;
@@ -54,7 +55,7 @@ ul li{
   font-size: 16px;
   display: inline-block;
 }
-.mainMenu ul li span{
+.mainMenu ul li a{
   display: inline-block;
   color: #fff;
   height: 50px;
@@ -64,12 +65,16 @@ ul li{
   cursor: pointer;
   transition: .2s;
 }
-.mainMenu ul li span:hover{
+.mainMenu ul li a:hover{
   background-color: #263F5C;
 }
-.mainMenu ul li:last-child span{
+.mainMenu ul li:last-child a{
   background-color: #E32444;
 }
+.mainMenu #logoutForm{
+    display:none;
+}
+/*footer*/
 footer{
   color: #fff;
   background-color: #305075;
@@ -169,6 +174,7 @@ footer .bottomFooter span{
   margin-bottom: 45px;
 }
 .houses .houseItem{
+  margin-bottom: 30px;
   font-size: 0;
 }
 .houses .houseItem div{
@@ -199,6 +205,9 @@ footer .bottomFooter span{
 .houses .houseItem .ContentBox .ratingHouse h2{
   font-size: 16px;
   margin-bottom: 10px;
+}
+.houses .houseItem .ContentBox h2 a{
+    color: #000;
 }
 .houses .houseItem .ContentBox .ratingHouse{
   position: absolute;

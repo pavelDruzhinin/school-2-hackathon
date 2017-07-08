@@ -1,6 +1,7 @@
-﻿@model IEnumerable<RosCottedge.Models.House>
-
+﻿@model RosCottedge.Models.House
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "house";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<h2>@Model.Id</h2>

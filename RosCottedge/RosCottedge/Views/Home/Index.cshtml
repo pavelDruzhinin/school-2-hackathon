@@ -6,11 +6,13 @@
 <div class="houses">
   <div class="container">
     <div class="row">
+      @foreach (var item in Model)
+      {
       <div class="col-md-6 houseItem">
         <div class="imgBox" style="background-image: url('../../Content/img/chubaka.jpg')"></div>
         <div class="ContentBox">
-          <h2 class="nameHouse">Загородный дом на берегу озера на 29 человек</h2>
-          <span class="address">Ялта, Кацивели</span>
+          <h2 class="nameHouse"><a href="/House/Index?houseId=@item.Id">@item.Name</a></h2>
+          <span class="address">@item.Locality, @item.Area</span>
           <div class="ratingHouse">
             <h2>Оценка пользователей</h2>
             <ul>
@@ -23,29 +25,8 @@
           </div>
         </div>
       </div>
+      }
     </div>
   </div>
 </div>
 
-@*<table class="table table-bordered" style="text-align:center">
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>@item.Name</td>
-            <td>@item.Price руб. / сутки</td>
-            <td>@item.NumberOfPersons чел.</td>
-            <td>@item.Region</td>
-            <td>@item.Locality</td>
-            <td>@item.Area</td>
-            <td>@item.HouseNumber</td>
-            <td>@item.Description</td>
-            <td>@item.Food</td>
-            <td>@item.Transfer</td>
-            <td>@item.ServicesIncluded</td>
-            <td>@item.AdditionalServices</td>
-            <td>@item.Accomodations</td>
-            <td>@item.BookingConditions</td>
-            <td>@item.Rating</td>
-        </tr>
-    }
-</table>*@

@@ -13,28 +13,22 @@
   <div id="wrapper">
     <div class="mainMenu">
       <ul>
-          <li>@if (User.Identity.IsAuthenticated)
+          @if (User.Identity.IsAuthenticated)
           {
-            <a href="javascript:document.getElementById('logoutForm').submit()">Выйти (@User.Identity.Name)</a>
+            <li><a href="javascript:document.getElementById('logoutForm').submit()">Выйти (@User.Identity.Name)</a></li>
               using (Html.BeginForm("Logout", "Account", FormMethod.Post, new { id = "logoutForm" }))
               {
                 @Html.AntiForgeryToken()
               }
-
-            @Html.ActionLink("Добавить дом", "Create", "House", new { area = "" }, new { @class = "navbar-brand" })
+            <li>@Html.ActionLink("Добавить дом", "Create", "House", new { area = "" }, new { @class = "navbar-brand" })</li>
 
           }
           else
           {
-            @Html.ActionLink("Добавить дом", "Login", "Account", new { area = "" }, new { @class = "navbar-brand" })
-
-            @Html.ActionLink("Вход", "Login", "Account", new { area = "" }, new { @class = "navbar-brand" })
-
-            @Html.ActionLink("Регистрация", "Register", "Account", new { area = "" }, new { @class = "navbar-brand" })
-          }</li>
-        <li><span>Войти</span></li>
-        <li><span>Регистрация</span></li>
-        <li><span>Сдать дом</span></li>
+            <li>@Html.ActionLink("Вход", "Login", "Account", new { area = "" }, new { @class = "navbar-brand" })</li>
+            <li>@Html.ActionLink("Регистрация", "Register", "Account", new { area = "" }, new { @class = "navbar-brand" })</li>
+            <li>@Html.ActionLink("Добавить дом", "Login", "Account", new { area = "" }, new { @class = "navbar-brand" })</li>
+          }
       </ul>
     </div>
     @RenderBody()
