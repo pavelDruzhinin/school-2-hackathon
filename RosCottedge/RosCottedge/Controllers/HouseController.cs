@@ -24,13 +24,14 @@ namespace RosCottedge.Controllers
 
         //Для кнопки "Забронировать" на странице дома.
         [HttpPost]
-        public void AddReservation(Reservation reservation)
+        public ActionResult AddReservation(Reservation reservation)
         {
             reservation.ReservationDate = DateTime.Now;
             User user = db.Users.Where(x => x.Login == User.Identity.Name).FirstOrDefault();
             reservation.UserId = user.Id;
             db.Reservations.Add(reservation);
             db.SaveChanges();
+            return RedirectToAction("Index", "Home");
         }
         public ActionResult Create()
         {

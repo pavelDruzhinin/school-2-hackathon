@@ -39,6 +39,7 @@ namespace RosCottedge.Models
         [Display(Name = "Условия бронирования")]
         public string BookingConditions { get; set; }
         public decimal Rating { get; set; }
+        public List<Review> Reviews { get; set; }
         public int UserId { get; set; }
         public User User { get; set; }
     }

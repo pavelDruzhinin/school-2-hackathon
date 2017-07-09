@@ -4,4 +4,31 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>@Model.Id</h2>
+<h2>@Model.Name</h2>
+
+@if (User.Identity.IsAuthenticated)
+{ <form method="post" action="AddReservation">
+        <input type="hidden" value="@Model.Id" name="HouseId" />
+        <table>
+            <tr>
+                <td><input type="date" name="ArrivalDate" /> </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="date" name="DepartureDate" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="text" name="Description" />
+                </td>
+            </tr>
+            <tr><td><input type="submit" value="Забронировать" /> </td><td></td></tr>
+        </table>
+    </form>
+}
+else
+{
+    @Html.ActionLink("Забронировать","Login","Account")
+}
+    
