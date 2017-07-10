@@ -1,0 +1,26 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="Windows-1251">
+    <title>@ViewBag.Title</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700" rel="stylesheet">
+    <link rel="stylesheet" href="../../Content/libs/bootstrap/bootstrap.css">
+    <link rel="stylesheet" href="../../Content/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../../Content/style/media.css">
+    <link rel="stylesheet" href="../../Content/style/Site.css">
+</head>
+<body>
+    <div id="wrapper">
+        @RenderBody()
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="../../Content/script/main.js" charset="utf-8"></script>
+    @RenderSection("scripts", required: false)
+</body>
+</html>
+
