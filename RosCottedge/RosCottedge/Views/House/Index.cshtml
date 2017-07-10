@@ -1,14 +1,15 @@
-﻿@model RosCottedge.Models.House
+﻿@using RosCottedge.Models
+@model RosCottedge.ViewModels.HouseIndexViewModel
 @{
     ViewBag.Title = "house";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>@Model.Name</h2>
+<h2>@Model.House.Name</h2>
 
 @if (User.Identity.IsAuthenticated)
 { <form method="post" action="AddReservation">
-        <input type="hidden" value="@Model.Id" name="HouseId" />
+        <input type="hidden" value="@Model.House.Id" name="HouseId" />
         <table>
             <tr>
                 <td><input type="date" name="ArrivalDate" /> </td>
@@ -31,4 +32,45 @@ else
 {
     @Html.ActionLink("Забронировать","Login","Account")
 }
-    
+<hr/>
+
+@if (User.Identity.IsAuthenticated)
+{
+    <h2>Новый коммент</h2>
+    <form method="post" action="AddReview">
+        <input type="hidden" value="@Model.House.Id" name="HouseId">
+
+        <label for="Rating">Оценка</label>
+        <select class="form-control" id="Rating" name="Rating">
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+            <option>5</option>
+        </select>
+
+        <label for="Comment">Комментарий:</label>
+        <textarea rows="5" id="Comment" name="Comment"></textarea>
+
+        <button type="submit">Отправить</button>
+        <hr />
+    </form>
+}
+
+<h2>Комменты</h2>  
+<table>
+    <tbody>
+    @foreach (var review in Model.Reviews)
+    {
+        <tr>
+            <td>@review.User.FirstName @review.User.MiddleName</td>
+            <td>@review.CommentDate.ToShortDateString()</td>
+            <td>Оценка @review.Rating</td>
+        </tr>
+        <tr>
+            <td colspan="3">@review.Comment</td>
+        </tr>
+
+    }
+    </tbody>
+</table>

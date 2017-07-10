@@ -173,6 +173,7 @@
     <Compile Include="Models\SiteContext.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\HouseIndexViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\img\chubaka.jpg" />
