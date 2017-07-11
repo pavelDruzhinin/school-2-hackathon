@@ -48,7 +48,7 @@ namespace RosCottedge.Controllers
             {
                 var _arrival = x.ArrivalDate;
                 var _departure = x.DepartureDate;
-                for (var _date = arrival; _date <= _departure; _date = _date.AddDays(1)) AllRange.Add(_date);
+                for (var _date = _arrival; _date <= _departure; _date = _date.AddDays(1)) AllRange.Add(_date);
             };
 
             foreach (var y in DateRange)
