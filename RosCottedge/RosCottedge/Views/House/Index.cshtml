@@ -7,8 +7,7 @@
 
 <h2>@Model.House.Name</h2>
 
-@if (User.Identity.IsAuthenticated)
-{ <form method="post" action="AddReservation">
+ <form method="post" action="AddReservation">
         <input type="hidden" value="@Model.House.Id" name="HouseId" />
         <table>
             <tr>
@@ -28,10 +27,7 @@
         </table>
     </form>
 }
-else
-{
-    @Html.ActionLink("Забронировать","Login","Account")
-}
+
 <hr/>
 
 @if (User.Identity.IsAuthenticated)

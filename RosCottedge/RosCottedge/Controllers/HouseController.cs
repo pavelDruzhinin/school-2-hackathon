@@ -34,36 +34,57 @@ namespace RosCottedge.Controllers
         [HttpPost]
         public ActionResult AddReservation(Reservation reservation)
         {
-            reservation.ReservationDate = DateTime.Now;
-
-            //Создаём список зарезервированных дней в заказе
-            var DateRange = new List<DateTime>();
-            var arrival = reservation.ArrivalDate;
-            var departure = reservation.DepartureDate;
-            for (var date = arrival; date <= departure; date = date.AddDays(1)) DateRange.Add(date);
-
-            //Создаём список всех зарезервированных дней из базы
-            var AllRange = new List<DateTime>();
-            foreach (var x in db.Reservations)
+            if (User.Identity.IsAuthenticated)
             {
-                var _arrival = x.ArrivalDate;
-                var _departure = x.DepartureDate;
-                for (var _date = _arrival; _date <= _departure; _date = _date.AddDays(1)) AllRange.Add(_date);
-            };
-
-            foreach (var y in DateRange)
-            {
-                if (AllRange.Contains(y))
+                if (reservation.ArrivalDate < DateTime.Now || reservation.ArrivalDate > reservation.DepartureDate)
                 {
-                    return RedirectToAction("WrongDateRange", "House");
+
+                    return RedirectToAction("Date", "House");
+                }
+                else
+                {
+                    reservation.ReservationDate = DateTime.Now;
+
+                    //Создаём список зарезервированных дней в заказе
+                    var DateRange = new List<DateTime>();
+                    var arrival = reservation.ArrivalDate;
+                    var departure = reservation.DepartureDate;
+                    for (var date = arrival; date <= departure; date = date.AddDays(1)) DateRange.Add(date);
+
+                    //Создаём список всех зарезервированных дней из базы
+                    var AllRange = new List<DateTime>();
+                    foreach (var x in db.Reservations)
+                    {
+                        var _arrival = x.ArrivalDate;
+                        var _departure = x.DepartureDate;
+                        for (var _date = _arrival; _date <= _departure; _date = _date.AddDays(1)) AllRange.Add(_date);
+                    };
+
+                    foreach (var y in DateRange)
+                    {
+                        if (AllRange.Contains(y))
+                        {
+                            return RedirectToAction("WrongDateRange", "House");
+                        }
+                    }
+
+                    User user = db.Users.Where(x => x.Login == User.Identity.Name).FirstOrDefault();
+                    reservation.UserId = user.Id;
+                    db.Reservations.Add(reservation);
+                    db.SaveChanges();
+                    return RedirectToAction("Index", "Home");
                 }
             }
+            else
+            {
+                return RedirectToAction("Login", "Account");
+            }
 
-            User user = db.Users.Where(x => x.Login == User.Identity.Name).FirstOrDefault();
-            reservation.UserId = user.Id;
-            db.Reservations.Add(reservation);
-            db.SaveChanges();
-            return RedirectToAction("Index", "Home");
+        }
+        public ActionResult Date()
+        {
+            ViewBag.mess = "Неверный диапазон дат";
+            return View();
         }
 
         //Страница ошибки, если выбранные даты уже заняты в базе. 
