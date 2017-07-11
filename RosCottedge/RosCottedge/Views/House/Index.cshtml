@@ -5,7 +5,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>@Model.House.Id</h2>
+<h2>@Model.House.Name</h2>
 
 @if (User.Identity.IsAuthenticated)
 { <form method="post" action="AddReservation">

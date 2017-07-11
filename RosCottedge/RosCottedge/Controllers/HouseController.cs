@@ -25,17 +25,40 @@ namespace RosCottedge.Controllers
                 House = db.Houses.Find(houseId),
                 Reviews = db.Reviews.Include(u => u.User).Where(r => r.HouseId == houseId).ToList()
             };
-            
+
             return View(viewModel);
 
         }
         
-
         //Для кнопки "Забронировать" на странице дома.
         [HttpPost]
         public ActionResult AddReservation(Reservation reservation)
         {
             reservation.ReservationDate = DateTime.Now;
+
+            //Создаём список зарезервированных дней в заказе
+            var DateRange = new List<DateTime>();
+            var arrival = reservation.ArrivalDate;
+            var departure = reservation.DepartureDate;
+            for (var date = arrival; date <= departure; date = date.AddDays(1)) DateRange.Add(date);
+
+            //Создаём список всех зарезервированных дней из базы
+            var AllRange = new List<DateTime>();
+            foreach (var x in db.Reservations)
+            {
+                var _arrival = x.ArrivalDate;
+                var _departure = x.DepartureDate;
+                for (var _date = arrival; _date <= _departure; _date = _date.AddDays(1)) AllRange.Add(_date);
+            };
+
+            foreach (var y in DateRange)
+            {
+                if (AllRange.Contains(y))
+                {
+                    return RedirectToAction("WrongDateRange", "House");
+                }
+            }
+
             User user = db.Users.Where(x => x.Login == User.Identity.Name).FirstOrDefault();
             reservation.UserId = user.Id;
             db.Reservations.Add(reservation);
@@ -43,6 +66,12 @@ namespace RosCottedge.Controllers
             return RedirectToAction("Index", "Home");
         }
 
+        //Страница ошибки, если выбранные даты уже заняты в базе. 
+        public ActionResult WrongDateRange()
+        {
+            return View();
+        }
+        
         public ActionResult Create()
         {
             ViewBag.UserId = new SelectList(db.Users, "Id", "FirstName");
@@ -65,9 +94,8 @@ namespace RosCottedge.Controllers
                 review.CommentDate = DateTime.Now;
                 review.UserId = user.Id;
                 db.Reviews.Add(review);
-
                 db.SaveChanges();
-                return RedirectToAction("Index", new {houseId = review.HouseId});
+                return RedirectToAction("Index", new { houseId = review.HouseId });
             }
         }
 
@@ -84,9 +112,9 @@ namespace RosCottedge.Controllers
                 house.Rating = 0;
                 db.Houses.Add(house);
                 db.SaveChanges();
-                return RedirectToAction("Index","Home");
+                return RedirectToAction("Index", "Home");
             }
-            
+
             return View(house);
         }
     }
