@@ -104,7 +104,7 @@ namespace RosCottedge.Controllers
         {
             var user = db.Users.Where(x => x.Login == User.Identity.Name).FirstOrDefault();
             var reservation = db.Reservations
-                .Where(r => r.UserId == user.Id /*&& r.DepartureDate < DateTime.Now*/ && r.HouseId == review.HouseId)
+                .Where(r => r.UserId == user.Id && r.DepartureDate < DateTime.Now && r.HouseId == review.HouseId)
                 .FirstOrDefault();
             if (reservation == null)
             {
