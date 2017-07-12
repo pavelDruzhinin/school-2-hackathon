@@ -108,7 +108,7 @@ namespace RosCottedge.Controllers
                 .FirstOrDefault();
             if (reservation == null)
             {
-                return RedirectToAction("Index", new { houseId = review.HouseId });
+                return Redirect(HttpContext.Request.UrlReferrer.AbsoluteUri);
             }
             else
             {
@@ -122,7 +122,7 @@ namespace RosCottedge.Controllers
                 var reviewsSum = db.Reviews.Where(x => x.HouseId == review.HouseId).Sum(x => x.Rating);
                 house.Rating = reviewsSum / reviewsCount;
                 db.SaveChanges();
-                return RedirectToAction("Index", new { houseId = review.HouseId });
+                return Redirect(HttpContext.Request.UrlReferrer.AbsoluteUri);
             }
         }
 
