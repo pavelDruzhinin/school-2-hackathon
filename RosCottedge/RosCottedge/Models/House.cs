@@ -41,7 +41,7 @@ namespace RosCottedge.Models
         [Display(Name = "Трансфер")]
         public string Transfer { get; set; }
 
-        [Display(Name = "Услуги, включённые в стоимость")]
+        [Display(Name = "Включённые услуги")]
         public string ServicesIncluded { get; set; }
 
         [Display(Name = "Услуги за отдельную плату")]

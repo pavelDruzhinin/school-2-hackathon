@@ -23,6 +23,9 @@ namespace RosCottedge.Controllers
         #region Логин
         public ActionResult Login()
         {
+            if (User.Identity.IsAuthenticated == true)
+                return new HttpStatusCodeResult(HttpStatusCode.Found);
+
             return View();
         }
         [HttpPost]
@@ -50,12 +53,16 @@ namespace RosCottedge.Controllers
         #region Регистрация
         public ActionResult Register()
         {
+            if (User.Identity.IsAuthenticated == true)
+                return new HttpStatusCodeResult(HttpStatusCode.Found);
             return View();
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Register(Register registerModel)
         {
+            if(User.Identity.IsAuthenticated==true)
+            return new HttpStatusCodeResult(HttpStatusCode.Unauthorized);
             if (ModelState.IsValid)//если модель проходит валидацию, то в базе ищем логин
             {
 
@@ -158,5 +165,17 @@ namespace RosCottedge.Controllers
 
         }
         #endregion
+        public ActionResult MyHouse(House house)
+        {
+            if (User.Identity.IsAuthenticated)
+            {
+                User user = db.Users.Include(h => h.Houses).Where(x => x.Login == User.Identity.Name).FirstOrDefault();
+                house.UserId = user.Id;
+
+
+            }
+
+            return View();
+        }
     }
 }
