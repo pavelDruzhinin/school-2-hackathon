@@ -14,7 +14,7 @@ namespace RosCottedge.Models
         public string Comment { get; set; }
 
         [Display(Name = "Оценка")]
-        public int Rating { get; set; }
+        public float Rating { get; set; }
         
         //CommentDate - дата, когда оставлен комментарий.
         public DateTime CommentDate { get; set; }
