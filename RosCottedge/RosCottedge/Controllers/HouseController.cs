@@ -103,27 +103,39 @@ namespace RosCottedge.Controllers
         public ActionResult AddReview(Review review)
         {
             var user = db.Users.Where(x => x.Login == User.Identity.Name).FirstOrDefault();
+
+            var dateLimit = DateTime.Today.AddDays(-14);
             var reservation = db.Reservations
-                .Where(r => r.UserId == user.Id && r.DepartureDate < DateTime.Now && r.HouseId == review.HouseId)
+                .Where(r => r.UserId == user.Id && r.DepartureDate > dateLimit && r.DepartureDate < DateTime.Now && r.HouseId == review.HouseId)
                 .FirstOrDefault();
-            if (reservation == null)
+
+            if (reservation == null) //Резерваций, закончившихся менее 14 дней назад не было
             {
                 return Redirect(HttpContext.Request.UrlReferrer.AbsoluteUri);
             }
-            else
+
+            var existingReview = db.Reviews.OrderByDescending(e => e.CommentDate)
+                .Where(e => e.UserId == user.Id && e.HouseId == review.HouseId && e.CommentDate > reservation.DepartureDate)
+                .FirstOrDefault();
+
+            if (existingReview != null) //Юзер уже оставил комментарий
             {
-                review.CommentDate = DateTime.Now;
-                review.UserId = user.Id;
-                db.Reviews.Add(review);
-                db.SaveChanges();
-                //Изменяем рейтинг дома в базе.
-                var house = db.Houses.Find(review.HouseId);
-                var reviewsCount = db.Reviews.Where(x => x.HouseId == review.HouseId).Count();
-                var reviewsSum = db.Reviews.Where(x => x.HouseId == review.HouseId).Sum(x => x.Rating);
-                house.Rating = reviewsSum / reviewsCount;
-                db.SaveChanges();
                 return Redirect(HttpContext.Request.UrlReferrer.AbsoluteUri);
+
             }
+
+            review.CommentDate = DateTime.Now;
+            review.UserId = user.Id;
+            db.Reviews.Add(review);
+            db.SaveChanges();
+            //Изменяем рейтинг дома в базе.
+            var house = db.Houses.Find(review.HouseId);
+            var reviewsCount = db.Reviews.Where(x => x.HouseId == review.HouseId).Count();
+            var reviewsSum = db.Reviews.Where(x => x.HouseId == review.HouseId).Sum(x => x.Rating);
+            house.Rating = reviewsSum / reviewsCount;
+            db.SaveChanges();
+            return Redirect(HttpContext.Request.UrlReferrer.AbsoluteUri);
+            
         }
 
         [HttpPost]
