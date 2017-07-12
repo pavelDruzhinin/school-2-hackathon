@@ -29,17 +29,19 @@ namespace RosCottedge.Controllers
             return View(viewModel);
 
         }
-        
+
         //Для кнопки "Забронировать" на странице дома.
         [HttpPost]
-        public ActionResult AddReservation(Reservation reservation)
+        public string AddReservation(int HouseId, DateTime ArrivalDate, DateTime DepartureDate, string Description)
         {
+
+            var reservation = new Reservation { HouseId = HouseId, ArrivalDate = ArrivalDate, DepartureDate = DepartureDate, Description = Description };
+
             if (User.Identity.IsAuthenticated)
             {
                 if (reservation.ArrivalDate < DateTime.Now || reservation.ArrivalDate > reservation.DepartureDate)
                 {
-
-                    return RedirectToAction("Date", "House");
+                    return "Неверный диапазон дат";
                 }
                 else
                 {
@@ -64,7 +66,7 @@ namespace RosCottedge.Controllers
                     {
                         if (AllRange.Contains(y))
                         {
-                            return RedirectToAction("WrongDateRange", "House");
+                            return "Извините, одна из выбранных вами дат уже забронирована";
                         }
                     }
 
@@ -72,25 +74,14 @@ namespace RosCottedge.Controllers
                     reservation.UserId = user.Id;
                     db.Reservations.Add(reservation);
                     db.SaveChanges();
-                    return RedirectToAction("Index", "Home");
+                    return "<script> document.location.href = '/Home/Index' </script>";
                 }
             }
             else
             {
-                return RedirectToAction("Login", "Account");
+                return "<script> document.location.href = '/Account/Login' </script>";
             }
 
-        }
-        public ActionResult Date()
-        {
-            ViewBag.mess = "Неверный диапазон дат";
-            return View();
-        }
-
-        //Страница ошибки, если выбранные даты уже заняты в базе. 
-        public ActionResult WrongDateRange()
-        {
-            return View();
         }
         
         public ActionResult Create()
