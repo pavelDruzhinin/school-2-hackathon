@@ -163,6 +163,10 @@
     <Compile Include="Migrations\201707081815280_ReservationDescription.Designer.cs">
       <DependentUpon>201707081815280_ReservationDescription.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201707120225273_IntRating.cs" />
+    <Compile Include="Migrations\201707120225273_IntRating.Designer.cs">
+      <DependentUpon>201707120225273_IntRating.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AddDatabaseAtStart.cs" />
     <Compile Include="Models\House.cs" />
@@ -257,6 +261,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201707081815280_ReservationDescription.resx">
       <DependentUpon>201707081815280_ReservationDescription.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201707120225273_IntRating.resx">
+      <DependentUpon>201707120225273_IntRating.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -104,7 +104,7 @@ namespace RosCottedge.Controllers
         {
             var user = db.Users.Where(x => x.Login == User.Identity.Name).FirstOrDefault();
             var reservation = db.Reservations
-                .Where(r => r.UserId == user.Id && r.DepartureDate < DateTime.Now && r.HouseId == review.HouseId)
+                .Where(r => r.UserId == user.Id /*&& r.DepartureDate < DateTime.Now*/ && r.HouseId == review.HouseId)
                 .FirstOrDefault();
             if (reservation == null)
             {
@@ -115,6 +115,12 @@ namespace RosCottedge.Controllers
                 review.CommentDate = DateTime.Now;
                 review.UserId = user.Id;
                 db.Reviews.Add(review);
+                db.SaveChanges();
+                //Изменяем рейтинг дома в базе.
+                var house = db.Houses.Find(review.HouseId);
+                var reviewsCount = db.Reviews.Where(x => x.HouseId == review.HouseId).Count();
+                var reviewsSum = db.Reviews.Where(x => x.HouseId == review.HouseId).Sum(x => x.Rating);
+                house.Rating = reviewsSum / reviewsCount;
                 db.SaveChanges();
                 return RedirectToAction("Index", new { houseId = review.HouseId });
             }
