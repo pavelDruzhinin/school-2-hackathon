@@ -291,4 +291,80 @@ footer .bottomFooter span{
   display:block;
   border-top: 1px solid #EBEBEB;
 }
+/* REGISTRATION FORM*/
+.FormRegistration{
+    width: 475px;
+}
+.innerForm .largeInputForm{
+    width: 445px;
+}
 
+.innerForm .smallInputForm{
+    width: 215px;
+    float: left;
+    margin-top: 0px;
+}
+
+.floatInput{
+    margin-left: 15px;
+}
+.innerForm .signUpButton{
+	background-color: #69F0AE;
+	color: #fff;
+	cursor: pointer;
+	font-size: 16px;
+	width: 445px;
+	margin-top: 15px;
+}
+.large-span-danger{
+    width: 445px;
+    float: left;
+    margin-bottom: 15px;
+}
+.small-span-danger{
+    width: 215px;
+    float: left;
+    margin-bottom: 15px;
+}
+.floatSpan{
+    margin-left: 15px;
+}
+
+/* CreationHome */
+.FormCreate{
+	width: 690px;
+}
+.topCreate{
+    height: 90px;
+    background-color: blue;
+}
+.innerForm .smallInputCreate{
+    width: 210px;
+    float: left;
+    clear: right;
+    margin-bottom: 15px;
+}
+.innerForm .largeInputCreate{
+    width: 660px;
+}
+.innerForm textarea{
+    height: 90px;
+    resize: none;
+    width: 660px;
+    display: block;
+    border: none;
+    outline: none;
+    background-color: #EEEEEE;
+    margin-bottom: 15px;
+    margin-top: 15px;
+    padding: 15px;
+}
+.innerForm .ButtonCreate{
+    background-color: #69F0AE;
+	color: #fff;
+	cursor: pointer;
+	font-size: 16px;
+	width: 660px;
+	margin-top: 15px;
+    border-top: 1px solid #EBEBEB;
+}

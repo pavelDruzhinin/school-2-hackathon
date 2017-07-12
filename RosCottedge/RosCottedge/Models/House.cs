@@ -33,24 +33,31 @@ namespace RosCottedge.Models
         public string HouseNumber { get; set; }
 
         [Display(Name = "Описание")]
+        [UIHint("MultilineText")]
         public string Description { get; set; }
 
         [Display(Name = "Питание")]
+        [UIHint("MultilineText")]
         public string Food { get; set; }
 
         [Display(Name = "Трансфер")]
+        [UIHint("MultilineText")]
         public string Transfer { get; set; }
 
         [Display(Name = "Включённые услуги")]
+        [UIHint("MultilineText")]
         public string ServicesIncluded { get; set; }
 
         [Display(Name = "Услуги за отдельную плату")]
+        [UIHint("MultilineText")]
         public string AdditionalServices { get; set; }
 
         [Display(Name = "Условия проживания")]
+        [UIHint("MultilineText")]
         public string Accomodations { get; set; }
 
         [Display(Name = "Условия бронирования")]
+        [UIHint("MultilineText")]
         public string BookingConditions { get; set; }
 
         public float Rating { get; set; }
