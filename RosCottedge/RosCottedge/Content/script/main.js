@@ -1,4 +1,14 @@
-$(document).ready(function(){
+$(document).ready(function () {
+
+    //AjaxReservation
+
+    var redirectData = "";
+    $('#reservation').submit(function () {
+        $.post('/House/AddReservation', $('#reservation').serialize(), function (data) {
+            $('.errorBox').html(data);
+        });
+        return false;
+    });
 
 });
 
