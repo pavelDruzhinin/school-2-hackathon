@@ -85,6 +85,12 @@
     <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
+    </Reference>
+    <Reference Include="PagedList.Mvc, Version=4.5.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Diagnostics.DiagnosticSource, Version=4.0.2.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
@@ -190,9 +196,11 @@
   <ItemGroup>
     <Content Include="Content\img\chubaka.jpg" />
     <Content Include="Content\img\shareBtn.svg" />
+    <Content Include="Content\img\zlad.jpg" />
     <Content Include="Content\libs\bootstrap\bootstrap.css" />
     <Content Include="Content\libs\font-awesome\css\font-awesome.min.css" />
     <Content Include="Content\libs\font-awesome\fonts\fontawesome-webfont.svg" />
+    <Content Include="Content\style\PagedList.css" />
     <Content Include="Content\script\main.js" />
     <Content Include="Content\style\media.css" />
     <Content Include="Content\style\Site.css" />

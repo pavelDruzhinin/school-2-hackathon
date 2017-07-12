@@ -24,8 +24,12 @@ namespace RosCottedge
                       "~/Scripts/respond.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap.css",
-                      "~/Content/site.css"));
+                      "~/Content/libs/bootstrap.css",
+                      "~/Content/style/site.css",
+                      "~/Content/style/media.css",
+                      "~/Content/PagedList.css",
+                      "~/Content/libs/font-awesome/css/font-awesome.min.css"
+                      ));
         }
     }
 }

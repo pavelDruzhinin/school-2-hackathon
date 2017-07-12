@@ -1,4 +1,6 @@
 ﻿@using RosCottedge.Models
+@using PagedList.Mvc
+
 @model RosCottedge.ViewModels.HouseIndexViewModel
 @{
     ViewBag.Title = "house";
@@ -53,20 +55,23 @@
     </form>
 }
 
-<h2>Комменты</h2>  
-<table>
-    <tbody>
-    @foreach (var review in Model.Reviews)
-    {
-        <tr>
-            <td>@review.User.FirstName @review.User.MiddleName</td>
-            <td>@review.CommentDate.ToShortDateString()</td>
-            <td>Оценка @review.Rating</td>
-        </tr>
-        <tr>
-            <td colspan="3">@review.Comment</td>
-        </tr>
+<h2>Комменты</h2>
+<br/>
 
-    }
-    </tbody>
-</table>
+@foreach (var review in Model.Reviews)
+{
+    <div class="reviewItem">
+        <div class="reviewUser">
+            <img src="~/content/img/zlad.jpg" alt="">
+            <h3>@review.User.FirstName<br>@review.User.LastName</h3>
+        </div>
+        <div class="reviewContent">
+            <p>@review.Comment</p>
+            <p class="ratingReview">Оценка: <span>@review.Rating/5</span></p>
+        </div>
+    </div>
+}
+<br />
+Страница @(Model.Reviews.PageCount < Model.Reviews.PageNumber ? 0 : Model.Reviews.PageNumber) из @Model.Reviews.PageCount
+
+@Html.PagedListPager(Model.Reviews, page => Url.Action("Index", new { houseId = Model.House.Id, page }))

@@ -9,6 +9,7 @@ using System.Web.Mvc;
 using Microsoft.Ajax.Utilities;
 using RosCottedge.Models;
 using RosCottedge.ViewModels;
+using PagedList;
 
 namespace RosCottedge.Controllers
 {
@@ -18,13 +19,18 @@ namespace RosCottedge.Controllers
 
         //Отображение данных дома
         [HttpGet]
-        public ActionResult Index(int houseId)
+        public ActionResult Index(int houseId, int? page)
         {
+            int pageSize = 5;
+            int pageNumber = (page ?? 1);
+
             var viewModel = new HouseIndexViewModel()
             {
                 House = db.Houses.Find(houseId),
-                Reviews = db.Reviews.Include(u => u.User).Where(r => r.HouseId == houseId).ToList()
+                Reviews = db.Reviews.Include(u => u.User).Where(r => r.HouseId == houseId).OrderByDescending(r => r.CommentDate).ToPagedList(pageNumber, pageSize)
             };
+
+            
 
             return View(viewModel);
 
