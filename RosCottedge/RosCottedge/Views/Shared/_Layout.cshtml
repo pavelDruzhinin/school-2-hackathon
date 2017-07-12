@@ -21,7 +21,7 @@
                 @Html.AntiForgeryToken()
               }
             <li>@Html.ActionLink("Добавить дом", "Create", "House", new { area = "" }, new { @class = "navbar-brand" })</li>
-
+            <li>@Html.ActionLink("Личный кабинет", "Profile", "Account", new { area = "" }, new { @class = "navbar-brand" })</li>
           }
           else
           {

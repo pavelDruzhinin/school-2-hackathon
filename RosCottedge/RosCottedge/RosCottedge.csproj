@@ -171,6 +171,10 @@
     <Compile Include="Migrations\201707121011282_FloatRating.Designer.cs">
       <DependentUpon>201707121011282_FloatRating.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201707121458353_UserProfile.cs" />
+    <Compile Include="Migrations\201707121458353_UserProfile.Designer.cs">
+      <DependentUpon>201707121458353_UserProfile.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AddDatabaseAtStart.cs" />
     <Compile Include="Models\House.cs" />
@@ -246,6 +250,8 @@
     <Content Include="Views\Shared\_LayoutForm.cshtml" />
     <Content Include="Views\House\WrongDateRange.cshtml" />
     <Content Include="Views\House\Date.cshtml" />
+    <Content Include="Views\Account\Profile.cshtml" />
+    <Content Include="Views\Account\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -271,6 +277,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201707121011282_FloatRating.resx">
       <DependentUpon>201707121011282_FloatRating.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201707121458353_UserProfile.resx">
+      <DependentUpon>201707121458353_UserProfile.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

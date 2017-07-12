@@ -2,7 +2,9 @@
 using RosCottedge.Models.Login_register;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
@@ -99,6 +101,61 @@ namespace RosCottedge.Controllers
             FormsAuthentication.SignOut();
 
             return RedirectToAction("Index", "Home");
+        }
+        #endregion
+
+        #region Личная информация
+        public new ActionResult Profile()
+        {
+            if (User.Identity.IsAuthenticated == true)
+            {
+                User user = (from u in db.Users
+                             where u.Login == User.Identity.Name
+                             select u).FirstOrDefault();
+                return View(user);
+            }
+
+            else
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.Unauthorized);
+            }
+        }
+        #endregion
+
+        #region Редактирование личной информации
+        [HttpGet]
+        public ActionResult Edit()
+        {
+
+            if (User.Identity.IsAuthenticated)
+            {
+                User user = (from u in db.Users
+                             where u.Login == User.Identity.Name
+                             select u).FirstOrDefault();
+                return View(user);
+
+            }
+            else
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.Unauthorized);
+            }
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(User user)
+        {
+            if (User.Identity.IsAuthenticated == false)
+                return new HttpStatusCodeResult(HttpStatusCode.Unauthorized);
+
+            if (ModelState.IsValid)
+            {
+                db.Entry(user).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Profile");
+            }
+            return View(user);
+
+
         }
         #endregion
     }
