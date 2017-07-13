@@ -1,0 +1,23 @@
+﻿@using PagedList.Mvc
+@model RosCottedge.ViewModels.HouseIndexViewModel
+    
+@Html.PagedListPager(Model.Reviews, page => Url.Action("Index", new {houseId = Model.House.Id, page}), PagedListRenderOptions.EnableUnobtrusiveAjaxReplacing(new AjaxOptions
+{
+    InsertionMode = InsertionMode.Replace,
+    HttpMethod = "Get",
+    UpdateTargetId = "comments"
+}))
+
+@foreach (var review in Model.Reviews)
+{
+    <div class="reviewItem">
+        <div class="reviewUser">
+            <img src="~/content/img/zlad.jpg" alt="">
+            <h3>@review.User.FirstName<br>@review.User.LastName</h3>
+        </div>
+        <div class="reviewContent">
+            <p>@review.Comment</p>
+            <p class="ratingReview">Оценка: <span>@review.Rating/5</span></p>
+        </div>
+    </div>
+}
