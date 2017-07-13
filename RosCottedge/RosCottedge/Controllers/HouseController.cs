@@ -30,10 +30,7 @@ namespace RosCottedge.Controllers
                 Reviews = db.Reviews.Include(u => u.User).Where(r => r.HouseId == houseId).OrderByDescending(r => r.CommentDate).ToPagedList(pageNumber, pageSize)
             };
 
-            
-
             return View(viewModel);
-
         }
 
         //Для кнопки "Забронировать" на странице дома.
@@ -61,7 +58,7 @@ namespace RosCottedge.Controllers
 
                     //Создаём список всех зарезервированных дней из базы
                     var AllRange = new List<DateTime>();
-                    foreach (var x in db.Reservations)
+                    foreach (var x in db.Reservations.Where(x => x.HouseId == HouseId))
                     {
                         var _arrival = x.ArrivalDate;
                         var _departure = x.DepartureDate;
