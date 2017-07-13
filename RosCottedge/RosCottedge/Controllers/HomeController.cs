@@ -1,4 +1,5 @@
-﻿using RosCottedge.Models;
+﻿using PagedList;
+using RosCottedge.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,9 +12,11 @@ namespace RosCottedge.Controllers
     {
         private SiteContext db = new SiteContext();
         
-        public ActionResult Index()
+        public ActionResult Index(int? page)
         {
-            var house = db.Houses;
+            int pageNumber = (page ?? 1);
+            int pageSize = 8;
+            var house = db.Houses.OrderBy(x => x.Id).ToPagedList(pageNumber, pageSize);
             return View(house);
         }
 

@@ -1,4 +1,5 @@
-﻿@model IEnumerable<RosCottedge.Models.House>
+﻿@model PagedList.IPagedList<RosCottedge.Models.House>
+@using PagedList.Mvc;
 @{
     ViewBag.Title = "Главная страница";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -31,3 +32,6 @@
   </div>
 </div>
 
+Страница @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) из @Model.PageCount
+
+@Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
