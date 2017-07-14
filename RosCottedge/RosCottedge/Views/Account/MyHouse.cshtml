@@ -1,0 +1,75 @@
+﻿@model IEnumerable<RosCottedge.Models.House>
+@using RosCottedge.Models;
+
+@{
+    ViewBag.Title = "MyHouse";
+}
+<div></div>
+<div class="houses">
+    <div class="container">
+        <div class="row">
+            @foreach (var item in ViewBag.house)
+            {
+                <div class="col-md-6 houseItem">
+                    <div class="imgBox" style="background-image: url('../../Content/img/chubaka.jpg')"></div>
+                    <div class="ContentBox">
+                        <h2 class="nameHouse"><a href="/House/Index?houseId=@item.Id">@item.Name</a></h2>
+                        <span class="address">@item.Locality, @item.Area</span>
+                        <div class="ratingHouse">
+                            <h2><a href="/Account/EditMyHouse/@item.Id">Управление</a></h2>
+                            <h2><a href="/House/Index?houseId=@item.Id">Страница дома</a></h2>
+                            <h2>Оценка пользователей</h2>
+
+                            <ul>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+<h3>_____________________________</h3>
+<h2>Бронирования</h2>
+<table>
+    @foreach (var item in ViewBag.reserv)
+    {
+        <tr>
+            <th>
+                @item.User.Login забронировал(а) дом номер <a href="/House/Index?houseId=@item.HouseId">@item.House.Name</a>
+            </th>
+
+        </tr>
+        <tr>
+            <td>
+                @item.ReservationDate.ToString("dd.MM.yyyy") 
+           </td>
+        </tr>
+    }
+</table>
+<h2>_______________________________________</h2>
+<h2>Отзывы</h2>
+<table>
+    @foreach (var item in ViewBag.rew)
+    {
+        <tr>
+            <th>
+                @item.User.Login оставил(а) отзыв к дому <a href="/House/Index?houseId=@item.HouseId">@item.House.Name</a>
+            </th>
+
+        </tr>
+
+        <tr>
+            <td>
+                @item.CommentDate.ToString("dd.MM.yyyy")
+            </td>
+
+        </tr>
+    }
+</table>
+

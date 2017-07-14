@@ -6,7 +6,6 @@
 }
 
 <div id="map_canvas"></div>
-Макс=@ViewBag.MaxPrice;Мин=@ViewBag.MinPrice
 <section id="search">
   <div class="container">
     <form class="searchBox mainBox" method="post">
@@ -19,8 +18,9 @@
           <input type="text" placeholder="Выезд" name="departureDate" class="date date2">
         </div>
         <div class="prices searchFields">
-          <input type="text" id="minCost" placeholder="Цена от" name="startPrice">
-          <input type="text" id="maxCost" placeholder="Цена до" name="finishPrice">
+          <input type="text" id="minCost" placeholder="Цена от" name="startPrice" minVal="@ViewBag.MinPrice">
+          <input type="text" id="maxCost" placeholder="Цена до" name="finishPrice" maxVal="@ViewBag.MaxPrice">
+          <div id="slider-range"></div>
         </div>
         <div class="numPersons searchFields">
           <input type="text" placeholder="Кол. человек" name="numberOfPersons">

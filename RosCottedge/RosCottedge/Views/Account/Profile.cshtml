@@ -1,33 +1,11 @@
-﻿@model RosCottedge.Models.User
-
+﻿
 @{
-    ViewBag.Title = "Profile";
-
+    ViewBag.Title = "Profile1";
 }
-<h2>Личная информация</h2>
-<table border="1">
-    <tr>
-        <th>@Html.DisplayNameFor(model => model.LastName)</th>
-        <td>@Html.DisplayFor(model => model.LastName)</td>
-
-    </tr>
-    <tr>
-        <th>@Html.DisplayNameFor(model => model.FirstName)</th>
-        <td>@Html.DisplayFor(model => model.FirstName)</td>
-    </tr>
-    <tr>
-        <th>@Html.DisplayNameFor(model => model.MiddleName)</th>
-        <td>@Html.DisplayFor(model => model.MiddleName)</td>
-    </tr>
-    <tr>
-        <th>@Html.DisplayNameFor(model => model.Email)</th>
-        <td>@Html.DisplayFor(model => model.Email)</td>
-    </tr>
-    <tr>
-        <th>@Html.DisplayNameFor(model => model.Phone)</th>
-        <td>@Html.DisplayFor(model => model.Phone)</td>
-    </tr>
-
-</table>
-@Html.ActionLink("Изменить данные", "Edit")
-
+@using (Html.BeginForm("Logout", "Account", FormMethod.Post, new { id = "logoutForm" }))
+{
+    @Html.AntiForgeryToken()
+}
+<li>@Html.ActionLink("Личный кабинет", "PersonalInformation", "Account")
+<li>@Html.ActionLink("Мои дома", "MyHouse", "Account") </li>
+<li>@Html.ActionLink("Мои поездки", "MyTrips", "Account") </li>

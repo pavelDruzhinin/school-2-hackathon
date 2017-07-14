@@ -381,6 +381,63 @@ footer .bottomFooter span{
 .sortingBox:last-child{
   color: #E32444;
 }
+/*slider-range*/
+#slider-range{
+  margin: 25px 22px 0 22px;
+  height: 4px;
+  background-color: #EEEEEE;
+  position: relative;
+  z-index: 0;
+}
+#slider-range::before{
+  content: '';
+  position: absolute;
+  width: 100%;
+  background-color: #EEEEEE;
+  height: 4px;
+  display: block;
+  left: 0;
+  top: 0;
+  margin-left: -14.5px;
+}
+#slider-range::after{
+  content: '';
+  position: absolute;
+  width: 100%;
+  background-color: #EEEEEE;
+  height: 4px;
+  display: block;
+  right: 0;
+  top: 0;
+  margin-right: -14.5px;
+}
+#slider-range .ui-widget-header{
+  background: #E32444 !important;
+}
+.ui-corner-all,
+.ui-corner-bottom,
+.ui-corner-right,
+.ui-corner-br {
+  border-radius: 0 !important;
+}
+#slider-range.ui-widget.ui-widget-content{
+  border: none !important;
+}
+#slider-range span.ui-state-default{
+  border: none !important;
+  display: block !important;
+  width: 15px !important;
+  height: 15px !important;
+  background: #E32444 !important;
+  border-radius: 15px !important;
+  outline: none !important;
+  margin-top: -5.5px !important;
+  transition-property: box-shadow;
+  transition-duration: .4s;
+}
+#slider-range span.ui-state-active{
+  box-shadow: 0 0 0 5px rgba(227, 36, 68, .3) !important;
+}
 
 /*INDEX END*/
 

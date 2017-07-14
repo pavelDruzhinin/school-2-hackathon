@@ -261,9 +261,13 @@
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\House\Index.cshtml" />
     <Content Include="Views\Shared\_LayoutForm.cshtml" />
-    <Content Include="Views\Account\Profile.cshtml" />
+    <Content Include="Views\Account\PersonalInformation.cshtml" />
     <Content Include="Views\Account\Edit.cshtml" />
     <Content Include="Views\House\_Comments.cshtml" />
+    <Content Include="Views\Account\EditMyHouse.cshtml" />
+    <Content Include="Views\Account\MyHouse.cshtml" />
+    <Content Include="Views\Account\MyTrips.cshtml" />
+    <Content Include="Views\Account\Profile.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
