@@ -1,12 +1,30 @@
 ﻿@using PagedList.Mvc
 @model RosCottedge.ViewModels.HouseIndexViewModel
     
-@Html.PagedListPager(Model.Reviews, page => Url.Action("Index", new {houseId = Model.House.Id, page}), PagedListRenderOptions.EnableUnobtrusiveAjaxReplacing(new AjaxOptions
+
+
+@if (User.Identity.IsAuthenticated)
 {
-    InsertionMode = InsertionMode.Replace,
-    HttpMethod = "Get",
-    UpdateTargetId = "comments"
-}))
+    <form method="post" class="formReview" id="formReviewId" action="AddReview" data-ajax="true" data-ajax-update="#comments" data-ajax-mode="replace">
+        <input type="hidden" value="@Model.House.Id" name="HouseId">
+        <div class="formRowTop">
+            <img src="../../Content/img/jamie_bell.jpg" alt="">
+            <textarea name="Comment" id="Comment" cols="30" rows="5" placeholder="Ваш отзыв:"></textarea>
+        </div>
+        <div class="formRowBottom">
+            <div class="formSelect">
+                <select name="Rating" id="selectRating">
+                    <option value="5">Отлично</option>
+                    <option value="4">Хорошо</option>
+                    <option selected value="3">Удовлетворительно</option>
+                    <option value="2">Плохо</option>
+                    <option value="1">Ужасно</option>
+                </select>
+            </div>
+            <button class="btnSendReview" type="submit">Оставить отзыв</button>
+        </div>
+    </form>
+}
 
 @foreach (var review in Model.Reviews)
 {
@@ -21,3 +39,10 @@
         </div>
     </div>
 }
+
+@Html.PagedListPager(Model.Reviews, page => Url.Action("Index", new { houseId = Model.House.Id, page }), PagedListRenderOptions.EnableUnobtrusiveAjaxReplacing(new AjaxOptions
+{
+    InsertionMode = InsertionMode.Replace,
+    HttpMethod = "Get",
+    UpdateTargetId = "comments"
+}))

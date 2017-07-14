@@ -23,8 +23,7 @@ namespace RosCottedge.Controllers
         {
             int pageSize = 5;
             int pageNumber = (page ?? 1);
-            ViewBag.countRev = db.Houses.Select(x => x.Reviews.Count()).FirstOrDefault();
-            ViewBag.userCurrent = db.Users.Where(x => x.Login == User.Identity.Name).FirstOrDefault();
+//            ViewBag.countRev = db.Houses.Select(x => x.Reviews.Count()).FirstOrDefault();
 
             var viewModel = new HouseIndexViewModel()
             {
@@ -110,25 +109,25 @@ namespace RosCottedge.Controllers
         {
             var user = db.Users.Where(x => x.Login == User.Identity.Name).FirstOrDefault();
 
-            var dateLimit = DateTime.Today.AddDays(-14);
-            var reservation = db.Reservations
-                .Where(r => r.UserId == user.Id && r.DepartureDate > dateLimit && r.DepartureDate < DateTime.Now && r.HouseId == review.HouseId)
-                .FirstOrDefault();
-
-            if (reservation == null) //Резерваций, закончившихся менее 14 дней назад не было
-            {
-                return Redirect(HttpContext.Request.UrlReferrer.AbsoluteUri);
-            }
-
-            var existingReview = db.Reviews.OrderByDescending(e => e.CommentDate)
-                .Where(e => e.UserId == user.Id && e.HouseId == review.HouseId && e.CommentDate > reservation.DepartureDate)
-                .FirstOrDefault();
-
-            if (existingReview != null) //Юзер уже оставил комментарий
-            {
-                return Redirect(HttpContext.Request.UrlReferrer.AbsoluteUri);
-
-            }
+//            var dateLimit = DateTime.Today.AddDays(-14);
+//            var reservation = db.Reservations
+//                .Where(r => r.UserId == user.Id && r.DepartureDate > dateLimit && r.DepartureDate < DateTime.Now && r.HouseId == review.HouseId)
+//                .FirstOrDefault();
+//
+//            if (reservation == null) //Резерваций, закончившихся менее 14 дней назад не было
+//            {
+//                return Redirect(HttpContext.Request.UrlReferrer.AbsoluteUri);
+//            }
+//
+//            var existingReview = db.Reviews.OrderByDescending(e => e.CommentDate)
+//                .Where(e => e.UserId == user.Id && e.HouseId == review.HouseId && e.CommentDate > reservation.DepartureDate)
+//                .FirstOrDefault();
+//
+//            if (existingReview != null) //Юзер уже оставил комментарий
+//            {
+//                return Redirect(HttpContext.Request.UrlReferrer.AbsoluteUri);
+//
+//            }
 
             review.CommentDate = DateTime.Now;
             review.UserId = user.Id;
@@ -140,7 +139,14 @@ namespace RosCottedge.Controllers
             var reviewsSum = db.Reviews.Where(x => x.HouseId == review.HouseId).Sum(x => x.Rating);
             house.Rating = reviewsSum / reviewsCount;
             db.SaveChanges();
-            return Redirect(HttpContext.Request.UrlReferrer.AbsoluteUri);
+
+            var viewModel = new HouseIndexViewModel()
+            {
+                House = db.Houses.Include(u => u.User).FirstOrDefault(x => x.Id == review.HouseId),
+                Reviews = db.Reviews.Include(u => u.User).Where(r => r.HouseId == review.HouseId).OrderByDescending(r => r.CommentDate).ToPagedList(1, 5)
+            };
+
+            return PartialView("_Comments", viewModel);
             
         }
 
