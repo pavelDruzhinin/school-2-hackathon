@@ -37,6 +37,32 @@ a{
 ul li{
   list-style: none;
 }
+.mainBox{
+  box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.14);
+}
+/*Forms*/
+input{
+  height: 45px;
+  border: none;
+  outline: none;
+}
+input:not([type="submit"]) {
+  background-color: #EEEEEE;
+  padding-left: 15px;
+}
+input[type="submit"]{
+  color: #fff;
+  cursor: pointer;
+}
+input[type="submit"].red{
+  background-color: #E32444;
+}
+input[type="submit"].green{
+  background-color: #69F0AE;
+}
+input.date{
+  cursor: pointer;
+}
 /*LAYOUT START*/
 
 /*wrapper*/
@@ -236,6 +262,85 @@ footer .bottomFooter span{
 .houses .houseItem .ContentBox .ratingHouse ul li:first-child{
   margin-left: 0;
 }
+/*Search*/
+.searchBox{
+  background-color: #fff;
+  padding: 15px 7.5px;
+  display: block;
+}
+#search{
+  font-size: 0;
+  margin-bottom: 45px;
+}
+.addField{
+  font-size: 16px;
+}
+.searchBox input{
+  margin: 0 7.5px;
+}
+.searchBox .searchFields,
+.searchBox input{
+  display: inline-block;
+}
+.searchBox .area input{
+  width: 178px;
+}
+.searchBox .dates input,
+.searchBox .prices input{
+  width: 134px;
+}
+.searchBox .numPersons input{
+  width: 158px;
+}
+.searchBox input[type="submit"]{
+  width: 148px;
+}
+.addField{
+  margin-top: 30px;
+  padding: 0 7.5px;
+}
+.addField .sorting{
+  position: relative;
+  width: 20px;
+  height: 20px;
+  background-color: #E32444;
+  margin-right: 15px;
+}
+.addField .sorting::before{
+  content: '';
+  width: 2px;
+  height: 12px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin-left: -1px;
+  margin-top: -6px;
+  background-color: #fff;
+}
+.addField .sorting::after{
+  content: '';
+  width: 12px;
+  height: 2px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin-left: -6px;
+  margin-top: -1px;
+  background-color: #fff;
+}
+.sortingBox{
+  font-size: 0;
+  cursor: pointer;
+}
+.sortingBox span{
+  display: inline-block;
+  font-size: 16px;
+  vertical-align: middle;
+}
+.sortingBox:last-child{
+  color: #E32444;
+}
+
 /*INDEX END*/
 
 /*FORM PAGES*/
@@ -335,36 +440,36 @@ footer .bottomFooter span{
 	width: 690px;
 }
 .topCreate{
-    height: 90px;
-    background-color: blue;
+  height: 90px;
+  background-color: blue;
 }
 .innerForm .smallInputCreate{
-    width: 210px;
-    float: left;
-    clear: right;
-    margin-bottom: 15px;
+  width: 210px;
+  float: left;
+  clear: right;
+  margin-bottom: 15px;
 }
 .innerForm .largeInputCreate{
-    width: 660px;
+  width: 660px;
 }
 .innerForm textarea{
-    height: 90px;
-    resize: none;
-    width: 660px;
-    display: block;
-    border: none;
-    outline: none;
-    background-color: #EEEEEE;
-    margin-bottom: 15px;
-    margin-top: 15px;
-    padding: 15px;
+  height: 90px;
+  resize: none;
+  width: 660px;
+  display: block;
+  border: none;
+  outline: none;
+  background-color: #EEEEEE;
+  margin-bottom: 15px;
+  margin-top: 15px;
+  padding: 15px;
 }
 .innerForm .ButtonCreate{
-    background-color: #69F0AE;
+  background-color: #69F0AE;
 	color: #fff;
 	cursor: pointer;
 	font-size: 16px;
 	width: 660px;
 	margin-top: 15px;
-    border-top: 1px solid #EBEBEB;
+  border-top: 1px solid #EBEBEB;
 }

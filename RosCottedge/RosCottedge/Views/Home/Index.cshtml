@@ -4,7 +4,39 @@
     ViewBag.Title = "Главная страница";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
 <div id="map_canvas"></div>
+Макс=@ViewBag.MaxPrice;Мин=@ViewBag.MinPrice
+<section id="search">
+  <div class="container">
+    <form class="searchBox mainBox" method="post">
+      <div class="mainField">
+        <div class="area searchFields">
+          <input type="text" placeholder="Район" name="region">
+        </div>
+        <div class="dates searchFields">
+          <input type="text" placeholder="Заезд" name="arrivalDate" class="date date1">
+          <input type="text" placeholder="Выезд" name="departureDate" class="date date2">
+        </div>
+        <div class="prices searchFields">
+          <input type="text" id="minCost" placeholder="Цена от" name="startPrice">
+          <input type="text" id="maxCost" placeholder="Цена до" name="finishPrice">
+        </div>
+        <div class="numPersons searchFields">
+          <input type="text" placeholder="Кол. человек" name="numberOfPersons">
+        </div>
+        <input type="submit" value="Подобрать" class="red">
+      </div>
+      <div class="addField">
+        <div class="sortingBox">
+          <span class="sorting"></span>
+          <span>Сортировка</span>
+        </div>
+      </div>
+    </form>
+  </div>
+</section>
+
 <div class="houses">
   <div class="container">
     <div class="row">
