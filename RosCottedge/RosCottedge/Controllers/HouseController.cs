@@ -29,8 +29,10 @@ namespace RosCottedge.Controllers
                 House = db.Houses.Find(houseId),
                 Reviews = db.Reviews.Include(u => u.User).Where(r => r.HouseId == houseId).OrderByDescending(r => r.CommentDate).ToPagedList(pageNumber, pageSize)
             };
-
-            return View(viewModel);
+            
+            return Request.IsAjaxRequest()
+                ? (ActionResult)PartialView("_Comments", viewModel)
+                : View(viewModel);
         }
 
         //Для кнопки "Забронировать" на странице дома.
