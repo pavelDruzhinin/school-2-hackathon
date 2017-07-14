@@ -63,6 +63,16 @@ input[type="submit"].green{
 input.date{
   cursor: pointer;
 }
+/*Opacity*/
+.op87{
+  opacity: .87;
+}
+.op54{
+  opacity: .54;
+}
+.op70{
+  opacity: .70;
+}
 /*LAYOUT START*/
 
 /*wrapper*/
@@ -174,7 +184,7 @@ footer .share .shareBtn{
   height: 35px;
   background-color: #E32444;
   cursor: pointer;
-  background-image: url('../../Content/img/shareBtn.svg');
+  background-image: url('../../Content/img/icons/shareBtn.svg');
 }
 footer input{
   width: 100%;
@@ -261,6 +271,37 @@ footer .bottomFooter span{
 }
 .houses .houseItem .ContentBox .ratingHouse ul li:first-child{
   margin-left: 0;
+}
+.houses .houseItem .optionsHouse{
+  font-size: 0;
+}
+.houses .houseItem .optionsHouse li{
+  font-size: 16px;
+  display: inline-block;
+}
+.houses .houseItem .optionsHouse li span{
+  margin-right: 7px;
+  display: inline-block;
+  height: 16.7px;
+  vertical-align: middle;
+}
+.houses .houseItem .optionsHouse li:first-child{
+  margin-right: 15px;
+}
+.houses .houseItem .optionsHouse li{
+  margin-top: 15px;
+}
+.houses .houseItem .optionsHouse li .man{
+  background-image: url(../../Content/img/icons/man.svg);
+  width: 17px;
+}
+.houses .houseItem .optionsHouse li .rub{
+  background-image: url(../../Content/img/icons/rub.svg);
+  width: 13.75px;
+}
+.houses .houseItem .optionsHouse li .com{
+  background-image: url(../../Content/img/icons/com.svg);
+  width: 18.9px;
 }
 /*Search*/
 .searchBox{

@@ -47,6 +47,11 @@
         <div class="ContentBox">
           <h2 class="nameHouse"><a href="/House/Index?houseId=@item.Id">@item.Name</a></h2>
           <span class="address">@item.Locality, @item.Area</span>
+          <ul class="optionsHouse">
+            <li><p><span class="man op54"></span>@item.NumberOfPersons</p></li>
+            <li><p><span class="rub op54"></span>@item.Price руб./сутки</p></li><br>
+            <li><p><span class="com op54"></span>@item.Reviews.Count()</p></li>
+          </ul>
           <div class="ratingHouse">
             <h2>Оценка пользователей</h2>
             <ul>

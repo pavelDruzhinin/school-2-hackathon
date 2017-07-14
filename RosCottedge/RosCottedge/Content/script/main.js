@@ -8,7 +8,7 @@ $(document).ready(function () {
         });
         return false;
     });
-
+   
     //Datepicker
     $('.date').attr('readOnly','true');
     $('.date').datepicker({
@@ -17,7 +17,9 @@ $(document).ready(function () {
         "Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август",
         "Сентябрь", "Октябрь", "Ноябрь", "Декабрь"
       ],
-      dayNamesMin: [ "Пн", "Вт", "Ср", "Чт", "Пт", "Сб", "Вс" ],
+      dayNamesMin: ['Вс', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб'],
+      dateFormat: 'dd.mm.yy',
+      firstDay: 1,
       minDate: '+1d',
       maxDate: '+1y'
     });

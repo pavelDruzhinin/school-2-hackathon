@@ -6,6 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
+
 namespace RosCottedge.Controllers
 {
     public class HomeController : Controller
@@ -17,7 +18,8 @@ namespace RosCottedge.Controllers
             int pageNumber = (page ?? 1);
             int pageSize = 8;
 
-            IEnumerable<House> houses = db.Houses;
+            IEnumerable<House> houses = db.Houses.Include(x => x.Reviews);
+            
             if (!String.IsNullOrEmpty(region))
             {
                 houses = houses.Where(x => x.Region == region);
@@ -51,7 +53,7 @@ namespace RosCottedge.Controllers
                         }
                     }
                 }
-
+                
                 houses = houses.Except(reservedHouses);
             }
 
@@ -62,7 +64,7 @@ namespace RosCottedge.Controllers
 
             ViewBag.MaxPrice = max;
             ViewBag.MinPrice = min;
-
+         
             return View(houses.OrderBy(x => x.Id).ToPagedList(pageNumber, pageSize));
         }
 

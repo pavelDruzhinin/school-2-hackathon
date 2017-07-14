@@ -195,7 +195,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\img\chubaka.jpg" />
-    <Content Include="Content\img\shareBtn.svg" />
+    <Content Include="Content\img\icons\shareBtn.svg" />
     <Content Include="Content\img\zlad.jpg" />
     <Content Include="Content\libs\bootstrap\bootstrap.css" />
     <Content Include="Content\libs\font-awesome\css\font-awesome.min.css" />
