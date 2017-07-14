@@ -8,7 +8,7 @@ $(document).ready(function () {
         });
         return false;
     });
-   
+
     //Datepicker
     $('.date').attr('readOnly','true');
     $('.date').datepicker({
@@ -48,6 +48,23 @@ $(document).ready(function () {
     $date2.change(function(){
       validDate("val1", $date1);
     });
+
+    //Slider-range
+    var minVal = Number($('#minCost').attr('minVal'));
+    var maxVal = Number($('#maxCost').attr('maxVal'));
+    var maxPer = (maxVal/100)*5;
+    $( "#slider-range" ).slider({
+      range: true,
+      min: minVal,
+      max: maxVal,
+      values: [ minVal+maxPer, maxVal-maxPer ],
+      slide: function( event, ui ) {
+        $( "#minCost" ).val(ui.values[ 0 ] + " руб");
+        $( "#maxCost" ).val(ui.values[ 1 ] + " руб");
+      }
+    });
+    $( "#slider-range span.ui-state-default:first").css('margin-left','-15px');
+    //$( "#slider-range span.ui-state-default:last").css('margin-left','-1px');
 
 });
 
