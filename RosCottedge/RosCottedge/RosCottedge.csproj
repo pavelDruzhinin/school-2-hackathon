@@ -200,6 +200,9 @@
     <Content Include="Content\libs\bootstrap\bootstrap.css" />
     <Content Include="Content\libs\font-awesome\css\font-awesome.min.css" />
     <Content Include="Content\libs\font-awesome\fonts\fontawesome-webfont.svg" />
+    <Content Include="Content\libs\owl-carousel\css\owl.carousel.min.css" />
+    <Content Include="Content\libs\owl-carousel\js\owl.carousel.min.js" />
+    <Content Include="Content\script\House.js" />
     <Content Include="Content\style\PagedList.css" />
     <Content Include="Content\script\main.js" />
     <Content Include="Content\style\media.css" />

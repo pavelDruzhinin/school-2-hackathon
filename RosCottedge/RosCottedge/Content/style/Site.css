@@ -514,3 +514,534 @@ footer .bottomFooter span{
 	margin-top: 15px;
   border-top: 1px solid #EBEBEB;
 }
+/*Page-Home Start*/
+.briefDescription {
+    margin-top: 30px;
+    margin-bottom: 15px;
+}
+
+/*Form Reservation Start*/
+.formReservation {
+    width: 100%;
+    padding: 15px;
+    background-color: #fff;
+    font-size: 0;
+}
+
+.formReservation > span {
+    display: inline-block;
+    font-size: 16px;
+    width: 50%;
+    margin-bottom: 8px;
+    opacity: .87;
+}
+
+.formReservation > .textSecondDate {
+    padding-left: 12px;
+}
+
+.formReservation > .textSecDate {
+    margin-top: 15px;
+}
+
+.formReservation > input {
+    width: 48%;
+    height: 35px;
+    background-color: #EEE;
+    border: 1px solid #DBDBDB;
+    display: inline-block;
+    font-family: "Roboto", sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    padding-left: 15px;
+}
+
+.formReservation > input::-webkit-inner-spin-button,
+.formReservation > input::-webkit-clear-button {
+    display: none;
+}
+
+.formReservation > input:focus {
+    outline: none;
+}
+
+.formReservation > .secondDate {
+    float: right;
+}
+
+.formReservation > textarea {
+    resize: vertical;
+    width: 100%;
+    height: 70px;
+    min-height: 70px;
+    margin-top: 15px;
+    background-color: #EEE;
+    border-color: #DBDBDB;
+    max-height: 200px;
+    font-family: "Roboto", sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    padding-top: 8px;
+    padding-left: 15px;
+}
+
+.formReservation > textarea:focus {
+    outline: none;
+}
+
+.btnReservation {
+    width: 100%;
+    margin-top: 15px;
+    font-family: "Roboto", sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    height: 35px;
+    background-color: #E32444;
+    color: #fff;
+    border: none;
+    transition: all .5s ease;
+}
+
+.btnReservation:hover {
+    background-color: #F31137;
+}
+
+.btnReservation:focus {
+    outline: none;
+}
+/*Form Reservation End*/
+
+/*Slider Start*/
+.slider {
+    height: 445px;
+    width: 100%;
+    font-size: 0;
+}
+
+.slider .sliderHead {
+    width: 100%;
+    height: 32px;
+    background-color: #305075;
+    z-index: 1;
+}
+
+.slider .sliderHead > i, .slider .sliderHead > h3, .slider .sliderHead > a {
+    color: #fff;
+    display: inline-block;
+    margin-top: 7px;
+    margin-left: 15px;
+    opacity: .54;
+    font-size: 14px;
+}
+
+.slider .sliderHead > i {
+    font-size: 16px;
+}
+
+.slider .sliderHead > h3 {
+    margin-right: 15px;
+    opacity: 1;
+}
+
+.slider .sliderHead > .separate {
+    display: inline-block;
+    position: absolute;
+    margin-top: 8px;
+    height: 15px;
+    border-right: 1px solid #263F5C;
+}
+
+.slider .owl-carousel img {
+    width: 100%;
+    background-color: #f9f9f9;
+}
+
+.slider .owl-carousel .item {
+    height: 368px;
+    width: 100%;
+}
+
+.slider .sliderFooter {
+    width: 100%;
+    height: 49px;
+    background-color: #fff;
+}
+
+.slider .sliderFooter > p {
+    opacity: .87;
+    padding: 15px 15px;
+    display: inline-block;
+}
+
+.slider .sliderFooter .countUsers {
+    padding-left: 4px;
+}
+
+.slider .sliderFooter > .countUsersIcon {
+    background-image: url(../img/users.svg);
+    background-repeat: no-repeat;
+    width: 17px;
+    height: 17px;
+    display: inline-block;
+    margin-left: 15px;
+    padding-top: 30px;
+    vertical-align: middle;
+}
+
+.slider .sliderFooter .separate {
+    opacity: .12;
+    display: inline-block;
+    position: absolute;
+    margin-top: 15px;
+    height: 20px;
+    border-right: 1px solid #000;
+}
+
+.slider .sliderFooter .sliderRating {
+    display: inline-block;
+    color: #fff;
+    height: 100%;
+    background-color: #5EF199;
+    float: right;
+}
+
+.slider .sliderFooter .sliderRating > span, .slider .sliderFooter .sliderRating > p {
+    opacity: 1;
+    display: inline-block;
+    padding-top: 14px;
+    padding-left: 8px;
+    padding-right: 8px;
+}
+
+.slider .sliderFooter .sliderRating > span {
+    font-size: 16px;
+}
+
+.slider .sliderFooter .sliderRating > p {
+    font-size: 14px;
+}
+
+.slider .sliderFooter .sliderRating .separate {
+    opacity: .15;
+}
+
+.owl-dots {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+}
+
+.owl-dots .owl-dot {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    background-color: #fff;
+    border-radius: 50%;
+    cursor: pointer;
+    opacity: .65;
+    margin: 0 3px 15px 3px;
+}
+
+.owl-dots .active {
+    opacity: 1;
+}
+
+.owl-nav {
+    position: absolute;
+    top: 45%;
+    width: 100%;
+    text-align: center;
+}
+
+.owl-carousel {
+    z-index: 0;
+    position: relative;
+}
+
+.owl-nav .owl-prev, .owl-nav .owl-next {
+    color: #fff;
+    font-size: 28px;
+    position: absolute;
+    top: 220;
+}
+
+.owl-nav .owl-prev {
+    margin-left: 30px;
+}
+
+.owl-nav .owl-next {
+    margin-right: 30px;
+    right: 0;
+}
+/*Slider End*/
+
+/*Description Start*/
+.fullDescription {
+    padding-top: 30px;
+}
+
+.fullDescription .descItems {
+    width: 100%;
+    background-color: #fff;
+    padding-left: 15px;
+    padding-bottom: 15px;
+    padding-right: 45px;
+    margin-bottom: 1px;
+}
+
+.fullDescription .descItems h1 {
+    font-size: 16px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    opacity: .87;
+}
+
+.fullDescription .descItems p {
+    opacity: .87;
+}
+
+.fullDescription .descItems span {
+    color: #000;
+}
+
+.fullDescription .descItems .leftSideOwner > h3 {
+    display: inline-block;
+    font-size: 16px;
+    font-weight: 400;
+    padding-left: 15px;
+    padding-right: 30px;
+    padding-top: 10px;
+}
+
+.fullDescription .descItems .leftSideOwner {
+    vertical-align: top;
+    padding-top: 15px;
+    display: inline-block;
+}
+
+.fullDescription .descItems .leftSideOwner > img {
+    vertical-align: top;
+    display: inline-block;
+    border-radius: 50%;
+    height: 61px;
+    width: 61px;
+}
+
+.fullDescription .descItems .rightSideOwner {
+    padding-top: 15px;
+    display: inline-block;
+}
+
+.fullDescription .descItems .rightSideOwner p span {
+    opacity: .54;
+}
+
+.fullDescription .descItems .rightSideOwner > p {
+    padding-bottom: 15px;
+}
+
+.fullDescription .descItems .rightSideOwner > p:last-child {
+    padding-bottom: 0;
+}
+/*Description End*/
+
+/*Map Start*/
+#map_canvas_house {
+    height: 475px;
+    margin-bottom: 45px;
+}
+
+.mapBox {
+    margin-top: 30px;
+    transition: all .5s ease;
+}
+/*Map End*/
+
+/*Review Start*/
+.formReview {
+    width: 100%;
+    background-color: #fff;
+    padding: 15px;
+    margin-bottom: 1px;
+    min-height: 141px;
+    position: relative;
+    font-size: 0;
+}
+
+.formRowTop {
+    width: 100%;
+    margin-bottom: 50px;
+}
+
+.formRowBottom {
+    position: absolute;
+    right: 15px;
+    bottom: 15px;
+}
+
+.formReview .formRowTop img {
+    position: relative;
+    left: 0;
+    top: 0;
+}
+
+.formReview .formRowTop img, .reviewItem .reviewUser img {
+    display: inline-block;
+    border-radius: 50%;
+    height: 61px;
+    width: 61px;
+}
+
+.formReview .formRowTop textarea {
+    display: inline-block;
+    resize: none;
+    height: 61px;
+    margin-left: 15px;
+    border-color: #DBDBDB;
+    width: 643px;
+    font-family: "Roboto", sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    padding-top: 8px;
+    padding-left: 15px;
+}
+
+.formReview .formRowTop textarea:focus {
+    outline: none;
+}
+
+.formReview .formRowTop textarea::placeholder {
+    opacity: .54;
+}
+
+.formReview .formRowBottom .btnSendReview {
+    font-family: "Roboto", sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    width: 152px;
+    height: 35px;
+    color: #fff;
+    background-color: #5EF199;
+    border: none;
+    margin-left: 15px;
+    cursor: pointer;
+    transition: all .5s ease;
+}
+
+.formReview .formRowBottom .btnSendReview:hover {
+    background-color: #27EE77;
+}
+
+.formReview .formRowBottom .btnSendReview:focus {
+    outline: none;
+}
+
+.formReview .formRowBottom .formSelect {
+    width: 200px;
+    height: 35px;
+    background-color: #fff;
+    position: relative;
+    display: inline-block;
+}
+
+
+.formReview .formRowBottom .formSelect #selectRating {
+    font-family: "Roboto", sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    border-color: #DBDBDB;
+    height: 35px;
+    padding-left: 10px;
+    cursor: pointer;
+    color: #444;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    width: 100%;
+    height: 100%;
+}
+
+.formReview .formRowBottom .formSelect:after {
+    content: "";
+    border-style: solid;
+    border-width: 5px 5px 0 5px;
+    border-color: #000 transparent transparent transparent;
+    opacity: .54;
+    pointer-events: none;
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    z-index: 1;
+    margin-top: -2px;
+    }
+
+.formReview .formRowBottom .formSelect #selectRating:focus {
+    outline: none;
+}
+
+.formReview .formRowBottom .formSelect #selectRating option {
+    outline: none;
+}
+
+.reviewItem .reviewUser {
+    vertical-align: top;
+    display: inline-block;
+    width: 30%;
+}
+
+.reviewItem .reviewUser > h3 {
+    display: inline-block;
+    font-size: 16px;
+    font-weight: 400;
+    padding-left: 15px;
+    padding-right: 30px;
+    padding-top: 10px;
+}
+
+.reviewItem .reviewContent {
+    display: inline-block;
+    width: 70%;
+    position: relative;
+}
+
+.reviewItem .reviewUser img {
+    vertical-align: top;
+    display: inline-block;
+}
+
+.reviewItem .reviewContent p {
+    opacity: .87;
+}
+
+.reviewItem {
+    width: 100%;
+    background-color: #fff;
+    padding: 15px;
+    margin-bottom: 1px;
+    font-size: 0;
+}
+
+.reviewItem .reviewContent .travelTime {
+    font-size: 14px;
+    opacity: .54;
+    padding-bottom: 8px;
+}
+
+.reviewItem .reviewContent .ratingReview {
+    float: right;
+    padding-top: 30px;
+    font-size: 14px;
+    opacity: 1;
+}
+
+.reviewItem .reviewContent .ratingReview span {
+    color: #5EF199;
+}
+
+.defaultReview {
+    display: none;
+}
+/*Review End*/
+
+/*Page-Home End*/

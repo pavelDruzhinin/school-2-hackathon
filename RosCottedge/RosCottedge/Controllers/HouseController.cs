@@ -23,10 +23,12 @@ namespace RosCottedge.Controllers
         {
             int pageSize = 5;
             int pageNumber = (page ?? 1);
+            ViewBag.countRev = db.Houses.Select(x => x.Reviews.Count()).FirstOrDefault();
+            ViewBag.userCurrent = db.Users.Where(x => x.Login == User.Identity.Name).FirstOrDefault();
 
             var viewModel = new HouseIndexViewModel()
             {
-                House = db.Houses.Find(houseId),
+                House = db.Houses.Include(u => u.User).FirstOrDefault(x => x.Id == houseId),
                 Reviews = db.Reviews.Include(u => u.User).Where(r => r.HouseId == houseId).OrderByDescending(r => r.CommentDate).ToPagedList(pageNumber, pageSize)
             };
             

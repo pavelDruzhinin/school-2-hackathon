@@ -10,6 +10,40 @@
     margin-bottom: 30px;
   }
   /*footer end*/
+    /*Form Reservation start*/
+    .formReservation > input {
+        min-width: 47%;
+    }
+
+    .formReservation {
+        margin-top: 30px;
+    }
+
+        .formReservation > .textSecondDate {
+            padding-left: 14px !important;
+        }
+    /*Form Reservation end*/
+
+    /*Form Review start*/
+    .formReview .formRowTop textarea {
+        max-width: 88%;
+    }
+
+    .reviewItem .reviewContent {
+        max-width: 71%;
+    }
+    /*Form Review end*/
+
+    /*Slider Start*/
+    .slider .sliderFooter > p {
+        padding: 15px 12px !important;
+        font-size: 14px !important;
+    }
+
+    .slider .sliderFooter .countUsers {
+        padding-left: 4px !important;
+    }
+    /*Slider End*/
 }
 
 @media (min-width: 768px) and (max-width: 991px) {
@@ -24,10 +58,62 @@
     margin-bottom: 30px;
   }
   /*footer end*/
+    /*Form Reservation start*/
+    .formReservation > input {
+        min-width: 47%;
+    }
+
+    .formReservation {
+        margin-top: 30px;
+    }
+
+        .formReservation > .textSecondDate {
+            padding-left: 14px !important;
+        }
+    /*Form Reservation end*/
+
+    /*Form Review start*/
+    .formReview .formRowTop textarea {
+        max-width: 613px;
+    }
+
+    .reviewItem .reviewContent {
+        max-width: 508px;
+    }
+    /*Form Review end*/
 }
 
 @media (min-width: 992px) and (max-width: 1199px) {
+    /*Form Reservation start*/
+    .formReservation > input {
+        min-width: 100%;
+    }
+    /*Form Reservation end*/
 
+    /*Form Review start*/
+    .formReview .formRowTop textarea {
+        max-width: 510px;
+    }
+
+    .reviewItem .reviewContent {
+        width: 65% !important;
+    }
+
+    .reviewItem .reviewUser {
+        width: 35% !important;
+    }
+    /*Form Review end*/
+
+    /*Slider Start*/
+    .slider .sliderFooter > p {
+        padding: 15px 7px !important;
+        font-size: 14px !important;
+    }
+
+    .slider .sliderFooter .countUsers {
+        padding-left: 4px !important;
+    }
+    /*Slider End*/
 }
 
 @media (min-width: 1200px) {
