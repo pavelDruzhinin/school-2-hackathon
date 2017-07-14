@@ -53,23 +53,31 @@ namespace RosCottedge.Controllers
                     reservation.ReservationDate = DateTime.Now;
 
                     //Создаём список зарезервированных дней в заказе
-                    var DateRange = new List<DateTime>();
-                    var arrival = reservation.ArrivalDate;
-                    var departure = reservation.DepartureDate;
-                    for (var date = arrival; date <= departure; date = date.AddDays(1)) DateRange.Add(date);
+                    //                    var DateRange = new List<DateTime>();
+                    //                    var arrival = reservation.ArrivalDate;
+                    //                    var departure = reservation.DepartureDate;
+                    //                    for (var date = arrival; date <= departure; date = date.AddDays(1)) DateRange.Add(date);
+                    //
+                    //                    //Создаём список всех зарезервированных дней из базы
+                    //                    var AllRange = new List<DateTime>();
+                    //                    foreach (var x in db.Reservations.Where(x => x.HouseId == HouseId))
+                    //                    {
+                    //                        var _arrival = x.ArrivalDate;
+                    //                        var _departure = x.DepartureDate;
+                    //                        for (var _date = _arrival; _date <= _departure; _date = _date.AddDays(1)) AllRange.Add(_date);
+                    //                    };
+                    //
+                    //                    foreach (var y in DateRange)
+                    //                    {
+                    //                        if (AllRange.Contains(y))
+                    //                        {
+                    //                            return "Извините, одна из выбранных вами дат уже забронирована";
+                    //                        }
+                    //                    }
 
-                    //Создаём список всех зарезервированных дней из базы
-                    var AllRange = new List<DateTime>();
-                    foreach (var x in db.Reservations.Where(x => x.HouseId == HouseId))
+                    foreach (var r in db.Reservations.Where(h => h.HouseId == HouseId))
                     {
-                        var _arrival = x.ArrivalDate;
-                        var _departure = x.DepartureDate;
-                        for (var _date = _arrival; _date <= _departure; _date = _date.AddDays(1)) AllRange.Add(_date);
-                    };
-
-                    foreach (var y in DateRange)
-                    {
-                        if (AllRange.Contains(y))
+                        if (reservation.ArrivalDate <= r.DepartureDate && r.ArrivalDate <= reservation.DepartureDate)
                         {
                             return "Извините, одна из выбранных вами дат уже забронирована";
                         }

@@ -12,12 +12,12 @@ namespace RosCottedge.Controllers
     {
         private SiteContext db = new SiteContext();
 
-        public ActionResult Index(int? page, string region, int? startPrice, int? finishPrice, int? numberOfPersons)
+        public ActionResult Index(int? page, string region, int? startPrice, int? finishPrice, int? numberOfPersons, DateTime? arrivalDate, DateTime? departureDate)
         {
             int pageNumber = (page ?? 1);
             int pageSize = 8;
 
-            IQueryable<House> houses = db.Houses;
+            IEnumerable<House> houses = db.Houses;
             if (!String.IsNullOrEmpty(region))
             {
                 houses = houses.Where(x => x.Region == region);
@@ -34,16 +34,32 @@ namespace RosCottedge.Controllers
             {
                 houses = houses.Where(x => x.NumberOfPersons >= numberOfPersons);
             }
+            if (arrivalDate != null && departureDate != null)
+            {
+                List<House> reservedHouses = new List<House>();
+
+                foreach (var house in houses)
+                {
+                    var reservations = db.Reservations.Where(r => r.HouseId == house.Id);
+
+                    foreach (var reservation in reservations)
+                    {
+                        if (reservation.ArrivalDate <= departureDate && arrivalDate <= reservation.DepartureDate)
+                        {
+                            reservedHouses.Add(house);
+                            break;
+                        }
+                    }
+                }
+
+                houses = houses.Except(reservedHouses);
+            }
 
             //Определяем максимальную и минимальную цену аренды
-            var Price = db.Houses.Select(x => x.Price);
-            int max = 0;
-            int min = 999;
-            foreach(var price in Price)
-            {
-                if (max < price) max = price;
-                if (min > price) min = price;
-            }
+
+            int max = db.Houses.Select(x=> x.Price).Max();
+            int min = db.Houses.Select(x => x.Price).Min();
+
             ViewBag.MaxPrice = max;
             ViewBag.MinPrice = min;
 
