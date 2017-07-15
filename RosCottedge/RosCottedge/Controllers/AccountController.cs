@@ -198,8 +198,8 @@ namespace RosCottedge.Controllers
                                       where h.UserId == user.Id
                                       select h;
 
-            List<House> hou = new List<House>(house);
-            ViewBag.house = hou;
+            
+            ViewBag.house = house;
             //Выводим дома, по которым пришла бронь 
             //_______________________________________________________________
 
@@ -207,8 +207,8 @@ namespace RosCottedge.Controllers
                          .Include(u => u.User)
                                              where r.House.UserId == user.Id
                                              select r;
-            List<Reservation> res = new List<Reservation>(reserv);
-            ViewBag.reserv = res;
+            //List<Reservation> res = new List<Reservation>(reserv);
+            ViewBag.reserv = reserv;
             //Выводим дома, по которым оставлен отзыв 
             //_______________________________________________________________
             IQueryable<Review> comment = from c in db.Reviews
@@ -216,8 +216,8 @@ namespace RosCottedge.Controllers
                                          where c.House.UserId == user.Id
                                          select c;
 
-            List<Review> rew = new List<Review>(comment);
-            ViewBag.rew = rew;
+            
+            ViewBag.rew = comment;
 
             return View();
         }
@@ -238,19 +238,16 @@ namespace RosCottedge.Controllers
                 IQueryable<Reservation> reserv = from r in db.Reservations
                                                 .Include(x => x.User)
                                                  where r.House.UserId == user.Id && r.HouseId == house.Id
-                                                 select r;
-
-                List<Reservation> res = new List<Reservation>(reserv);
-                ViewBag.reserv = res;
+                                                 select r;                
+                ViewBag.reserv = reserv;
 
                 //Вывод комментариев по выбранному дому
                 IQueryable<Review> comment = from c in db.Reviews
                                              .Include(x => x.User).Include(x => x.House)
                                              where c.House.UserId == user.Id && c.HouseId == house.Id
                                              select c;
-
-                List<Review> rew = new List<Review>(comment);
-                ViewBag.rew = rew;
+                
+                ViewBag.rew = comment;
 
                 return View(house);
 
@@ -291,16 +288,21 @@ namespace RosCottedge.Controllers
                          where a.UserId == user.Id
                          select a;
 
-            List<Reservation> res = new List<Reservation>(reserv);
-            ViewBag.reserv = res;
+            
+            ViewBag.reserv = reserv;
 
-            //var house = from h in db.Houses
-            //            where h.
-            //            select h;
-
-
-            //var hou = new List<House>(house);
-            //ViewBag.house = hou;
+            var house = from h in db.Houses
+                        join n in reserv on h.UserId equals n.UserId
+                        select new House
+                        {
+                            Id = h.Id,
+                            Name = h.Name,
+                            Locality=h.Locality,
+                            Area = h.Area,
+                        };
+            
+            ViewBag.house = house;
+            
             return View();
         }
         #endregion
