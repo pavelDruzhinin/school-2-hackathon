@@ -18,8 +18,7 @@ namespace RosCottedge.Controllers
             int pageNumber = (page ?? 1);
             int pageSize = 8;
 
-            IEnumerable<House> houses = db.Houses.Include(x => x.Reviews);
-            
+            IEnumerable<House> houses = db.Houses.Include(x => x.Reviews).Include(x => x.Reservations);
             if (!String.IsNullOrEmpty(region))
             {
                 houses = houses.Where(x => x.Region == region);
@@ -38,23 +37,7 @@ namespace RosCottedge.Controllers
             }
             if (arrivalDate != null && departureDate != null)
             {
-                List<House> reservedHouses = new List<House>();
-
-                foreach (var house in houses)
-                {
-                    var reservations = db.Reservations.Where(r => r.HouseId == house.Id);
-
-                    foreach (var reservation in reservations)
-                    {
-                        if (reservation.ArrivalDate <= departureDate && arrivalDate <= reservation.DepartureDate)
-                        {
-                            reservedHouses.Add(house);
-                            break;
-                        }
-                    }
-                }
-                
-                houses = houses.Except(reservedHouses);
+                houses = houses.Where(x => x.Reservations.Any(r => r.ArrivalDate <= departureDate && arrivalDate <= r.DepartureDate));
             }
 
             //Определяем максимальную и минимальную цену аренды

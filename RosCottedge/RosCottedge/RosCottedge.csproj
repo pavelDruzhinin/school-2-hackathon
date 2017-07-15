@@ -181,6 +181,10 @@
     <Compile Include="Migrations\201707121458353_UserProfile.Designer.cs">
       <DependentUpon>201707121458353_UserProfile.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201707152248401_AddReservationsList.cs" />
+    <Compile Include="Migrations\201707152248401_AddReservationsList.Designer.cs">
+      <DependentUpon>201707152248401_AddReservationsList.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\House.cs" />
     <Compile Include="Models\Login register\Login.cs" />
@@ -297,6 +301,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201707121458353_UserProfile.resx">
       <DependentUpon>201707121458353_UserProfile.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201707152248401_AddReservationsList.resx">
+      <DependentUpon>201707152248401_AddReservationsList.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

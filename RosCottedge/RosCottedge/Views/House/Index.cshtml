@@ -88,7 +88,7 @@
 
             <div id="map_canvas_house" class="mapBox"></div>
 
-            @if (User.Identity.IsAuthenticated)
+            @if (User.Identity.IsAuthenticated && Model.AllowComments)
             {
                 <form @*method="post"*@ class="formReview mainBox" id="formReviewId" @*action="AddReview" data-ajax="true" data-ajax-update="#comments" data-ajax-mode="replace"*@>
                     <input type="hidden" value="@Model.House.Id" name="HouseId">

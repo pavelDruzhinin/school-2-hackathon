@@ -266,7 +266,7 @@ namespace RosCottedge.Controllers
             if (ModelState.IsValid)
             {
                 var editedHouse = db.Houses.Find(house.Id);
-                //editedHouse = house;
+          
                 editedHouse.Name = house.Name;
                 editedHouse.Price = house.Price;
                 editedHouse.NumberOfPersons = house.Price;
@@ -281,7 +281,7 @@ namespace RosCottedge.Controllers
                 editedHouse.AdditionalServices = house.AdditionalServices;
                 editedHouse.Accomodations = house.Accomodations;
                 editedHouse.BookingConditions = house.BookingConditions;
-                //db.Entry(editedHouse).State = EntityState.Modified;
+  
                 db.SaveChanges();
                 return RedirectToAction("MyHouse");
             }

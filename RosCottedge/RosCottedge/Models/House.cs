@@ -64,6 +64,8 @@ namespace RosCottedge.Models
 
         public List<Review> Reviews { get; set; }
 
+        public List<Reservation> Reservations { get; set; }
+
         public int UserId { get; set; }
 
         public User User { get; set; }

@@ -21,14 +21,37 @@ namespace RosCottedge.Controllers
         [HttpGet]
         public ActionResult Index(int houseId, int? page)
         {
+            //Проверяем, давать ли пользователю оставить коммент
+            var user = db.Users.Where(x => x.Login == User.Identity.Name).FirstOrDefault();
+            var dateLimit = DateTime.Today.AddDays(-14);
+            var allowComments = false;
+
+            //Ищем закончившиеся менее 14 дней назад брони
+            var reservation = db.Reservations 
+                .Where(r => r.UserId == user.Id && r.DepartureDate > dateLimit && r.DepartureDate < DateTime.Now && r.HouseId == houseId)
+                .FirstOrDefault();
+
+            //Если брони нашлись, ищем оставленный после завершения
+            if (reservation != null) 
+            {
+                var existingReview = db.Reviews.OrderByDescending(e => e.CommentDate)
+                    .Where(e => e.UserId == user.Id && e.HouseId == houseId && e.CommentDate > reservation.DepartureDate)
+                    .FirstOrDefault();
+
+                if (existingReview == null)
+                {
+                    allowComments = true;
+                }
+            }
+
             int pageSize = 5;
             int pageNumber = (page ?? 1);
-//            ViewBag.countRev = db.Houses.Select(x => x.Reviews.Count()).FirstOrDefault();
 
             var viewModel = new HouseIndexViewModel()
             {
                 House = db.Houses.Include(u => u.User).FirstOrDefault(x => x.Id == houseId),
-                Reviews = db.Reviews.Include(u => u.User).Where(r => r.HouseId == houseId).OrderByDescending(r => r.CommentDate).ToPagedList(pageNumber, pageSize)
+                Reviews = db.Reviews.Include(u => u.User).Where(r => r.HouseId == houseId).OrderByDescending(r => r.CommentDate).ToPagedList(pageNumber, pageSize),
+                AllowComments = allowComments
             };
             
             return Request.IsAjaxRequest()
@@ -85,26 +108,6 @@ namespace RosCottedge.Controllers
         public ActionResult AddReview(Review review)
         {
             var user = db.Users.Where(x => x.Login == User.Identity.Name).FirstOrDefault();
-
-//            var dateLimit = DateTime.Today.AddDays(-14);
-//            var reservation = db.Reservations
-//                .Where(r => r.UserId == user.Id && r.DepartureDate > dateLimit && r.DepartureDate < DateTime.Now && r.HouseId == review.HouseId)
-//                .FirstOrDefault();
-//
-//            if (reservation == null) //Резерваций, закончившихся менее 14 дней назад не было
-//            {
-//                return Redirect(HttpContext.Request.UrlReferrer.AbsoluteUri);
-//            }
-//
-//            var existingReview = db.Reviews.OrderByDescending(e => e.CommentDate)
-//                .Where(e => e.UserId == user.Id && e.HouseId == review.HouseId && e.CommentDate > reservation.DepartureDate)
-//                .FirstOrDefault();
-//
-//            if (existingReview != null) //Юзер уже оставил комментарий
-//            {
-//                return Redirect(HttpContext.Request.UrlReferrer.AbsoluteUri);
-//
-//            }
 
             review.CommentDate = DateTime.Now;
             review.UserId = user.Id;

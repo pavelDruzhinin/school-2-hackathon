@@ -11,5 +11,6 @@ namespace RosCottedge.ViewModels
     {
         public PagedList.IPagedList<Review> Reviews { get; set; }
         public House House { get; set; }
+        public bool AllowComments { get; set; }
     }
 }
