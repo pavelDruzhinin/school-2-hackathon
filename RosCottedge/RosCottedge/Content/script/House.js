@@ -11,28 +11,11 @@
         return false;
     });
 
+    $('.errorBoxDate').on('click', function () {
+        $('.errorBoxDate').css("display", "none");
+    });
+
     ratingHouse();
-
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    var DefName = $("#defItem");
-    var DefCom = $("#defItem");
-    var DefRate = $("#defItem");
-
-
 
     $('.owl-carousel').owlCarousel({
         items: 1,
@@ -49,25 +32,11 @@
         return false;
     });
 
-    var dt = new Date();
-    var month = dt.getMonth() + 1;
-    if (month < 10) month = '0' + month;
-    var day = dt.getDate();
-    if (day < 10) day = '0' + day;
-    var year = dt.getFullYear();
-    $("#firstDateId").min = year + '-' + month + '-' + (day + 1);
-    $("#firstDateId").max = (year + 1) + '-' + month + '-' + (day + 1);
-    $("#firstDateId").value = year + '-' + month + '-' + (day + 1);
-    $("#secondDateId").min = year + '-' + month + '-' + (day + 1);
-    $("#secondDateId").max = (year + 1) + '-' + month + '-' + (day + 1);
-    $("#secondDateId").value = year + '-' + month + '-' + (day + 1);
-
     var geo = new google.maps.Geocoder();
     var map = new google.maps.Map(document.getElementById('map_canvas_house'), {
-        zoom: 16,
+        zoom: 17,
         scrollwheel: false,
-        styles: styleArray,
-        mapTypeId: 'hybrid'
+        styles: styleArray
     });
 
     var Country = $("#Country").text();
@@ -97,7 +66,7 @@
 
 var styleArray = [
     {
-        "featureType": "landscape",
+        "featureType": "landscape.natural",
         "elementType": "geometry",
         "stylers": [
             {
@@ -116,52 +85,20 @@ var styleArray = [
     }
 ];
 
-document.getElementById("firstDateId").onchange = function () {
-    var input = document.getElementById("secondDateId");
-    input.min = this.value;
-
-    var dt = new Date();
-    var month = dt.getMonth() + 1;
-    if (month < 10) month = '0' + month;
-    var day = dt.getDate();
-    if (day < 10) day = '0' + day;
-    var year = dt.getFullYear();
-
-    if (this.value < (year + '-' + month + '-' + (day + 1))) {
-        this.value = year + '-' + month + '-' + (day + 1);
-        this.min = year + '-' + month + '-' + (day + 1);
-        input.min = year + '-' + month + '-' + (day + 1);
-    }
-
-    if (this.value >= input.value) {
-        input.value = this.value;
-    }
-};
-
-document.getElementById("secondDateId").onchange = function () {
-    var dt = new Date();
-    var month = dt.getMonth() + 1;
-    if (month < 10) month = '0' + month;
-    var day = dt.getDate();
-    if (day < 10) day = '0' + day;
-    var year = dt.getFullYear();
-
-    if (this.value < (year + '-' + month + '-' + (day + 1))) {
-        this.value = year + '-' + month + '-' + (day + 1);
-    }
-};
-
 var ratingHouse = function () {
-    var a = $('#sliderRating');
+    var $colorav = $('.sliderRating');
     var b = $('#textSliderRating');
     var $c = $('#numberSliderRating');
 
+    console.log($c.text());
+    if (parseInt($c.text()) != 0) {
     var c = parseFloat($c.text().replace(',', '.'));
     c = c.toFixed(1);
     $c.text(c);
 
+
     if (c >= 3.5) {
-        $('.sliderRating').css('background', '#5EF199');
+        $colorav.css('background-color', '#5EF199');
         if (c >= 4 && c <= 4.5) {
             b.text('Хорошо');
         }
@@ -170,12 +107,12 @@ var ratingHouse = function () {
         }
     }
     else if (c > 2.5 && c < 3.5) {
-        $('.sliderRating').css('background', '#FFDD00');
+        $colorav.css('background-color', '#FFD54F');
         b.text('Удовлетворительно');
 
     }
     else {
-        $('.sliderRating').css('background', '#F31B13');
+        $colorav.css('background-color', '#E32444');
         if (c >= 1.5 && c <= 2.5) {
             b.text('Плохо');
         }
@@ -184,4 +121,10 @@ var ratingHouse = function () {
         }
 
     }
-}
+    }
+    else {
+        $colorav.css('background', '#AAAAAA');
+        $c.text('0');
+        b.text('Нет оценки');
+    }
+};

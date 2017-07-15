@@ -585,7 +585,7 @@ footer .bottomFooter span{
     font-size: 0;
 }
 
-.formReservation > span {
+.formReservation span {
     display: inline-block;
     font-size: 16px;
     width: 50%;
@@ -593,56 +593,38 @@ footer .bottomFooter span{
     opacity: .87;
 }
 
-.formReservation > .textSecondDate {
-    padding-left: 12px;
-}
-
-.formReservation > .textSecDate {
-    margin-top: 15px;
-}
-
-.formReservation > input {
+.formReservation input {
     width: 48%;
     height: 35px;
     background-color: #EEE;
-    border: 1px solid #DBDBDB;
     display: inline-block;
-    font-family: "Roboto", sans-serif;
-    font-weight: 400;
     font-size: 16px;
     padding-left: 15px;
 }
 
-.formReservation > input::-webkit-inner-spin-button,
-.formReservation > input::-webkit-clear-button {
-    display: none;
-}
-
-.formReservation > input:focus {
+.formReservation input:focus {
     outline: none;
 }
 
-.formReservation > .secondDate {
+.formReservation .secondDate {
     float: right;
 }
 
-.formReservation > textarea {
+.formReservation textarea {
     resize: vertical;
     width: 100%;
     height: 70px;
     min-height: 70px;
     margin-top: 15px;
     background-color: #EEE;
-    border-color: #DBDBDB;
+    border:none;
     max-height: 200px;
-    font-family: "Roboto", sans-serif;
-    font-weight: 400;
     font-size: 16px;
     padding-top: 8px;
     padding-left: 15px;
 }
 
-.formReservation > textarea:focus {
+.formReservation textarea:focus {
     outline: none;
 }
 
@@ -666,8 +648,16 @@ footer .bottomFooter span{
 .btnReservation:focus {
     outline: none;
 }
+.errorBoxDate {
+    width: 100%;
+    color: #E32444;
+    background-color: pink;
+    padding: 15px;
+    margin-top: 15px;
+    display: none;
+    cursor: pointer;
+}
 /*Form Reservation End*/
-
 /*Slider Start*/
 .slider {
     height: 445px;
@@ -682,7 +672,7 @@ footer .bottomFooter span{
     z-index: 1;
 }
 
-.slider .sliderHead > i, .slider .sliderHead > h3, .slider .sliderHead > a {
+.slider .sliderHead i, .slider .sliderHead h3, .slider .sliderHead a {
     color: #fff;
     display: inline-block;
     margin-top: 7px;
@@ -691,16 +681,17 @@ footer .bottomFooter span{
     font-size: 14px;
 }
 
-.slider .sliderHead > i {
+.slider .sliderHead i {
     font-size: 16px;
 }
 
-.slider .sliderHead > h3 {
+.slider .sliderHead h3 {
     margin-right: 15px;
     opacity: 1;
+    font-weight: 400;
 }
 
-.slider .sliderHead > .separate {
+.slider .sliderHead .separate {
     display: inline-block;
     position: absolute;
     margin-top: 8px;
@@ -720,13 +711,14 @@ footer .bottomFooter span{
 
 .slider .sliderFooter {
     width: 100%;
-    height: 49px;
+    height: 45px;
     background-color: #fff;
 }
 
-.slider .sliderFooter > p {
+.slider .sliderFooter p {
     opacity: .87;
     padding: 15px 15px;
+    font-size: 14px;
     display: inline-block;
 }
 
@@ -734,7 +726,7 @@ footer .bottomFooter span{
     padding-left: 4px;
 }
 
-.slider .sliderFooter > .countUsersIcon {
+.slider .sliderFooter .countUsersIcon {
     background-image: url(../img/users.svg);
     background-repeat: no-repeat;
     width: 17px;
@@ -749,7 +741,7 @@ footer .bottomFooter span{
     opacity: .12;
     display: inline-block;
     position: absolute;
-    margin-top: 15px;
+    margin-top: 12.5px;
     height: 20px;
     border-right: 1px solid #000;
 }
@@ -762,7 +754,7 @@ footer .bottomFooter span{
     float: right;
 }
 
-.slider .sliderFooter .sliderRating > span, .slider .sliderFooter .sliderRating > p {
+.slider .sliderFooter .sliderRating span, .slider .sliderFooter .sliderRating p {
     opacity: 1;
     display: inline-block;
     padding-top: 14px;
@@ -770,12 +762,8 @@ footer .bottomFooter span{
     padding-right: 8px;
 }
 
-.slider .sliderFooter .sliderRating > span {
+.slider .sliderFooter .sliderRating span {
     font-size: 16px;
-}
-
-.slider .sliderFooter .sliderRating > p {
-    font-size: 14px;
 }
 
 .slider .sliderFooter .sliderRating .separate {
@@ -835,7 +823,7 @@ footer .bottomFooter span{
 
 /*Description Start*/
 .fullDescription {
-    padding-top: 30px;
+    margin-top: 30px;
 }
 
 .fullDescription .descItems {
@@ -843,7 +831,7 @@ footer .bottomFooter span{
     background-color: #fff;
     padding-left: 15px;
     padding-bottom: 15px;
-    padding-right: 45px;
+    padding-right: 15px;
     margin-bottom: 1px;
 }
 
@@ -862,7 +850,7 @@ footer .bottomFooter span{
     color: #000;
 }
 
-.fullDescription .descItems .leftSideOwner > h3 {
+.fullDescription .descItems .leftSideOwner h3 {
     display: inline-block;
     font-size: 16px;
     font-weight: 400;
@@ -877,7 +865,7 @@ footer .bottomFooter span{
     display: inline-block;
 }
 
-.fullDescription .descItems .leftSideOwner > img {
+.fullDescription .descItems .leftSideOwner img {
     vertical-align: top;
     display: inline-block;
     border-radius: 50%;
@@ -894,11 +882,11 @@ footer .bottomFooter span{
     opacity: .54;
 }
 
-.fullDescription .descItems .rightSideOwner > p {
+.fullDescription .descItems .rightSideOwner p {
     padding-bottom: 15px;
 }
 
-.fullDescription .descItems .rightSideOwner > p:last-child {
+.fullDescription .descItems .rightSideOwner p:last-child {
     padding-bottom: 0;
 }
 /*Description End*/
@@ -957,8 +945,6 @@ footer .bottomFooter span{
     margin-left: 15px;
     border-color: #DBDBDB;
     width: 643px;
-    font-family: "Roboto", sans-serif;
-    font-weight: 400;
     font-size: 16px;
     padding-top: 8px;
     padding-left: 15px;
@@ -973,8 +959,6 @@ footer .bottomFooter span{
 }
 
 .formReview .formRowBottom .btnSendReview {
-    font-family: "Roboto", sans-serif;
-    font-weight: 400;
     font-size: 16px;
     width: 152px;
     height: 35px;
@@ -1004,8 +988,6 @@ footer .bottomFooter span{
 
 
 .formReview .formRowBottom .formSelect #selectRating {
-    font-family: "Roboto", sans-serif;
-    font-weight: 400;
     font-size: 16px;
     border-color: #DBDBDB;
     height: 35px;
@@ -1047,7 +1029,7 @@ footer .bottomFooter span{
     width: 30%;
 }
 
-.reviewItem .reviewUser > h3 {
+.reviewItem .reviewUser h3 {
     display: inline-block;
     font-size: 16px;
     font-weight: 400;

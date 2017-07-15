@@ -1,14 +1,5 @@
 $(document).ready(function () {
 
-    //AjaxReservation
-    var redirectData = "";
-    $('#reservation').submit(function () {
-        $.post('/House/AddReservation', $('#reservation').serialize(), function (data) {
-            $('.errorBox').html(data);
-        });
-        return false;
-    });
-
     //Datepicker
     $('.date').attr('readOnly','true');
     $('.date').datepicker({
@@ -71,7 +62,7 @@ $(document).ready(function () {
 
 var styleArray = [
     {
-        "featureType": "landscape",
+        "featureType": "landscape.natural",
         "elementType": "geometry",
         "stylers": [
             {
@@ -89,6 +80,68 @@ var styleArray = [
         ]
     }
 ];
+
+// Этот стиль стоял изначально
+/*[ 
+    {
+        "featureType": "landscape",
+        "elementType": "geometry",
+        "stylers": [
+            {
+                "color": "#bff0ca"
+            }
+        ]
+    },
+    {
+        "featureType": "water",
+        "elementType": "geometry",
+        "stylers": [
+            {
+                "color": "#81d4fa"
+            }
+        ]
+    }
+]*/
+
+// Можно попробовать вот этот и поиграться с цветом у geometry.stroke
+/*[
+    {
+        "featureType": "landscape.man_made",
+        "elementType": "geometry.fill",
+        "stylers": [
+            {
+                "visibility": "simplified"
+            }
+        ]
+    },
+    {
+        "featureType": "landscape.man_made",
+        "elementType": "geometry.stroke",
+        "stylers": [
+            {
+                "color": "#b9acac"
+            }
+        ]
+    },
+    {
+        "featureType": "landscape.natural",
+        "elementType": "geometry",
+        "stylers": [
+            {
+                "color": "#bff0ca"
+            }
+        ]
+    },
+    {
+        "featureType": "water",
+        "elementType": "geometry",
+        "stylers": [
+            {
+                "color": "#81d4fa"
+            }
+        ]
+    }
+]*/
 
 
 var map;

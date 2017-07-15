@@ -19,9 +19,6 @@
         margin-top: 30px;
     }
 
-        .formReservation > .textSecondDate {
-            padding-left: 14px !important;
-        }
     /*Form Reservation end*/
 
     /*Form Review start*/
@@ -35,14 +32,14 @@
     /*Form Review end*/
 
     /*Slider Start*/
-    .slider .sliderFooter > p {
+    /*.slider .sliderFooter > p {
         padding: 15px 12px !important;
         font-size: 14px !important;
     }
 
     .slider .sliderFooter .countUsers {
         padding-left: 4px !important;
-    }
+    }*/
     /*Slider End*/
 }
 
@@ -67,9 +64,6 @@
         margin-top: 30px;
     }
 
-        .formReservation > .textSecondDate {
-            padding-left: 14px !important;
-        }
     /*Form Reservation end*/
 
     /*Form Review start*/
@@ -85,8 +79,11 @@
 
 @media (min-width: 992px) and (max-width: 1199px) {
     /*Form Reservation start*/
-    .formReservation > input {
+    .formReservation input {
         min-width: 100%;
+    }
+    .formReservation .secondDate {
+        margin-top: 15px;
     }
     /*Form Reservation end*/
 
@@ -105,14 +102,14 @@
     /*Form Review end*/
 
     /*Slider Start*/
-    .slider .sliderFooter > p {
+    /*.slider .sliderFooter > p {
         padding: 15px 7px !important;
         font-size: 14px !important;
     }
 
     .slider .sliderFooter .countUsers {
         padding-left: 4px !important;
-    }
+    }*/
     /*Slider End*/
 }
 
