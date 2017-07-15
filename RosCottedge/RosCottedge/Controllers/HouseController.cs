@@ -53,29 +53,6 @@ namespace RosCottedge.Controllers
                 {
                     reservation.ReservationDate = DateTime.Now;
 
-                    //Создаём список зарезервированных дней в заказе
-                    //                    var DateRange = new List<DateTime>();
-                    //                    var arrival = reservation.ArrivalDate;
-                    //                    var departure = reservation.DepartureDate;
-                    //                    for (var date = arrival; date <= departure; date = date.AddDays(1)) DateRange.Add(date);
-                    //
-                    //                    //Создаём список всех зарезервированных дней из базы
-                    //                    var AllRange = new List<DateTime>();
-                    //                    foreach (var x in db.Reservations.Where(x => x.HouseId == HouseId))
-                    //                    {
-                    //                        var _arrival = x.ArrivalDate;
-                    //                        var _departure = x.DepartureDate;
-                    //                        for (var _date = _arrival; _date <= _departure; _date = _date.AddDays(1)) AllRange.Add(_date);
-                    //                    };
-                    //
-                    //                    foreach (var y in DateRange)
-                    //                    {
-                    //                        if (AllRange.Contains(y))
-                    //                        {
-                    //                            return "Извините, одна из выбранных вами дат уже забронирована";
-                    //                        }
-                    //                    }
-
                     foreach (var r in db.Reservations.Where(h => h.HouseId == HouseId))
                     {
                         if (reservation.ArrivalDate <= r.DepartureDate && r.ArrivalDate <= reservation.DepartureDate)
@@ -131,15 +108,17 @@ namespace RosCottedge.Controllers
 
             review.CommentDate = DateTime.Now;
             review.UserId = user.Id;
-            db.Reviews.Add(review);
-            db.SaveChanges();
+            
             //Изменяем рейтинг дома в базе.
             var house = db.Houses.Find(review.HouseId);
-            var reviewsCount = db.Reviews.Where(x => x.HouseId == review.HouseId).Count();
-            var reviewsSum = db.Reviews.Where(x => x.HouseId == review.HouseId).Sum(x => x.Rating);
-            house.Rating = reviewsSum / reviewsCount;
+            var allReviews = db.Reviews.Where(x => x.HouseId == review.HouseId).ToList();
+            allReviews.Add(review);
+            var reviewsCount = allReviews.Count();
+            var ratingSum = allReviews.Sum(x => x.Rating);
+            house.Rating = ratingSum / reviewsCount;
+            db.Reviews.Add(review);
             db.SaveChanges();
-
+            
             var viewModel = new HouseIndexViewModel()
             {
                 House = db.Houses.Include(u => u.User).FirstOrDefault(x => x.Id == review.HouseId),
@@ -160,7 +139,6 @@ namespace RosCottedge.Controllers
                  = db.Users.Where
                         (x => x.Login == User.Identity.Name).FirstOrDefault();
                 house.UserId = user.Id;
-                house.Rating = 0;
                 db.Houses.Add(house);
                 db.SaveChanges();
                 return RedirectToAction("Index", "Home");

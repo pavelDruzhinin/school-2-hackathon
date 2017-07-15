@@ -182,7 +182,6 @@
       <DependentUpon>201707121458353_UserProfile.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Models\AddDatabaseAtStart.cs" />
     <Compile Include="Models\House.cs" />
     <Compile Include="Models\Login register\Login.cs" />
     <Compile Include="Models\Login register\Register.cs" />
