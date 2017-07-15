@@ -11,6 +11,19 @@
         return false;
     });
 
+    $('#formReviewId').submit(function () {
+        $.post('/House/AddReview', $('#formReviewId').serialize(), function (data) {
+            $('#comments').html(data);
+            $('#totalCount').text(parseInt($('#totalCount').text()) + 1 + ' отзывов');
+            $('#numberSliderRating').text($('#tempRating2').val());
+            ratingHouse();    
+            $('#formReviewId').each(function () {
+                this.reset();
+            });
+        });
+        return false;
+    });
+
     $('.errorBoxDate').on('click', function () {
         $('.errorBoxDate').css("display", "none");
     });
@@ -90,7 +103,6 @@ var ratingHouse = function () {
     var b = $('#textSliderRating');
     var $c = $('#numberSliderRating');
 
-    console.log($c.text());
     if (parseInt($c.text()) != 0) {
     var c = parseFloat($c.text().replace(',', '.'));
     c = c.toFixed(1);
