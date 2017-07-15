@@ -1,4 +1,4 @@
-﻿@model IEnumerable<RosCottedge.Models.House>
+﻿@model IEnumerable<RosCottedge.Models.Reservation>
 @using RosCottedge.Models;
 
 @{
@@ -6,46 +6,46 @@
 }
 <div></div>
 <div class="houses">
-        <div class="container">
-            <div class="row">
-                @foreach (var item in ViewBag.house)
-                {
-                    <div class="col-md-6 houseItem">
-                        <div class="imgBox" style="background-image: url('../../Content/img/chubaka.jpg')"></div>
-                        <div class="ContentBox">
-                            <h2 class="nameHouse"><a href="/House/Index?houseId=@item.Id">@item.Name</a></h2>
-                            <span class="address">@item.Locality, @item.Area</span>
-                            <div class="ratingHouse">
-                                <h2><a href="/Account/EditMyHouse/@item.Id">Управление</a></h2>
-                                <h2><a href="/House/Index?houseId=@item.Id">Страница дома</a></h2>
-                                <h2>Оценка пользователей</h2>
+    <div class="container">
+        <div class="row">
+            @foreach (var item in Model)
+            {
+                <div class="col-md-6 houseItem">
+                    <div class="imgBox" style="background-image: url('../../Content/img/chubaka.jpg')"></div>
+                    <div class="ContentBox">
+                        <h2 class="nameHouse"><a href="/House/Index?houseId=@item.House.Id">@item.House.Name</a></h2>
+                        <span class="address">@item.House.Locality, @item.House.Area</span>
+                        <div class="ratingHouse">
+                            <h2><a href="/House/Index?houseId=@item.House.Id">Страница дома</a></h2>
+                            <h2>Оценка пользователей</h2>
 
-                                <ul>
-                                    <li></li>
-                                    <li></li>
-                                    <li></li>
-                                    <li></li>
-                                    <li></li>
-                                </ul>
-                            </div>
+                            <ul>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                            </ul>
                         </div>
                     </div>
-                }
-            </div>
+                </div>
+            }
         </div>
     </div>
+</div>
 <h3>История поездок</h3>
 
 <table>
-    @foreach (var item in ViewBag.reserv)
+    @foreach (var item in Model)
     {
         <tr>
             <td>
-                <a href="/House/Index?houseId/@item.HouseId">@item.House.Name</a> Даты поездки:@item.ArrivalDate.ToString("dd.MM.yyyy")-@item.DepartureDate.ToString("dd.MM.yyyy")
+                <a href="/House/Index?houseId=@item.House.Id">@item.House.Name</a> Даты поездки:@item.ArrivalDate.ToString("dd.MM.yyyy")-@item.DepartureDate.ToString("dd.MM.yyyy")
             </td>
 
         </tr>
     }
 
 </table>
+
 

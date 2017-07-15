@@ -1,5 +1,6 @@
 ﻿using RosCottedge.Models;
 using RosCottedge.Models.Login_register;
+using RosCottedge.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -23,8 +24,8 @@ namespace RosCottedge.Controllers
         #region Логин
         public ActionResult Login()
         {
-            if (User.Identity.IsAuthenticated == true)
-                return new HttpStatusCodeResult(HttpStatusCode.Found);
+            if (User.Identity.IsAuthenticated)
+                return RedirectToAction("Profile");
 
             return View();
         }
@@ -53,7 +54,7 @@ namespace RosCottedge.Controllers
         #region Регистрация
         public ActionResult Register()
         {
-            if (User.Identity.IsAuthenticated == true)
+            if (User.Identity.IsAuthenticated )
                 return new HttpStatusCodeResult(HttpStatusCode.Found);
             return View();
         }
@@ -61,7 +62,7 @@ namespace RosCottedge.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Register(Register registerModel)
         {
-            if (User.Identity.IsAuthenticated == true)
+            if (User.Identity.IsAuthenticated )
                 return new HttpStatusCodeResult(HttpStatusCode.Unauthorized);
             if (ModelState.IsValid)//если модель проходит валидацию, то в базе ищем логин
             {
@@ -81,14 +82,10 @@ namespace RosCottedge.Controllers
                     };
                     db.Users.Add(user);
                     db.SaveChanges();
-                    //после сохранения получаем его
-                    user = db.Users.Where
-                        (x => x.Login == registerModel.Login && x.Password == registerModel.Password).FirstOrDefault();
-                    if (user != null)
-                    {
+                    
                         FormsAuthentication.SetAuthCookie(registerModel.Login, true);
                         return RedirectToAction("Index", "Home");
-                    }
+                    
                 }
                 else
                 {
@@ -131,7 +128,7 @@ namespace RosCottedge.Controllers
         }
         public ActionResult PersonalInformation()
         {
-            if (User.Identity.IsAuthenticated == true)
+            if (User.Identity.IsAuthenticated)
             {
                 User user = (from u in db.Users
                              where u.Login == User.Identity.Name
@@ -188,38 +185,34 @@ namespace RosCottedge.Controllers
         {
             if (User.Identity.IsAuthenticated == false)
                 return new HttpStatusCodeResult(HttpStatusCode.Unauthorized);
-            // Выводим все дома, которые добавлял пользователь
-            //_______________________________________________________________
+
+
             User user = (from u in db.Users
                          where u.Login == User.Identity.Name
                          select u).FirstOrDefault();
 
-            IQueryable<House> house = from h in db.Houses
-                                      where h.UserId == user.Id
-                                      select h;
+            // Выводим все дома, которые добавлял пользователь
+            MyHouseViewModel myHouseModel = new MyHouseViewModel()
+            {
+                House = from h in db.Houses
+                        where h.UserId == user.Id
+                        select h,
 
-            
-            ViewBag.house = house;
-            //Выводим дома, по которым пришла бронь 
-            //_______________________________________________________________
+                //Выводим дома, по которым пришла бронь
+                Reservation = from r in db.Reservations
+                                .Include(u => u.User)
+                              where r.House.UserId == user.Id
+                              select r,
 
-            IQueryable<Reservation> reserv = from r in db.Reservations
-                         .Include(u => u.User)
-                                             where r.House.UserId == user.Id
-                                             select r;
-            //List<Reservation> res = new List<Reservation>(reserv);
-            ViewBag.reserv = reserv;
-            //Выводим дома, по которым оставлен отзыв 
-            //_______________________________________________________________
-            IQueryable<Review> comment = from c in db.Reviews
-                          .Include(x => x.User).Include(x => x.House)
-                                         where c.House.UserId == user.Id
-                                         select c;
+                //Выводим дома, по которым оставлен отзыв 
+                Review = from c in db.Reviews
+                         .Include(x => x.User).Include(x => x.House)
+                         where c.House.UserId == user.Id
+                         select c
 
-            
-            ViewBag.rew = comment;
+            };
 
-            return View();
+            return View(myHouseModel);
         }
         #endregion        
 
@@ -234,22 +227,28 @@ namespace RosCottedge.Controllers
                 User user = (from u in db.Users
                              where u.Login == User.Identity.Name
                              select u).FirstOrDefault();
-                //Вывод забронированных дат по выбранному дому
-                IQueryable<Reservation> reserv = from r in db.Reservations
+                if (house.UserId != user.Id)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.Forbidden);
+                }
+                EditMyHouseViewModel viewModel = new EditMyHouseViewModel()
+                {
+                    House = house,
+
+                    //Вывод забронированных дат по выбранному дому
+                    Reservations = from r in db.Reservations
                                                 .Include(x => x.User)
-                                                 where r.House.UserId == user.Id && r.HouseId == house.Id
-                                                 select r;                
-                ViewBag.reserv = reserv;
-
-                //Вывод комментариев по выбранному дому
-                IQueryable<Review> comment = from c in db.Reviews
+                                   where r.House.UserId == user.Id && r.HouseId == house.Id
+                                   select r,
+                    //Вывод комментариев по выбранному дому
+                    Reviews = from c in db.Reviews
                                              .Include(x => x.User).Include(x => x.House)
-                                             where c.House.UserId == user.Id && c.HouseId == house.Id
-                                             select c;
-                
-                ViewBag.rew = comment;
+                              where c.House.UserId == user.Id && c.HouseId == house.Id
+                              select c
 
-                return View(house);
+                };
+
+                return View(viewModel);
 
             }
             else
@@ -259,18 +258,34 @@ namespace RosCottedge.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult EditMyHouse(House house)
+        public ActionResult SaveHouse(House house)
         {
             if (User.Identity.IsAuthenticated == false)
                 return new HttpStatusCodeResult(HttpStatusCode.Unauthorized);
 
             if (ModelState.IsValid)
             {
-                db.Entry(house).State = EntityState.Modified;
+                var editedHouse = db.Houses.Find(house.Id);
+                //editedHouse = house;
+                editedHouse.Name = house.Name;
+                editedHouse.Price = house.Price;
+                editedHouse.NumberOfPersons = house.Price;
+                editedHouse.Region = house.Region;
+                editedHouse.Locality = house.Locality;
+                editedHouse.Area = house.Area;
+                editedHouse.HouseNumber = house.HouseNumber;
+                editedHouse.Description = house.Description;
+                editedHouse.Food = house.Food;
+                editedHouse.Transfer = house.Transfer;
+                editedHouse.ServicesIncluded = house.ServicesIncluded;
+                editedHouse.AdditionalServices = house.AdditionalServices;
+                editedHouse.Accomodations = house.Accomodations;
+                editedHouse.BookingConditions = house.BookingConditions;
+                //db.Entry(editedHouse).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Profile");
+                return RedirectToAction("MyHouse");
             }
-            return View(house);
+            return RedirectToAction("EditMyHouse", "Account", new { id = house.Id });
         }
         #endregion
 
@@ -279,6 +294,7 @@ namespace RosCottedge.Controllers
         {
             if (User.Identity.IsAuthenticated == false)
                 return new HttpStatusCodeResult(HttpStatusCode.Unauthorized);
+
             User user = (from u in db.Users
                          where u.Login == User.Identity.Name
                          select u).FirstOrDefault();
@@ -288,22 +304,8 @@ namespace RosCottedge.Controllers
                          where a.UserId == user.Id
                          select a;
 
-            
-            ViewBag.reserv = reserv;
 
-            var house = from h in db.Houses
-                        join n in reserv on h.UserId equals n.UserId
-                        select new House
-                        {
-                            Id = h.Id,
-                            Name = h.Name,
-                            Locality=h.Locality,
-                            Area = h.Area,
-                        };
-            
-            ViewBag.house = house;
-            
-            return View();
+            return View(reserv);
         }
         #endregion
     }
