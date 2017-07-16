@@ -14,8 +14,8 @@
           <input type="text" placeholder="Район" name="region">
         </div>
         <div class="dates searchFields">
-          <input type="text" placeholder="Заезд" name="arrivalDate" class="date date1">
-          <input type="text" placeholder="Выезд" name="departureDate" class="date date2">
+          <input type="text" placeholder="Заезд" name="arrivalDate" id="date1" class="date">
+          <input type="text" placeholder="Выезд" name="departureDate" id="date2" class="date">
         </div>
         <div class="prices searchFields">
           <input type="text" id="minCost" placeholder="Цена от" name="startPrice" minVal="@ViewBag.MinPrice">
@@ -53,14 +53,14 @@
             <li><p><span class="com op54"></span>@item.Reviews.Count()</p></li><br>
             <li><p><span>Регион</span>@item.Region</p></li>
           </ul>
-          <div class="ratingHouse">
+          <div class="ratingHouse" rating="@item.Rating">
             <h2>Оценка пользователей</h2>
             <ul>
-              <li></li>
-              <li></li>
-              <li></li>
-              <li></li>
-              <li></li>
+              <li ratingItem="1"></li>
+              <li ratingItem="2"></li>
+              <li ratingItem="3"></li>
+              <li ratingItem="4"></li>
+              <li ratingItem="5"></li>
             </ul>
           </div>
         </div>
@@ -70,6 +70,8 @@
   </div>
 </div>
 
-Страница @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) из @Model.PageCount
-
 @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+
+@section scripts {
+    @Scripts.Render("/Scripts/config/main.js")
+}
