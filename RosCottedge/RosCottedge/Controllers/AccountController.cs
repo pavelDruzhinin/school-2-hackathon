@@ -266,23 +266,31 @@ namespace RosCottedge.Controllers
             if (ModelState.IsValid)
             {
                 var editedHouse = db.Houses.Find(house.Id);
-          
-                editedHouse.Name = house.Name;
-                editedHouse.Price = house.Price;
-                editedHouse.NumberOfPersons = house.Price;
-                editedHouse.Region = house.Region;
-                editedHouse.Locality = house.Locality;
-                editedHouse.Area = house.Area;
-                editedHouse.HouseNumber = house.HouseNumber;
-                editedHouse.Description = house.Description;
-                editedHouse.Food = house.Food;
-                editedHouse.Transfer = house.Transfer;
-                editedHouse.ServicesIncluded = house.ServicesIncluded;
-                editedHouse.AdditionalServices = house.AdditionalServices;
-                editedHouse.Accomodations = house.Accomodations;
-                editedHouse.BookingConditions = house.BookingConditions;
+
+                if (editedHouse != null)
+                {
+                    db.Entry(editedHouse).CurrentValues.SetValues(house);
+
+                    //                editedHouse.Name = house.Name;
+                    //                editedHouse.Price = house.Price;
+                    //                editedHouse.NumberOfPersons = house.Price;
+                    //                editedHouse.Region = house.Region;
+                    //                editedHouse.Locality = house.Locality;
+                    //                editedHouse.Area = house.Area;
+                    //                editedHouse.HouseNumber = house.HouseNumber;
+                    //                editedHouse.Description = house.Description;
+                    //                editedHouse.Food = house.Food;
+                    //                editedHouse.Transfer = house.Transfer;
+                    //                editedHouse.ServicesIncluded = house.ServicesIncluded;
+                    //                editedHouse.AdditionalServices = house.AdditionalServices;
+                    //                editedHouse.Accomodations = house.Accomodations;
+                    //                editedHouse.BookingConditions = house.BookingConditions;
+
+                    db.SaveChanges();
+                }
+
   
-                db.SaveChanges();
+                
                 return RedirectToAction("MyHouse");
             }
             return RedirectToAction("EditMyHouse", "Account", new { id = house.Id });

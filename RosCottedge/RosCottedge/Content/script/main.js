@@ -1,19 +1,27 @@
 $(document).ready(function () {
 
     //Datepicker
-    $('.date').attr('readOnly','true');
-    $('.date').datepicker({
-      dateFormat: 'dd-mm-yy',
-      monthNames: [
-        "Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август",
-        "Сентябрь", "Октябрь", "Ноябрь", "Декабрь"
-      ],
-      dayNamesMin: ['Вс', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб'],
-      dateFormat: 'dd.mm.yy',
-      firstDay: 1,
-      minDate: '+1d',
-      maxDate: '+1y'
-    });
+//    var disableddates = ["26-07-2017", "27-07-2017", "28-07-2017", "29-07-2017"];
+//    function DisableSpecificDates(date) {
+//        var string = $.datepicker.formatDate('dd-mm-yy', date);
+//        return [disableddates.indexOf(string) == -1];
+//    }
+//
+//    $('.date').attr('readOnly', 'true');
+//    $('.date').datepicker({
+//        dateFormat: 'dd-mm-yy',
+//        monthNames: [
+//            "Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август",
+//            "Сентябрь", "Октябрь", "Ноябрь", "Декабрь"
+//        ],
+//        dayNamesMin: ['Вс', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб'],
+//        dateFormat: 'dd.mm.yy',
+//        firstDay: 1,
+//        minDate: '+1d',
+//        maxDate: '+1y',
+//        beforeShowDay: DisableSpecificDates
+//    });
+//});
 
     var $date1 = $('.date1');
     var $date2 = $('.date2');

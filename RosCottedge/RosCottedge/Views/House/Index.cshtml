@@ -127,6 +127,37 @@
             </form>
             <div class="errorBoxDate"></div>
         </div>
+        <script>
+            $(document).ready(function () {
+                //Datepicker
+                var dates = [];
+                $.getJSON("/House/GetDates",{houseId : @Model.House.Id},function(data) {
+                    console.log(data);
+                    function DisableSpecificDates(date) {
+                        var string = $.datepicker.formatDate('dd-mm-yy', date);
+                        var result = data.indexOf(string) == -1;
+                        return [result,"","123"];
+                    }
+
+                    $('.date').attr('readOnly', 'true');
+                    $('.date').datepicker({
+                        dateFormat: 'dd-mm-yy',
+                        monthNames: [
+                            "Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август",
+                            "Сентябрь", "Октябрь", "Ноябрь", "Декабрь"
+                        ],
+                        dayNamesMin: ['Вс', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб'],
+                        dateFormat: 'dd.mm.yy',
+                        firstDay: 1,
+                        minDate: '+1d',
+                        maxDate: '+1y',
+                        beforeShowDay: DisableSpecificDates
+                    });
+
+                });
+               
+            });
+        </script>
     </div>
 </div>
 
