@@ -22,28 +22,30 @@ namespace RosCottedge.Controllers
         public ActionResult Index(int houseId, int? page)
         {
             //Проверяем, давать ли пользователю оставить коммент
-            var user = db.Users.Where(x => x.Login == User.Identity.Name).FirstOrDefault();
-            var dateLimit = DateTime.Today.AddDays(-14);
             var allowComments = false;
-
-            //Ищем закончившиеся менее 14 дней назад брони
-            var reservation = db.Reservations 
-                .Where(r => r.UserId == user.Id && r.DepartureDate > dateLimit && r.DepartureDate < DateTime.Now && r.HouseId == houseId)
-                .FirstOrDefault();
-
-            //Если брони нашлись, ищем оставленный после завершения
-            if (reservation != null) 
+            if (User.Identity.IsAuthenticated)
             {
-                var existingReview = db.Reviews.OrderByDescending(e => e.CommentDate)
-                    .Where(e => e.UserId == user.Id && e.HouseId == houseId && e.CommentDate > reservation.DepartureDate)
+                var user = db.Users.Where(x => x.Login == User.Identity.Name).FirstOrDefault();
+                var dateLimit = DateTime.Today.AddDays(-14);
+
+
+                //Ищем закончившиеся менее 14 дней назад брони
+                var reservation = db.Reservations
+                    .Where(r => r.UserId == user.Id && r.DepartureDate > dateLimit && r.DepartureDate < DateTime.Now && r.HouseId == houseId)
                     .FirstOrDefault();
 
-                if (existingReview == null)
+                //Если брони нашлись, ищем оставленный после завершения
+                if (reservation != null)
                 {
-                    allowComments = true;
+                    var existingReview = db.Reviews.OrderByDescending(e => e.CommentDate).Where(e => e.UserId == user.Id && e.HouseId == houseId && e.CommentDate > reservation.DepartureDate)
+                        .FirstOrDefault();
+
+                    if (existingReview == null)
+                    {
+                        allowComments = true;
+                    }
                 }
             }
-
             int pageSize = 5;
             int pageNumber = (page ?? 1);
 
