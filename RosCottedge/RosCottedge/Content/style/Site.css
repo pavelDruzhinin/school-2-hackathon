@@ -484,6 +484,34 @@ footer .bottomFooter span{
   display: block;
   padding: 10px 15px;
 }
+
+label.error {
+    font-size: 14px;
+    display: inline-block;
+    position: relative;
+    margin-top: 6px;
+    padding-left: 15px;
+    color: #E32444;
+}
+
+label.error:before {
+    content: "";
+    background-image: url("../img/error.png");
+    background-repeat: no-repeat;
+    background-size: 12px;
+    width: 12px;
+    height: 12px;
+    margin-right: 5px;
+    position: absolute;
+    left: 0;
+    top: 50%;
+    margin-top: -6px;
+}
+
+label.valid {
+    display: none;
+}
+
 .text-danger{
   font-size: 14px;
   color: #E32444;

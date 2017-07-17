@@ -6,7 +6,7 @@
 }
 <div class="Form FormLogin">
 
-    @using (Html.BeginForm())
+    @using (Html.BeginForm("Login", "Account", FormMethod.Post, new { id = "signupform" }))
     {
 
         @Html.AntiForgeryToken();
