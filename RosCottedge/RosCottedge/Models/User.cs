@@ -24,6 +24,7 @@ namespace RosCottedge.Models
         [Display(Name = "Пароль")]
         [DataType(DataType.Password)]
         public string Password { get; set; }
+        public string Avatar { get; set; }
         public List<Reservation> Reservations { get; set; }
         public List<House>Houses { get; set; }
     }

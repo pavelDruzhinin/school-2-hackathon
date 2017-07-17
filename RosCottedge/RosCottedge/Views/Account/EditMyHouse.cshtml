@@ -6,6 +6,14 @@
 
 <h2>Редактирование дома</h2>
 
+<h4>Загрузить фотографии дома</h4>
+@using (Html.BeginForm("AddPictures", "Account", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <input type="hidden" value="@Model.House.Id" name="houseId" />
+    <input type="file" name="upload" /><br>
+    <input type="submit" value="Загрузить" />
+}
+
 @using (Html.BeginForm("SaveHouse", "Account"))
 {
     @Html.AntiForgeryToken()

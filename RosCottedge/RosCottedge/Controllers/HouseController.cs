@@ -53,6 +53,7 @@ namespace RosCottedge.Controllers
             {
                 House = db.Houses.Include(u => u.User).FirstOrDefault(x => x.Id == houseId),
                 Reviews = db.Reviews.Include(u => u.User).Where(r => r.HouseId == houseId).OrderByDescending(r => r.CommentDate).ToPagedList(pageNumber, pageSize),
+                Pictures = db.Pictures.Where(p => p.HouseId == houseId).ToList(),
                 AllowComments = allowComments
             };
             

@@ -1,9 +1,9 @@
 ﻿using RosCottedge.Models;
-using RosCottedge.Models.Login_register;
 using RosCottedge.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -15,8 +15,8 @@ namespace RosCottedge.Controllers
     public class AccountController : Controller
     {
         SiteContext db = new SiteContext();
-        User user = null;
-        // GET: Accaunt
+
+        // GET: Account
         public ActionResult Index()
         {
             return View();
@@ -31,61 +31,50 @@ namespace RosCottedge.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Login(Login loginModel)
+        public ActionResult Login(User user)
         {
             if (ModelState.IsValid)//если модель проходит валидацию, то ищем в базе соответствие 
             {
-                user = db.Users.FirstOrDefault
-                     (x => x.Login == loginModel.LoginName && x.Password == loginModel.Password);
+                var existingUser = db.Users.Where(x => x.Login == user.Login && x.Password == user.Password).FirstOrDefault();
 
-                if (user != null)
+                if (existingUser != null)
                 {
-                    FormsAuthentication.SetAuthCookie(loginModel.LoginName, true);
-
+                    FormsAuthentication.SetAuthCookie(user.Login, true);
                     return RedirectToAction("Index", "Home");
                 }
 
-                else { ModelState.AddModelError("", "Неверный логин или пароль"); }
+                else
+                {
+                    ModelState.AddModelError("", "Неверный логин или пароль");
+                }
             }
-            return View(loginModel);
+            return View(user);
         }
         #endregion
 
         #region Регистрация
         public ActionResult Register()
         {
-            if (User.Identity.IsAuthenticated )
+            if (User.Identity.IsAuthenticated)
                 return new HttpStatusCodeResult(HttpStatusCode.Found);
             return View();
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Register(Register registerModel)
+        public ActionResult Register(User user)
         {
-            if (User.Identity.IsAuthenticated )
+            if (User.Identity.IsAuthenticated)
                 return new HttpStatusCodeResult(HttpStatusCode.Unauthorized);
             if (ModelState.IsValid)//если модель проходит валидацию, то в базе ищем логин
             {
-
-                user = db.Users.FirstOrDefault(x => x.Login == registerModel.Login);
-                if (user == null)//если такого пользователя нет, то создаём его
+                var existingUser = db.Users.Where(x => x.Login == user.Login).FirstOrDefault();
+                if (existingUser == null)//если такого пользователя нет, то добавляем в базу нового user
                 {
-                    user = new User
-                    {
-                        FirstName = registerModel.FirstName,
-                        LastName = registerModel.LastName,
-                        MiddleName = registerModel.MiddleName,
-                        Email = registerModel.Email,
-                        Password = registerModel.Password,
-                        Phone = registerModel.Phone,
-                        Login = registerModel.Login
-                    };
+                    user.Avatar = "/Content/img/zlad.jpg";
                     db.Users.Add(user);
                     db.SaveChanges();
-                    
-                        FormsAuthentication.SetAuthCookie(registerModel.Login, true);
-                        return RedirectToAction("Index", "Home");
-                    
+                    FormsAuthentication.SetAuthCookie(user.Login, true);
+                    return RedirectToAction("Index", "Home");
                 }
                 else
                 {
@@ -93,7 +82,7 @@ namespace RosCottedge.Controllers
                 }
 
             }
-            return View(registerModel);
+            return View(user);
         }
         #endregion
 
@@ -111,6 +100,26 @@ namespace RosCottedge.Controllers
         //Личный кабинет
 
         #region Личная информация
+
+        //Загрузка аватара
+
+        public ActionResult AddAvatar(HttpPostedFileBase upload)
+        {
+            if (upload != null)
+            {
+                User user = db.Users.Where(x => x.Login == User.Identity.Name).FirstOrDefault();
+                string fileName = System.IO.Path.GetFileName(upload.FileName);
+                DirectoryInfo Dir = new DirectoryInfo(Request.MapPath("/Content/img/users"));
+                Dir.CreateSubdirectory(user.Login);
+                upload.SaveAs(Server.MapPath("~/Content/img/users/" + user.Login + "/" + fileName));
+
+                user.Avatar = "/Content/img/users/" + user.Login + "/" + fileName;
+
+                db.SaveChanges();
+            }
+            return RedirectToAction("PersonalInformation");
+        }
+
         public new ActionResult Profile()
         {
             if (User.Identity.IsAuthenticated == true)
@@ -130,9 +139,7 @@ namespace RosCottedge.Controllers
         {
             if (User.Identity.IsAuthenticated)
             {
-                User user = (from u in db.Users
-                             where u.Login == User.Identity.Name
-                             select u).FirstOrDefault();
+                var user = db.Users.Where(x => x.Login == User.Identity.Name).FirstOrDefault();
                 return View(user);
             }
             else
@@ -214,9 +221,34 @@ namespace RosCottedge.Controllers
 
             return View(myHouseModel);
         }
-        #endregion        
+        #endregion
 
         #region Редактирование моих домов
+
+        //Загрузка фотографий дома
+
+        public ActionResult AddPictures(HttpPostedFileBase upload, int houseId)
+        {
+            if (upload != null)
+            {
+                User user = db.Users.Where(x => x.Login == User.Identity.Name).FirstOrDefault();
+                string fileName = System.IO.Path.GetFileName(upload.FileName);
+                DirectoryInfo Dir = new DirectoryInfo(Request.MapPath("/Content/img/users"));
+                Dir.CreateSubdirectory(user.Login);
+                upload.SaveAs(Server.MapPath("~/Content/img/users/" + user.Login + "/" + fileName));
+
+                var picture = new Picture
+                {
+                    Adress = "/Content/img/users/" + user.Login + "/" + fileName,
+                    HouseId = houseId
+                };
+
+                db.Pictures.Add(picture);
+                db.SaveChanges();
+            }
+            return RedirectToAction("EditMyHouse", "Account", new { id = houseId });
+        }
+
         public ActionResult EditMyHouse(int? id)
         {
 
@@ -270,33 +302,14 @@ namespace RosCottedge.Controllers
                 if (editedHouse != null)
                 {
                     db.Entry(editedHouse).CurrentValues.SetValues(house);
-
-                    //                editedHouse.Name = house.Name;
-                    //                editedHouse.Price = house.Price;
-                    //                editedHouse.NumberOfPersons = house.Price;
-                    //                editedHouse.Region = house.Region;
-                    //                editedHouse.Locality = house.Locality;
-                    //                editedHouse.Area = house.Area;
-                    //                editedHouse.HouseNumber = house.HouseNumber;
-                    //                editedHouse.Description = house.Description;
-                    //                editedHouse.Food = house.Food;
-                    //                editedHouse.Transfer = house.Transfer;
-                    //                editedHouse.ServicesIncluded = house.ServicesIncluded;
-                    //                editedHouse.AdditionalServices = house.AdditionalServices;
-                    //                editedHouse.Accomodations = house.Accomodations;
-                    //                editedHouse.BookingConditions = house.BookingConditions;
-
                     db.SaveChanges();
                 }
-
-  
-                
                 return RedirectToAction("MyHouse");
             }
             return RedirectToAction("EditMyHouse", "Account", new { id = house.Id });
         }
         #endregion
-
+        
         #region Мои поездки
         public ActionResult MyTrips()
         {

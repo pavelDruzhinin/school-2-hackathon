@@ -4,6 +4,16 @@
     ViewBag.Title = "Profile";
 
 }
+
+<h2>Загрузить свой аватар</h2>
+@using (Html.BeginForm("AddAvatar", "Account", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <input type="file" name="upload" /><br>
+    <input type="submit" value="Загрузить" />
+}
+
+<div><img src=@Model.Avatar width="100" hight="100"></div>
+
 <h2>Личная информация</h2>
 <table border="1">
     <tr>
