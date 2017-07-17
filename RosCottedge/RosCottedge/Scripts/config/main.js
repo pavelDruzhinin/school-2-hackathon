@@ -8,7 +8,7 @@ $(document).ready(function () {
             "Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август",
             "Сентябрь", "Октябрь", "Ноябрь", "Декабрь"
         ],
-        dayNamesMin: ['Вс', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб'],
+        dayNamesMin: ['ВС', 'ПН', 'ВТ', 'СР', 'ЧТ', 'ПТ', 'СБ'],
         dateFormat: 'dd.mm.yy',
         firstDay: 1,
         minDate: '+1d',
@@ -43,8 +43,6 @@ $(document).ready(function () {
     $( "#slider-range span.ui-state-default:last").css('margin-left','-7.5px');
 
     //RatingItemIndex
-    // $('.ratingHouse li[ratingItem = 1]').css('display', 'none');
-    //var rating = $('.ratingHouse').attr('rating');
     $('.ratingHouse').each(function () {
         var rating = Math.round(+$(this).attr('rating').replace(',', '.'));
         for (var i = 1; i <= rating; i++) {

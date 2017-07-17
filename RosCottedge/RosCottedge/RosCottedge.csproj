@@ -205,6 +205,7 @@
     <Content Include="Content\img\chubaka.jpg" />
     <Content Include="Content\img\error.png" />
     <Content Include="Content\img\icons\shareBtn.svg" />
+    <Content Include="Content\img\users\darkred\q6bJnp5P.jpeg" />
     <Content Include="Content\img\zlad.jpg" />
     <Content Include="Scripts\config\error.js" />
     <Content Include="Scripts\libs\bootstrap\bootstrap.css" />
