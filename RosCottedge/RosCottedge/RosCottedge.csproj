@@ -200,16 +200,18 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\img\chubaka.jpg" />
+    <Content Include="Content\img\error.png" />
     <Content Include="Content\img\icons\shareBtn.svg" />
     <Content Include="Content\img\zlad.jpg" />
-    <Content Include="Content\libs\bootstrap\bootstrap.css" />
-    <Content Include="Content\libs\font-awesome\css\font-awesome.min.css" />
-    <Content Include="Content\libs\font-awesome\fonts\fontawesome-webfont.svg" />
-    <Content Include="Content\libs\owl-carousel\css\owl.carousel.min.css" />
-    <Content Include="Content\libs\owl-carousel\js\owl.carousel.min.js" />
-    <Content Include="Content\script\House.js" />
+    <Content Include="Scripts\config\error.js" />
+    <Content Include="Scripts\libs\bootstrap\bootstrap.css" />
+    <Content Include="Scripts\libs\font-awesome\css\font-awesome.min.css" />
+    <Content Include="Scripts\libs\font-awesome\fonts\fontawesome-webfont.svg" />
+    <Content Include="Scripts\libs\owl-carousel\css\owl.carousel.min.css" />
+    <Content Include="Scripts\libs\owl-carousel\js\owl.carousel.min.js" />
+    <Content Include="Scripts\config\House.js" />
     <Content Include="Content\style\PagedList.css" />
-    <Content Include="Content\script\main.js" />
+    <Content Include="Scripts\config\main.js" />
     <Content Include="Content\style\media.css" />
     <Content Include="Content\style\Site.css" />
     <Content Include="favicon.ico" />
@@ -222,18 +224,11 @@
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
-    <Content Include="Content\libs\font-awesome\fonts\fontawesome-webfont.eot" />
-    <Content Include="Content\libs\font-awesome\fonts\fontawesome-webfont.ttf" />
-    <Content Include="Content\libs\font-awesome\fonts\fontawesome-webfont.woff" />
-    <Content Include="Content\libs\font-awesome\fonts\fontawesome-webfont.woff2" />
-    <Content Include="Content\libs\font-awesome\fonts\FontAwesome.otf" />
-    <None Include="Scripts\jquery-3.1.1.intellisense.js" />
-    <Content Include="Scripts\bootstrap.js" />
-    <Content Include="Scripts\bootstrap.min.js" />
-    <Content Include="Scripts\jquery-3.1.1.js" />
-    <Content Include="Scripts\jquery-3.1.1.min.js" />
-    <Content Include="Scripts\jquery-3.1.1.slim.js" />
-    <Content Include="Scripts\jquery-3.1.1.slim.min.js" />
+    <Content Include="Scripts\libs\font-awesome\fonts\fontawesome-webfont.eot" />
+    <Content Include="Scripts\libs\font-awesome\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Scripts\libs\font-awesome\fonts\fontawesome-webfont.woff" />
+    <Content Include="Scripts\libs\font-awesome\fonts\fontawesome-webfont.woff2" />
+    <Content Include="Scripts\libs\font-awesome\fonts\FontAwesome.otf" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
@@ -279,12 +274,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Scripts\jquery-3.1.1.slim.min.map" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Scripts\jquery-3.1.1.min.map" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201707071314012_HouseUserIdProblemSolved.resx">

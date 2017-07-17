@@ -89,7 +89,7 @@ input.date{
   height: 50px;
   background-color: #305075;
   text-align: right;
-  z-index: 1;
+  z-index: 99999;
 }
 .mainMenu ul{
   font-size: 0;
@@ -291,6 +291,9 @@ footer .bottomFooter span{
 .houses .houseItem .optionsHouse li{
   margin-top: 15px;
 }
+.houses .houseItem .optionsHouse li span{
+  background-repeat: no-repeat;
+}
 .houses .houseItem .optionsHouse li .man{
   background-image: url(../../Content/img/icons/man.svg);
   width: 17px;
@@ -383,33 +386,31 @@ footer .bottomFooter span{
 }
 /*slider-range*/
 #slider-range{
-  margin: 25px 22px 0 22px;
+  margin: 25px 15px 0 15px;
   height: 4px;
   background-color: #EEEEEE;
   position: relative;
   z-index: 0;
 }
-#slider-range::before{
-  content: '';
-  position: absolute;
-  width: 100%;
-  background-color: #EEEEEE;
-  height: 4px;
-  display: block;
-  left: 0;
-  top: 0;
-  margin-left: -14.5px;
-}
 #slider-range::after{
   content: '';
-  position: absolute;
-  width: 100%;
-  background-color: #EEEEEE;
+  display:block;
   height: 4px;
-  display: block;
-  right: 0;
+  width: 50%;
+  position: absolute;
   top: 0;
-  margin-right: -14.5px;
+  left: -7.5px;
+  background-color: #EEEEEE;
+}
+#slider-range::before{
+  content: '';
+  display:block;
+  height: 4px;
+  width: 50%;
+  position: absolute;
+  top: 0;
+  right: -7.5px;
+  background-color: #EEEEEE;
 }
 #slider-range .ui-widget-header{
   background: #E32444 !important;
@@ -483,6 +484,34 @@ footer .bottomFooter span{
   display: block;
   padding: 10px 15px;
 }
+
+label.error {
+    font-size: 14px;
+    display: inline-block;
+    position: relative;
+    margin-top: 6px;
+    padding-left: 15px;
+    color: #E32444;
+}
+
+label.error:before {
+    content: "";
+    background-image: url("../img/error.png");
+    background-repeat: no-repeat;
+    background-size: 12px;
+    width: 12px;
+    height: 12px;
+    margin-right: 5px;
+    position: absolute;
+    left: 0;
+    top: 50%;
+    margin-top: -6px;
+}
+
+label.valid {
+    display: none;
+}
+
 .text-danger{
   font-size: 14px;
   color: #E32444;
