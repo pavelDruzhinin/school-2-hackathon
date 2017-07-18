@@ -8,8 +8,8 @@ namespace RosCottedge.ViewModels
 {
     public class EditMyHouseViewModel
     {
-        public IQueryable<Reservation> Reservations { get; set; }
-        public IQueryable<Review> Reviews { get; set; }
+        public IQueryable<ReviewsNotices> ReviewsNotices { get; set; }
+        public IQueryable<ReservationNotices> ReservationNotices { get; set; }
         public IQueryable<Picture> Pictures { get; set; }
         public House House { get; set; }
         public User User { get; set; }

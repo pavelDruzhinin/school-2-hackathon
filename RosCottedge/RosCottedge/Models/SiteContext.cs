@@ -14,5 +14,7 @@ namespace RosCottedge.Models
         public DbSet<Reservation> Reservations { get; set; }
         public DbSet<Review> Reviews { get; set; }
         public DbSet<Picture> Pictures { get; set; }
+        public DbSet<ReservationNotices> ReservationsNotices { get; set; }
+        public DbSet<ReviewsNotices> ReviewsNotices { get; set; }
     }
 }

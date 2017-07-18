@@ -189,11 +189,17 @@
     <Compile Include="Migrations\201707171427471_UserPictures.Designer.cs">
       <DependentUpon>201707171427471_UserPictures.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201707182141083_Notices.cs" />
+    <Compile Include="Migrations\201707182141083_Notices.Designer.cs">
+      <DependentUpon>201707182141083_Notices.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\House.cs" />
     <Compile Include="Models\Picture.cs" />
     <Compile Include="Models\Reservation.cs" />
+    <Compile Include="Models\ReservationNotices.cs" />
     <Compile Include="Models\Review.cs" />
+    <Compile Include="Models\ReviewsNotices.cs" />
     <Compile Include="Models\SiteContext.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -301,6 +307,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201707171427471_UserPictures.resx">
       <DependentUpon>201707171427471_UserPictures.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201707182141083_Notices.resx">
+      <DependentUpon>201707182141083_Notices.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -206,13 +206,13 @@ namespace RosCottedge.Controllers
                         select h,
 
                 //Выводим дома, по которым пришла бронь
-                Reservation = from r in db.Reservations
+                ReservationNotices = from r in db.ReservationsNotices
                                 .Include(u => u.User)
                               where r.House.UserId == user.Id
                               select r,
 
                 //Выводим дома, по которым оставлен отзыв 
-                Review = from c in db.Reviews
+                ReviewsNotices = from c in db.ReviewsNotices
                          .Include(x => x.User).Include(x => x.House)
                          where c.House.UserId == user.Id
                          select c
@@ -286,12 +286,12 @@ namespace RosCottedge.Controllers
                     Pictures = db.Pictures.Where(p => p.HouseId == house.Id),
 
                     //Вывод забронированных дат по выбранному дому
-                    Reservations = from r in db.Reservations
+                    ReservationNotices = from r in db.ReservationsNotices
                                                 .Include(x => x.User)
                                    where r.House.UserId == user.Id && r.HouseId == house.Id
                                    select r,
                     //Вывод комментариев по выбранному дому
-                    Reviews = from c in db.Reviews
+                    ReviewsNotices = from c in db.ReviewsNotices
                                              .Include(x => x.User).Include(x => x.House)
                               where c.House.UserId == user.Id && c.HouseId == house.Id
                               select c
@@ -301,10 +301,7 @@ namespace RosCottedge.Controllers
                 return View(viewModel);
 
             }
-            else
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.Unauthorized);
-            }
+            else{return new HttpStatusCodeResult(HttpStatusCode.Unauthorized);}
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -327,7 +324,24 @@ namespace RosCottedge.Controllers
             return RedirectToAction("EditMyHouse", "Account", new { id = house.Id });
         }
         #endregion
-        
+        //Удаление броней из ЛК
+        [HttpPost]
+        public ActionResult DeleteReservationNotices(int id, int houseId)
+        {
+            ReservationNotices reservNoties = db.ReservationsNotices.Find(id);
+            db.ReservationsNotices.Remove(reservNoties);
+            db.SaveChanges();
+            return RedirectToAction("MyHouse", "Account", new { id = houseId });
+        }
+        //Удаление отзывов из ЛК
+        [HttpPost]
+        public ActionResult DeleteReviewsNotices(int id, int houseId)
+        {
+            ReviewsNotices reviewNot = db.ReviewsNotices.Find(id);
+            db.ReviewsNotices.Remove(reviewNot);
+            db.SaveChanges();
+            return RedirectToAction("MyHouse", "Account", new { id = houseId });
+        }
         #region Мои поездки
         public ActionResult MyTrips()
         {
@@ -338,7 +352,7 @@ namespace RosCottedge.Controllers
                          where u.Login == User.Identity.Name
                          select u).FirstOrDefault();
 
-            var reserv = from a in db.Reservations
+            var reserv = from a in db.ReservationsNotices
                          .Include(x => x.House)
                          where a.UserId == user.Id
                          select a;

@@ -1,4 +1,4 @@
-﻿@model IEnumerable<RosCottedge.Models.Reservation>
+﻿@model IEnumerable<RosCottedge.Models.ReservationNotices>
 @using RosCottedge.Models;
 
 @{
@@ -43,6 +43,18 @@
                 <a href="/House/Index?houseId=@item.House.Id">@item.House.Name</a> Даты поездки:@item.ArrivalDate.ToString("dd.MM.yyyy")-@item.DepartureDate.ToString("dd.MM.yyyy")
             </td>
 
+        </tr>
+        <tr>
+            <td>
+                <div>
+                    @using (Html.BeginForm("DeleteReservationNotices", "Account", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    {
+                        <input type="hidden" value="@item.HouseId" name="houseId" />
+                        <input type="hidden" value="@item.Id" name="id" /><br>
+                        <input type="submit" value="Удалить" />
+                    }
+                </div>
+            </td>
         </tr>
     }
 

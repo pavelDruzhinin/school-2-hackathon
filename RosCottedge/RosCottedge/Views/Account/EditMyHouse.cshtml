@@ -163,7 +163,7 @@
 }
 <h2>Забронированные даты(этого дома)</h2>
 <table>
-    @foreach (var item in Model.Reservations)
+    @foreach (var item in Model.ReservationNotices)
     {
         <tr>
             <td>
@@ -175,9 +175,38 @@
         </tr>
     }
 </table>
+
+<h2>Брони</h2>
+<table>
+    @foreach (var item in Model.ReservationNotices)
+    {
+        <tr>
+            <th>
+                @item.User.Login забронировал(а) дом
+            </th>
+        </tr>
+        <tr>
+            <td>
+                @item.ReservationDate.ToString("dd.MM.yyyy")
+                <div>
+                    @using (Html.BeginForm("DeleteReservationNotices", "Account", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    {
+                        <input type="hidden" value="@item.HouseId" name="houseId" />
+                        <input type="hidden" value="@item.Id" name="id" /><br>
+                        <input type="submit" value="Удалить" />
+                    }
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+        </tr>
+    }
+</table>
+
 <h2>Отзывы</h2>
 <table>
-    @foreach (var item in Model.Reviews)
+    @foreach (var item in Model.ReviewsNotices)
     {
         <tr>
             <th>
@@ -199,11 +228,20 @@
         <tr>
             <td>
                 @item.CommentDate.ToString("dd.MM.yyyy")
+                <div>
+                    @using (Html.BeginForm("DeleteReviewsNotices", "Account", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    {
+                        <input type="hidden" value="@item.HouseId" name="houseId" />
+                        <input type="hidden" value="@item.Id" name="id" /><br>
+                        <input type="submit" value="Удалить" />
+                    }
+                </div>
             </td>
 
         </tr>
     }
 </table>
+
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
