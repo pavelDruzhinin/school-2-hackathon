@@ -37,7 +37,7 @@ namespace RosCottedge.Controllers
             }
             if (arrivalDate != null && departureDate != null)
             {
-                houses = houses.Where(x => x.Reservations.Any(r => r.ArrivalDate <= departureDate && arrivalDate <= r.DepartureDate));
+                houses = houses.Where(x => !x.Reservations.Any(r => r.ArrivalDate <= departureDate && arrivalDate <= r.DepartureDate));
             }
 
             //Определяем максимальную и минимальную цену аренды
