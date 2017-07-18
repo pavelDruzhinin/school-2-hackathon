@@ -20,6 +20,7 @@
             $('#formReviewId').each(function () {
                 this.reset();
             });
+            $('#formReviewId').css('display', 'none');
         });
         return false;
     });
@@ -79,7 +80,8 @@
         }
         else {
             $('#MapAddressNotFound').css('display', 'block');
-            $('#map_canvas_house').css('outline', '1px solid #E32444');
+            $('#map_canvas_house').css('display', 'none');
+            $('#SlideMap').attr('href','#MapAddressNotFound');
         }
     });
 

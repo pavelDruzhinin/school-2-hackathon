@@ -60,9 +60,148 @@
     }
 </div>
 
-<script async defer
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDJZlsRr82NdMVjqUPb1fVy-t49lPdTgrw&callback=init">
-</script>
+
+
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+<script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDJZlsRr82NdMVjqUPb1fVy-t49lPdTgrw">
+</script>
+<script>
+    $(document).ready(function () {
+        init();
+
+        $(function () {
+            $("#address").autocomplete({
+                //Определяем значение для адреса при геокодировании
+                source: function (request, response) {
+                    geocoder.geocode({ 'address': request.term }, function (results, status) {
+                        response($.map(results, function (item) {
+                            return {
+                                label: item.formatted_address,
+                                value: item.formatted_address,
+                                latitude: item.geometry.location.lat(),
+                                longitude: item.geometry.location.lng()
+                            }
+                        }));
+                    })
+                },
+                //Выполняется при выборе конкретного адреса
+                select: function (event, ui) {
+                    $("#latitude").val(ui.item.latitude);
+                    $("#longitude").val(ui.item.longitude);
+                    var location = new google.maps.LatLng(ui.item.latitude, ui.item.longitude);
+                    marker.setPosition(location);
+                    map.setCenter(location);
+                    MapGoogle();
+                }
+            });
+        });
+
+        //Добавляем слушателя события обратного геокодирования для маркера при его перемещении
+        google.maps.event.addListener(marker, 'drag', function () {
+            MapGoogle();
+        });
+        google.maps.event.addListener(map, 'click', function (event) {
+            placeMarker(event.latLng);
+            MapGoogle();
+        });
+
+        function MapGoogle() {
+            geocoder.geocode({ 'latLng': marker.getPosition() }, function (results, status) {
+                if (status == google.maps.GeocoderStatus.OK) {
+                    if (results[0]) {
+                        var addr = results[0].address_components;
+                        $('#address').val(results[0].formatted_address);
+                        $('#latitude').val(marker.getPosition().lat());
+                        $('#longitude').val(marker.getPosition().lng());
+                        $('#Region').val(addr[4].short_name);
+                        $('#Locality').val(addr[2].short_name);
+                        $('#Area').val(addr[1].short_name);
+                        $('#HouseNumber').val(addr[0].short_name);
+                        HouseNumberFunc();
+                        $('#errorMap').css('display', 'none');
+                        $('#map_canvas').css('outline', 'none');
+                    }
+                }
+            });
+        }
+
+        function placeMarker(location) {
+            if (marker) {
+                marker.setPosition(location);
+            } else {
+                marker = new google.maps.Marker({
+                    position: location,
+                    map: map
+                });
+            }
+        }
+
+        function HouseNumberFunc() {
+            var strok = $('#HouseNumber').val();
+            if (strok.length > 4) {
+                strok = strok.substr(0, 4);
+            }
+
+            if (!codeF(strok)) {
+                $('#HouseNumber').val('');
+                return false;
+            }
+            return true;
+        }
+
+        function codeF(str) {
+            return /\d+/.test(str);
+        }
+    });
+
+
+
+    var styleArray = [
+        {
+            "featureType": "landscape.natural",
+            "elementType": "geometry",
+            "stylers": [
+                {
+                    "color": "#bff0ca"
+                }
+            ]
+        },
+        {
+            "featureType": "water",
+            "elementType": "geometry",
+            "stylers": [
+                {
+                    "color": "#81d4fa"
+                }
+            ]
+        }
+    ];
+
+    var geocoder;
+    var map;
+    var marker;
+
+    function init() {
+        //Определение карты
+        var latlng = new google.maps.LatLng(61.7930796, 34.3755158);
+        var options = {
+            zoom: 15,
+            center: latlng,
+            scrollwheel: false,
+            styles: styleArray
+        };
+
+        map = new google.maps.Map(document.getElementById("map_canvas"), options);
+
+        //Определение геокодера
+        geocoder = new google.maps.Geocoder();
+
+        marker = new google.maps.Marker({
+            map: map,
+            draggable: true
+        });
+    };
+</script>
 }

@@ -690,6 +690,9 @@ label.valid {
 }
 
 /* CreationHome */
+.ui-helper-hidden-accessible {
+    display: none;
+}
 .FormCreate {
     width: 690px;
     font-size: 0;
@@ -1072,9 +1075,12 @@ label.valid {
 }
 #MapAddressNotFound {
     width: 100%;
-    margin-top: -40px;
     display: none;
-    margin-bottom: 35px;
+    margin-bottom: 30px;
+    background-color: pink;
+    padding: 15px;
+    margin-top: 30px;
+    display: none;
 }
 #MapAddressNotFound p {
     font-size: 14px;
@@ -1207,6 +1213,7 @@ label.valid {
 .reviewItem .reviewUser {
     vertical-align: top;
     display: inline-block;
+    width:30%;
 
 }
 
@@ -1215,7 +1222,7 @@ label.valid {
     font-size: 16px;
     font-weight: 400;
     padding-left: 15px;
-    padding-right: 30px;
+    padding-right: 15px;
     padding-top: 10px;
 }
 

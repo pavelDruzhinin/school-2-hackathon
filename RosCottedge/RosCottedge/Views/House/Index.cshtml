@@ -17,7 +17,7 @@
                     <i class="fa fa-map-marker" aria-hidden="true"></i>
                     <h3><span id="Country" style="display:none;">Россия</span><span id="Region">@Model.House.Region</span>, <span id="City">@Model.House.Locality</span>, <span id="Street">@Model.House.Area</span>, <span id="House">@Model.House.HouseNumber</span></h3>
                     <div class="separate"></div>
-                    <a href="#map_canvas_house">На карте</a>
+                    <a id="SlideMap" href="#map_canvas_house">На карте</a>
                 </div>
                 <div class="owl-carousel">
                     @foreach (var p in Model.Pictures)
