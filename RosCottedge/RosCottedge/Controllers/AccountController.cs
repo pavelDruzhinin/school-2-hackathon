@@ -329,5 +329,39 @@ namespace RosCottedge.Controllers
             return View(reserv);
         }
         #endregion
+
+        public JsonResult IsLoginAvailable(string Login)
+        {
+            User user = db.Users.FirstOrDefault(u => u.Login == Login);
+            if (user == null)
+            {
+                return Json(true, JsonRequestBehavior.AllowGet);
+            }
+            return Json(false, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult IsPhoneAvailable(string Phone)
+        {
+            User user = db.Users.FirstOrDefault(u => u.Phone == Phone);
+            if (user == null)
+            {
+                return Json(true, JsonRequestBehavior.AllowGet);
+            }
+            return Json(false, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult IsEmailAvailable(string Email)
+        {
+            User user = db.Users.FirstOrDefault(u => u.Email == Email);
+            if (user == null)
+            {
+                return Json(true, JsonRequestBehavior.AllowGet);
+            }
+            return Json(false, JsonRequestBehavior.AllowGet);
+        }
+        public ActionResult MapTest()
+        {
+            return View();
+        }
     }
 }

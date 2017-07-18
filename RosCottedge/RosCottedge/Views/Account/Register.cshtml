@@ -5,11 +5,11 @@
     Layout = "~/Views/Shared/_LayoutForm.cshtml";
 }
 
-<div class="Form FormRegistration">
-@using (Html.BeginForm()) 
-{
-    @Html.AntiForgeryToken()
-    
+<div class="Form FormRegistration mainBox">
+    @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { id = "validFormRegister" }))
+    {
+        @Html.AntiForgeryToken()
+
 
         @Html.ValidationSummary(true, "")
 
@@ -17,35 +17,36 @@
             <div class="fields">
 
                 @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "firstItemForm field largeInputForm", @placeholder = "Фамилия" } })
-                @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger large-span-danger"})
+                @*@Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger large-span-danger"})*@
 
                 @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "field smallInputForm", @placeholder = "Имя" } })
                 @Html.EditorFor(model => model.MiddleName, new { htmlAttributes = new { @class = "field smallInputForm floatInput", @placeholder = "Отчество" } })
-
-                @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger small-span-danger" })
-                @Html.ValidationMessageFor(model => model.MiddleName, "", new { @class = "text-danger small-span-danger floatSpan" })
+                <div id="forTwoFields"></div>
+                @*@Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger small-span-danger" })
+                    @Html.ValidationMessageFor(model => model.MiddleName, "", new { @class = "text-danger small-span-danger floatSpan" })*@
 
                 @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "field largeInputForm", @placeholder = "E-mail" } })
-                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger large-span-danger" })
+                @*@Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger large-span-danger" })*@
 
                 @Html.EditorFor(model => model.Phone, new { htmlAttributes = new { @class = "field largeInputForm", @placeholder = "Телефон" } })
-                @Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger large-span-danger" })
+                @*@Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger large-span-danger" })*@
 
                 @Html.EditorFor(model => model.Login, new { htmlAttributes = new { @class = "field largeInputForm", @placeholder = "Логин" } })
-                @Html.ValidationMessageFor(model => model.Login, "", new { @class = "text-danger large-span-danger" })
+                @*@Html.ValidationMessageFor(model => model.Login, "", new { @class = "text-danger large-span-danger" })*@
 
                 @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "field smallInputForm", @placeholder = "Пароль" } })
-                @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "field smallInputForm floatInput", @placeholder = "Пароль" } })
-
-                @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger small-span-danger" })
-                @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger small-span-danger floatSpan" })
-
+                <input id="PasswordConfirm" type="password" name="PasswordConfirm" value="" class="field smallInputForm floatInput" placeholder="Подтвердите пароль" />
+                @*@Html.EditorFor(model => model.Password, new { htmlAttributes = new {@name = "PasswordConfirm", @class = "field smallInputForm floatInput", @placeholder = "Подтвердите пароль" } })*@
+                <div id="forTwoFields2"></div>
+                @*@Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger small-span-danger" })*@
+                @*@Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger small-span-danger floatSpan" })*@
+                @*field smallInputForm floatInput text-box single-line password*@
                 <input class="signUpButton" type="submit" value="Регистрация" />
-              </div>
-              <a class="questBox" href="/Account/Login">У вас уже есть аккаунт?</a>
             </div>
+            <a class="questBox" href="/Account/Login">У вас уже есть аккаунт?</a>
+        </div>
 
-}
+    }
 </div>
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

@@ -4,31 +4,31 @@
     ViewBag.Title = "Вход на сайт";
     Layout = "~/Views/Shared/_LayoutForm.cshtml";
 }
-<div class="Form FormLogin">
+    <div class="Form FormLogin mainBox">
 
-    @using (Html.BeginForm("Login", "Account", FormMethod.Post, new { id = "signupform" }))
-    {
+        @using (Html.BeginForm("Login", "Account", FormMethod.Post, new { id = "validFormLogin" }))
+        {
 
-        @Html.AntiForgeryToken();
+            @Html.AntiForgeryToken();
 
-        //ServerError
-        @Html.ValidationSummary(true, "")
+            //ServerError
+            @Html.ValidationSummary(true, "")
 
 
-        <div class="innerForm">
-            <div class="fields">
-                @Html.EditorFor(model => model.Login, new { htmlAttributes = new { @class = "firstItemForm field", @placeholder = "Логин" } })
-                @Html.ValidationMessageFor(model => model.Login, "", new { @class = "text-danger" })
+            <div class="innerForm">
+                <div class="fields">
+                    <div>@Html.EditorFor(model => model.Login, new { htmlAttributes = new { @class = "firstItemForm field", @placeholder = "Логин" } })</div>
+                    @*@Html.ValidationMessageFor(model => model.LoginName, "", new { @class = "text-danger" })*@
 
-                @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "field", @placeholder = "Пароль" } })
-                @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
-
-                <input type="submit" value="Войти" />
+                    @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "field", @placeholder = "Пароль" } })
+                    @*@Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })*@
+                    <div class="errorOne"></div>
+                    <input type="submit" value="Войти" />
+                </div>
+                <a class="questBox" href="/Account/Register">У вас еще нет аккаунта?</a>
             </div>
-            <a class="questBox" href="/Account/Register">У вас еще нет аккаунта?</a>
-        </div>
+        }
+    </div>
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
     }
-</div>
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}

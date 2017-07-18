@@ -208,6 +208,7 @@
     <Content Include="Content\img\users\darkred\q6bJnp5P.jpeg" />
     <Content Include="Content\img\zlad.jpg" />
     <Content Include="Scripts\config\error.js" />
+    <Content Include="Scripts\jquery.maskedinput.min.js" />
     <Content Include="Scripts\libs\bootstrap\bootstrap.css" />
     <Content Include="Scripts\libs\font-awesome\css\font-awesome.min.css" />
     <Content Include="Scripts\libs\font-awesome\fonts\fontawesome-webfont.svg" />

@@ -46,11 +46,7 @@
     });
 
     var geo = new google.maps.Geocoder();
-    var map = new google.maps.Map(document.getElementById('map_canvas_house'), {
-        zoom: 17,
-        scrollwheel: false,
-        styles: styleArray
-    });
+    
 
     var Country = $("#Country").text();
     var Region = $("#Region").text();
@@ -75,7 +71,14 @@
     });
 
 });
-
+var map;
+function initMap() {
+    map = new google.maps.Map(document.getElementById('map_canvas_house'), {
+        zoom: 17,
+        scrollwheel: false,
+        styles: styleArray
+    });
+}
 
 var styleArray = [
     {

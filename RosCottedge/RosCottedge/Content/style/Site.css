@@ -589,78 +589,85 @@ footer .bottomFooter span{
   font-size: 16px;
 }
 
-.Form .validation-summary-errors{
-  background-color: rgba(227,36,68,.6);
-  margin-bottom: 15px;
-  color: #fff;
-  display: block;
-  padding: 10px 15px;
+.Form .validation-summary-errors {
+    background-color: rgba(227,36,68,.6);
+    margin-bottom: 15px;
+    font-size: 14px;
+    color: #fff;
+    display: block;
+    padding: 10px 15px;
 }
 
 label.error {
+    width: 100%;
     font-size: 14px;
     display: inline-block;
     position: relative;
-    margin-top: 6px;
-    padding-left: 15px;
     color: #E32444;
+    margin-top: 5px;
 }
 
-label.error:before {
-    content: "";
-    background-image: url("../img/error.png");
-    background-repeat: no-repeat;
-    background-size: 12px;
-    width: 12px;
-    height: 12px;
-    margin-right: 5px;
-    position: absolute;
-    left: 0;
-    top: 50%;
-    margin-top: -6px;
+input.error {
+    outline: 1px solid;
+    outline-color: #E32444;
 }
-
+/*input.valid {
+    outline: 1px solid;
+    outline-color: #69F0AE;
+}
+input:focus {
+    outline:none;
+}*/
 label.valid {
     display: none;
 }
 
-.text-danger{
-  font-size: 14px;
-  color: #E32444;
+.text-danger {
+    font-size: 14px;
+    color: #E32444;
 }
-.Form .questBox{
-  padding: 15px;
-  text-align: center;
-  color: #E32444;
-  display:block;
-  border-top: 1px solid #EBEBEB;
+
+.Form .questBox {
+    padding: 15px;
+    text-align: center;
+    color: #E32444;
+    display: block;
+    border-top: 1px solid #EBEBEB;
+    font-size: 14px;
 }
 /* REGISTRATION FORM*/
-.FormRegistration{
+.FormRegistration {
     width: 475px;
+    font-size: 0;
 }
-.innerForm .largeInputForm{
+
+.innerForm .largeInputForm {
     width: 445px;
 }
 
-.innerForm .smallInputForm{
+.innerForm .smallInputForm {
     width: 215px;
-    float: left;
-    margin-top: 0px;
+    display: inline-block;
 }
 
-.floatInput{
+/*.innerForm .smallInputFormHouse {
+    width: 49%;
+    display: inline-block;
+}*/
+
+.floatInput {
     margin-left: 15px;
 }
-.innerForm .signUpButton{
-	background-color: #69F0AE;
-	color: #fff;
-	cursor: pointer;
-	font-size: 16px;
-	width: 445px;
-	margin-top: 15px;
+
+.innerForm .signUpButton {
+    background-color: #69F0AE;
+    color: #fff;
+    cursor: pointer;
+    font-size: 16px;
+    width: 445px;
+    margin-top: 15px;
 }
-.large-span-danger{
+/*.large-span-danger{
     width: 445px;
     float: left;
     margin-bottom: 15px;
@@ -672,36 +679,47 @@ label.valid {
 }
 .floatSpan{
     margin-left: 15px;
+}*/
+
+.ui-autocomplete {
+    background-color: white;
+    width: 300px;
+    border: 1px solid #cfcfcf;
+    list-style-type: none;
+    padding-left: 0px;
 }
 
 /* CreationHome */
-.FormCreate{
-	width: 690px;
+.FormCreate {
+    width: 690px;
+    font-size: 0;
+    margin-bottom: 45px;
 }
-.topCreate{
-  height: 90px;
-  background-color: blue;
+
+.topCreate {
+    height: 90px;
+    background-color: blue;
 }
-.innerForm .smallInputCreate{
-  width: 210px;
-  float: left;
-  clear: right;
-  margin-bottom: 15px;
+
+.innerForm .smallInputCreate {
+    width: 48.86%;
+    display: inline-block;
 }
-.innerForm .largeInputCreate{
-  width: 660px;
+
+.innerForm .largeInputCreate {
+    width: 660px;
 }
-.innerForm textarea{
-  height: 90px;
-  resize: none;
-  width: 660px;
-  display: block;
-  border: none;
-  outline: none;
-  background-color: #EEEEEE;
-  margin-bottom: 15px;
-  margin-top: 15px;
-  padding: 15px;
+
+.FormCreate .innerForm textarea {
+    height: 90px;
+    resize: none;
+    width: 660px;
+    display: block;
+    border: none;
+    outline: none;
+    background-color: #EEEEEE;
+    margin-top: 15px;
+    padding: 15px;
 }
 .innerForm .ButtonCreate{
   background-color: #69F0AE;
