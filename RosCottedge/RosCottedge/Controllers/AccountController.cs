@@ -249,6 +249,21 @@ namespace RosCottedge.Controllers
             return RedirectToAction("EditMyHouse", "Account", new { id = houseId });
         }
 
+        //Удаление изображения
+        [HttpPost]
+        public ActionResult DeletePicture(int houseId, int pictureId, string path)
+        {
+            FileInfo file = new FileInfo(Server.MapPath(path));
+            if (file.Exists)
+            {
+                file.Delete();
+                var picture = db.Pictures.Where(x => x.Id == pictureId).FirstOrDefault();
+                db.Pictures.Remove(picture);
+                db.SaveChanges();
+            }
+            return RedirectToAction("EditMyHouse", "Account", new { id = houseId });
+        }
+
         public ActionResult EditMyHouse(int? id)
         {
 
@@ -266,6 +281,9 @@ namespace RosCottedge.Controllers
                 EditMyHouseViewModel viewModel = new EditMyHouseViewModel()
                 {
                     House = house,
+
+                    //Вывод всех фотографий дома
+                    Pictures = db.Pictures.Where(p => p.HouseId == house.Id),
 
                     //Вывод забронированных дат по выбранному дому
                     Reservations = from r in db.Reservations

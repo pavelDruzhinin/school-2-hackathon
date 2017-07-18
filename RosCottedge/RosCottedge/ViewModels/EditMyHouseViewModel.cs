@@ -10,6 +10,7 @@ namespace RosCottedge.ViewModels
     {
         public IQueryable<Reservation> Reservations { get; set; }
         public IQueryable<Review> Reviews { get; set; }
+        public IQueryable<Picture> Pictures { get; set; }
         public House House { get; set; }
         public User User { get; set; }
     }

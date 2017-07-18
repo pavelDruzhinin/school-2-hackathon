@@ -6,12 +6,24 @@
 
 <h2>Редактирование дома</h2>
 
-<h4>Загрузить фотографии дома</h4>
+<h4>Загрузить фото</h4>
 @using (Html.BeginForm("AddPictures", "Account", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     <input type="hidden" value="@Model.House.Id" name="houseId" />
     <input type="file" name="upload" /><br>
     <input type="submit" value="Загрузить" />
+}
+
+@foreach (var p in Model.Pictures)
+{
+    <img src=@p.Adress width="150" hight="150" alt="" />
+    using (Html.BeginForm("DeletePicture", "Account", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        <input type="hidden" value="@p.HouseId" name="houseId" />
+        <input type="hidden" value="@p.Id" name="pictureId" />
+        <input type="hidden" value="@p.Adress" name="path" />
+        <input type="submit" value="Удалить" />
+    }
 }
 
 @using (Html.BeginForm("SaveHouse", "Account"))
