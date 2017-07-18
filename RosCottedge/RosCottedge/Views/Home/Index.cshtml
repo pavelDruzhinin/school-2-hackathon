@@ -8,7 +8,7 @@
 <div id="map_canvas"></div>
 <section id="search">
   <div class="container">
-    <form class="searchBox mainBox" method="post">
+    <form class="searchBox mainBox" method="post" action="/Home/Index" data-ajax="true" data-ajax-update="#houses" data-ajax-mode="replace">
       <div class="mainField">
         <div class="area searchFields">
           <input type="text" placeholder="Район" name="region">
@@ -37,40 +37,11 @@
   </div>
 </section>
 
-<div class="houses">
-  <div class="container">
-    <div class="row">
-      @foreach (var item in Model)
-      {
-      <div class="col-md-6 houseItem">
-        <div class="imgBox" style="background-image: url('../../Content/img/chubaka.jpg')"></div>
-        <div class="ContentBox">
-          <h2 class="nameHouse"><a href="/House/Index?houseId=@item.Id">@item.Name</a></h2>
-          <span class="address">@item.Locality, @item.Area</span>
-          <ul class="optionsHouse">
-            <li><p><span class="man op54"></span>@item.NumberOfPersons</p></li>
-            <li><p><span class="rub op54"></span>@item.Price руб./сутки</p></li><br>
-            <li><p><span class="com op54"></span>@item.Reviews.Count()</p></li><br>
-            <li><p><span>Регион</span>@item.Region</p></li>
-          </ul>
-          <div class="ratingHouse" rating="@item.Rating">
-            <h2>Оценка пользователей</h2>
-            <ul>
-              <li ratingItem="1"></li>
-              <li ratingItem="2"></li>
-              <li ratingItem="3"></li>
-              <li ratingItem="4"></li>
-              <li ratingItem="5"></li>
-            </ul>
-          </div>
-        </div>
-      </div>
-      }
-    </div>
-  </div>
+<div id="houses">
+    @Html.Partial("_Houses", Model)
 </div>
 
-@Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+
 
 @section scripts {
     @Scripts.Render("/Scripts/config/main.js")

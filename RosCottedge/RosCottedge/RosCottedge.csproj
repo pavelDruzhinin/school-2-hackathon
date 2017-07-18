@@ -272,6 +272,7 @@
     <Content Include="Views\Account\MyHouse.cshtml" />
     <Content Include="Views\Account\MyTrips.cshtml" />
     <Content Include="Views\Account\Profile.cshtml" />
+    <Content Include="Views\Home\_Houses.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

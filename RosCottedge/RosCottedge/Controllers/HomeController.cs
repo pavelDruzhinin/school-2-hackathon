@@ -22,22 +22,28 @@ namespace RosCottedge.Controllers
             if (!String.IsNullOrEmpty(region))
             {
                 houses = houses.Where(x => x.Region == region);
+                ViewBag.region = region;
             }
             if (startPrice != null)
             {
                 houses = houses.Where(x => x.Price >= startPrice);
+                ViewBag.startPrice = startPrice;
             }
             if (finishPrice != null)
             {
                 houses = houses.Where(x => x.Price <= finishPrice);
+                ViewBag.finishPrice = finishPrice;
             }
             if (numberOfPersons != null)
             {
                 houses = houses.Where(x => x.NumberOfPersons >= numberOfPersons);
+                ViewBag.numberOfPersons = numberOfPersons;
             }
             if (arrivalDate != null && departureDate != null)
             {
                 houses = houses.Where(x => !x.Reservations.Any(r => r.ArrivalDate <= departureDate && arrivalDate <= r.DepartureDate));
+                ViewBag.arrivalDate = arrivalDate;
+                ViewBag.departureDate = departureDate;
             }
 
             //Определяем максимальную и минимальную цену аренды
@@ -47,8 +53,11 @@ namespace RosCottedge.Controllers
 
             ViewBag.MaxPrice = max;
             ViewBag.MinPrice = min;
-         
-            return View(houses.OrderBy(x => x.Id).ToPagedList(pageNumber, pageSize));
+            var kappa = Request.IsAjaxRequest();
+
+            return Request.IsAjaxRequest()
+                ? (ActionResult)PartialView("_Houses", houses.OrderBy(x => x.Id).ToPagedList(pageNumber, pageSize))
+                : View(houses.OrderBy(x => x.Id).ToPagedList(pageNumber, pageSize));
         }
 
         public ActionResult About()
