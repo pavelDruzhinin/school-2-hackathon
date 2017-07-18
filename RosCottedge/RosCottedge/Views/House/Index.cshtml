@@ -22,7 +22,7 @@
                 <div class="owl-carousel">
                     @foreach (var p in Model.Pictures)
                     {
-                        <div class="item">
+                        <div class="item" @*style="background-image: url(@p.Adress); background-repeat: no-repeat;"*@>
                             <img src=@p.Adress alt="">
                         </div>
                     }
@@ -84,6 +84,7 @@
             </div>
 
             <div id="map_canvas_house" class="mapBox"></div>
+            <div id="MapAddressNotFound"><p>Google не может найти адрес дома, обратитесь к владельцу дома и сообщите ему об ошибке, спасибо!</p></div>
 
             @if (User.Identity.IsAuthenticated && Model.AllowComments)
             {

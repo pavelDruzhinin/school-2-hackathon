@@ -18,11 +18,8 @@
             <div class="innerForm">
                 <div class="fields">
                     <div>@Html.EditorFor(model => model.Login, new { htmlAttributes = new { @class = "firstItemForm field", @placeholder = "Логин" } })</div>
-                    @*@Html.ValidationMessageFor(model => model.LoginName, "", new { @class = "text-danger" })*@
 
                     @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "field", @placeholder = "Пароль" } })
-                    @*@Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })*@
-                    <div class="errorOne"></div>
                     <input type="submit" value="Войти" />
                 </div>
                 <a class="questBox" href="/Account/Register">У вас еще нет аккаунта?</a>

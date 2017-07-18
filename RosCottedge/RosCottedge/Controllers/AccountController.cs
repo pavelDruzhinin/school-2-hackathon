@@ -359,9 +359,5 @@ namespace RosCottedge.Controllers
             }
             return Json(false, JsonRequestBehavior.AllowGet);
         }
-        public ActionResult MapTest()
-        {
-            return View();
-        }
     }
 }

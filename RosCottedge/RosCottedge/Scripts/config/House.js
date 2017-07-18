@@ -30,10 +30,22 @@
 
     ratingHouse();
 
+    
+    var totalItems = $('.item').length;
+    if (totalItems == 0) {
+        $('.slider').css('height', '77px');
+    } else if (totalItems == 1) {
+        var isLooped = false;
+        var isNav = false;
+    } else {
+        var isLooped = true;
+        var isNav = true;
+    }
+
     $('.owl-carousel').owlCarousel({
         items: 1,
-        loop: true,
-        nav: true,
+        loop: isLooped,
+        nav: isNav,
         navText: ["<i class='fa fa-angle-left'></i>", "<i class='fa fa-angle-right'></i>"],
         smartSpeed: 450
     });
@@ -66,7 +78,8 @@
             });
         }
         else {
-            alert('Not valid address');
+            $('#MapAddressNotFound').css('display', 'block');
+            $('#map_canvas_house').css('outline', '1px solid #E32444');
         }
     });
 

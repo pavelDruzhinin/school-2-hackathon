@@ -29,42 +29,25 @@
                 <label>Адрес для поиска: </label><input id="address" style="width:100%;" type="text" placeholder="Найдите ваш дом"/>
                 <div id="map_canvas" style="width:100%; height:400px; margin-bottom:0; margin-top: 15px;"></div>
                 <div id="errorMap" style="width:100%; margin-top: 4px; display:none;"><p style="font-size: 14px; color: #E32444;">Неверно выбран адрес</p></div>
-                @*@Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
-                @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
-                @Html.ValidationMessageFor(model => model.NumberOfPersons, "", new { @class = "text-danger" })*@
+
                 <input type="hidden" name="Region" id="Region" value="" />
-                @*@Html.EditorFor(model => model.Region, new { htmlAttributes = new { @class = "form-control largeInputCreate", @placeholder = "Область" } })*@
-                @*@Html.ValidationMessageFor(model => model.Region, "", new { @class = "text-danger" })*@
                 <input type="hidden" name="Locality" id="Locality" value="" />
-                @*@Html.EditorFor(model => model.Locality, new { htmlAttributes = new { @class = "form-control smallInputCreate", @placeholder = "Населенный пункт" } })*@
-                @*@Html.ValidationMessageFor(model => model.Locality, "", new { @class = "text-danger" })*@
                 <input type="hidden" name="Area" id="Area" value="" />
-                @*@Html.EditorFor(model => model.Area, new { htmlAttributes = new { @class = "form-control smallInputCreate floatInput", @placeholder = "Район/Улица" } })*@
-                @*@Html.ValidationMessageFor(model => model.Area, "", new { @class = "text-danger" })*@
                 <input type="hidden" name="HouseNumber" id="HouseNumber" value="" />
-                @*@Html.EditorFor(model => model.HouseNumber, new { htmlAttributes = new { @class = "form-control smallInputCreate floatInput", @placeholder = "Номер дома" } })*@
-                @*@Html.ValidationMessageFor(model => model.HouseNumber, "", new { @class = "text-danger" })*@
 
                 @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control", @placeholder = "Описание" } })
-                @*@Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })*@
 
                 @Html.EditorFor(model => model.Food, new { htmlAttributes = new { @class = "form-control", @placeholder = "Питание" } })
-                @*@Html.ValidationMessageFor(model => model.Food, "", new { @class = "text-danger" })*@
 
                 @Html.EditorFor(model => model.Transfer, new { htmlAttributes = new { @class = "form-control", @placeholder = "Трансфер" } })
-                @*@Html.ValidationMessageFor(model => model.Transfer, "", new { @class = "text-danger" })*@
 
                 @Html.EditorFor(model => model.ServicesIncluded, new { htmlAttributes = new { @class = "form-control", @placeholder = "Услуги, включенные в стоимость" } })
-                @*@Html.ValidationMessageFor(model => model.ServicesIncluded, "", new { @class = "text-danger" })*@
 
                 @Html.EditorFor(model => model.AdditionalServices, new { htmlAttributes = new { @class = "form-control", @placeholder = "Услуга за отдельную плату" } })
-                @*@Html.ValidationMessageFor(model => model.AdditionalServices, "", new { @class = "text-danger" })*@
 
                 @Html.EditorFor(model => model.Accomodations, new { htmlAttributes = new { @class = "form-control", @placeholder = "Условия проживания" } })
-                @*@Html.ValidationMessageFor(model => model.Accomodations, "", new { @class = "text-danger" })*@
 
                 @Html.EditorFor(model => model.BookingConditions, new { htmlAttributes = new { @class = "form-control", @placeholder = "Условия бронирования" } })
-                @*@Html.ValidationMessageFor(model => model.BookingConditions, "", new { @class = "text-danger" })*@
 
                 <input class="ButtonCreate" type="submit" value="Разместить дом" />
 

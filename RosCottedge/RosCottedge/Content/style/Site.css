@@ -874,7 +874,7 @@ label.valid {
 
 .slider .sliderFooter p {
     opacity: .87;
-    padding: 15px 15px;
+    padding: 14px 15px 16px 15px;
     font-size: 14px;
     display: inline-block;
 }
@@ -1070,8 +1070,18 @@ label.valid {
     margin-top: 30px;
     transition: all .5s ease;
 }
+#MapAddressNotFound {
+    width: 100%;
+    margin-top: -40px;
+    display: none;
+    margin-bottom: 35px;
+}
+#MapAddressNotFound p {
+    font-size: 14px;
+    color: #E32444;
+    text-align: center;
+}
 /*Map End*/
-
 /*Review Start*/
 .formReview {
     width: 100%;
