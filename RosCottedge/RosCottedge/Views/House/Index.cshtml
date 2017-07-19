@@ -1,5 +1,5 @@
 ﻿@using RosCottedge.Models
-@using PagedList.Mvc
+@using Webdiyer.WebControls.Mvc
 
 @model RosCottedge.ViewModels.HouseIndexViewModel
 @{
@@ -169,4 +169,5 @@
 @section scripts {
     @Scripts.Render("/Scripts/libs/owl-carousel/js/owl.carousel.min.js")
     @Scripts.Render("/Scripts/config/House.js")
+    @{Html.RegisterMvcPagerScriptResource();}
 }

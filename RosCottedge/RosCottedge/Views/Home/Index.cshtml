@@ -1,5 +1,6 @@
-﻿@model PagedList.IPagedList<RosCottedge.Models.House>
-@using PagedList.Mvc;
+﻿@using Webdiyer.WebControls.Mvc
+@model PagedList<RosCottedge.Models.House>
+
 @{
     ViewBag.Title = "Главная страница";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -8,7 +9,7 @@
 <div id="map_canvas"></div>
 <section id="search">
   <div class="container">
-    <form class="searchBox mainBox" method="post" action="/Home/Index" data-ajax="true" data-ajax-update="#houses" data-ajax-mode="replace">
+    <form id ="searchForm" class="searchBox mainBox" method="post" @*action="/Home/Index" data-ajax="true" data-ajax-update="#houses" data-ajax-mode="replace"*@>
       <div class="mainField">
         <div class="area searchFields">
           <input type="text" placeholder="Район" name="region">
@@ -42,7 +43,7 @@
 </div>
 
 
-
 @section scripts {
     @Scripts.Render("/Scripts/config/main.js")
+    @{Html.RegisterMvcPagerScriptResource();}
 }

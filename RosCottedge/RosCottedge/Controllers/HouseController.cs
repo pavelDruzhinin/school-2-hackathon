@@ -9,7 +9,7 @@ using System.Web.Mvc;
 using Microsoft.Ajax.Utilities;
 using RosCottedge.Models;
 using RosCottedge.ViewModels;
-using PagedList;
+using Webdiyer.WebControls.Mvc;
 
 namespace RosCottedge.Controllers
 {
@@ -56,7 +56,8 @@ namespace RosCottedge.Controllers
                 Pictures = db.Pictures.Where(p => p.HouseId == houseId).ToList(),
                 AllowComments = true
             };
-            
+
+            var kappa = Request.IsAjaxRequest();
             return Request.IsAjaxRequest()
                 ? (ActionResult)PartialView("_Comments", viewModel)
                 : View(viewModel);

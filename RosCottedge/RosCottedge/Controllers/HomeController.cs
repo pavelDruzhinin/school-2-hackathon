@@ -1,11 +1,11 @@
-﻿using PagedList;
-using RosCottedge.Models;
+﻿using RosCottedge.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Data.Entity;
+using Webdiyer.WebControls.Mvc;
 
 namespace RosCottedge.Controllers
 {
@@ -18,7 +18,7 @@ namespace RosCottedge.Controllers
             int pageNumber = (page ?? 1);
             int pageSize = 8;
 
-            IEnumerable<House> houses = db.Houses.Include(x => x.Reviews).Include(x => x.Reservations);
+            var houses = db.Houses.Include(x => x.Reviews).Include(x => x.Reservations);
             if (!String.IsNullOrEmpty(region))
             {
                 houses = houses.Where(x => x.Region == region);

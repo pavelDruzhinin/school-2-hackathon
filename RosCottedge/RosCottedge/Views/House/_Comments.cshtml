@@ -1,4 +1,4 @@
-﻿@using PagedList.Mvc
+﻿@using Webdiyer.WebControls.Mvc
 @model RosCottedge.ViewModels.HouseIndexViewModel
 
 @foreach (var review in Model.Reviews)
@@ -16,10 +16,20 @@
     </div>
 }
 
-@Html.PagedListPager(Model.Reviews, page => Url.Action("Index", new { houseId = Model.House.Id, page }), PagedListRenderOptions.EnableUnobtrusiveAjaxReplacing(new AjaxOptions
+
+@Ajax.Pager(Model.Reviews, new PagerOptions
 {
-    InsertionMode = InsertionMode.Replace,
-    HttpMethod = "Get",
-    UpdateTargetId = "comments"
-}))
+    PageIndexParameterName = "page",
+    ContainerTagName = "ul",
+    CssClass = "pagination",
+    CurrentPagerItemTemplate = "<li class=\"active\"><a href=\"#\">{0}</a></li>",
+    DisabledPagerItemTemplate = "<li class=\"disabled\"><a>{0}</a></li>",
+    PagerItemTemplate = "<li>{0}</li>",
+    NextPageText = ">",
+    PrevPageText = "<",
+    LastPageText = ">>",
+    FirstPageText = "<<"
+}).AjaxOptions(a => a.SetUpdateTargetId("comments").DisableHistorySupport())
+
 <input type="hidden" id="tempRating2" value="@Model.House.Rating" />
+
