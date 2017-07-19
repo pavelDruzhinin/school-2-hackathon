@@ -17,5 +17,7 @@ namespace RosCottedge.Models
         public User User { get; set; }
         public int HouseId { get; set; }
         public House House { get; set; }
+        public bool Tenant { get; set; }
+        public bool Landlord { get; set; }
     }
 }

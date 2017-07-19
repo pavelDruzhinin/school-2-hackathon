@@ -26,5 +26,6 @@ namespace RosCottedge.Models
         public int HouseId { get; set; }
 
         public House House { get; set; }
+        public bool Landlord { get; set; }
     }
 }

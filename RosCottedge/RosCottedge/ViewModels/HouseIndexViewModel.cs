@@ -13,5 +13,6 @@ namespace RosCottedge.ViewModels
         public House House { get; set; }
         public bool AllowComments { get; set; }
         public List<Picture> Pictures { get; set; }
+        public User User { get; set; }
     }
 }

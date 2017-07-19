@@ -44,11 +44,11 @@
             <div class="fullDescription">
                 <div class="descOwner">
                     <div class="leftSideOwner">
-                        <img src="../../Content/img/jamie_bell.jpg" alt="">
+                        <img src=@Model.House.User.Avatar alt="">
                         <h3>@Model.House.User.FirstName<br>@Model.House.User.LastName</h3>
                     </div>
                     <div class="rightSideOwner">
-                        <p><span>На сайте:</span> с 20.01.2017</p>
+                        <p><span>На сайте:</span> с @Model.House.User.RegistrationDate</p>
                         <p><span>Последний раз в сети:</span> 04.07.2017 18:32</p>
                         <p><span>Телефон:</span> @Model.House.User.Phone</p>
                     </div>
@@ -91,7 +91,7 @@
                 <form @*method="post"*@ class="formReview mainBox" id="formReviewId" @*action="AddReview" data-ajax="true" data-ajax-update="#comments" data-ajax-mode="replace"*@>
                     <input type="hidden" value="@Model.House.Id" name="HouseId">
                     <div class="formRowTop">
-                        <img src="../../Content/img/jamie_bell.jpg" alt="">
+                        <img src=@Model.User.Avatar alt="">
                         <textarea name="Comment" id="Comment" cols="30" rows="5" placeholder="Ваш отзыв:"></textarea>
                     </div>
                     <div class="formRowBottom">
