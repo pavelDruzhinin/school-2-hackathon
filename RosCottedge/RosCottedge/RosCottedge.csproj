@@ -213,6 +213,7 @@
     <Compile Include="ViewModels\EditMyHouseViewModel.cs" />
     <Compile Include="ViewModels\HouseIndexViewModel.cs" />
     <Compile Include="ViewModels\MyHouseViewModel.cs" />
+    <Compile Include="ViewModels\MyTripsViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\img\chubaka.jpg" />

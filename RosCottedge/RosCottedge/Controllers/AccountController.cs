@@ -329,6 +329,8 @@ namespace RosCottedge.Controllers
         [HttpPost]
         public ActionResult DeleteReservationLandlord(int id, int houseId)
         {
+            if (User.Identity.IsAuthenticated == false)
+                return new HttpStatusCodeResult(HttpStatusCode.Unauthorized);
             Reservation reserv = db.Reservations.Find(id);
             reserv.Landlord = true;
             db.SaveChanges();
@@ -338,6 +340,8 @@ namespace RosCottedge.Controllers
         [HttpPost]
         public ActionResult DeleteReviews(int id, int houseId)
         {
+            if (User.Identity.IsAuthenticated == false)
+                return new HttpStatusCodeResult(HttpStatusCode.Unauthorized);
             Review review = db.Reviews.Find(id);
             review.Landlord = true;
             db.SaveChanges();
@@ -355,20 +359,45 @@ namespace RosCottedge.Controllers
                          where u.Login == User.Identity.Name
                          select u).FirstOrDefault();
 
-            var reserv = from a in db.Reservations
+            MyTripsViewModel MyTripsViewModel = new MyTripsViewModel
+            {
+             ReservationHistory = from a in db.Reservations
                          .Include(x => x.House)
-                         where a.UserId == user.Id && a.Tenant == false
-                         select a;
+                         where a.UserId == user.Id && a.Tenant == false && a.DepartureDate<DateTime.Now
+                         select a,
 
+            ReservationDelete = from a in db.Reservations
+                                 .Include(x => x.House)
+                                where a.UserId == user.Id
+                                select a
+            };
+            
 
-            return View(reserv);
+            return View(MyTripsViewModel);
         }
-        // Удаление из Мои поездки
+        // Удаление из истории моих поездок
         public ActionResult DeleteReservationTenant(int id, int houseId)
         {
+            if (User.Identity.IsAuthenticated == false)
+                return new HttpStatusCodeResult(HttpStatusCode.Unauthorized);
+
             Reservation reserv = db.Reservations.Find(id);
             reserv.Tenant = true;
             db.SaveChanges();
+            return RedirectToAction("MyTrips", "Account", new { id = houseId });
+        }
+        // Отказ от брони
+        public ActionResult DeleteReservation(int id, int houseId)
+        {
+            if (User.Identity.IsAuthenticated == false)
+                return new HttpStatusCodeResult(HttpStatusCode.Unauthorized);
+            
+            Reservation reserv = db.Reservations.Find(id);
+            
+                db.Reservations.Remove(reserv);
+                db.SaveChanges();
+            
+            
             return RedirectToAction("MyTrips", "Account", new { id = houseId });
         }
         #endregion
