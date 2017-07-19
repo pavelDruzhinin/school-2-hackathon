@@ -194,6 +194,7 @@
       <DependentUpon>201707182141083_Notices.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\HomeFilter.cs" />
     <Compile Include="Models\House.cs" />
     <Compile Include="Models\Picture.cs" />
     <Compile Include="Models\Reservation.cs" />

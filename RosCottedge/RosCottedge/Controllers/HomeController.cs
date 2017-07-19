@@ -17,34 +17,54 @@ namespace RosCottedge.Controllers
         {
             int pageNumber = (page ?? 1);
             int pageSize = 8;
-
+            
             var houses = db.Houses.Include(x => x.Reviews).Include(x => x.Reservations);
+
+            if (Session["Filter"] != null)
+            {
+                var oldFilter = (HomeFilter) Session["Filter"];
+                region = region ?? oldFilter.Region;
+                startPrice = startPrice ?? oldFilter.StartPrice;
+                finishPrice = finishPrice ?? oldFilter.FinishPrice;
+                numberOfPersons = numberOfPersons ?? oldFilter.NumberOfPersons;
+                arrivalDate = arrivalDate ?? oldFilter.ArrivalDate;
+                departureDate = departureDate ?? oldFilter.DepartureDate;
+            }
+
             if (!String.IsNullOrEmpty(region))
             {
                 houses = houses.Where(x => x.Region == region);
-                ViewBag.region = region;
             }
             if (startPrice != null)
             {
                 houses = houses.Where(x => x.Price >= startPrice);
-                ViewBag.startPrice = startPrice;
             }
             if (finishPrice != null)
             {
                 houses = houses.Where(x => x.Price <= finishPrice);
-                ViewBag.finishPrice = finishPrice;
             }
             if (numberOfPersons != null)
             {
                 houses = houses.Where(x => x.NumberOfPersons >= numberOfPersons);
-                ViewBag.numberOfPersons = numberOfPersons;
+ 
             }
             if (arrivalDate != null && departureDate != null)
             {
                 houses = houses.Where(x => !x.Reservations.Any(r => r.ArrivalDate <= departureDate && arrivalDate <= r.DepartureDate));
-                ViewBag.arrivalDate = arrivalDate;
-                ViewBag.departureDate = departureDate;
             }
+
+            var filter = new HomeFilter
+            {
+                Region = region,
+                StartPrice = startPrice,
+                FinishPrice = finishPrice,
+                NumberOfPersons = numberOfPersons,
+                ArrivalDate = arrivalDate,
+                DepartureDate = departureDate,
+                Page = pageNumber
+            };
+
+            Session["Filter"] = filter;
 
             //Определяем максимальную и минимальную цену аренды
 
