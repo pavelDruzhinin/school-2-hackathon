@@ -71,6 +71,7 @@ namespace RosCottedge.Controllers
                 if (existingUser == null)//если такого пользователя нет, то добавляем в базу нового user
                 {
                     user.Avatar = "/Content/img/zlad.jpg";
+                    user.RegistrationDate = DateTime.Now;
                     db.Users.Add(user);
                     db.SaveChanges();
                     FormsAuthentication.SetAuthCookie(user.Login, true);
@@ -232,6 +233,7 @@ namespace RosCottedge.Controllers
             if (upload != null)
             {
                 User user = db.Users.Where(x => x.Login == User.Identity.Name).FirstOrDefault();
+                House house = db.Houses.Where(y => y.Id == houseId).FirstOrDefault();
                 string fileName = System.IO.Path.GetFileName(upload.FileName);
                 DirectoryInfo Dir = new DirectoryInfo(Request.MapPath("/Content/img/users"));
                 Dir.CreateSubdirectory(user.Login);
@@ -242,7 +244,7 @@ namespace RosCottedge.Controllers
                     Adress = "/Content/img/users/" + user.Login + "/" + fileName,
                     HouseId = houseId
                 };
-
+                house.Avatar = picture.Adress;
                 db.Pictures.Add(picture);
                 db.SaveChanges();
             }

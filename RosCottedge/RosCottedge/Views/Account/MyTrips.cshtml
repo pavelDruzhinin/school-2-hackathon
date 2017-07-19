@@ -11,7 +11,7 @@
             @foreach (var item in Model)
             {
                 <div class="col-md-6 houseItem">
-                    <div class="imgBox" style="background-image: url('../../Content/img/chubaka.jpg')"></div>
+                    <div class="imgBox" style="background-image: url(@item.House.Avatar)"></div>
                     <div class="ContentBox">
                         <h2 class="nameHouse"><a href="/House/Index?houseId=@item.House.Id">@item.House.Name</a></h2>
                         <span class="address">@item.House.Locality, @item.House.Area</span>

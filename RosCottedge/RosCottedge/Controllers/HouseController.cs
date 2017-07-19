@@ -54,7 +54,8 @@ namespace RosCottedge.Controllers
                 House = db.Houses.Include(u => u.User).FirstOrDefault(x => x.Id == houseId),
                 Reviews = db.Reviews.Include(u => u.User).Where(r => r.HouseId == houseId).OrderByDescending(r => r.CommentDate).ToPagedList(pageNumber, pageSize),
                 Pictures = db.Pictures.Where(p => p.HouseId == houseId).ToList(),
-                AllowComments = allowComments
+                User = db.Users.Where(x => x.Login == User.Identity.Name).FirstOrDefault(),
+                AllowComments = true
             };
 
             var kappa = Request.IsAjaxRequest();
@@ -150,6 +151,7 @@ namespace RosCottedge.Controllers
                  = db.Users.Where
                         (x => x.Login == User.Identity.Name).FirstOrDefault();
                 house.UserId = user.Id;
+                house.Avatar = "/Content/img/houseAvatar.jpg";
                 db.Houses.Add(house);
                 db.SaveChanges();
                 return RedirectToAction("Index", "Home");

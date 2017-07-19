@@ -62,6 +62,8 @@ namespace RosCottedge.Models
 
         public float Rating { get; set; }
 
+        public string Avatar { get; set; }
+
         public List<Review> Reviews { get; set; }
 
         public List<Reservation> Reservations { get; set; }

@@ -11,7 +11,7 @@
             @foreach (var item in Model.House)
             {
                 <div class="col-md-6 houseItem">
-                    <div class="imgBox" style="background-image: url('../../Content/img/chubaka.jpg')"></div>
+                    <div class="imgBox" style="background-image: url(@item.Avatar)"></div>
                     <div class="ContentBox">
                         <h2 class="nameHouse"><a href="/House/Index?houseId=@item.Id">@item.Name</a></h2>
                         <span class="address">@item.Locality, @item.Area</span>
@@ -35,7 +35,7 @@
     </div>
 </div>
 <h3>_____________________________</h3>
-<h2>оповещения о бронировани</h2>
+<h2>Оповещения о бронировании</h2>
 <table>
     @foreach (var item in Model.Reservations)
     {
