@@ -1,5 +1,5 @@
-﻿@model IEnumerable<RosCottedge.Models.Reservation>
-@using RosCottedge.Models;
+﻿@model RosCottedge.ViewModels.MyTripsViewModel
+
 
 @{
     ViewBag.Title = "MyHouse";
@@ -8,7 +8,7 @@
 <div class="houses">
     <div class="container">
         <div class="row">
-            @foreach (var item in Model)
+            @foreach (var item in Model.ReservationDelete)
             {
                 <div class="col-md-6 houseItem">
                     <div class="imgBox" style="background-image: url(@item.House.Avatar)"></div>
@@ -18,7 +18,7 @@
                         <div class="ratingHouse">
                             <h2>Даты поездки:@item.ArrivalDate.ToString("dd.MM.yyyy")-@item.DepartureDate.ToString("dd.MM.yyyy")</h2>
                             <h2><a href="/House/Index?houseId=@item.House.Id">Страница дома</a></h2>
-                            <h2>Оценка пользователей</h2>
+                            
 
                             <ul>
                                 <li></li>
@@ -27,6 +27,17 @@
                                 <li></li>
                                 <li></li>
                             </ul>
+                        </div>
+                        <div>@if (item.DepartureDate > DateTime.Now)
+                        {
+                            using (Html.BeginForm("DeleteReservation", "Account", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                            {
+                                <input type="hidden" value="@item.HouseId" name="houseId" />
+                                <input type="hidden" value="@item.Id" name="id" /><br>
+                                <input type="submit" value="Отказаться от брони" />
+                            }
+                        }
+                            
                         </div>
                     </div>
                 </div>
@@ -37,7 +48,7 @@
 <h3>История поездок</h3>
 
 <table>
-    @foreach (var item in Model)
+    @foreach (var item in Model.ReservationHistory)
     {
         <tr>
             <td>

@@ -161,6 +161,7 @@
         </div>
     </div>
 }
+<h2>______________________________________________</h2>
 <h2>Забронированные даты(этого дома)</h2>
 <table>
     @foreach (var item in Model.Reservations)
@@ -170,12 +171,12 @@
                 @item.ArrivalDate.ToString("dd.MM.yyyy")-@item.DepartureDate.ToString("dd.MM.yyyy")
             </td>
             <td>
-                Забронировал @item.User.Login
+                Забронировал <img src=@item.User.Avatar alt="">
             </td>
         </tr>
     }
 </table>
-
+<h2>______________________________________________</h2>
 <h2>Брони</h2>
 <table>
     @foreach (var item in Model.Reservations)
@@ -203,7 +204,7 @@
         </tr>
     }
 </table>
-
+<h2>______________________________________________</h2>
 <h2>Отзывы</h2>
 <table>
     @foreach (var item in Model.Reviews)
