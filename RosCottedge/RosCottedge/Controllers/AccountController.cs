@@ -206,15 +206,15 @@ namespace RosCottedge.Controllers
                         select h,
 
                 //Выводим дома, по которым пришла бронь
-                ReservationNotices = from r in db.ReservationsNotices
+                Reservations = from r in db.Reservations
                                 .Include(u => u.User)
-                              where r.House.UserId == user.Id
+                              where r.House.UserId == user.Id && r.Landlord==false
                               select r,
 
                 //Выводим дома, по которым оставлен отзыв 
-                ReviewsNotices = from c in db.ReviewsNotices
+                Reviews = from c in db.Reviews
                          .Include(x => x.User).Include(x => x.House)
-                         where c.House.UserId == user.Id
+                         where c.House.UserId == user.Id && c.Landlord ==false
                          select c
 
             };
@@ -286,14 +286,14 @@ namespace RosCottedge.Controllers
                     Pictures = db.Pictures.Where(p => p.HouseId == house.Id),
 
                     //Вывод забронированных дат по выбранному дому
-                    ReservationNotices = from r in db.ReservationsNotices
+                    Reservations = from r in db.Reservations
                                                 .Include(x => x.User)
-                                   where r.House.UserId == user.Id && r.HouseId == house.Id
+                                   where r.House.UserId == user.Id && r.HouseId == house.Id && r.Landlord==false
                                    select r,
                     //Вывод комментариев по выбранному дому
-                    ReviewsNotices = from c in db.ReviewsNotices
+                    Reviews = from c in db.Reviews
                                              .Include(x => x.User).Include(x => x.House)
-                              where c.House.UserId == user.Id && c.HouseId == house.Id
+                              where c.House.UserId == user.Id && c.HouseId == house.Id && c.Landlord==false
                               select c
 
                 };
@@ -323,25 +323,26 @@ namespace RosCottedge.Controllers
             }
             return RedirectToAction("EditMyHouse", "Account", new { id = house.Id });
         }
-        #endregion
         //Удаление броней из ЛК
         [HttpPost]
-        public ActionResult DeleteReservationNotices(int id, int houseId)
+        public ActionResult DeleteReservationLandlord(int id, int houseId)
         {
-            ReservationNotices reservNoties = db.ReservationsNotices.Find(id);
-            db.ReservationsNotices.Remove(reservNoties);
+            Reservation reserv = db.Reservations.Find(id);
+            reserv.Landlord = true;
             db.SaveChanges();
             return RedirectToAction("MyHouse", "Account", new { id = houseId });
         }
         //Удаление отзывов из ЛК
         [HttpPost]
-        public ActionResult DeleteReviewsNotices(int id, int houseId)
+        public ActionResult DeleteReviews(int id, int houseId)
         {
-            ReviewsNotices reviewNot = db.ReviewsNotices.Find(id);
-            db.ReviewsNotices.Remove(reviewNot);
+            Review review = db.Reviews.Find(id);
+            review.Landlord = true;
             db.SaveChanges();
             return RedirectToAction("MyHouse", "Account", new { id = houseId });
         }
+        #endregion
+
         #region Мои поездки
         public ActionResult MyTrips()
         {
@@ -352,13 +353,21 @@ namespace RosCottedge.Controllers
                          where u.Login == User.Identity.Name
                          select u).FirstOrDefault();
 
-            var reserv = from a in db.ReservationsNotices
+            var reserv = from a in db.Reservations
                          .Include(x => x.House)
-                         where a.UserId == user.Id
+                         where a.UserId == user.Id && a.Tenant == false
                          select a;
 
 
             return View(reserv);
+        }
+        // Удаление из Мои поездки
+        public ActionResult DeleteReservationTenant(int id, int houseId)
+        {
+            Reservation reserv = db.Reservations.Find(id);
+            reserv.Tenant = true;
+            db.SaveChanges();
+            return RedirectToAction("MyTrips", "Account", new { id = houseId });
         }
         #endregion
 

@@ -9,7 +9,7 @@ namespace RosCottedge.ViewModels
     public class MyHouseViewModel
     {
         public IQueryable<House> House { get; set; }
-        public IQueryable<ReviewsNotices> ReviewsNotices { get; set; }
-        public IQueryable<ReservationNotices> ReservationNotices { get; set; }
+        public IQueryable<Review> Reviews { get; set; }
+        public IQueryable<Reservation> Reservations { get; set; }
     }
 }

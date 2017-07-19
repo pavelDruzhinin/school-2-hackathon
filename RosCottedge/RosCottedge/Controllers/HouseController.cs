@@ -54,7 +54,7 @@ namespace RosCottedge.Controllers
                 House = db.Houses.Include(u => u.User).FirstOrDefault(x => x.Id == houseId),
                 Reviews = db.Reviews.Include(u => u.User).Where(r => r.HouseId == houseId).OrderByDescending(r => r.CommentDate).ToPagedList(pageNumber, pageSize),
                 Pictures = db.Pictures.Where(p => p.HouseId == houseId).ToList(),
-                AllowComments = true
+                AllowComments = allowComments
             };
 
             var kappa = Request.IsAjaxRequest();
@@ -90,18 +90,9 @@ namespace RosCottedge.Controllers
 
                     User user = db.Users.Where(x => x.Login == User.Identity.Name).FirstOrDefault();
                     reservation.UserId = user.Id;
-                    ReservationNotices ReservationNoties = new ReservationNotices
-                    {
-                        HouseId = reservation.HouseId,
-                        ArrivalDate = reservation.ArrivalDate,
-                        DepartureDate = reservation.DepartureDate,
-                        Description = reservation.Description,
-                        UserId = reservation.UserId,
-                        ReservationDate = reservation.ReservationDate
-
-                    };
+                    
                     db.Reservations.Add(reservation);
-                    db.ReservationsNotices.Add(ReservationNoties);
+                    
                     db.SaveChanges();
                     return "<script> document.location.href = '/Home/Index' </script>";
                 }
@@ -134,16 +125,9 @@ namespace RosCottedge.Controllers
             var reviewsCount = allReviews.Count();
             var ratingSum = allReviews.Sum(x => x.Rating);
             house.Rating = ratingSum / reviewsCount;
-            ReviewsNotices reviewNot = new ReviewsNotices
-            {
-                UserId = review.UserId,
-                HouseId = review.HouseId,
-                CommentDate = review.CommentDate,
-                Comment = review.Comment,
-                Rating = review.Rating
-            };
+            
             db.Reviews.Add(review);
-            db.ReviewsNotices.Add(reviewNot);
+           
             db.SaveChanges();
             
             var viewModel = new HouseIndexViewModel()

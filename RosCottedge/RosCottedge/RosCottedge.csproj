@@ -193,14 +193,16 @@
     <Compile Include="Migrations\201707182141083_Notices.Designer.cs">
       <DependentUpon>201707182141083_Notices.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201707191416385_updateLK.cs" />
+    <Compile Include="Migrations\201707191416385_updateLK.Designer.cs">
+      <DependentUpon>201707191416385_updateLK.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\HomeFilter.cs" />
     <Compile Include="Models\House.cs" />
     <Compile Include="Models\Picture.cs" />
     <Compile Include="Models\Reservation.cs" />
-    <Compile Include="Models\ReservationNotices.cs" />
     <Compile Include="Models\Review.cs" />
-    <Compile Include="Models\ReviewsNotices.cs" />
     <Compile Include="Models\SiteContext.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -311,6 +313,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201707182141083_Notices.resx">
       <DependentUpon>201707182141083_Notices.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201707191416385_updateLK.resx">
+      <DependentUpon>201707191416385_updateLK.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

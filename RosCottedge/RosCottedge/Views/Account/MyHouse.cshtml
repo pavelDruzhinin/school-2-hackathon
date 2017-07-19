@@ -37,7 +37,7 @@
 <h3>_____________________________</h3>
 <h2>оповещения о бронировани</h2>
 <table>
-    @foreach (var item in Model.ReservationNotices)
+    @foreach (var item in Model.Reservations)
     {
         <tr>
             <th>
@@ -49,7 +49,7 @@
             <td>
                 @item.ReservationDate.ToString("dd.MM.yyyy")
                 <div>
-                    @using (Html.BeginForm("DeleteReservationNotices", "Account", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    @using (Html.BeginForm("DeleteReservationLandlord", "Account", FormMethod.Post, new { enctype = "multipart/form-data" }))
                     {
                         <input type="hidden" value="@item.HouseId" name="houseId" />
                         <input type="hidden" value="@item.Id" name="id" /><br>
@@ -63,7 +63,7 @@
 <h2>_______________________________________</h2>
 <h2>Отзывы</h2>
 <table>
-    @foreach (var item in Model.ReviewsNotices)
+    @foreach (var item in Model.Reviews)
     {
         <tr>
             <th>
@@ -76,7 +76,7 @@
             <td>
                 @item.CommentDate.ToString("dd.MM.yyyy")
                 <div>
-                    @using (Html.BeginForm("DeleteReviewsNotices", "Account", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    @using (Html.BeginForm("DeleteReviews", "Account", FormMethod.Post, new { enctype = "multipart/form-data" }))
                     {
                         <input type="hidden" value="@item.HouseId" name="houseId" />
                         <input type="hidden" value="@item.Id" name="id" /><br>
