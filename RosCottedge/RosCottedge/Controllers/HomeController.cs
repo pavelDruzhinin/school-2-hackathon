@@ -77,8 +77,8 @@ namespace RosCottedge.Controllers
             var kappa = Request.IsAjaxRequest();
 
             return Request.IsAjaxRequest()
-                ? (ActionResult)PartialView("_Houses", houses.OrderBy(x => x.Id).ToPagedList(pageNumber, pageSize))
-                : View(houses.OrderBy(x => x.Id).ToPagedList(pageNumber, pageSize));
+                ? (ActionResult)PartialView("_Houses", houses.OrderByDescending(x => x.Id).ToPagedList(pageNumber, pageSize))
+                : View(houses.OrderByDescending(x => x.Id).ToPagedList(pageNumber, pageSize));
         }
 
         public ActionResult About()
@@ -94,5 +94,6 @@ namespace RosCottedge.Controllers
 
             return View();
         }
+
     }
 }

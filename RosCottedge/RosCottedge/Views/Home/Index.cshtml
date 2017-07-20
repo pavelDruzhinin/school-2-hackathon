@@ -43,6 +43,85 @@
     @Html.Partial("_Houses", Model)
 </div>
 
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDJZlsRr82NdMVjqUPb1fVy-t49lPdTgrw"></script>
+
+<script>
+
+        $.getJSON("/House/HouseObject", function (data) {
+            var markersData = data;
+            console.log(markersData);
+
+            // Объявляем переменные map и infoWindow за пределами функции initMap,
+            // тем самым делая их глобальными и теперь мы их можем использовать внутри любой функции, а не только внутри initMap, как это было раньше.
+            var map, infoWindow;
+
+            function initMap() {
+                var centerLatLng = new google.maps.LatLng(61.7930796, 34.3755158);
+                var mapOptions = {
+                    scrollwheel: false,
+                    center: centerLatLng,
+                    zoom: 8
+                };
+
+                map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
+
+                // Создаем объект информационного окна и помещаем его в переменную infoWindow
+                // Так как у каждого информационного окна свое содержимое, то создаем пустой объект, без передачи ему параметра content
+                infoWindow = new google.maps.InfoWindow();
+
+                // Отслеживаем клик в любом месте карты
+                google.maps.event.addListener(map, "click", function () {
+                    // infoWindow.close - закрываем информационное окно.
+                    infoWindow.close();
+                });
+
+                // Перебираем в цикле все координата хранящиеся в markersData
+                for (var i = 0; i < markersData.length; i++) {
+
+                    var latLng = new google.maps.LatLng(markersData[i].Lat, markersData[i].Lon);
+                    var name = markersData[i].Name;
+                    //var address = markersData[i].address;
+
+                    // Добавляем маркер с информационным окном
+                    addMarker(latLng, name/*, address*/);
+
+                }
+
+            }
+            google.maps.event.addDomListener(window, "load", initMap);
+
+            // Функция добавления маркера с информационным окном
+            function addMarker(latLng, name/*, address*/) {
+                var marker = new google.maps.Marker({
+                    position: latLng,
+                    map: map,
+                    title: name
+                });
+
+                // Отслеживаем клик по нашему маркеру
+                google.maps.event.addListener(marker, "click", function () {
+
+                        map.setZoom(16);
+                        map.setCenter(marker.getPosition());
+
+                        // contentString - это переменная в которой хранится содержимое информационного окна.
+                        var contentString = '<div class="infowindow">' +
+                            '<h3>' + name + '</h3>' +
+                            //'<p>' + address + '</p>' +
+                            '</div>';
+
+                        // Меняем содержимое информационного окна
+                        infoWindow.setContent(contentString);
+
+                        // Показываем информационное окно
+                        infoWindow.open(map, marker);
+
+                });
+            }
+
+        });
+
+</script>
 
 @section scripts {
     @Scripts.Render("/Scripts/config/main.js")

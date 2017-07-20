@@ -174,5 +174,12 @@ namespace RosCottedge.Controllers
             var datesArray = reservedDates.ToArray();
             return Json(datesArray, JsonRequestBehavior.AllowGet);
         }
+
+        public JsonResult HouseObject()
+        {
+            var House = db.Houses.Select(n => new { n.Name, n.Lat, n.Lon });
+            return Json(House, JsonRequestBehavior.AllowGet);
+        }
+
     }
 }
