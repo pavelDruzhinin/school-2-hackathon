@@ -60,8 +60,8 @@ namespace RosCottedge.Models
         [UIHint("MultilineText")]
         public string BookingConditions { get; set; }
 
-        public string Lat { set; get; }
-        public string Lon { set; get; }
+        public string lat { set; get; }
+        public string lng { set; get; }
 
         public float Rating { get; set; }
 

@@ -205,6 +205,10 @@
     <Compile Include="Migrations\201707201819303_AddCoordinates.Designer.cs">
       <DependentUpon>201707201819303_AddCoordinates.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201707202133046_UpdateCoordinateField.cs" />
+    <Compile Include="Migrations\201707202133046_UpdateCoordinateField.Designer.cs">
+      <DependentUpon>201707202133046_UpdateCoordinateField.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\HomeFilter.cs" />
     <Compile Include="Models\House.cs" />
@@ -223,6 +227,11 @@
     <Content Include="Content\img\chubaka.jpg" />
     <Content Include="Content\img\error.png" />
     <Content Include="Content\img\icons\shareBtn.svg" />
+    <Content Include="Content\img\mapMarkers\m1.png" />
+    <Content Include="Content\img\mapMarkers\m2.png" />
+    <Content Include="Content\img\mapMarkers\m3.png" />
+    <Content Include="Content\img\mapMarkers\m4.png" />
+    <Content Include="Content\img\mapMarkers\m5.png" />
     <Content Include="Content\img\users\darkred\q6bJnp5P.jpeg" />
     <Content Include="Content\img\zlad.jpg" />
     <Content Include="Scripts\config\error.js" />
@@ -331,6 +340,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201707201819303_AddCoordinates.resx">
       <DependentUpon>201707201819303_AddCoordinates.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201707202133046_UpdateCoordinateField.resx">
+      <DependentUpon>201707202133046_UpdateCoordinateField.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
