@@ -84,6 +84,8 @@
 
             <div id="map_canvas_house" class="mapBox"></div>
             <div id="MapAddressNotFound"><p>Google не может найти адрес дома, обратитесь к владельцу дома и сообщите ему об ошибке, спасибо!</p></div>
+            <input type="hidden" id="LatId" value="@Model.House.lat" />
+            <input type="hidden" id="LngId" value="@Model.House.lng" />
 
             @if (User.Identity.IsAuthenticated && Model.AllowComments)
             {
@@ -166,7 +168,9 @@
 
 
 @section scripts {
+    
     @Scripts.Render("/Scripts/libs/owl-carousel/js/owl.carousel.min.js")
     @Scripts.Render("/Scripts/config/House.js")
+    <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDJZlsRr82NdMVjqUPb1fVy-t49lPdTgrw&callback=initMap"></script>
     @{Html.RegisterMvcPagerScriptResource();}
 }
