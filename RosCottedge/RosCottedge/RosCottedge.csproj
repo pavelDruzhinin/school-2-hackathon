@@ -232,6 +232,7 @@
     <Content Include="Content\img\mapMarkers\m3.png" />
     <Content Include="Content\img\mapMarkers\m4.png" />
     <Content Include="Content\img\mapMarkers\m5.png" />
+    <Content Include="Content\img\mapMarkers\map_marker.png" />
     <Content Include="Content\img\users\darkred\q6bJnp5P.jpeg" />
     <Content Include="Content\img\zlad.jpg" />
     <Content Include="Scripts\config\error.js" />
