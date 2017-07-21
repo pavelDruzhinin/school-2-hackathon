@@ -34,7 +34,7 @@
         </div>
     </div>
 </div>
-<h2>______________________________________________</h2>
+@*<h2>______________________________________________</h2>
 <h2>Оповещения о бронировании</h2>
 <table>
     @foreach (var item in Model.Reservations)
@@ -112,5 +112,80 @@
             </td>
 
         </tr>
+    }
+</table>*@
+
+<table>
+    @foreach (var item in Model.GeneralClass)
+    {
+        if (item.Reserv == true)
+        {
+            <tr>
+                <th>
+                    @item.User.Login забронировал(а) дом номер <a href="/House/Index?houseId=@item.HouseId">@item.House.Name</a>
+                </th>
+
+            </tr>
+            <tr>
+                <td>
+                    @item.Date.ToString("dd.MM.yyyy")
+                    <div>
+                        @using (Html.BeginForm("DeleteReservationLandlord", "Account", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    {
+                            <input type="hidden" value="@item.HouseId" name="houseId" />
+                            <input type="hidden" value="@item.Id" name="id" /><br>
+                            <input type="submit" value="Удалить" />
+                        }
+                    </div>
+                </td>
+            </tr>
+        }
+        else if(item.Review==true)
+        {
+            <tr>
+                <th>
+                    @item.User.Login оставил(а) отзыв к дому <a href="/House/Index?houseId=@item.HouseId">@item.House.Name</a>
+                </th>
+
+            </tr>
+
+            <tr>
+                <td>
+                    @item.Date.ToString("dd.MM.yyyy")
+                    <div>
+                        @using (Html.BeginForm("DeleteReviews", "Account", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    {
+                            <input type="hidden" value="@item.HouseId" name="houseId" />
+                            <input type="hidden" value="@item.Id" name="id" /><br>
+                            <input type="submit" value="Удалить" />
+                        }
+                    </div>
+                </td>
+
+            </tr>
+        }
+        else
+        {
+            <tr>
+                <th>
+                    @item.User.Login отказался(ась) от брони <a href="/House/Index?houseId=@item.HouseId">@item.House.Name</a>
+                </th>
+
+            </tr>
+            <tr>
+                <td>
+                    @item.Date.ToString("dd.MM.yyyy")
+                    <div>
+                        @using (Html.BeginForm("DeleteReservationNotif", "Account", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    {
+                            <input type="hidden" value="@item.HouseId" name="houseId" />
+                            <input type="hidden" value="@item.Id" name="id" /><br>
+                            <input type="submit" value="Удалить" />
+                        }
+                    </div>
+                </td>
+            </tr>
+        }
+
     }
 </table>

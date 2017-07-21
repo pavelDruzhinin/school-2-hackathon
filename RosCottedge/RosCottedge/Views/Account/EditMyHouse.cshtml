@@ -163,119 +163,91 @@
         </div>
     </div>
 }
-<h2>______________________________________________</h2>
-<h2>Забронированные даты(этого дома)</h2>
+
 <table>
-    @foreach (var item in Model.Reservations)
+    @foreach (var item in Model.GeneralClass)
     {
-        <tr>
-            <td>
-                @item.ArrivalDate.ToString("dd.MM.yyyy")-@item.DepartureDate.ToString("dd.MM.yyyy")
-            </td>
-            <td>
-                Забронировал <img src=@item.User.Avatar alt="">
-            </td>
-        </tr>
-    }
-</table>
-<h2>______________________________________________</h2>
-<h2>Брони</h2>
-<table>
-    @foreach (var item in Model.Reservations)
-    {
-        <tr>
-            <th>
-                @item.User.Login забронировал(а) дом
-            </th>
-        </tr>
-        <tr>
-            <td>
-                @item.ReservationDate.ToString("dd.MM.yyyy")
-                <div>
-                    @using (Html.BeginForm("DeleteReservationLandlord", "Account", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        if (item.Reserv == true)
+        {
+            <tr>
+                <th>
+                    @item.User.Login забронировал(а) дом номер 
+                </th>
+
+            </tr>
+            <tr>
+                <td>
+                    @item.Date.ToString("dd.MM.yyyy")
+                    <div>
+                        @using (Html.BeginForm("DeleteReservationLandlord", "Account", FormMethod.Post, new { enctype = "multipart/form-data" }))
                     {
-                        <input type="hidden" value="@item.HouseId" name="houseId" />
-                        <input type="hidden" value="@item.Id" name="id" /><br>
-                        <input type="submit" value="Удалить" />
-                    }
-                </div>
-            </td>
-        </tr>
-        <tr>
-            <td></td>
-        </tr>
-    }
-</table>
+                            <input type="hidden" value="@item.HouseId" name="houseId" />
+                            <input type="hidden" value="@item.Id" name="id" /><br>
+                            <input type="submit" value="Удалить" />
+                        }
+                    </div>
+                </td>
+            </tr>
+        }
+        else if (item.Review == true)
+        {
+            <tr>
+                <th>
+                    @item.User.Login оставил(а) отзыв к дому
+                </th>
 
+            </tr>
+            <tr>
+                <td>
+                    @item.Comment
+                </td>
 
-<h2>______________________________________________</h2>
-<h2>Отмены броней</h2>
-<table>
-    @foreach (var item in Model.ReservDelNotices)
-    {
-        <tr>
-            <th>
-                @item.User.Login Отменил(а) бронь
-            </th>
-        </tr>
-        <tr>
-            <td>
-                @item.ReservationDate.ToString("dd.MM.yyyy")
-                <div>
-                    @using (Html.BeginForm("DeleteReservationLandlord", "Account", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            </tr>
+            <tr>
+                <td>
+                    Оценка:  @item.Rating
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @item.Date.ToString("dd.MM.yyyy")
+                    <div>
+                        @using (Html.BeginForm("DeleteReviews", "Account", FormMethod.Post, new { enctype = "multipart/form-data" }))
                     {
-                        <input type="hidden" value="@item.HouseId" name="houseId" />
-                        <input type="hidden" value="@item.Id" name="id" /><br>
-                        <input type="submit" value="Удалить" />
-                    }
-                </div>
-            </td>
-        </tr>
-        <tr>
-            <td></td>
-        </tr>
-    }
-</table>
+                            <input type="hidden" value="@item.HouseId" name="houseId" />
+                            <input type="hidden" value="@item.Id" name="id" /><br>
+                            <input type="submit" value="Удалить" />
+                        }
+                    </div>
+                </td>
 
-<h2>______________________________________________</h2>
-<h2>Отзывы</h2>
-<table>
-    @foreach (var item in Model.Reviews)
-    {
-        <tr>
-            <th>
-                @item.User.Login оставил(а) отзыв к дому <a href="/House/Index?houseId=@item.HouseId">@item.House.Name</a>
-            </th>
+            </tr>
+        }
+        else
+        {
+            <tr>
+                <th>
+                    @item.User.Login отказался(ась) от брони
+                </th>
 
-        </tr>
-        <tr>
-            <td>
-                @item.Comment
-            </td>
-
-        </tr>
-        <tr>
-            <td>
-                Оценка:  @item.Rating
-            </td>
-        </tr>
-        <tr>
-            <td>
-                @item.CommentDate.ToString("dd.MM.yyyy")
-                <div>
-                    @using (Html.BeginForm("DeleteReviews", "Account", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            </tr>
+            <tr>
+                <td>
+                    @item.Date.ToString("dd.MM.yyyy")
+                    <div>
+                        @using (Html.BeginForm("DeleteReservationNotif", "Account", FormMethod.Post, new { enctype = "multipart/form-data" }))
                     {
-                        <input type="hidden" value="@item.HouseId" name="houseId" />
-                        <input type="hidden" value="@item.Id" name="id" /><br>
-                        <input type="submit" value="Удалить" />
-                    }
-                </div>
-            </td>
+                            <input type="hidden" value="@item.HouseId" name="houseId" />
+                            <input type="hidden" value="@item.Id" name="id" /><br>
+                            <input type="submit" value="Удалить" />
+                        }
+                    </div>
+                </td>
+            </tr>
+        }
 
-        </tr>
     }
 </table>
-
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
