@@ -3,6 +3,7 @@ using RosCottedge.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.Migrations;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -33,8 +34,7 @@ namespace RosCottedge.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Login(User user)
         {
-            if (ModelState.IsValid)//если модель проходит валидацию, то ищем в базе соответствие 
-            {
+            
                 var existingUser = db.Users.Where(x => x.Login == user.Login && x.Password == user.Password).FirstOrDefault();
 
                 if (existingUser != null)
@@ -47,7 +47,7 @@ namespace RosCottedge.Controllers
                 {
                     ModelState.AddModelError("", "Неверный логин или пароль");
                 }
-            }
+            
             return View(user);
         }
         #endregion
@@ -176,15 +176,59 @@ namespace RosCottedge.Controllers
             if (User.Identity.IsAuthenticated == false)
                 return new HttpStatusCodeResult(HttpStatusCode.Unauthorized);
 
+
+            User olduser = (from u in db.Users
+                            where u.Login == User.Identity.Name
+                            select u).FirstOrDefault();
+
+
             if (ModelState.IsValid)
             {
-                db.Entry(user).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Profile");
+
+                User email = db.Users.Where(e => e.Email == user.Email).FirstOrDefault();
+                if (email == null || olduser.Email == user.Email)
+                {
+
+                    db.Set<User>().AddOrUpdate(user);
+                    db.SaveChanges();
+                    return RedirectToAction("PersonalInformation");
+
+                }
+                else { ModelState.AddModelError("Email", "Такой E-mail уже зарегистрирован"); }
+
             }
             return View(user);
 
+        }
+        [HttpGet]
+        public ActionResult ChangePassword(int id)
+        {
+            if (User.Identity.IsAuthenticated == false)
+                return new HttpStatusCodeResult(HttpStatusCode.Unauthorized);
+            User user = db.Users.Find(id);
 
+            return View(user);
+
+        }
+        [HttpPost]
+        public ActionResult ChangePassword(User user)
+        {
+            if (ModelState.IsValid)
+            {
+                User olduser = (from u in db.Users
+                                where u.Login == User.Identity.Name
+                                select u).FirstOrDefault();
+                if (olduser.OldPassword == user.OldPassword)
+                {
+                    user.OldPassword = user.Password;
+                    db.Set<User>().AddOrUpdate(user);
+                    db.SaveChanges();
+                    return RedirectToAction("PersonalInformation");
+                }
+                else { ModelState.AddModelError("OldPassword", "Неверный старый пароль"); }
+            }
+
+            return View(user);
         }
         #endregion
 
@@ -216,7 +260,12 @@ namespace RosCottedge.Controllers
                 Reviews = from c in db.Reviews
                          .Include(x => x.User).Include(x => x.House)
                          where c.House.UserId == user.Id && c.Landlord ==false
-                         select c
+                         select c,
+                //Выводим дома по которым пришла отмена брони
+                ReservDelNotices = from c in db.ReservDelNotices
+                             .Include(x => x.User).Include(x => x.House)
+                             where c.House.UserId == user.Id
+                             select c
 
             };
 
@@ -296,7 +345,12 @@ namespace RosCottedge.Controllers
                     Reviews = from c in db.Reviews
                                              .Include(x => x.User).Include(x => x.House)
                               where c.House.UserId == user.Id && c.HouseId == house.Id && c.Landlord==false
-                              select c
+                              select c,
+                    //Вывод удалённых броней по выбранному дому
+                    ReservDelNotices = from r in db.ReservDelNotices
+                                                .Include(x => x.User)
+                                           where r.House.UserId == user.Id && r.HouseId == house.Id
+                                           select r
 
                 };
 
@@ -347,6 +401,17 @@ namespace RosCottedge.Controllers
             db.SaveChanges();
             return RedirectToAction("MyHouse", "Account", new { id = houseId });
         }
+        //Удаление оповещения об отмене брони
+        [HttpPost]
+        public ActionResult DeleteReservationNotif(int id, int houseId)
+        {
+            if (User.Identity.IsAuthenticated == false)
+                return new HttpStatusCodeResult(HttpStatusCode.Unauthorized);
+            ReservDelNotice reserv = db.ReservDelNotices.Find(id);
+            db.ReservDelNotices.Remove(reserv);
+            db.SaveChanges();
+            return RedirectToAction("MyHouse", "Account", new { id = houseId });
+        }
         #endregion
 
         #region Мои поездки
@@ -391,13 +456,26 @@ namespace RosCottedge.Controllers
         {
             if (User.Identity.IsAuthenticated == false)
                 return new HttpStatusCodeResult(HttpStatusCode.Unauthorized);
-            
+
             Reservation reserv = db.Reservations.Find(id);
+
+            ReservDelNotice resDel = new ReservDelNotice
+            {
+                ArrivalDate = reserv.ArrivalDate,
+                DepartureDate = reserv.DepartureDate,
+                Description = reserv.Description,
+                HouseId = reserv.HouseId,
+                Id = reserv.Id,
+                ReservationDate = reserv.ReservationDate,
+                UserId = reserv.UserId
+
+            };
             
-                db.Reservations.Remove(reserv);
-                db.SaveChanges();
-            
-            
+            db.Reservations.Remove(reserv);
+            db.ReservDelNotices.Add(resDel);
+            db.SaveChanges();
+
+
             return RedirectToAction("MyTrips", "Account", new { id = houseId });
         }
         #endregion
