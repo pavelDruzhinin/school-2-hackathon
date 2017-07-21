@@ -11,5 +11,6 @@ namespace RosCottedge.ViewModels
         public IQueryable<House> House { get; set; }
         public IQueryable<Review> Reviews { get; set; }
         public IQueryable<Reservation> Reservations { get; set; }
+        public IQueryable<ReservDelNotice> ReservDelNotices { get; set; }
     }
 }

@@ -61,6 +61,32 @@
     }
 </table>
 <h2>______________________________________________</h2>
+<h2>Оповещения об отмене брони</h2>
+<table>
+    @foreach (var item in Model.ReservDelNotices)
+    {
+        <tr>
+            <th>
+                @item.User.Login отказался(ась) от брони <a href="/House/Index?houseId=@item.HouseId">@item.House.Name</a>
+            </th>
+
+        </tr>
+        <tr>
+            <td>
+                @item.ReservationDate.ToString("dd.MM.yyyy")
+                <div>
+                    @using (Html.BeginForm("DeleteReservationNotif", "Account", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    {
+                        <input type="hidden" value="@item.HouseId" name="houseId" />
+                        <input type="hidden" value="@item.Id" name="id" /><br>
+                        <input type="submit" value="Удалить" />
+                    }
+                </div>
+            </td>
+        </tr>
+    }
+</table>
+<h2>______________________________________________</h2>
 <h2>Отзывы</h2>
 <table>
     @foreach (var item in Model.Reviews)
