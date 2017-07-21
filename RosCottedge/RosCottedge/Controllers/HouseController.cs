@@ -177,7 +177,7 @@ namespace RosCottedge.Controllers
 
         public JsonResult HouseObject()
         {
-            var House = db.Houses.Select(n => new { n.lat, n.lng,n.Name });
+            var House = db.Houses.Select(n => new { n.lat, n.lng,n.Name }).Where(x => x.lat != null && x.lng != null);
             return Json(House, JsonRequestBehavior.AllowGet);
         }
 

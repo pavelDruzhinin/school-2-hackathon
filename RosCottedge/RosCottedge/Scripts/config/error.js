@@ -141,8 +141,8 @@
                 error.insertAfter("#forTwoFields");
             } else if (element.attr("name") == "NumberOfPersons") {
                 error.insertAfter("#Price-error");
-            } else if (element.attr("name") == "Region" || element.attr("name") == "Locality" || element.attr("name") == "Area" || element.attr("name") == "HouseNumber") {
-                error.insertAfter("#map_canvas");
+            } else if (element.attr("name") == "Region" || element.attr("name") == "Locality" || element.attr("name") == "Area") {
+                error.insertAfter(".manualInput");
             } else {
                 error.insertAfter(element);
             }
@@ -160,10 +160,6 @@
             },
             Area: {
                 required: true
-            },
-            HouseNumber: {
-                required: true,
-                HouseNumberFunc: true
             },
             Price: {
                 required: true,
@@ -216,10 +212,6 @@
             Area: {
                 required: "Неверно выбран адрес"
             },
-            HouseNumber: {
-                required: "Неверно выбран адрес",
-                HouseNumberFunc: "Неверно выбран адрес"
-            },
             Price: {
                 required: "Введите цену дома",
                 rangelength: "Длина поля 'цена' дома, должна быть от 3 до 6 символов",
@@ -261,38 +253,12 @@
         },
         focusCleanup: true,
         focusInvalid: false,
-        submitHandler: function (form) {
-            if (!HouseNumberFunc()) {
-                $('#errorMap').css('display', 'block');
-                $('#map_canvas').css('outline', '1px solid #E32444');
-                window.location = '#map_canvas';
-                return false;
-            }
-            sendForm(form);
-        }
     });
 
 
     $('.validation-summary-errors').on('click', function () {
         $('.validation-summary-errors').css('display', 'none');
     });
-
-    function HouseNumberFunc() {
-        var strok = $('#HouseNumber').val();
-        if (strok.length > 4) {
-            strok = strok.substr(0, 4);
-        }
-
-        if (!codeF(strok)) {
-            $('#HouseNumber').val('');
-            return false;
-        }
-        return true;
-    }
-
-    function codeF(str) {
-        return /\d+/.test(str);
-    }
     
 });
 

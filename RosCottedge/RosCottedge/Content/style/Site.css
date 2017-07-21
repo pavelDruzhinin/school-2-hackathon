@@ -733,6 +733,23 @@ label.valid {
 	margin-top: 15px;
   border-top: 1px solid #EBEBEB;
 }
+.manualInput {
+    display: none;
+} 
+.textManualAddress {
+    font-size: 14px;
+    opacity: .87;
+    text-align: center;
+    padding-top: 5px;
+}
+
+.textManualAddress  p {
+    font-size: 14px;
+    padding-bottom: 8px;
+}
+.manualAddress {
+    cursor: pointer;
+}
 /*Page-Home Start*/
 .briefDescription {
     margin-top: 30px;

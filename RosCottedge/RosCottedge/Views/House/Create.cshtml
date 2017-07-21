@@ -26,14 +26,20 @@
                 @Html.EditorFor(model => model.NumberOfPersons, new { htmlAttributes = new { @class = "form-control smallInputCreate floatInput", @placeholder = "Количество человек" } })
                 <div id="forTwoFields"></div>
 
-                <label>Адрес для поиска: </label><input id="address" style="width:100%;" type="text" placeholder="Найдите ваш дом"/>
+                <div class="searchHouse"><label>Адрес для поиска: </label><input id="address" style="width:100%;" type="text" placeholder="Найдите ваш дом" /></div>
                 <div id="map_canvas" style="width:100%; height:400px; margin-bottom:0; margin-top: 15px;"></div>
                 <div id="errorMap" style="width:100%; margin-top: 4px; display:none;"><p style="font-size: 14px; color: #E32444;">Неверно выбран адрес</p></div>
 
-                <input type="hidden" name="Region" id="Region" value="" />
-                <input type="hidden" name="Locality" id="Locality" value="" />
-                <input type="hidden" name="Area" id="Area" value="" />
-                <input type="hidden" name="HouseNumber" id="HouseNumber" value="" />
+                <div class="textManualAddress">
+                    <p>Поиск не помогает, укажите на карте местоположение дома и введите адрес вручную. <br /></p>
+                    <span class="manualAddress">Ввести вручную?</span>
+                </div>
+                <div class="manualInput">
+                    <input class="smallInputCreate" type="text" name="Region" id="Region" value="" placeholder="Область" />
+                    <input class="smallInputCreate floatInput" type="text" name="Locality" id="Locality" value="" placeholder="Город" />
+                    <input class="smallInputCreate" type="text" name="Area" id="Area" value="" placeholder="Улица" />
+                    <input class="smallInputCreate floatInput" type="text" name="HouseNumber" id="HouseNumber" value="" placeholder="Дом" />
+                </div>
 
                 @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control", @placeholder = "Описание" } })
 
@@ -70,6 +76,13 @@
 <script>
     $(document).ready(function () {
         init();
+
+        $('.manualAddress').on('click', function () {
+            $('.manualInput').css('display', 'block');
+            $('.searchHouse').css('display', 'none');
+            $('.manualInput input').val('');
+            $('.textManualAddress').css('display', 'none');
+        });
 
         $(function () {
             $("#address").autocomplete({
@@ -119,9 +132,6 @@
                         $('#Locality').val(addr[2].short_name);
                         $('#Area').val(addr[1].short_name);
                         $('#HouseNumber').val(addr[0].short_name);
-                        HouseNumberFunc();
-                        $('#errorMap').css('display', 'none');
-                        $('#map_canvas').css('outline', 'none');
                     }
                 }
             });
@@ -138,22 +148,6 @@
             }
         }
 
-        function HouseNumberFunc() {
-            var strok = $('#HouseNumber').val();
-            if (strok.length > 4) {
-                strok = strok.substr(0, 4);
-            }
-
-            if (!codeF(strok)) {
-                $('#HouseNumber').val('');
-                return false;
-            }
-            return true;
-        }
-
-        function codeF(str) {
-            return /\d+/.test(str);
-        }
     });
 
 
