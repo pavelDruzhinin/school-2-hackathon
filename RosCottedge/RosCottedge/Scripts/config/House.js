@@ -58,32 +58,8 @@
         return false;
     });
 
-    var geo = new google.maps.Geocoder();
     
 
-    var Country = $("#Country").text();
-    var Region = $("#Region").text();
-    var Street = $("#Street").text();
-    var City = $("#City").text();
-    var House = $("#House").text();
-    var address = Street + ' ' + House + ' + ' + City + ', ' + Region + ', ' + Country;
-
-    console.log(address);
-    geo.geocode({ 'address': address }, function (results, status) {
-        console.log(results[0]);
-        if (status == google.maps.GeocoderStatus.OK) {
-            map.setCenter(results[0].geometry.location);
-            var marker = new google.maps.Marker({
-                map: map,
-                position: results[0].geometry.location
-            });
-        }
-        else {
-            $('#MapAddressNotFound').css('display', 'block');
-            $('#map_canvas_house').css('display', 'none');
-            $('#SlideMap').attr('href','#MapAddressNotFound');
-        }
-    });
 
 });
 var map;
@@ -92,6 +68,16 @@ function initMap() {
         zoom: 17,
         scrollwheel: false,
         styles: styleArray
+    });
+
+    var lat = $('#LatId').val();
+    var lng = $('#LngId').val();
+    var Latlng = new google.maps.LatLng(lat, lng);
+
+    map.setCenter(Latlng);
+    var marker = new google.maps.Marker({
+        map: map,
+        position: Latlng
     });
 }
 

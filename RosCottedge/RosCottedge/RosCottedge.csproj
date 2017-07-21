@@ -209,11 +209,16 @@
     <Compile Include="Migrations\201707202133046_UpdateCoordinateField.Designer.cs">
       <DependentUpon>201707202133046_UpdateCoordinateField.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201707211137294_UpdatePersonalArea.cs" />
+    <Compile Include="Migrations\201707211137294_UpdatePersonalArea.Designer.cs">
+      <DependentUpon>201707211137294_UpdatePersonalArea.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\HomeFilter.cs" />
     <Compile Include="Models\House.cs" />
     <Compile Include="Models\Picture.cs" />
     <Compile Include="Models\Reservation.cs" />
+    <Compile Include="Models\ReservDelNotice.cs" />
     <Compile Include="Models\Review.cs" />
     <Compile Include="Models\SiteContext.cs" />
     <Compile Include="Models\User.cs" />
@@ -301,6 +306,7 @@
     <Content Include="Views\Account\MyTrips.cshtml" />
     <Content Include="Views\Account\Profile.cshtml" />
     <Content Include="Views\Home\_Houses.cshtml" />
+    <Content Include="Views\Account\ChangePassword.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -344,6 +350,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201707202133046_UpdateCoordinateField.resx">
       <DependentUpon>201707202133046_UpdateCoordinateField.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201707211137294_UpdatePersonalArea.resx">
+      <DependentUpon>201707211137294_UpdatePersonalArea.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
