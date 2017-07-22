@@ -69,11 +69,18 @@ namespace RosCottedge.Controllers
 
             //Определяем максимальную и минимальную цену аренды
 
-            int max = db.Houses.Select(x => x.Price).Max();
-            int min = db.Houses.Select(x => x.Price).Min();
+            int max = 0;
+            int min = 0;
+
+            if (db.Houses.Select(x => x.Id).Count() != 0)
+            {
+                max = db.Houses.Select(x => x.Price).Max();
+                min = db.Houses.Select(x => x.Price).Min();
+            };
 
             ViewBag.MaxPrice = max;
             ViewBag.MinPrice = min;
+
             var kappa = Request.IsAjaxRequest();
 
             return Request.IsAjaxRequest()
