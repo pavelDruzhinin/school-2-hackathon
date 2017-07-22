@@ -232,12 +232,12 @@
     <Content Include="Content\img\chubaka.jpg" />
     <Content Include="Content\img\error.png" />
     <Content Include="Content\img\icons\shareBtn.svg" />
-    <Content Include="Content\img\mapMarkers\m1.png" />
-    <Content Include="Content\img\mapMarkers\m2.png" />
-    <Content Include="Content\img\mapMarkers\m3.png" />
-    <Content Include="Content\img\mapMarkers\m4.png" />
-    <Content Include="Content\img\mapMarkers\m5.png" />
     <Content Include="Content\img\mapMarkers\map_marker.png" />
+    <Content Include="Content\img\mapMarkers\m1.png" />
+    <Content Include="Content\img\mapMarkers\mm2.png" />
+    <Content Include="Content\img\mapMarkers\mm3.png" />
+    <Content Include="Content\img\mapMarkers\mm4.png" />
+    <Content Include="Content\img\mapMarkers\mm5.png" />
     <Content Include="Content\img\users\darkred\q6bJnp5P.jpeg" />
     <Content Include="Content\img\zlad.jpg" />
     <Content Include="Scripts\config\error.js" />
@@ -245,6 +245,7 @@
     <Content Include="Scripts\libs\bootstrap\bootstrap.css" />
     <Content Include="Scripts\libs\font-awesome\css\font-awesome.min.css" />
     <Content Include="Scripts\libs\font-awesome\fonts\fontawesome-webfont.svg" />
+    <Content Include="Scripts\libs\markerclusterer\markerclusterer.js" />
     <Content Include="Scripts\libs\owl-carousel\css\owl.carousel.min.css" />
     <Content Include="Scripts\libs\owl-carousel\js\owl.carousel.min.js" />
     <Content Include="Scripts\config\House.js" />

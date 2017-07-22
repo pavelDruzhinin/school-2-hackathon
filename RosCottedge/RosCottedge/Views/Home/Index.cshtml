@@ -12,7 +12,7 @@
     <form id ="searchForm" class="searchBox mainBox" method="post" @*action="/Home/Index" data-ajax="true" data-ajax-update="#houses" data-ajax-mode="replace"*@>
       <div class="mainField">
         <div class="area searchFields">
-          <input type="text" placeholder="Район" name="region">
+          <input autocomplete="off" class="select" type="text" placeholder="Район" name="region">
         </div>
         <div class="dates searchFields">
           <input type="text" placeholder="Заезд" name="arrivalDate" id="date1" class="date">
@@ -29,10 +29,13 @@
         <input type="hidden" value=1 name="fromForm"/>
         <input type="submit" value="Подобрать" class="red">
       </div>
-      <div class="addField">
-        <div class="sortingBox">
+      <div class="addField row">
+        <div class="sortingBox col-md-6">
           <span class="sorting"></span>
-          <span>Сортировка</span>
+          <span class="op87">Сортировать</span>
+        </div>
+        <div class="totalItems col-md-6 op87">
+            Всего результатов: @Model.TotalItemCount
         </div>
       </div>
     </form>
@@ -44,79 +47,7 @@
 </div>
 
 <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDJZlsRr82NdMVjqUPb1fVy-t49lPdTgrw&sensor=false"></script>
-<script>
-    $.getJSON("/House/HouseObject", function (data) {
-        var markers = [];
-
-        function initMap() {
-
-            var map = new google.maps.Map(document.getElementById('map_canvas'), {
-                zoom: 4,
-                center: { lat: 61.52401, lng: 105.318756 }
-            });
-
-           
-            for (var i = 0; i < data.length; i++) {
-                var name = data[i].Name;
-                var id = data[i].Id;
-                var locality = data[i].Locality;
-                var area = data[i].Area;
-                var persons = data[i].NumberOfPersons;
-                var price = data[i].Price;
-                var rating = data[i].Rating;
-                var latlng = new google.maps.LatLng(data[i].lat, data[i].lng);
-                var marker = new google.maps.Marker({
-                    position: latlng,
-                    title: data[i].Name,
-                    icon: {
-                        url: "../../Content/img/mapMarkers/map_marker.png"
-                    }
-                });
-                configMarders(marker, name, id, locality, area, persons, price, rating);
-
-            }
-
-            var markerClusterer = new MarkerClusterer(map, markers, {
-                maxZoom: 13,
-                gridSize: 50,
-                imagePath: '../../Content/img/mapMarkers/m'
-            });
-
-            infoWindow = new google.maps.InfoWindow();
-
-        }
-
-        function configMarders(marker, name, id, locality, area, persons, price, rating) {
-            markers.push(marker);
-
-            google.maps.event.addListener(marker, "click", function () {
-                var contentString =
-                '<a href="/House/Index?houseId='+id+'" class="infowindow">'+
-                    '<p class="titInfo">'+name+'</p>' +
-                    '<p class="addressInfo">'+locality+','+area+'</p>'+
-                    '<p class="personsInfo">'+persons+'</p>'+
-                    '<p class="priceInfo">'+price+'</p>'+
-                    '<p class="ratingInfo">'+rating+'</p>'+
-                '</a>';
-                infoWindow.setContent(contentString);
-                infoWindow.open(map, marker);
-            });
-        }
-
-
-        google.maps.event.addDomListener(window, "load", initMap);
-
-    });
-</script>
-
-<script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>
-
-
-
-
-
-
-
+<script src="../../Scripts/libs/markerclusterer/markerclusterer.js"></script>
 @section scripts {
     @Scripts.Render("/Scripts/config/main.js")
     @{Html.RegisterMvcPagerScriptResource();}
