@@ -64,15 +64,17 @@ namespace RosCottedge.Models
         public string lng { set; get; }
 
         public float Rating { get; set; }
-
-        public string Avatar { get; set; }
-
+        
         public List<Review> Reviews { get; set; }
 
         public List<Reservation> Reservations { get; set; }
 
+        public List<Picture> Pictures { get; set; }
+
         public int UserId { get; set; }
 
         public User User { get; set; }
+        
+        public bool Hide { get; set; }
     }
 }

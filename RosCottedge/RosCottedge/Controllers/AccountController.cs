@@ -243,33 +243,122 @@ namespace RosCottedge.Controllers
                          where u.Login == User.Identity.Name
                          select u).FirstOrDefault();
 
+            List<GeneralСlass> genclass = new List<GeneralСlass>();
+
+            //Ищем дома, по которым пришла бронь
+            IQueryable<Reservation> reservations = from r in db.Reservations
+                                .Include(u => u.User).Include(u=>u.House)
+                               where r.House.UserId == user.Id && r.Landlord == false
+                               select r;
+            //Ищем дома, по которым оставлен отзыв
+            IQueryable<Review> reviews = from c in db.Reviews
+                     .Include(x => x.User).Include(x => x.House)
+                          where c.House.UserId == user.Id && c.Landlord == false
+                          select c;
+            //Ищем дома по которым пришла отмена брони
+            IQueryable<ReservDelNotice> reservdelnotices = from c in db.ReservDelNotices
+                             .Include(x => x.User).Include(x => x.House)
+                                                           where c.House.UserId == user.Id
+                                                           select c;
+
+            foreach (var r in reservations)
+            {
+                var instanceGeneralClass = new GeneralСlass();
+                #region
+                instanceGeneralClass.Date = r.ReservationDate;
+                instanceGeneralClass.ArrivalDate = r.ArrivalDate;
+                instanceGeneralClass.DepartureDate = r.DepartureDate;
+                instanceGeneralClass.Description = r.Description;
+                instanceGeneralClass.Tenant = r.Tenant;
+                instanceGeneralClass.Landlord = r.Landlord;
+                instanceGeneralClass.UserId = r.UserId;
+                instanceGeneralClass.HouseId = r.HouseId;
+                instanceGeneralClass.User = r.User;
+                instanceGeneralClass.House = r.House;
+                instanceGeneralClass.Reserv = true;
+                instanceGeneralClass.Id = r.Id;
+                #endregion
+                genclass.Add(instanceGeneralClass);
+            }
+            foreach (var r in reviews)
+            {
+                var instanceGeneralClass = new GeneralСlass();
+                #region
+                instanceGeneralClass.Comment = r.Comment;
+                instanceGeneralClass.Rating = r.Rating;
+                instanceGeneralClass.Date = r.CommentDate;
+                instanceGeneralClass.UserId = r.UserId;
+                instanceGeneralClass.HouseId = r.HouseId;
+                instanceGeneralClass.Landlord = r.Landlord;
+                instanceGeneralClass.User = r.User;
+                instanceGeneralClass.House = r.House;
+                instanceGeneralClass.Landlord = r.Landlord;
+                instanceGeneralClass.Id = r.Id;
+                instanceGeneralClass.Review = true;
+                #endregion
+                genclass.Add(instanceGeneralClass);
+            }
+
+            foreach (var r in reservdelnotices)
+            {
+                #region
+                var instanceGeneralClass = new GeneralСlass();
+                instanceGeneralClass.Date = r.ReservationDate;
+                instanceGeneralClass.ArrivalDate = r.ArrivalDate;
+                instanceGeneralClass.DepartureDate = r.DepartureDate;
+                instanceGeneralClass.Description = r.Description;
+                instanceGeneralClass.UserId = r.UserId;
+                instanceGeneralClass.HouseId = r.HouseId;
+                instanceGeneralClass.User = r.User;
+                instanceGeneralClass.House = r.House;                          
+                instanceGeneralClass.Id = r.Id;
+                #endregion
+                genclass.Add(instanceGeneralClass);
+            }
+
             // Выводим все дома, которые добавлял пользователь
             MyHouseViewModel myHouseModel = new MyHouseViewModel()
             {
                 House = from h in db.Houses
-                        where h.UserId == user.Id
+                        .Include(x => x.Pictures)
+                        where h.UserId == user.Id && h.Hide==false
                         select h,
-
-                //Выводим дома, по которым пришла бронь
-                Reservations = from r in db.Reservations
-                                .Include(u => u.User)
-                              where r.House.UserId == user.Id && r.Landlord==false
-                              select r,
-
-                //Выводим дома, по которым оставлен отзыв 
-                Reviews = from c in db.Reviews
-                         .Include(x => x.User).Include(x => x.House)
-                         where c.House.UserId == user.Id && c.Landlord ==false
-                         select c,
-                //Выводим дома по которым пришла отмена брони
-                ReservDelNotices = from c in db.ReservDelNotices
-                             .Include(x => x.User).Include(x => x.House)
-                             where c.House.UserId == user.Id
-                             select c
+                
+                GeneralClass= from g in genclass
+                              orderby g.Date descending
+                              select g
 
             };
+            
 
             return View(myHouseModel);
+        }
+
+        //Удаление дома
+        [HttpPost]
+        public ActionResult DeleteHouse(int id)
+        {
+            if (User.Identity.IsAuthenticated == false)
+                return new HttpStatusCodeResult(HttpStatusCode.Unauthorized);
+            House house = db.Houses.Find(id);
+
+            
+               var ho = (from h in db.Reservations
+                        where h.House.User.Login == User.Identity.Name && h.HouseId == house.Id
+                        orderby h.DepartureDate
+                      select h).ToList().LastOrDefault();
+
+            if (house.Reservations == null || ho.DepartureDate<DateTime.Now)
+            {
+                house.Hide = true;
+                db.SaveChanges();
+            }
+            else
+            {
+                ModelState.AddModelError("","По этому дому есть бронь. Удаление невозможно");
+            }
+           
+            return RedirectToAction("MyHouse", "Account");
         }
         #endregion
 
@@ -293,7 +382,6 @@ namespace RosCottedge.Controllers
                     Adress = "/Content/img/users/" + user.Login + "/" + fileName,
                     HouseId = houseId
                 };
-                house.Avatar = picture.Adress;
                 db.Pictures.Add(picture);
                 db.SaveChanges();
             }
@@ -317,6 +405,7 @@ namespace RosCottedge.Controllers
 
         public ActionResult EditMyHouse(int? id)
         {
+ 
 
             if (User.Identity.IsAuthenticated)
             {
@@ -325,9 +414,86 @@ namespace RosCottedge.Controllers
                 User user = (from u in db.Users
                              where u.Login == User.Identity.Name
                              select u).FirstOrDefault();
+
+
+                List<GeneralСlass> genclass = new List<GeneralСlass>();
                 if (house.UserId != user.Id)
                 {
                     return new HttpStatusCodeResult(HttpStatusCode.Forbidden);
+                }
+
+                //Вывод забронированных дат по выбранному дому
+                IQueryable<Reservation> reservations = from r in db.Reservations
+                                            .Include(x => x.User)
+                                                       where r.House.UserId == user.Id && r.HouseId == house.Id && r.Landlord == false
+                                                       select r;
+
+                //Вывод комментариев по выбранному дому
+                IQueryable<Review> reviews = from c in db.Reviews
+                                         .Include(x => x.User).Include(x => x.House)
+                                             where c.House.UserId == user.Id && c.HouseId == house.Id && c.Landlord == false
+                                             select c;
+
+                //Вывод удалённых броней по выбранному дому
+                IQueryable<ReservDelNotice> reservdelnotices = from r in db.ReservDelNotices
+                                            .Include(x => x.User)
+                                   where r.House.UserId == user.Id && r.HouseId == house.Id
+                                   select r;
+
+                foreach (var r in reservations)
+                {
+                    var instanceGeneralClass = new GeneralСlass();
+                    #region
+                    instanceGeneralClass.Date = r.ReservationDate;
+                    instanceGeneralClass.ArrivalDate = r.ArrivalDate;
+                    instanceGeneralClass.DepartureDate = r.DepartureDate;
+                    instanceGeneralClass.Description = r.Description;
+                    instanceGeneralClass.Tenant = r.Tenant;
+                    instanceGeneralClass.Landlord = r.Landlord;
+                    instanceGeneralClass.UserId = r.UserId;
+                    instanceGeneralClass.HouseId = r.HouseId;
+                    instanceGeneralClass.User = r.User;
+                    instanceGeneralClass.House = r.House;                   
+                    instanceGeneralClass.Reserv = true;
+                    instanceGeneralClass.Id = r.Id;
+                    #endregion
+                    genclass.Add(instanceGeneralClass);
+                }
+                foreach (var r in reviews)
+                {
+                    var instanceGeneralClass = new GeneralСlass();
+                    #region
+                    instanceGeneralClass.Comment = r.Comment;
+                    instanceGeneralClass.Rating = r.Rating;
+                    instanceGeneralClass.Date = r.CommentDate;
+                    instanceGeneralClass.UserId = r.UserId;
+                    instanceGeneralClass.HouseId = r.HouseId;
+                    instanceGeneralClass.Landlord = r.Landlord;
+                    instanceGeneralClass.User = r.User;
+                    instanceGeneralClass.House = r.House;
+                    instanceGeneralClass.Landlord = r.Landlord;
+                    instanceGeneralClass.Id = r.Id;
+                    instanceGeneralClass.Review = true;
+                    
+                    #endregion
+                    genclass.Add(instanceGeneralClass);
+                }
+
+                foreach (var r in reservdelnotices)
+                {
+                    #region
+                    var instanceGeneralClass = new GeneralСlass();
+                    instanceGeneralClass.Date = r.ReservationDate;
+                    instanceGeneralClass.ArrivalDate = r.ArrivalDate;
+                    instanceGeneralClass.DepartureDate = r.DepartureDate;
+                    instanceGeneralClass.Description = r.Description;
+                    instanceGeneralClass.UserId = r.UserId;
+                    instanceGeneralClass.HouseId = r.HouseId;
+                    instanceGeneralClass.User = r.User;
+                    instanceGeneralClass.House = r.House;                                             
+                    instanceGeneralClass.Id = r.Id;
+                    #endregion
+                    genclass.Add(instanceGeneralClass);
                 }
                 EditMyHouseViewModel viewModel = new EditMyHouseViewModel()
                 {
@@ -336,21 +502,10 @@ namespace RosCottedge.Controllers
                     //Вывод всех фотографий дома
                     Pictures = db.Pictures.Where(p => p.HouseId == house.Id),
 
-                    //Вывод забронированных дат по выбранному дому
-                    Reservations = from r in db.Reservations
-                                                .Include(x => x.User)
-                                   where r.House.UserId == user.Id && r.HouseId == house.Id && r.Landlord==false
-                                   select r,
-                    //Вывод комментариев по выбранному дому
-                    Reviews = from c in db.Reviews
-                                             .Include(x => x.User).Include(x => x.House)
-                              where c.House.UserId == user.Id && c.HouseId == house.Id && c.Landlord==false
-                              select c,
-                    //Вывод удалённых броней по выбранному дому
-                    ReservDelNotices = from r in db.ReservDelNotices
-                                                .Include(x => x.User)
-                                           where r.House.UserId == user.Id && r.HouseId == house.Id
-                                           select r
+                    
+                    GeneralClass = from g in genclass
+                                   orderby g.Date descending
+                                   select g
 
                 };
 
@@ -433,6 +588,7 @@ namespace RosCottedge.Controllers
 
             ReservationDelete = from a in db.Reservations
                                  .Include(x => x.House)
+                                 .Include(x => x.House.Pictures)
                                 where a.UserId == user.Id
                                 select a
             };
@@ -466,7 +622,7 @@ namespace RosCottedge.Controllers
                 Description = reserv.Description,
                 HouseId = reserv.HouseId,
                 Id = reserv.Id,
-                ReservationDate = reserv.ReservationDate,
+                ReservationDate = DateTime.Now,
                 UserId = reserv.UserId
 
             };
@@ -480,6 +636,7 @@ namespace RosCottedge.Controllers
         }
         #endregion
 
+        #region Валидация при регистрации
         public JsonResult IsLoginAvailable(string Login)
         {
             User user = db.Users.FirstOrDefault(u => u.Login == Login);
@@ -509,5 +666,6 @@ namespace RosCottedge.Controllers
             }
             return Json(false, JsonRequestBehavior.AllowGet);
         }
+        #endregion
     }
 }

@@ -151,7 +151,6 @@ namespace RosCottedge.Controllers
                  = db.Users.Where
                         (x => x.Login == User.Identity.Name).FirstOrDefault();
                 house.UserId = user.Id;
-                house.Avatar = "/Content/img/houseAvatar.jpg";
                 db.Houses.Add(house);
                 db.SaveChanges();
                 return RedirectToAction("Index", "Home");
