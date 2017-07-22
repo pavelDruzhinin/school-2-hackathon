@@ -74,5 +74,7 @@ namespace RosCottedge.Models
         public int UserId { get; set; }
 
         public User User { get; set; }
+        
+        public bool Hide { get; set; }
     }
 }

@@ -164,6 +164,20 @@
     </div>
 }
 
+<table border="1">
+    @foreach (var i in Model.House.Reservations)
+    {
+    <tr>
+        <td>
+            @i.ArrivalDate.ToString("dd.MM.yyyy")-@i.DepartureDate.ToString("dd.MM.yyyy")
+        </td>
+        <td>
+            <img src=@i.User.Avatar alt="">
+        </td>
+    </tr>
+    }
+</table>
+
 <table>
     @foreach (var item in Model.GeneralClass)
     {
@@ -171,7 +185,7 @@
         {
             <tr>
                 <th>
-                    @item.User.Login забронировал(а) дом номер 
+                    @item.User.Login забронировал(а) дом 
                 </th>
 
             </tr>

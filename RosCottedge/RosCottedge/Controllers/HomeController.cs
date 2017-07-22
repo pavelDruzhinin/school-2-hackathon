@@ -20,7 +20,7 @@ namespace RosCottedge.Controllers
             int pageNumber = (page ?? 1);
             int pageSize = 8;
 
-            var houses = db.Houses.Include(x => x.Reviews).Include(x => x.Reservations).Include(x => x.Pictures);
+            var houses = db.Houses.Include(x => x.Reviews).Include(x => x.Reservations).Include(x => x.Pictures).Where(x=>x.Hide==false);
 
             if (Session["Filter"] != null && fromForm != 1)
             {

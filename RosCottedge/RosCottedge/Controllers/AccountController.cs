@@ -321,7 +321,7 @@ namespace RosCottedge.Controllers
             {
                 House = from h in db.Houses
                         .Include(x => x.Pictures)
-                        where h.UserId == user.Id
+                        where h.UserId == user.Id && h.Hide==false
                         select h,
                 
                 GeneralClass= from g in genclass
@@ -332,6 +332,33 @@ namespace RosCottedge.Controllers
             
 
             return View(myHouseModel);
+        }
+
+        //Удаление дома
+        [HttpPost]
+        public ActionResult DeleteHouse(int id)
+        {
+            if (User.Identity.IsAuthenticated == false)
+                return new HttpStatusCodeResult(HttpStatusCode.Unauthorized);
+            House house = db.Houses.Find(id);
+
+            
+               var ho = (from h in db.Reservations
+                        where h.House.User.Login == User.Identity.Name && h.HouseId == house.Id
+                        orderby h.DepartureDate
+                      select h).ToList().LastOrDefault();
+
+            if (house.Reservations == null || ho.DepartureDate<DateTime.Now)
+            {
+                house.Hide = true;
+                db.SaveChanges();
+            }
+            else
+            {
+                ModelState.AddModelError("","По этому дому есть бронь. Удаление невозможно");
+            }
+           
+            return RedirectToAction("MyHouse", "Account");
         }
         #endregion
 
@@ -387,6 +414,8 @@ namespace RosCottedge.Controllers
                 User user = (from u in db.Users
                              where u.Login == User.Identity.Name
                              select u).FirstOrDefault();
+
+
                 List<GeneralСlass> genclass = new List<GeneralСlass>();
                 if (house.UserId != user.Id)
                 {
@@ -593,7 +622,7 @@ namespace RosCottedge.Controllers
                 Description = reserv.Description,
                 HouseId = reserv.HouseId,
                 Id = reserv.Id,
-                ReservationDate = reserv.ReservationDate,
+                ReservationDate = DateTime.Now,
                 UserId = reserv.UserId
 
             };

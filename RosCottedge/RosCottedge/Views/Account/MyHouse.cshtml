@@ -18,6 +18,13 @@
                         <div class="ratingHouse">
                             <h2><a href="/Account/EditMyHouse/@item.Id">Управление</a></h2>
                             <h2><a href="/House/Index?houseId=@item.Id">Страница дома</a></h2>
+                            @using (Html.BeginForm("DeleteHouse", "Account", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                            {
+                            
+                            <input type="hidden" value="@item.Id" name="id" /><br>
+                            <input type="submit" value="Удалить дом" />
+                                Html.ValidationMessageFor(Model=>Model.House, "", new { @class = "text-danger" });
+                            }
                             <h2>Оценка пользователей</h2>
 
                             <ul>
@@ -34,86 +41,7 @@
         </div>
     </div>
 </div>
-@*<h2>______________________________________________</h2>
-<h2>Оповещения о бронировании</h2>
-<table>
-    @foreach (var item in Model.Reservations)
-    {
-        <tr>
-            <th>
-                @item.User.Login забронировал(а) дом номер <a href="/House/Index?houseId=@item.HouseId">@item.House.Name</a>
-            </th>
 
-        </tr>
-        <tr>
-            <td>
-                @item.ReservationDate.ToString("dd.MM.yyyy")
-                <div>
-                    @using (Html.BeginForm("DeleteReservationLandlord", "Account", FormMethod.Post, new { enctype = "multipart/form-data" }))
-                    {
-                        <input type="hidden" value="@item.HouseId" name="houseId" />
-                        <input type="hidden" value="@item.Id" name="id" /><br>
-                        <input type="submit" value="Удалить" />
-                    }
-                </div>
-            </td>
-        </tr>
-    }
-</table>
-<h2>______________________________________________</h2>
-<h2>Оповещения об отмене брони</h2>
-<table>
-    @foreach (var item in Model.ReservDelNotices)
-    {
-        <tr>
-            <th>
-                @item.User.Login отказался(ась) от брони <a href="/House/Index?houseId=@item.HouseId">@item.House.Name</a>
-            </th>
-
-        </tr>
-        <tr>
-            <td>
-                @item.ReservationDate.ToString("dd.MM.yyyy")
-                <div>
-                    @using (Html.BeginForm("DeleteReservationNotif", "Account", FormMethod.Post, new { enctype = "multipart/form-data" }))
-                    {
-                        <input type="hidden" value="@item.HouseId" name="houseId" />
-                        <input type="hidden" value="@item.Id" name="id" /><br>
-                        <input type="submit" value="Удалить" />
-                    }
-                </div>
-            </td>
-        </tr>
-    }
-</table>
-<h2>______________________________________________</h2>
-<h2>Отзывы</h2>
-<table>
-    @foreach (var item in Model.Reviews)
-    {
-        <tr>
-            <th>
-                @item.User.Login оставил(а) отзыв к дому <a href="/House/Index?houseId=@item.HouseId">@item.House.Name</a>
-            </th>
-
-        </tr>
-
-        <tr>
-            <td>
-                @item.CommentDate.ToString("dd.MM.yyyy")
-                <div>
-                    @using (Html.BeginForm("DeleteReviews", "Account", FormMethod.Post, new { enctype = "multipart/form-data" }))
-                    {
-                        <input type="hidden" value="@item.HouseId" name="houseId" />
-                        <input type="hidden" value="@item.Id" name="id" /><br>
-                        <input type="submit" value="Удалить" />
-                    }
-                </div>
-            </td>
-
-        </tr>
-    }
-</table>*@
 
 <table>
     @foreach (var item in Model.GeneralClass)
