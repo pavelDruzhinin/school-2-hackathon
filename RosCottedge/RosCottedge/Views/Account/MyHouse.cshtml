@@ -11,7 +11,7 @@
             @foreach (var item in Model.House)
             {
                 <div class="col-md-6 houseItem">
-                    <div class="imgBox" style="background-image: url(@item.Avatar)"></div>
+                    <div class="imgBox" style="background-image: url(@item.Pictures.Where(x => x.HouseId == item.Id).Select(x => x.Adress).FirstOrDefault())"></div>
                     <div class="ContentBox">
                         <h2 class="nameHouse"><a href="/House/Index?houseId=@item.Id">@item.Name</a></h2>
                         <span class="address">@item.Locality, @item.Area</span>

@@ -320,6 +320,7 @@ namespace RosCottedge.Controllers
             MyHouseViewModel myHouseModel = new MyHouseViewModel()
             {
                 House = from h in db.Houses
+                        .Include(x => x.Pictures)
                         where h.UserId == user.Id
                         select h,
                 
@@ -354,7 +355,6 @@ namespace RosCottedge.Controllers
                     Adress = "/Content/img/users/" + user.Login + "/" + fileName,
                     HouseId = houseId
                 };
-                house.Avatar = picture.Adress;
                 db.Pictures.Add(picture);
                 db.SaveChanges();
             }
@@ -559,6 +559,7 @@ namespace RosCottedge.Controllers
 
             ReservationDelete = from a in db.Reservations
                                  .Include(x => x.House)
+                                 .Include(x => x.House.Pictures)
                                 where a.UserId == user.Id
                                 select a
             };

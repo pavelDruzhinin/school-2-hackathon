@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Data.Entity;
 using Webdiyer.WebControls.Mvc;
+using RosCottedge.ViewModels;
 
 namespace RosCottedge.Controllers
 {
@@ -18,12 +19,12 @@ namespace RosCottedge.Controllers
         {
             int pageNumber = (page ?? 1);
             int pageSize = 8;
-            
-            var houses = db.Houses.Include(x => x.Reviews).Include(x => x.Reservations);
 
-            if (Session["Filter"] != null && fromForm!=1)
+            var houses = db.Houses.Include(x => x.Reviews).Include(x => x.Reservations).Include(x => x.Pictures);
+
+            if (Session["Filter"] != null && fromForm != 1)
             {
-                var oldFilter = (HomeFilter) Session["Filter"];
+                var oldFilter = (HomeFilter)Session["Filter"];
                 region = region ?? oldFilter.Region;
                 startPrice = startPrice ?? oldFilter.StartPrice;
                 finishPrice = finishPrice ?? oldFilter.FinishPrice;
@@ -47,7 +48,7 @@ namespace RosCottedge.Controllers
             if (numberOfPersons != null)
             {
                 houses = houses.Where(x => x.NumberOfPersons >= numberOfPersons);
- 
+
             }
             if (arrivalDate != null && departureDate != null)
             {
@@ -72,7 +73,7 @@ namespace RosCottedge.Controllers
             int max = 0;
             int min = 0;
 
-            if (db.Houses.Select(x => x.Id).Count() != 0)
+            if (db.Houses.Any())
             {
                 max = db.Houses.Select(x => x.Price).Max();
                 min = db.Houses.Select(x => x.Price).Min();
@@ -81,11 +82,29 @@ namespace RosCottedge.Controllers
             ViewBag.MaxPrice = max;
             ViewBag.MinPrice = min;
 
-            var kappa = Request.IsAjaxRequest();
+            //Создаём лист регионов из базы
+
+            List<string> regions = new List<string>();
+            
+            foreach (var h in db.Houses)
+            {
+                if (!regions.Contains(h.Region))
+                {
+                    regions.Add(h.Region);
+                }
+            };
+
+            var viewModel = new HomeIndexViewModel()
+            {
+                Houses = houses.OrderByDescending(x => x.Id).ToPagedList(pageNumber, pageSize),
+                Regions = regions
+            };
+            
+        var kappa = Request.IsAjaxRequest();
 
             return Request.IsAjaxRequest()
-                ? (ActionResult)PartialView("_Houses", houses.OrderByDescending(x => x.Id).ToPagedList(pageNumber, pageSize))
-                : View(houses.OrderByDescending(x => x.Id).ToPagedList(pageNumber, pageSize));
+                ? (ActionResult)PartialView("_Houses", viewModel)
+                : View(viewModel);
         }
 
         public ActionResult About()

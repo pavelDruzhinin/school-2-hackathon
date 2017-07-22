@@ -1,13 +1,13 @@
 ﻿@using Webdiyer.WebControls.Mvc
-@model PagedList<RosCottedge.Models.House>
+@model RosCottedge.ViewModels.HomeIndexViewModel
  
 <div class="houses">
     <div class="container">
         <div class="row">
-            @foreach (var item in Model)
+            @foreach (var item in Model.Houses)
             {
                 <div class="col-md-6 houseItem">
-                    <div class="imgBox" style="background-image: url(@item.Avatar)"></div>
+                    <div class="imgBox" style="background-image: url(@item.Pictures.Where(x => x.HouseId == item.Id).Select(x => x.Adress).FirstOrDefault())"></div>
                     <div class="ContentBox">
                         <h2 class="nameHouse"><a href="/House/Index?houseId=@item.Id">@item.Name</a></h2>
                         <span class="address">@item.Locality, @item.Area</span>
@@ -36,7 +36,7 @@
     </div>
 </div>
 
-@Ajax.Pager(Model, new PagerOptions
+@Ajax.Pager(Model.Houses, new PagerOptions
 {
     PageIndexParameterName = "page",
     ContainerTagName = "ul",
