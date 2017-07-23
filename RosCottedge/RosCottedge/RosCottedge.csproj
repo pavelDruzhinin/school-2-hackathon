@@ -242,7 +242,7 @@
     <Content Include="Content\img\error.png" />
     <Content Include="Content\img\icons\shareBtn.svg" />
     <Content Include="Content\img\mapMarkers\map_marker.png" />
-    <Content Include="Content\img\mapMarkers\m1.png" />
+    <Content Include="Content\img\mapMarkers\mm1.png" />
     <Content Include="Content\img\mapMarkers\mm2.png" />
     <Content Include="Content\img\mapMarkers\mm3.png" />
     <Content Include="Content\img\mapMarkers\mm4.png" />
