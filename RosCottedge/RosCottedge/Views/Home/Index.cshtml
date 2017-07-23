@@ -15,12 +15,12 @@
           <input autocomplete="off" class="select" type="text" placeholder="Район" name="region">
         </div>
         <div class="dates searchFields">
-          <input type="text" placeholder="Заезд" name="arrivalDate" id="date1" class="date">
-          <input type="text" placeholder="Выезд" name="departureDate" id="date2" class="date">
+          <input type="text" placeholder="Заезд" name="arrivalDate" id="date1" class="date" readonly="readOnly">
+          <input type="text" placeholder="Выезд" name="departureDate" id="date2" class="date" readonly="readOnly">
         </div>
         <div class="prices searchFields">
-          <input type="text" id="minCost" placeholder="Цена от" name="startPrice" minVal="@ViewBag.MinPrice">
-          <input type="text" id="maxCost" placeholder="Цена до" name="finishPrice" maxVal="@ViewBag.MaxPrice">
+          <input type="text" id="minCost" class="cost1" placeholder="Цена от" name="startPrice" minVal="@ViewBag.MinPrice" readonly="readOnly">
+          <input type="text" id="maxCost" class="cost2" placeholder="Цена до" name="finishPrice" maxVal="@ViewBag.MaxPrice" readonly="readOnly">
           <div id="slider-range"></div>
         </div>
         <div class="numPersons searchFields">
@@ -29,13 +29,37 @@
         <input type="hidden" value=1 name="fromForm"/>
         <input type="submit" value="Подобрать" class="red">
       </div>
-      <div class="addField row">
+      <div class="addField row selectNone">
         <div class="sortingBox col-md-6">
           <span class="sorting"></span>
-          <span class="op87">Сортировать</span>
+          <span class="op87">Сортировка</span>
         </div>
         <div class="totalItems col-md-6 op87">
-            Всего результатов: @Model.TotalItemCount
+            Всего результатов: @Model.Houses.TotalItemCount
+        </div>
+        <div class="col-md-12 sortingItems">
+          <ul>
+            <li>
+              <input type="radio" id="r1" name="rr" checked>
+              <label for="r1"><span></span>Сначала новые</label>
+            </li>
+            <li>
+              <input type="radio" id="r2" name="rr">
+              <label for="r2"><span></span>По дате</label>
+            </li>
+            <li>
+              <input type="radio" id="r3" name="rr">
+              <label for="r3"><span></span>По рейтингу</label>
+            </li>
+            <li>
+              <input type="radio" id="r4" name="rr">
+              <label for="r4"><span></span>Дешевле</label>
+            </li>
+            <li>
+              <input type="radio" id="r5" name="rr">
+              <label for="r5"><span></span>Дороже</label>
+            </li>
+          </ul>
         </div>
       </div>
     </form>

@@ -26,10 +26,14 @@ $(document).ready(function () {
 
 
     //Slider-range
-    var minVal = Number($('#minCost').attr('minVal'));
-    var maxVal = Number($('#maxCost').attr('maxVal'));
-    var maxPer = (maxVal/100)*5;
-    $( "#slider-range" ).slider({
+    var minVal = Number($('#minCost').attr('minVal')),
+        maxVal = Number($('#maxCost').attr('maxVal')),
+        maxPer = (maxVal / 100) * 5,
+        $sliderRange = $("#slider-range");
+        $input1 = $('.cost1');
+        $input2 = $('.cost2');
+
+      $sliderRange.slider({
       range: true,
       min: minVal,
       max: maxVal,
@@ -39,6 +43,7 @@ $(document).ready(function () {
         $( "#maxCost" ).val(ui.values[ 1 ]);
       }
     });
+
     $( "#slider-range span.ui-state-default:first").css('margin-left','-7.5px');
     $( "#slider-range span.ui-state-default:last").css('margin-left','-7.5px');
 
@@ -63,7 +68,7 @@ $(document).ready(function () {
         $(this).parent('.area').removeClass('actArea');
     });
 
-    
+
 
     $('.mainField .area .select').keyup(function () {
         var inputText = $(this).val();
@@ -81,7 +86,10 @@ $(document).ready(function () {
         });
 
     });*/
-
+    //Sorting
+    $('.sortingBox').click(function(){
+      $(this).parent('.addField').toggleClass('actSort');
+    });
 });
 
 var mapStyles = [
@@ -345,7 +353,7 @@ $.getJSON("/House/HouseObject", function (data) {
 
         markerCluster = new MarkerClusterer(map, markers, mcOptions);
 
-       
+
 
     }
 

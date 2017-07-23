@@ -73,6 +73,13 @@ input.date{
 .op70{
   opacity: .70;
 }
+/*Select none*/
+.selectNone{
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
 
 /*Calendar*/
 .ui-datepicker table{
@@ -569,7 +576,7 @@ footer .bottomFooter span{
 .mainField .actArea .select {
   background-color: #305075;
   color: #fff;
-} 
+}
 .mainField .actArea ul{
   height: auto;
   background-color: #305075;
@@ -583,6 +590,67 @@ footer .bottomFooter span{
 .mainField .area ul li:last-child{
   margin-bottom: 7.5px;
 }*/
+/*Sorting*/
+#searchForm .sortingItems{
+  overflow: hidden;
+  height: 0;
+}
+#searchForm .sortingItems ul li{
+  float: left;
+  margin-left: 30px;
+}
+#searchForm .sortingItems ul li:first-child{
+  margin-left: 0;
+}
+#searchForm  .actSort .sortingItems{
+  border-top: solid #DBDBDB 1px;
+  height: auto;
+  margin-top: 15px;
+  padding-top: 15px;
+}
+#searchForm  .actSort .sortingBox .sorting::before{
+  display: none;
+}
+input[type="radio"] {
+  display:none;
+}
+input[type="radio"] + label{
+  cursor: pointer;
+}
+input[type="radio"] + label span {
+  display:inline-block;
+  width:20px;
+  height:20px;
+  border-radius: 10px;
+  margin:-1px 7.5px 0 0;
+  vertical-align:middle;
+  background-color: #EEEEEE;
+  cursor:pointer;
+  position: relative;
+}
+input[type="radio"]:checked + label span{
+  background-color: rgba(227, 36, 68, 0);
+}
+input[type="radio"] + label span::before {
+  content: '';
+  box-shadow: 0 0 0 0 #F7BDC7;
+  transition: box-shadow .25s;
+}
+input[type="radio"]:checked + label span::before {
+  content: '';
+  position: absolute;
+  display: block;
+  width: 10px;
+  height: 10px;
+  left: 50%;
+  top: 50%;
+  margin-left: -5px;
+  margin-top: -5px;
+  background-color: #E32444;
+  border-radius: 5px;
+  box-shadow: 0 0 0 5px #F7BDC7;
+}
+
 /*Map*/
 .gm-style-iw p{
   font-size: 14px;
@@ -801,7 +869,7 @@ label.valid {
 }
 .manualInput {
     display: none;
-} 
+}
 .textManualAddress {
     font-size: 14px;
     opacity: .87;
