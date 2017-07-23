@@ -585,10 +585,11 @@ footer .bottomFooter span{
 }
 .mainField .area ul li{
   font-size: 16px;
-  padding: 0 15px;
-  line-height: 45px;
-  height: 45px;
+  padding: 12px 15px;
   cursor: pointer;
+}
+.mainField .area ul li:hover{
+  background-color: #263F5C;
 }
 .mainField .area ul li:last-child{
   margin-bottom: 7.5px;
