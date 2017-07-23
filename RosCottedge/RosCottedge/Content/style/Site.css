@@ -578,13 +578,16 @@ footer .bottomFooter span{
   color: #fff;
 }
 .mainField .actArea ul{
+  border-top: 1px solid #263F5C;
   height: auto;
   background-color: #305075;
   color: #fff;
 }
 .mainField .area ul li{
   font-size: 16px;
-  padding: 7.5px 15px;
+  padding: 0 15px;
+  line-height: 45px;
+  height: 45px;
   cursor: pointer;
 }
 .mainField .area ul li:last-child{

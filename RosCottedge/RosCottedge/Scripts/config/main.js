@@ -56,23 +56,11 @@ $(document).ready(function () {
     });
 
     //Select
-   $('.mainField .area .select').focus(function () {
-        $(this).parent('.area').addClass('actArea');
-    });
-
-    $('.area ul li').on('click', function () {
-        $('.mainField .area .select').val($(this).text());
-    });
-
-    $('.mainField .area .select').blur(function () {
-        $(this).parent('.area').removeClass('actArea');
-    });
-
-
-
+    var clickItem = false;
     $('.mainField .area .select').keyup(function () {
+        clickItem = false;
         var inputText = $(this).val();
-        var inputTextReg = new RegExp(inputText, "gi");
+        var inputTextReg = new RegExp(inputText, "i");
         var areaSelItem = $(this).parent('.area').children('ul').children('li');
 
         areaSelItem.each(function () {
@@ -85,7 +73,34 @@ $(document).ready(function () {
             }
         });
 
+        var activeItem = $('.mainField .area ul li[style="display: list-item;"]').length;
+        console.log(activeItem);
+        if ( activeItem <= 3 && activeItem > 0 ){
+          $(this).parent('.area').addClass('actArea');
+        }else{
+          $(this).parent('.area').removeClass('actArea');
+        }
+
     });
+
+
+    $('.mainField .area ul li').mousedown(function () {
+      $('.mainField .area .select').val($(this).text());
+      $('.area').removeClass('actArea');
+      clickItem = true;
+    });
+
+    $('.mainField .area .select').blur(function () {
+      if ( clickItem == false ) $(this).val('');
+      $(this).parent('.area').removeClass('actArea');
+    });
+
+    $('.mainField .area .select').focus(function () {
+      $(this).val('');
+    });
+
+
+
     //Sorting
     $('.sortingBox').click(function(){
       $(this).parent('.addField').toggleClass('actSort');
