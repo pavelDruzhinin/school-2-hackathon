@@ -10,6 +10,8 @@ namespace RosCottedge.ViewModels
     public class HomeIndexViewModel
     {
         public PagedList<House> Houses { get; set; }
-        public List<string> Regions { get; set; }
+        public List<House> AllHouses { get; set; }
+        public List<House> Regions { get; set; }
+        public List<House> Localities { get; set; }
     }
 }

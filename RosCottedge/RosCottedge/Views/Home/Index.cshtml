@@ -12,7 +12,7 @@
     <form id ="searchForm" class="searchBox mainBox" method="post" @*action="/Home/Index" data-ajax="true" data-ajax-update="#houses" data-ajax-mode="replace"*@>
       <div class="mainField">
         <div class="area searchFields">
-          <input autocomplete="off" class="select" type="text" placeholder="Район" name="region">
+          <input autocomplete="off" class="select" type="text" placeholder="Регион/Город" name="region">
         </div>
         <div class="dates searchFields">
           <input type="text" placeholder="Заезд" name="arrivalDate" id="date1" class="date">
@@ -44,6 +44,13 @@
 
 <div id="houses">
     @Html.Partial("_Houses", Model)
+</div>
+
+<div>
+    @foreach (var r in Model.Regions)
+    {
+        <div>@r.Region: @Model.AllHouses.Where(x => x.Region == r.Region).Count()</div>
+    }
 </div>
 
 <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDJZlsRr82NdMVjqUPb1fVy-t49lPdTgrw&sensor=false"></script>
