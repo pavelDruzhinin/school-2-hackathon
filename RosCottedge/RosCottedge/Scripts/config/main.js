@@ -56,7 +56,7 @@ $(document).ready(function () {
     });
 
     //Select
- /*   $('.mainField .area .select').focus(function () {
+   $('.mainField .area .select').focus(function () {
         $(this).parent('.area').addClass('actArea');
     });
 
@@ -85,7 +85,7 @@ $(document).ready(function () {
             }
         });
 
-    });*/
+    });
     //Sorting
     $('.sortingBox').click(function(){
       $(this).parent('.addField').toggleClass('actSort');
@@ -276,7 +276,7 @@ var mapStyles = [
 ];
 
 function initMap() {
-  
+
     var map = new google.maps.Map(document.getElementById('map_canvas'), {
         zoom: 4,
         scrollwheel: false,

@@ -559,7 +559,7 @@ footer .bottomFooter span{
   box-shadow: 0 0 0 5px rgba(227, 36, 68, .3) !important;
 }
 /*Select*/
-/*.mainField .area {
+.mainField .area {
   position: relative;
   margin: 0 7.5px;
 }
@@ -589,7 +589,10 @@ footer .bottomFooter span{
 }
 .mainField .area ul li:last-child{
   margin-bottom: 7.5px;
-}*/
+}
+#searchForm .firstItem{
+  margin: 0;
+}
 /*Sorting*/
 #searchForm .sortingItems{
   overflow: hidden;

@@ -5,14 +5,19 @@
     ViewBag.Title = "Главная страница";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
 <div id="map_canvas"></div>
 <section id="search">
   <div class="container">
     <form id ="searchForm" class="searchBox mainBox" method="post" @*action="/Home/Index" data-ajax="true" data-ajax-update="#houses" data-ajax-mode="replace"*@>
       <div class="mainField">
         <div class="area searchFields">
-          <input autocomplete="off" class="select" type="text" placeholder="Регион/Город" name="region">
+          <input autocomplete="off" class="select firstItem" type="text" placeholder="Регион/Город" name="region">
+          <ul>
+            <li>lo</li>
+            <li>sg</li>
+            <li>ry</li>
+            <li>bk</li>
+          </ul>
         </div>
         <div class="dates searchFields">
           <input type="text" placeholder="Заезд" name="arrivalDate" id="date1" class="date" readonly="readOnly">
