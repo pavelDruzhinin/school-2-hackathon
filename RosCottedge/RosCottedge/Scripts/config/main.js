@@ -275,17 +275,22 @@ var mapStyles = [
     }
 ];
 
+function initMap() {
+  
+    var map = new google.maps.Map(document.getElementById('map_canvas'), {
+        zoom: 4,
+        scrollwheel: false,
+        center: { lat: 61.52401, lng: 105.318756 },
+        styles: mapStyles
+    });
+
+    return map;
+
+}
+var map = initMap();
+
 $.getJSON("/House/HouseObject", function (data) {
     var markers = [];
-
-    function initMap() {
-
-        var map = new google.maps.Map(document.getElementById('map_canvas'), {
-            zoom: 4,
-            scrollwheel: false,
-            center: { lat: 61.52401, lng: 105.318756 },
-            styles: mapStyles
-        });
 
         infoWindow = new google.maps.InfoWindow();
 
@@ -353,10 +358,6 @@ $.getJSON("/House/HouseObject", function (data) {
 
         markerCluster = new MarkerClusterer(map, markers, mcOptions);
 
-
-
-    }
-
     function configMarders(marker, name, id, locality, area, persons, price, rating, map) {
         markers.push(marker);
 
@@ -379,6 +380,6 @@ $.getJSON("/House/HouseObject", function (data) {
         });
     }
 
-    google.maps.event.addDomListener(window, "load", initMap);
+    //google.maps.event.addDomListener(window, "load", initMap);
 
 });
