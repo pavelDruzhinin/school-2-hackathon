@@ -35,7 +35,7 @@ namespace RosCottedge.Controllers
 
             if (!String.IsNullOrEmpty(region))
             {
-                houses = houses.Where(x => x.Region == region);
+                houses = houses.Where(x => x.Region == region || x.Locality == region);
             }
             if (startPrice != null)
             {
@@ -77,27 +77,40 @@ namespace RosCottedge.Controllers
             {
                 max = db.Houses.Select(x => x.Price).Max();
                 min = db.Houses.Select(x => x.Price).Min();
-            };
+            }
 
             ViewBag.MaxPrice = max;
             ViewBag.MinPrice = min;
 
             //Создаём лист регионов из базы
 
-            List<string> regions = new List<string>();
+            List<House> regions = new List<House>();
             
             foreach (var h in db.Houses)
             {
-                if (!regions.Contains(h.Region))
+                if (!regions.Any(x => x.Region == h.Region))
                 {
-                    regions.Add(h.Region);
+                    regions.Add(h);
                 }
-            };
+            }
 
+            //Создаём лист регионов и населённых пунктов из базы (для окна фильтрации)
+
+            List<House> localities = new List<House>();
+            foreach (var h in db.Houses)
+            {
+                if (!localities.Any(x => x.Locality == h.Locality))
+                {
+                    localities.Add(h);
+                }
+            }
+            
             var viewModel = new HomeIndexViewModel()
             {
                 Houses = houses.OrderByDescending(x => x.Id).ToPagedList(pageNumber, pageSize),
-                Regions = regions
+                AllHouses = db.Houses.ToList(),
+                Regions = regions.OrderBy(x => x.Region).ToList(),
+                Localities = localities.OrderBy(x => x.Locality).ToList()
             };
             
         var kappa = Request.IsAjaxRequest();
