@@ -4,8 +4,66 @@
 @{
     ViewBag.Title = "MyHouse";
 }
-<div></div>
-<div class="houses">
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-8">
+            @foreach (var item in Model.ReservationDelete)
+            {
+                <div class="houseContainer mainBox">
+                    <div class="houseContainerHead">
+                        <h3 class="myTripsDate"><span>Даты поездки:</span> @item.ArrivalDate.ToString("dd.MM.yyyy") - @item.DepartureDate.ToString("dd.MM.yyyy")</h3>
+                        <div class="myTripsDelButton"><span class="closeMyTrips"></span></div>
+                    </div>
+                    <div class="houseBodyContainer">
+                        <div class="houseBodyIMG" style="background-image: url(@item.House.Pictures.Where(x => x.HouseId == item.House.Id).Select(x => x.Adress).FirstOrDefault());"></div>
+                        <div class="navMyTripsBody">
+                            <div class="houseBodyRating"><span class="numberRating">@item.House.Rating</span></div>
+                            <a href="/House/Index?houseId=@item.House.Id"><p>Страница дома</p></a>
+                        </div>
+                        @if (item.DepartureDate > DateTime.Now)
+                        {
+                            using (Html.BeginForm("DeleteReservation", "Account", FormMethod.Post, new { enctype = "multipart/form-data", id = "delReserv" }))
+                            {
+                                <input type="hidden" value="@item.HouseId" name="houseId" />
+                                <input type="hidden" value="@item.Id" name="id" /><br>
+                                <input type="submit" value="Отказаться от брони" style="display: none;"/>
+                            }
+                        }
+                    </div>
+                </div>
+            }
+        </div>
+        <div class="col-md-4">
+            <div class="historyArrivalBox mainBox">
+                <h3>История поездок</h3>
+                @foreach (var item in Model.ReservationHistory)
+                {
+                    <div class="historyArrivalItem">
+                        <div class="historyArrivalIMG" style="background-image: url(@item.House.Pictures.Where(x => x.HouseId == item.House.Id).Select(x => x.Adress).FirstOrDefault());"></div>
+                        <div class="historyArrivalBody">
+                            <p><span>Даты поездки:</span> @item.ArrivalDate.ToString("dd.MM.yyyy") - @item.DepartureDate.ToString("dd.MM.yyyy")</p>
+                            <div>
+                                @using (Html.BeginForm("DeleteReservationTenant", "Account", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                                {
+                                    <input type="hidden" value="@item.HouseId" name="houseId" />
+                                    <input type="hidden" value="@item.Id" name="id" /><br>
+                                    <input type="submit" value="Удалить из списка" />
+                                }
+                            </div>
+                        </div>
+                    </div>  
+                }
+            </div>
+            
+                
+        </div>
+    </div>
+</div>
+
+
+
+@*<div class="houses">
     <div class="container">
         <div class="row">
             @foreach (var item in Model.ReservationDelete)
@@ -44,8 +102,8 @@
             }
         </div>
     </div>
-</div>
-<h3>История поездок</h3>
+</div>*@
+@*<h3>История поездок</h3>
 
 <table>
     @foreach (var item in Model.ReservationHistory)
@@ -70,6 +128,21 @@
         </tr>
     }
 
-</table>
+</table>*@
 
+@section Scripts {
+    <script>
+    $(document).ready(function () {
+        var $c = $('.numberRating');
+        if (parseInt($c.text()) != 0) {
+            var c = parseFloat($c.text().replace(',', '.'));
+            c = c.toFixed(1);
+            $c.text(c);
+        }
 
+        $('.myTripsDelButton').on('click', function () {
+            $('#delReserv').submit();
+        });
+    });
+    </script>
+}

@@ -4,46 +4,151 @@
 @{
     ViewBag.Title = "MyHouse";
 }
-<div></div>
-<div class="houses">
-    <div class="container">
-        <div class="row">
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-8">
             @foreach (var item in Model.House)
             {
-                <div class="col-md-6 houseItem">
-                    <div class="imgBox" style="background-image: url(@item.Pictures.Where(x => x.HouseId == item.Id).Select(x => x.Adress).FirstOrDefault())"></div>
+                    @*<div class="imgBox" style="background-image: url(@item.Pictures.Where(x => x.HouseId == item.Id).Select(x => x.Adress).FirstOrDefault());"></div>
                     <div class="ContentBox">
-                        <h2 class="nameHouse"><a href="/House/Index?houseId=@item.Id">@item.Name</a></h2>
-                        <span class="address">@item.Locality, @item.Area</span>
                         <div class="ratingHouse">
                             <h2><a href="/Account/EditMyHouse/@item.Id">Управление</a></h2>
                             <h2><a href="/House/Index?houseId=@item.Id">Страница дома</a></h2>
                             @using (Html.BeginForm("DeleteHouse", "Account", FormMethod.Post, new { enctype = "multipart/form-data" }))
                             {
-                            
-                            <input type="hidden" value="@item.Id" name="id" /><br>
-                            <input type="submit" value="Удалить дом" />
-                                Html.ValidationMessageFor(Model=>Model.House, "", new { @class = "text-danger" });
-                            }
-                            <h2>Оценка пользователей</h2>
 
-                            <ul>
-                                <li></li>
-                                <li></li>
-                                <li></li>
-                                <li></li>
-                                <li></li>
-                            </ul>
+                                <input type="hidden" value="@item.Id" name="id" /><br>
+                                <input type="submit" value="Удалить дом" />
+                                Html.ValidationMessageFor(Model => Model.House, "", new { @class = "text-danger" });
+                            }
                         </div>
+                    </div>*@
+
+                    <div class="houseContainer mainBox">
+                        <div class="houseContainerHead">
+                            <h3><i class="fa fa-map-marker" aria-hidden="true"></i><span id="Country" style="display:none;">Россия</span><span id="Region">@item.Region</span>, <span id="City">@item.Locality</span>, <span id="Street">@item.Area</span>, <span id="House">@item.HouseNumber</span></h3>
+                            <div class="numHouse">№ @item.Id</div>
+                        </div>
+                        <div class="houseBodyContainer">
+                            <div class="houseBodyIMG" style="background-image: url(@item.Pictures.Where(x => x.HouseId == item.Id).Select(x => x.Adress).FirstOrDefault());"></div>
+                            <div class="navHouseBody">
+                            <div class="houseBodyRating"><span class="numberRating">@item.Rating</span></div>
+                            <a href="/Account/EditMyHouse/@item.Id" class="remoteHouse"><p>Управление</p></a>
+                            <a href="/House/Index?houseId=@item.Id"><p>Страница дома</p></a>
+                            <div class="houseDelButton"><span class="close"></span></div>
+                        </div>
+                            @using (Html.BeginForm("DeleteHouse", "Account", FormMethod.Post, new { enctype = "multipart/form-data", id = "delHouse" }))
+                            {
+                                <input type="hidden" value="@item.Id" name="id" /><br>
+                                <input type="submit" value="Удалить дом" style="display: none;"/>
+                                Html.ValidationMessageFor(Model => Model.House, "", new { @class = "text-danger" });
+                            }
+                        </div>
+                        
                     </div>
-                </div>
             }
         </div>
+        <div class="col-md-4 allNoticeMyHouse">
+
+            @foreach (var item in Model.GeneralClass)
+            {
+                if (item.Reserv == true)
+                {
+                    <div class="noticeItem mainBox">
+                        <div class="headerNotice">
+                            <div class="noticeColor noticeColorRed"></div>
+                            <p><span>@item.User.FirstName</span>, забронировал(а) дом № @item.HouseId</p>
+                        </div>
+                        <div class="footerNotice">
+                            <span>@item.Date.ToString("dd.MM.yyyy")</span>
+                            @using (Html.BeginForm("DeleteReservationLandlord", "Account", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                            {
+                                <input type="hidden" value="@item.HouseId" name="houseId" />
+                                <input type="hidden" value="@item.Id" name="id" /><br>
+                                <input type="submit" value="Удалить" />
+                            }
+                        </div>
+                    </div>
+
+
+                }
+                else if (item.Review == true)
+                {
+                    <div class="noticeItem mainBox">
+                        <div class="headerNotice">
+                            <div class="noticeColor noticeColorGreen"></div>
+                            <p><span>@item.User.FirstName</span>, оставил(а) отзыв к дому № @item.HouseId</p>
+                        </div>
+                        <div class="footerNotice">
+                            <span>@item.Date.ToString("dd.MM.yyyy")</span>
+                            @using (Html.BeginForm("DeleteReviews", "Account", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                            {
+                                <input type="hidden" value="@item.HouseId" name="houseId" />
+                                <input type="hidden" value="@item.Id" name="id" /><br>
+                                <input type="submit" value="Удалить" />
+                            }
+                        </div>
+                    </div>
+
+                }
+                else
+                {
+                    <div class="noticeItem mainBox">
+                        <div class="headerNotice">
+                            <div class="noticeColor noticeColorBlue"></div>
+                            <p><span>@item.User.FirstName</span>, отменил(а) бронь № @item.HouseId</p>
+                        </div>
+                        <div class="footerNotice">
+                            <span>@item.Date.ToString("dd.MM.yyyy")</span>
+                            @using (Html.BeginForm("DeleteReservationNotif", "Account", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                            {
+                                <input type="hidden" value="@item.HouseId" name="houseId" />
+                                <input type="hidden" value="@item.Id" name="id" /><br>
+                                <input type="submit" value="Удалить" />
+                            }
+                        </div>
+                    </div>
+                }
+
+            }
+        </div>
+        @*@foreach (var item in Model.House)
+        {
+            <div class="col-md-6 houseItem">
+                <div class="imgBox" style="background-image: url(@item.Pictures.Where(x => x.HouseId == item.Id).Select(x => x.Adress).FirstOrDefault())"></div>
+                <div class="ContentBox">
+                    <h2 class="nameHouse"><a href="/House/Index?houseId=@item.Id">@item.Name</a></h2>
+                    <span class="address">@item.Locality, @item.Area</span>
+                    <div class="ratingHouse">
+                        <h2><a href="/Account/EditMyHouse/@item.Id">Управление</a></h2>
+                        <h2><a href="/House/Index?houseId=@item.Id">Страница дома</a></h2>
+                        @using (Html.BeginForm("DeleteHouse", "Account", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                        {
+                            
+                        <input type="hidden" value="@item.Id" name="id" /><br>
+                        <input type="submit" value="Удалить дом" />
+                            Html.ValidationMessageFor(Model=>Model.House, "", new { @class = "text-danger" });
+                        }
+                        <h2>Оценка пользователей</h2>
+
+                        <ul>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        }*@
     </div>
 </div>
 
 
-<table>
+
+@*<table>
     @foreach (var item in Model.GeneralClass)
     {
         if (item.Reserv == true)
@@ -116,4 +221,19 @@
         }
 
     }
-</table>
+</table>*@
+@section Scripts {
+    <script>
+    $(document).ready(function () {
+        var $c = $('.numberRating');
+        if (parseInt($c.text()) != 0) {
+            var c = parseFloat($c.text().replace(',', '.'));
+            c = c.toFixed(1);
+            $c.text(c);
+        }
+        $('.houseDelButton').on('click', function () {
+            $('#delHouse').submit();
+        });
+    });
+    </script>
+}

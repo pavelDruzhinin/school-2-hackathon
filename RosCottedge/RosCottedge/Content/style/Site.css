@@ -728,8 +728,11 @@ input[type="radio"]:checked + label span::before {
   color: #fff;
   cursor: pointer;
   font-size: 16px;
+  transition: .3s all;
 }
-
+.innerForm input[type="submit"]:hover {
+    background-color: #5EF199;
+}
 .Form .validation-summary-errors {
     background-color: rgba(227,36,68,.6);
     margin-bottom: 15px;
@@ -774,7 +777,7 @@ label.valid {
     color: #E32444;
     display: block;
     border-top: 1px solid #EBEBEB;
-    font-size: 14px;
+    font-size: 16px;
 }
 /* REGISTRATION FORM*/
 .FormRegistration {
@@ -853,7 +856,9 @@ label.valid {
 .innerForm .largeInputCreate {
     width: 660px;
 }
-
+.FormCreate .innerForm .largeInputCreateTop {
+    margin-top: 0;
+}
 .FormCreate .innerForm textarea {
     height: 90px;
     resize: none;
@@ -889,6 +894,7 @@ label.valid {
     padding-bottom: 8px;
 }
 .manualAddress {
+    color: #E32444;
     cursor: pointer;
 }
 /*Page-Home Start*/
@@ -1025,6 +1031,9 @@ label.valid {
 .slider .owl-carousel .item {
     height: 368px;
     width: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
 }
 
 .slider .sliderFooter {
@@ -1430,3 +1439,579 @@ label.valid {
 /*Review End*/
 
 /*Page-Home End*/
+/*Edit My House Start*/
+
+.sliderEditHouse {
+    background-color: #fff;
+    height: 310px;
+    font-size: 0;
+    width: 451px;
+    display: inline-block;
+    margin-right: 30px;
+    position: relative;
+    vertical-align: top;
+}
+
+.sliderItemEH {
+    margin: 8px;
+    width: 435px;
+    height: 294px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+.sliderItemEH img {
+    width: 100%;
+    height: 100%;
+}
+
+.reservBoxEH {
+    height: 310px;
+    width: 265px;
+    display: inline-block;
+    vertical-align: top;
+    font-size: 0;
+    overflow-y: hidden;
+}
+
+.itemReservEH {
+    height: 51px;
+    margin-bottom: 1px;
+    background-color: #fff;
+}
+
+.itemReservEH p, .itemReservEH img {
+    display: inline-block;
+}
+
+.itemReservEH p:after {
+    content: "";
+    border-right: 1px solid #DBDBDB;
+    height: 20px;
+    margin-left: 13px;
+    margin-right: 15px;
+}
+
+.itemReservEH p {
+    margin: 17px 0 15px 15px;
+    vertical-align: top;
+}
+
+.itemReservEH img {
+    width: 35px;
+    height: 35px;
+    margin: 8px 15px 8px 0;
+    border-radius: 50%;
+}
+
+#formEH {
+    width: 100%;
+    font-size: 0;
+    margin-top: 30px;
+    box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.14);
+}
+
+#formEH textarea {
+    height: 90px;
+    resize: none;
+    width: 660px;
+    display: block;
+    border: none;
+    outline: none;
+    background-color: #EEEEEE;
+    margin-top: 8px;
+    margin-bottom: 15px;
+    padding: 15px;
+}
+
+#formEH .largeInputEH {
+    width: 100%;
+}
+
+#formEH .smallInputEH {
+    width: 48.9%;
+    display: inline-block;
+    vertical-align: top;
+}
+
+#formEH label[class="error"] {
+    margin-top: -7px;
+    margin-bottom: 15px;
+}
+
+#formEH label {
+    font-size: 16px;
+    width: 100%;
+    opacity: .87;
+}
+
+#formEH .innerForm .ButtonSaveEH {
+    width: 100%;
+    margin-bottom: 0;
+}
+
+#formEH .innerForm input {
+    margin-top: 8px;
+    margin-bottom: 15px;
+    width: 100%;
+}
+
+.noticeItem {
+    width: 100%;
+    margin-bottom: 1px;
+    position: relative;
+    clear: both;
+}
+
+.headerNotice {
+    height: 45px;
+    width: 100%;
+    background-color: #fff;
+    font-size: 0;
+}
+
+.noticeColor {
+    width: 4px;
+    height: 45px;
+    display: inline-block;
+}
+
+.noticeColorGreen {
+    background-color: #5EF199;
+}
+
+.noticeColorRed {
+    background-color: #E32444;
+}
+
+.noticeColorBlue {
+    background-color: #305075;
+}
+
+.headerNotice p, .headerNotice span {
+    font-size: 16px;
+    vertical-align: top;
+    margin-top: 14px;
+}
+
+.headerNotice p {
+    display: inline-block;
+    margin-left: 15px;
+}
+
+.headerNotice span {
+    color: #E32444;
+}
+
+.footerNotice {
+    margin-top: 8px;
+    margin-bottom: 15px;
+    float: right;
+}
+
+.footerNotice span, .footerNotice form {
+    display: inline-block;
+}
+
+.footerNotice span {
+    font-size: 14px;
+    opacity: .54;
+}
+
+.footerNotice form {
+    font-size: 0;
+    margin-left: 15px;
+}
+
+.footerNotice form input {
+    background-color: #eee;
+    height: 17px;
+    color: #E32444;
+    font-size: 14px;
+    transition: .3s all;
+    opacity: .54;
+}
+
+.footerNotice form input:hover {
+    opacity: 1;
+}
+
+.bodyNotice {
+    margin-top: 1px;
+    padding: 8px;
+    background-color: #fff;
+}
+
+.bodyNotice p:first-child {
+    margin-bottom: 15px;
+}
+
+.bodyNotice p, .bodyNotice span {
+    font-size: 14px;
+}
+
+.bodyNotice p:last-child {
+    text-align: right;
+}
+
+#uploadPhotoEH {
+    z-index: 1;
+    height: 35px;
+    width: 145px;
+    position: absolute;
+    top: 23px;
+    left: 248px;
+}
+
+.file-upload input[type="file"] {
+    display: none;
+}
+
+
+.file-upload {
+    position: relative;
+    width: 145px;
+    height: 35px;
+    background: #305075;
+    color: #fff;
+    text-align: center;
+    transition: .3s all;
+}
+.file-upload:hover {
+    background-color: #325985;
+}
+.file-upload label {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+}
+
+.file-upload span {
+    display: block;
+    margin-top: 8px;
+    font-size: 16px;
+}
+
+.deletePhotoEH {
+    position: absolute;
+    z-index: 5;
+}
+
+.sliderEHBody {
+    background-color: #fff;
+    height: 95%;
+    width: 100%;
+}
+
+.deleteButton {
+    width: 35px;
+    height: 35px;
+    background-color: #E32444;
+    position: absolute;
+    right: 23px;
+    top: 23px;
+    cursor: pointer;
+    z-index: 5;
+    transition: .3s all;
+}
+.deleteButton:hover {
+    background-color: #F31137;
+}
+
+.angleBox {
+    width: 35px;
+    height: 35px;
+    z-index: 5;
+    background-color: #305075;
+}
+
+.sep:after {
+    content: "";
+    border: 1px solid #263F5C;
+    height: 35px;
+    position: absolute;
+    right: -2px;
+}
+
+.sliderEditHouse .sliderEHBody .owl-nav {
+    position: absolute;
+    bottom: 0;
+    top: unset;
+}
+
+.sliderEditHouse .sliderEHBody .owl-nav .owl-next, .sliderEditHouse .sliderEHBody .owl-nav .owl-prev {
+    bottom: 8px;
+    margin: 0;
+    z-index: 1;
+}
+
+.sliderEditHouse .sliderEHBody .owl-nav .owl-next {
+    right: 23px;
+}
+
+.sliderEditHouse .sliderEHBody .owl-nav .owl-prev {
+    right: 60px;
+}
+
+.allNoticeHouse {
+    height: 1687px;
+    overflow-y: auto;
+}
+
+/*Edit My House End*/
+
+.houseContainer {
+    width: 360px;
+    height: 278px;
+    background-color: #fff;
+    font-size: 0;
+    position: relative;
+    vertical-align: top;
+    padding: 8px;
+    margin-bottom: 30px;
+    display: inline-block;
+}
+
+.houseContainerHead {
+    height: 35px;
+    width: 100%;
+    background-color: #305075;
+    z-index: 1;
+}
+
+.houseBodyContainer {
+    width: 100%;
+    height: 227px;
+}
+.houseBodyIMG {
+    width: 100%;
+    height: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+.houseContainerHead i {
+    font-size: 16px;
+    margin-left: 8px;
+    margin-right: 8px;
+    opacity: .54;
+}
+
+.houseContainerHead h3 {
+    opacity: 1;
+    max-width: 80%;
+    font-size: 14px;
+    font-weight: 400;
+    color: #fff;
+    display: inline-block;
+    padding-top: 9px;
+    white-space: nowrap; /* Запрещаем перенос строк */
+    overflow: hidden; /* Обрезаем все, что не помещается в область */
+    text-overflow: ellipsis; /* Добавляем многоточие */
+}
+.houseBodyContainer a {
+    opacity: 1;
+    background-color: #fff;
+    display: inline-block;
+    padding: 9px 15px 7px 15px;
+    font-size: 0;
+    height: 35px;
+    vertical-align: top;
+    transition: .3s all;
+}
+.houseBodyContainer a:hover {
+    background-color: #eee;
+}
+
+.houseBodyContainer a p {
+    opacity: .87;
+    font-size: 15px;
+}
+.numberRating {
+    font-size: 16px;
+    color: #fff;
+}
+
+.houseBodyRating {
+    text-align: center;
+    padding-top: 9px;
+    height: 35px;
+    width: 35px;
+    display: inline-block;
+    background-color: #305075;
+    vertical-align: top;
+}
+.houseDelButton {
+    height: 35px;
+    width: 35px;
+    display: inline-block;
+    background-color: #E32444;
+    vertical-align: top;
+    cursor: pointer;
+    transition: .3s all;
+}
+
+.houseDelButton:hover {
+    background-color: #F31137;
+}
+.navHouseBody {
+    position: absolute;
+    bottom: 18px;
+    left: 18px;
+}
+
+.remoteHouse {
+    border-right: 1px solid #DBDBDB;
+}
+
+.houseContainerHead .numHouse {
+    height: 100%;
+    background-color: #E32444;
+    font-size: 16px;
+    color: #fff;
+    display: inline-block;
+    padding: 9px 8px 6px 8px;
+    vertical-align: top;
+    float: right;
+}
+
+.houseContainer:nth-child(2n+1) {
+    margin-right: 30px;
+}
+
+.houseContainer:nth-child(2n) {
+    float: right;
+}
+
+.allNoticeMyHouse {
+    height: 600px;
+    overflow-y: hidden;
+}
+
+.myTripsDate {
+    margin-left: 15px;
+}
+.myTripsDate span {
+    opacity: .54;
+}
+.myTripsDelButton {
+    height: 35px;
+    width: 35px;
+    display: inline-block;
+    background-color: #E32444;
+    vertical-align: top;
+    cursor: pointer;
+    float: right;
+    transition: .3s all;
+}
+
+.myTripsDelButton:hover{
+    background-color: #F31137;
+}
+.navMyTripsBody {
+    position: absolute;
+    bottom: 23px;
+    right: 23px;
+}
+
+.historyArrivalBox {
+    background-color: #fff;
+    width: 100%;
+    height: 895px;
+    font-size: 0;
+    padding: 15px;
+    overflow-y: auto;
+}
+
+.historyArrivalBody form input {
+    background: none;
+    height: 17px;
+    color: #E32444;
+    font-size: 14px;
+    transition: .3s all;
+}
+.historyArrivalBody form input:hover{
+    color: #F31137;
+}
+.historyArrivalBody {
+    display: inline-block;
+    vertical-align: top;
+    padding-top: 5px;
+}
+.historyArrivalBody p {
+    font-size: 14px;
+    margin-bottom: 3px;
+}
+
+.historyArrivalBody p span {
+    opacity: .54;
+}
+
+.historyArrivalItem {
+    height: 45px;
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+.historyArrivalIMG {
+    height: 45px;
+    width: 45px;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 15px;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.historyArrivalBox > h3 {
+    margin-bottom: 15px;
+}
+
+.close {
+    position: absolute;
+    top: 7px;
+    right: 18px;
+}
+
+.close:before, .close:after {
+    position: absolute;
+    content: '';
+    height: 20px;
+    width: 2px;
+    background-color: #fff;
+}
+
+.close:before {
+    transform: rotate(45deg);
+}
+
+.close:after {
+    transform: rotate(-45deg);
+}
+
+.closeMyTrips {
+    position: absolute;
+    top: 15px;
+    right: 26px;
+}
+
+.closeMyTrips:before, .closeMyTrips:after {
+    position: absolute;
+    content: '';
+    height: 20px;
+    width: 2px;
+    background-color: #fff;
+}
+
+.closeMyTrips:before {
+    transform: rotate(45deg);
+}
+
+.closeMyTrips:after {
+    transform: rotate(-45deg);
+}
