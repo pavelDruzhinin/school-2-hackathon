@@ -1824,6 +1824,7 @@ label.valid {
     height: 35px;
     vertical-align: top;
     transition: .3s all;
+    color: #000;
 }
 .houseBodyContainer a:visited {
     color: #000;
@@ -2113,7 +2114,7 @@ label.valid {
     background-color: #F31137;
 }
 .photoUserPI a:visited {
-    color: #000;
+    color: #fff;
 }
 /*Personal information end*/
 
@@ -2173,6 +2174,6 @@ label.valid {
 }
 
 .formEditInfo a:visited {
-    color: #000;
+    color: #fff;
 }
 /*Form Edit and Change Password end*/
