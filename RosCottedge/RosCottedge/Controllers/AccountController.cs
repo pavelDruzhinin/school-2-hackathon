@@ -72,6 +72,7 @@ namespace RosCottedge.Controllers
                 {
                     user.Avatar = "/Content/img/zlad.jpg";
                     user.RegistrationDate = DateTime.Now;
+                    user.OldPassword = user.Password;
                     db.Users.Add(user);
                     db.SaveChanges();
                     FormsAuthentication.SetAuthCookie(user.Login, true);
@@ -188,7 +189,7 @@ namespace RosCottedge.Controllers
                 User email = db.Users.Where(e => e.Email == user.Email).FirstOrDefault();
                 if (email == null || olduser.Email == user.Email)
                 {
-
+                    user.Avatar = olduser.Avatar;
                     db.Set<User>().AddOrUpdate(user);
                     db.SaveChanges();
                     return RedirectToAction("PersonalInformation");
@@ -220,6 +221,7 @@ namespace RosCottedge.Controllers
                                 select u).FirstOrDefault();
                 if (olduser.OldPassword == user.OldPassword)
                 {
+                    user.Avatar = olduser.Avatar;
                     user.OldPassword = user.Password;
                     db.Set<User>().AddOrUpdate(user);
                     db.SaveChanges();
@@ -501,8 +503,13 @@ namespace RosCottedge.Controllers
 
                     //Вывод всех фотографий дома
                     Pictures = db.Pictures.Where(p => p.HouseId == house.Id),
+                    Reservations = from r in db.Reservations
+                           .Include(x => x.User)
+                                   where r.House.UserId == user.Id && r.HouseId == house.Id
+                                   orderby r.ArrivalDate ascending
+                                   select r,
 
-                    
+
                     GeneralClass = from g in genclass
                                    orderby g.Date descending
                                    select g

@@ -11,6 +11,8 @@ namespace RosCottedge.ViewModels
     {
         public IQueryable<Picture> Pictures { get; set; }
         public IEnumerable<GeneralСlass> GeneralClass { get; set; }
+        public IQueryable<Reservation> Reservations { get; set; }
+
         public House House { get; set; }
         public User User { get; set; }
     }

@@ -43,7 +43,7 @@
             </div>
 
             <div class="reservBoxEH">
-                @foreach (var i in Model.House.Reservations)
+                @foreach (var i in Model.Reservations)
                 {
                     <div class="itemReservEH">
                         <p>@i.ArrivalDate.ToString("dd.MM.yyyy")-@i.DepartureDate.ToString("dd.MM.yyyy")</p>
