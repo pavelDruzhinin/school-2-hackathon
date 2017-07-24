@@ -59,12 +59,12 @@
             Phone: {
                 required: true,
                 checkMask: true,
-                remote: '/Account/IsLoginAvailable'
+                remote: '/Account/IsPhoneAvailable'
             },
             Login: {
                 required: true,
                 rangelength: [3, 15],
-                remote: '/Account/IsLoginAvailable'
+                remote: '/Account/IsEmailAvailable'
             },
             Password: {
                 required: true,
@@ -84,12 +84,12 @@
             MiddleName: {
                 required: "Введите ваше Отчество",
                 rangelength: "Длина Отчества, должна быть от 2 до 15 символов",
-                lettersonly: "Фамилия не может содержать цифры"
+                lettersonly: "Отчество не может содержать цифры"
             },
             LastName: {
                 required: "Введите вашу Фамилию",
                 rangelength: "Длина Фамилии, должна быть от 2 до 15 символов",
-                lettersonly: "Отчество не может содержать цифры"
+                lettersonly: "Фамилия не может содержать цифры"
             },
             Email: {
                 required: "Введите ваш e-mail адрес",
@@ -204,13 +204,13 @@
                 rangelength: "Длина названия дома, должна быть от 3 до 50 символов"
             },
             Region: {
-                required: "Неверно выбран адрес"
+                required: "Введите название региона"
             },
             Locality: {
-                required: "Неверно выбран адрес"
+                required: "Введите название населенного пункта"
             },
             Area: {
-                required: "Неверно выбран адрес"
+                required: "Введите название улицы"
             },
             Price: {
                 required: "Введите цену дома",

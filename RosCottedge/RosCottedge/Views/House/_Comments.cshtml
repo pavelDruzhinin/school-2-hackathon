@@ -16,20 +16,20 @@
     </div>
 }
 
-
-@Ajax.Pager(Model.Reviews, new PagerOptions
-{
-    PageIndexParameterName = "page",
-    ContainerTagName = "ul",
-    CssClass = "pagination",
-    CurrentPagerItemTemplate = "<li class=\"active\"><a href=\"#\">{0}</a></li>",
-    DisabledPagerItemTemplate = "<li class=\"disabled\"><a>{0}</a></li>",
-    PagerItemTemplate = "<li>{0}</li>",
-    NextPageText = ">",
-    PrevPageText = "<",
-    LastPageText = ">>",
-    FirstPageText = "<<"
-}).AjaxOptions(a => a.SetUpdateTargetId("comments").DisableHistorySupport())
-
+<div class="pagination-container">
+    @Ajax.Pager(Model.Reviews, new PagerOptions
+    {
+        PageIndexParameterName = "page",
+        ContainerTagName = "ul",
+        CssClass = "pagination",
+        CurrentPagerItemTemplate = "<li class=\"active\"><a href=\"#\">{0}</a></li>",
+        DisabledPagerItemTemplate = "<li class=\"disabled\"><a>{0}</a></li>",
+        PagerItemTemplate = "<li>{0}</li>",
+        NextPageText = "<i class='mdi mdi-chevron-right'></i>",
+        PrevPageText = "<i class='mdi mdi-chevron-left'></i>",
+        LastPageText = "<i class='mdi mdi-chevron-double-right'></i>",
+        FirstPageText = "<i class='mdi mdi-chevron-double-left'></i>"
+    }).AjaxOptions(a => a.SetUpdateTargetId("comments").DisableHistorySupport())
+</div>
 <input type="hidden" id="tempRating2" value="@Model.House.Rating" />
 

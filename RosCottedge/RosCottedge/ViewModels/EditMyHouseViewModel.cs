@@ -9,8 +9,10 @@ namespace RosCottedge.ViewModels
 {
     public class EditMyHouseViewModel
     {
-        public IQueryable<Picture> Pictures { get; set; }
-        public IEnumerable<GeneralСlass> GeneralClass { get; set; }
+        public List<Picture> Pictures { get; set; }
+        public List<GeneralСlass> GeneralClass { get; set; }
+        public List<Reservation> Reservations { get; set; }
+
         public House House { get; set; }
         public User User { get; set; }
     }

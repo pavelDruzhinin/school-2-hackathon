@@ -26,7 +26,7 @@
     });
 
     $('.errorBoxDate').on('click', function () {
-        $('.errorBoxDate').css("display", "none");
+        $(this).css("display", "none");
     });
 
     ratingHouse();

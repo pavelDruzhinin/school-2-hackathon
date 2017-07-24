@@ -22,8 +22,8 @@
                 <div class="owl-carousel">
                     @foreach (var p in Model.Pictures)
                     {
-                        <div class="item" @*style="background-image: url(@p.Adress); background-repeat: no-repeat;"*@>
-                            <img src=@p.Adress alt="">
+                        <div class="item" style="background-image: url(@p.Adress);">
+                            @*<img src=@p.Adress alt="">*@
                         </div>
                     }
                 </div>
