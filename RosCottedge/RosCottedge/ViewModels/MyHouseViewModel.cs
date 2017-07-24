@@ -10,5 +10,6 @@ namespace RosCottedge.ViewModels
     {
         public IQueryable<House> House { get; set; }
         public IEnumerable<GeneralСlass> GeneralClass { get; set; }
+        public User User { get; set; }
     }
 }

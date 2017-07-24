@@ -5,6 +5,7 @@
 }
 
 @*<h2>Редактирование</h2>*@
+@Html.Partial("Profile")
 <div class="Form formEditInfo mainBox">
     @using (Html.BeginForm("Edit", "Account", FormMethod.Post, new { id = "validFormEdit" }))
     {

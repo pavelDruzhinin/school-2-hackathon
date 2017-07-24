@@ -10,6 +10,7 @@ namespace RosCottedge.ViewModels
     {
         public IQueryable<Reservation> ReservationHistory { get; set; }
         public IQueryable<Reservation> ReservationDelete { get; set; }
+        public User User { get; set; }
 
     }
 }

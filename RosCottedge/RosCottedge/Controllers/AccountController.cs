@@ -129,7 +129,7 @@ namespace RosCottedge.Controllers
                 User user = (from u in db.Users
                              where u.Login == User.Identity.Name
                              select u).FirstOrDefault();
-                return View(user);
+                return PartialView(user);
             }
 
             else
@@ -321,6 +321,7 @@ namespace RosCottedge.Controllers
             // Выводим все дома, которые добавлял пользователь
             MyHouseViewModel myHouseModel = new MyHouseViewModel()
             {
+                User  =user,
                 House = from h in db.Houses
                         .Include(x => x.Pictures)
                         where h.UserId == user.Id && h.Hide==false
@@ -500,7 +501,7 @@ namespace RosCottedge.Controllers
                 EditMyHouseViewModel viewModel = new EditMyHouseViewModel()
                 {
                     House = house,
-
+                    User = user,
                     //Вывод всех фотографий дома
                     Pictures = db.Pictures.Where(p => p.HouseId == house.Id),
                     Reservations = from r in db.Reservations
@@ -588,6 +589,8 @@ namespace RosCottedge.Controllers
 
             MyTripsViewModel MyTripsViewModel = new MyTripsViewModel
             {
+                User = user,
+
              ReservationHistory = from a in db.Reservations
                          .Include(x => x.House)
                          where a.UserId == user.Id && a.Tenant == false && a.DepartureDate<DateTime.Now

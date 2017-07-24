@@ -1,11 +1,33 @@
 ﻿
-@{
-    ViewBag.Title = "Profile1";
-}
-@using (Html.BeginForm("Logout", "Account", FormMethod.Post, new { id = "logoutForm" }))
+@if (Model is RosCottedge.Models.User)
 {
-    @Html.AntiForgeryToken()
+    <div class="menuPersonal">
+        <div class="container">
+            <div class="row">
+                <div class="accountIMG" style="background-image: url(@Model.Avatar)"></div>
+                <span>@Model.FirstName<br /> @Model.LastName</span>
+                <ul>
+                    <li><i class='mdi mdi-account-box-outline'></i>@Html.ActionLink("Данные об аккаунте", "PersonalInformation", "Account")</li>
+                    <li><i class='mdi mdi-home'></i>@Html.ActionLink("Мои дома", "MyHouse", "Account") </li>
+                    <li><i class='mdi mdi-note-text'></i>@Html.ActionLink("Мои поездки", "MyTrips", "Account") </li>
+                </ul>
+            </div>
+        </div>
+    </div>
 }
-<li>@Html.ActionLink("Данные об аккаунте", "PersonalInformation", "Account")
-<li>@Html.ActionLink("Мои дома", "MyHouse", "Account") </li>
-<li>@Html.ActionLink("Мои поездки", "MyTrips", "Account") </li>
+else
+{
+<div class="menuPersonal">
+    <div class="container">
+        <div class="row">
+            <div class="accountIMG" style="background-image: url(@Model.User.Avatar)"></div>
+            <span>@Model.User.FirstName<br /> @Model.User.LastName</span>
+            <ul>
+                <li><i class='mdi mdi-account-box-outline'></i>@Html.ActionLink("Данные об аккаунте", "PersonalInformation", "Account")</li>
+                <li><i class='mdi mdi-home'></i>@Html.ActionLink("Мои дома", "MyHouse", "Account") </li>
+                <li><i class='mdi mdi-note-text'></i>@Html.ActionLink("Мои поездки", "MyTrips", "Account") </li>
+            </ul>
+        </div>
+    </div>
+</div>
+}
