@@ -247,7 +247,6 @@
     <Content Include="Content\img\mapMarkers\mm3.png" />
     <Content Include="Content\img\mapMarkers\mm4.png" />
     <Content Include="Content\img\mapMarkers\mm5.png" />
-    <Content Include="Content\img\users\darkred\q6bJnp5P.jpeg" />
     <Content Include="Content\img\zlad.jpg" />
     <Content Include="Scripts\config\error.js" />
     <Content Include="Scripts\jquery.maskedinput.min.js" />
@@ -320,6 +319,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\img\users\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

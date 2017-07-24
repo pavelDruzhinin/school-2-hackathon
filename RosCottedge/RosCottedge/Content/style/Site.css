@@ -591,9 +591,6 @@ footer .bottomFooter span{
 .mainField .area ul li:hover{
   background-color: #263F5C;
 }
-.mainField .area ul li:last-child{
-  margin-bottom: 7.5px;
-}
 #searchForm .firstItem{
   margin: 0;
 }

@@ -13,14 +13,7 @@
         <div class="area searchFields">
           <input autocomplete="off" class="select firstItem" type="text" placeholder="Город или район" name="region">
           <ul>
-            @foreach (var x in Model.Regions)
-            {
-                <li style="display: none;">@x.Region</li>
-            }
-            @foreach (var x in Model.Localities)
-            {
-                <li style="display: none;">@x.Locality</li>
-            }
+            
           </ul>
         </div>
         <div class="dates searchFields">

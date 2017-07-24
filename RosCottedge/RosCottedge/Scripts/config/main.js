@@ -58,10 +58,12 @@ $(document).ready(function () {
     //Select
     var clickItem = false;
     $('.mainField .area .select').keyup(function () {
-        clickItem = false;
+
         var inputText = $(this).val();
         var inputTextReg = new RegExp(inputText, "i");
         var areaSelItem = $(this).parent('.area').children('ul').children('li');
+        clickItem = false;
+
 
         areaSelItem.each(function () {
             var text = $(this).text();
@@ -74,17 +76,28 @@ $(document).ready(function () {
         });
 
         var activeItem = $('.mainField .area ul li[style="display: list-item;"]').length;
-        console.log(activeItem);
-        if ( activeItem <= 3 && activeItem > 0 ){
-          $(this).parent('.area').addClass('actArea');
+
+        if ( inputText.length >= 3 ){
+
+          $.getJSON('/Home/AutocompleteSearch',{ search : inputText }, function(data){
+
+            $('.area ul').html('');
+
+            for(var i=0;i < data.length;i++){
+              $('.area ul').append('<li>'+data[i]+'</li>');
+              $('.area').addClass('actArea');
+            }
+
+          });
+
         }else{
-          $(this).parent('.area').removeClass('actArea');
+          $('.area').removeClass('actArea');
         }
 
     });
 
 
-    $('.mainField .area ul li').mousedown(function () {
+    $('.mainField .area ul').on('mousedown','li',function () {
       $('.mainField .area .select').val($(this).text());
       $('.area').removeClass('actArea');
       clickItem = true;
@@ -98,8 +111,6 @@ $(document).ready(function () {
     $('.mainField .area .select').focus(function () {
       $(this).val('');
     });
-
-
 
     //Sorting
     $('.sortingBox').click(function(){

@@ -85,7 +85,7 @@ namespace RosCottedge.Controllers
             //Создаём лист регионов из базы
 
             List<House> regions = new List<House>();
-            
+
             foreach (var h in db.Houses)
             {
                 if (!regions.Any(x => x.Region == h.Region))
@@ -104,7 +104,7 @@ namespace RosCottedge.Controllers
                     localities.Add(h);
                 }
             }
-            
+
             var viewModel = new HomeIndexViewModel()
             {
                 Houses = houses.OrderByDescending(x => x.Id).ToPagedList(pageNumber, pageSize),
@@ -112,12 +112,34 @@ namespace RosCottedge.Controllers
                 Regions = regions.OrderBy(x => x.Region).ToList(),
                 Localities = localities.OrderBy(x => x.Locality).ToList()
             };
-            
+
         var kappa = Request.IsAjaxRequest();
 
             return Request.IsAjaxRequest()
                 ? (ActionResult)PartialView("_Houses", viewModel)
                 : View(viewModel);
+        }
+
+        public ActionResult AutocompleteSearch(string search)
+          {
+              List<string> RegionsAndLocalities = new List<string>();
+              foreach (var r in db.Houses.Where(x => x.Region.Contains(search)))
+              {
+                  if (!RegionsAndLocalities.Contains(r.Region))
+                  {
+                      RegionsAndLocalities.Add(r.Region);
+                  }
+              }
+              
+              foreach (var r in db.Houses.Where(x => x.Locality.Contains(search)))
+              {
+                if (!RegionsAndLocalities.Contains(r.Locality))
+                {
+                    RegionsAndLocalities.Add(r.Locality);
+                }
+              }
+
+              return Json(RegionsAndLocalities, JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult About()
