@@ -666,6 +666,18 @@ namespace RosCottedge.Controllers
             }
             return Json(false, JsonRequestBehavior.AllowGet);
         }
+
+        public JsonResult IsPassAvailable(string OldPassword)
+        {
+            User olduser = (from u in db.Users
+                            where u.Login == User.Identity.Name
+                            select u).FirstOrDefault();
+            if (olduser.OldPassword == OldPassword)
+            {
+                return Json(true, JsonRequestBehavior.AllowGet);
+            }
+            return Json(false, JsonRequestBehavior.AllowGet);
+        }
         #endregion
     }
 }

@@ -59,12 +59,12 @@
             Phone: {
                 required: true,
                 checkMask: true,
-                remote: '/Account/IsLoginAvailable'
+                remote: '/Account/IsPhoneAvailable'
             },
             Login: {
                 required: true,
                 rangelength: [3, 15],
-                remote: '/Account/IsLoginAvailable'
+                remote: '/Account/IsEmailAvailable'
             },
             Password: {
                 required: true,
@@ -84,12 +84,12 @@
             MiddleName: {
                 required: "Введите ваше Отчество",
                 rangelength: "Длина Отчества, должна быть от 2 до 15 символов",
-                lettersonly: "Фамилия не может содержать цифры"
+                lettersonly: "Отчество не может содержать цифры"
             },
             LastName: {
                 required: "Введите вашу Фамилию",
                 rangelength: "Длина Фамилии, должна быть от 2 до 15 символов",
-                lettersonly: "Отчество не может содержать цифры"
+                lettersonly: "Фамилия не может содержать цифры"
             },
             Email: {
                 required: "Введите ваш e-mail адрес",

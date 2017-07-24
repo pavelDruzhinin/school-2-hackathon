@@ -2110,3 +2110,59 @@ label.valid {
     background-color: #F31137;
 }
 /*Personal information end*/
+
+/*Form Edit and Change Password start*/
+.formEditInfo {
+    width: 475px;
+    font-size: 0;
+}
+
+.formEditInfo label{
+    font-size: 16px;
+    width: 100%;
+    padding-left: 0;
+    margin-bottom: 8px;
+}
+.formEditInfo .largeInputForm {
+    width: 100%;
+}
+
+.formEditInfo .smallInputForm {
+    width: 48%;
+    display: inline-block;
+    vertical-align: top;
+}
+
+.formEditInfo label[class="error"] {
+    margin-top: -7px;
+    margin-bottom: 15px;
+}
+
+
+.formEditInfo .innerForm .ButtonSaveEdit {
+    width: 100%;
+    margin-bottom: 0;
+}
+
+.formEditInfo .innerForm input {
+    margin-bottom: 15px;
+    width: 100%;
+}
+
+.formEditInfo a {
+    display: block;
+    height: 45px;
+    width: 100%;
+    background-color: #E32444;
+    color: #fff;
+    font-size: 16px;
+    padding-top: 14px;
+    text-align: center;
+    margin-top: 15px;
+    transition: .3s ease;
+}
+
+.formEditInfo a:hover {
+    background-color: #F31137;
+}
+/*Form Edit and Change Password end*/
