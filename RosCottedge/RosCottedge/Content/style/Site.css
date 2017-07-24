@@ -1825,6 +1825,9 @@ label.valid {
     vertical-align: top;
     transition: .3s all;
 }
+.houseBodyContainer a:visited {
+    color: #000;
+}
 .houseBodyContainer a:hover {
     background-color: #eee;
 }
@@ -2109,6 +2112,9 @@ label.valid {
 .photoUserPI a:hover {
     background-color: #F31137;
 }
+.photoUserPI a:visited {
+    color: #000;
+}
 /*Personal information end*/
 
 /*Form Edit and Change Password start*/
@@ -2164,5 +2170,9 @@ label.valid {
 
 .formEditInfo a:hover {
     background-color: #F31137;
+}
+
+.formEditInfo a:visited {
+    color: #000;
 }
 /*Form Edit and Change Password end*/
