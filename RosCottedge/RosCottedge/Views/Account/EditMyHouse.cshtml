@@ -66,52 +66,66 @@
                     <div class="fields">
                         @Html.LabelFor(model => model.House.Name, htmlAttributes: new { @class = "control-label largeInputEH" })
                         @Html.EditorFor(model => model.House.Name, new { htmlAttributes = new { @class = "form-control largeInputEH", @placeholder = "Название дома", @aria_required = "true", @aria_invalid = "false" } })
+                        @Html.ValidationMessageFor(model => model.House.Name, "", new { @class = "text-danger" })
 
                         <div class="smallInputEH">
                             @Html.LabelFor(model => model.House.Price, htmlAttributes: new { @class = "control-label" })
                             @Html.EditorFor(model => model.House.Price, new { htmlAttributes = new { @class = "form-control", @placeholder = "Стоимость", @aria_required = "true", @aria_invalid = "false" } })
+                            @Html.ValidationMessageFor(model => model.House.Price, "", new { @class = "text-danger" })
                         </div>
                         <div class="smallInputEH floatInput">
                             @Html.LabelFor(model => model.House.NumberOfPersons, htmlAttributes: new { @class = "control-label" })
                             @Html.EditorFor(model => model.House.NumberOfPersons, new { htmlAttributes = new { @class = "form-control", @placeholder = "Количество человек", @aria_required = "true", @aria_invalid = "false" } })
+                            @Html.ValidationMessageFor(model => model.House.NumberOfPersons, "", new { @class = "text-danger" })
                         </div>
                         <div class="smallInputEH">
                             @Html.LabelFor(model => model.House.Region, htmlAttributes: new { @class = "control-label" })
                             @Html.EditorFor(model => model.House.Region, new { htmlAttributes = new { @class = "form-control", @aria_required = "true", @aria_invalid = "false" } })
+                            @Html.ValidationMessageFor(model => model.House.Region, "", new { @class = "text-danger" })
                         </div>
                         <div class="smallInputEH floatInput">
                             @Html.LabelFor(model => model.House.Locality, htmlAttributes: new { @class = "control-label" })
                             @Html.EditorFor(model => model.House.Locality, new { htmlAttributes = new { @class = "form-control", @aria_required = "true", @aria_invalid = "false" } })
+                            @Html.ValidationMessageFor(model => model.House.Locality, "", new { @class = "text-danger" })
                         </div>
                         <div class="smallInputEH">
                             @Html.LabelFor(model => model.House.Area, htmlAttributes: new { @class = "control-label" })
                             @Html.EditorFor(model => model.House.Area, new { htmlAttributes = new { @class = "form-control", @aria_required = "true", @aria_invalid = "false" } })
+                            @Html.ValidationMessageFor(model => model.House.Area, "", new { @class = "text-danger" })
                         </div>
                         <div class="smallInputEH floatInput">
                             @Html.LabelFor(model => model.House.HouseNumber, htmlAttributes: new { @class = "control-label" })
                             @Html.EditorFor(model => model.House.HouseNumber, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.House.HouseNumber, "", new { @class = "text-danger" })
                         </div>
 
                         @Html.LabelFor(model => model.House.Description, htmlAttributes: new { @class = "control-label largeInputEH" })
                         @Html.EditorFor(model => model.House.Description, new { htmlAttributes = new { @class = "form-control largeInputEH", @placeholder = "Описание", @aria_required = "true", @aria_invalid = "false" } })
+                        @Html.ValidationMessageFor(model => model.House.Description, "", new { @class = "text-danger" })
 
                         @Html.LabelFor(model => model.House.Food, htmlAttributes: new { @class = "control-label largeInputEH" })
                         @Html.EditorFor(model => model.House.Food, new { htmlAttributes = new { @class = "form-control largeInputEH", @placeholder = "Питание", @aria_required = "true", @aria_invalid = "false" } })
+                        @Html.ValidationMessageFor(model => model.House.Food, "", new { @class = "text-danger" })
 
                         @Html.LabelFor(model => model.House.Transfer, htmlAttributes: new { @class = "control-label largeInputEH" })
                         @Html.EditorFor(model => model.House.Transfer, new { htmlAttributes = new { @class = "form-control largeInputEH", @placeholder = "Трансфер", @aria_required = "true", @aria_invalid = "false" } })
+                        @Html.ValidationMessageFor(model => model.House.Transfer, "", new { @class = "text-danger" })
 
                         @Html.LabelFor(model => model.House.ServicesIncluded, htmlAttributes: new { @class = "control-label largeInputEH" })
                         @Html.EditorFor(model => model.House.ServicesIncluded, new { htmlAttributes = new { @class = "form-control largeInputEH", @placeholder = "Услуги, включенные в стоимость", @aria_required = "true", @aria_invalid = "false" } })
+                        @Html.ValidationMessageFor(model => model.House.ServicesIncluded, "", new { @class = "text-danger" })
 
                         @Html.LabelFor(model => model.House.AdditionalServices, htmlAttributes: new { @class = "control-label largeInputEH" })
                         @Html.EditorFor(model => model.House.AdditionalServices, new { htmlAttributes = new { @class = "form-control largeInputEH", @placeholder = "Услуга за отдельную плату", @aria_required = "true", @aria_invalid = "false" } })
+                        @Html.ValidationMessageFor(model => model.House.AdditionalServices, "", new { @class = "text-danger" })
 
                         @Html.LabelFor(model => model.House.Accomodations, htmlAttributes: new { @class = "control-label largeInputEH" })
                         @Html.EditorFor(model => model.House.Accomodations, new { htmlAttributes = new { @class = "form-control largeInputEH", @placeholder = "Условия проживания", @aria_required = "true", @aria_invalid = "false" } })
+                        @Html.ValidationMessageFor(model => model.House.Accomodations, "", new { @class = "text-danger" })
 
                         @Html.LabelFor(model => model.House.BookingConditions, htmlAttributes: new { @class = "control-label largeInputEH" })
                         @Html.EditorFor(model => model.House.BookingConditions, new { htmlAttributes = new { @class = "form-control largeInputEH", @placeholder = "Условия бронирования", @aria_required = "true", @aria_invalid = "false" } })
+                        @Html.ValidationMessageFor(model => model.House.BookingConditions, "", new { @class = "text-danger" })
 
                         @Html.HiddenFor(model => model.User.Id, "UserId" @*htmlAttributes: new { @class = "control-label col-md-2" }*@)
 

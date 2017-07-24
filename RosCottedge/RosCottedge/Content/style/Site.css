@@ -738,7 +738,7 @@ input[type="radio"]:checked + label span::before {
     margin-bottom: 15px;
     font-size: 14px;
     color: #fff;
-    display: block;
+    display: none;
     padding: 10px 15px;
 }
 
@@ -771,6 +771,11 @@ label.valid {
     color: #E32444;
 }
 
+.field-validation-error {
+    display: block;
+    margin-top: -9px;
+    margin-bottom: 8px;
+}
 .Form .questBox {
     padding: 15px;
     text-align: center;

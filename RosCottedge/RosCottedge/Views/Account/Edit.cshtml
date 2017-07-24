@@ -19,24 +19,29 @@
                 <div class="largeInputForm">
                     @Html.LabelFor(model => model.LastName, htmlAttributes: new { @class = "control-label col-md-2" })
                     @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
                 </div>
 
                 <div class="smallInputForm">
                     @Html.LabelFor(model => model.FirstName, htmlAttributes: new { @class = "control-label col-md-2" })
                     @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
                 </div>
 
                 <div class="smallInputForm floatInput">
                     @Html.LabelFor(model => model.MiddleName, htmlAttributes: new { @class = "control-label col-md-2" })
                     @Html.EditorFor(model => model.MiddleName, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.MiddleName, "", new { @class = "text-danger" })
                 </div>
                 <div class="largeInputForm">
                     @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
                     @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
                 </div>
                 <div class="largeInputForm">
                     @Html.LabelFor(model => model.Phone, htmlAttributes: new { @class = "control-label col-md-2" })
                     @Html.EditorFor(model => model.Phone, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger" })
                 </div>
 
                 @Html.HiddenFor(model => model.Login, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -95,13 +100,11 @@
                     },
                     Email: {
                         required: true,
-                        email: true,
-                        remote: '/Account/IsEmailAvailable'
+                        email: true
                     },
                     Phone: {
                         required: true,
-                        checkMask: true,
-                        remote: '/Account/IsPhoneAvailable'
+                        checkMask: true
                     }
                 },
                 messages: {
@@ -122,13 +125,11 @@
                     },
                     Email: {
                         required: "Введите ваш e-mail адрес",
-                        email: "Неверно введен email",
-                        remote: "Введенный e-mail адрес уже используется"
+                        email: "Неверно введен email"
                     },
                     Phone: {
                         required: "Введите ваш номер телефона",
-                        checkMask: "Введите полный номер телефона",
-                        remote: "Введенный номер телефона уже используется"
+                        checkMask: "Введите полный номер телефона"
                     }
                 },
                 focusCleanup: true,
