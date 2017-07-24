@@ -8,8 +8,8 @@ namespace RosCottedge.ViewModels
 {
     public class MyTripsViewModel
     {
-        public IQueryable<Reservation> ReservationHistory { get; set; }
-        public IQueryable<Reservation> ReservationDelete { get; set; }
+        public List<Reservation> ReservationHistory { get; set; }
+        public List<Reservation> ReservationDelete { get; set; }
         public User User { get; set; }
 
     }

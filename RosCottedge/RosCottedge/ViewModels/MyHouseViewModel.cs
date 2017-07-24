@@ -8,8 +8,8 @@ namespace RosCottedge.ViewModels
 {
     public class MyHouseViewModel
     {
-        public IQueryable<House> House { get; set; }
-        public IEnumerable<GeneralСlass> GeneralClass { get; set; }
+        public List<House> House { get; set; }
+        public List<GeneralСlass> GeneralClass { get; set; }
         public User User { get; set; }
     }
 }

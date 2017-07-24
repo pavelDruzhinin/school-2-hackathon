@@ -248,20 +248,20 @@ namespace RosCottedge.Controllers
             List<GeneralСlass> genclass = new List<GeneralСlass>();
 
             //Ищем дома, по которым пришла бронь
-            IQueryable<Reservation> reservations = from r in db.Reservations
+            var reservations = (from r in db.Reservations
                                 .Include(u => u.User).Include(u=>u.House)
                                where r.House.UserId == user.Id && r.Landlord == false
-                               select r;
+                               select r).ToList();
             //Ищем дома, по которым оставлен отзыв
-            IQueryable<Review> reviews = from c in db.Reviews
+            var reviews = (from c in db.Reviews
                      .Include(x => x.User).Include(x => x.House)
                           where c.House.UserId == user.Id && c.Landlord == false
-                          select c;
+                          select c).ToList();
             //Ищем дома по которым пришла отмена брони
-            IQueryable<ReservDelNotice> reservdelnotices = from c in db.ReservDelNotices
+            var reservdelnotices = (from c in db.ReservDelNotices
                              .Include(x => x.User).Include(x => x.House)
                                                            where c.House.UserId == user.Id
-                                                           select c;
+                                                           select c).ToList();
 
             foreach (var r in reservations)
             {
@@ -322,18 +322,18 @@ namespace RosCottedge.Controllers
             MyHouseViewModel myHouseModel = new MyHouseViewModel()
             {
                 User  =user,
-                House = from h in db.Houses
+                House = (from h in db.Houses
                         .Include(x => x.Pictures)
                         where h.UserId == user.Id && h.Hide==false
-                        select h,
+                        select h).ToList(),
                 
-                GeneralClass= from g in genclass
+                GeneralClass= (from g in genclass
                               orderby g.Date descending
-                              select g
+                              select g).ToList()
 
             };
-            
 
+            
             return View(myHouseModel);
         }
 
@@ -358,10 +358,12 @@ namespace RosCottedge.Controllers
             }
             else
             {
-                ModelState.AddModelError("","По этому дому есть бронь. Удаление невозможно");
+                //ModelState.AddModelError("","По этому дому есть бронь. Удаление невозможно");
+                ViewBag.Message = "По этому дому есть бронь. Удаление невозможно";
+                
             }
            
-            return RedirectToAction("MyHouse", "Account");
+            return RedirectToAction("MyHouse","Account");
         }
         #endregion
 
@@ -426,22 +428,22 @@ namespace RosCottedge.Controllers
                 }
 
                 //Вывод забронированных дат по выбранному дому
-                IQueryable<Reservation> reservations = from r in db.Reservations
-                                            .Include(x => x.User)
-                                                       where r.House.UserId == user.Id && r.HouseId == house.Id && r.Landlord == false
-                                                       select r;
+                var reservations = (from r in db.Reservations
+                                   .Include(x => x.User)
+                                   where r.House.UserId == user.Id && r.HouseId == house.Id && r.Landlord == false
+                                   select r).ToList();
 
                 //Вывод комментариев по выбранному дому
-                IQueryable<Review> reviews = from c in db.Reviews
-                                         .Include(x => x.User).Include(x => x.House)
-                                             where c.House.UserId == user.Id && c.HouseId == house.Id && c.Landlord == false
-                                             select c;
+                var reviews = (from c in db.Reviews
+                              .Include(x => x.User).Include(x => x.House)
+                              where c.House.UserId == user.Id && c.HouseId == house.Id && c.Landlord == false
+                              select c).ToList();
 
                 //Вывод удалённых броней по выбранному дому
-                IQueryable<ReservDelNotice> reservdelnotices = from r in db.ReservDelNotices
+                var reservdelnotices = (from r in db.ReservDelNotices
                                             .Include(x => x.User)
                                    where r.House.UserId == user.Id && r.HouseId == house.Id
-                                   select r;
+                                   select r).ToList();
 
                 foreach (var r in reservations)
                 {
@@ -503,17 +505,18 @@ namespace RosCottedge.Controllers
                     House = house,
                     User = user,
                     //Вывод всех фотографий дома
-                    Pictures = db.Pictures.Where(p => p.HouseId == house.Id),
-                    Reservations = from r in db.Reservations
+                    Pictures = db.Pictures.Where(p => p.HouseId == house.Id).ToList(),
+
+                    Reservations = (from r in db.Reservations
                            .Include(x => x.User)
                                    where r.House.UserId == user.Id && r.HouseId == house.Id
                                    orderby r.ArrivalDate ascending
-                                   select r,
+                                   select r).ToList(),
 
 
-                    GeneralClass = from g in genclass
+                    GeneralClass = (from g in genclass
                                    orderby g.Date descending
-                                   select g
+                                   select g).ToList()
 
                 };
 
@@ -591,16 +594,16 @@ namespace RosCottedge.Controllers
             {
                 User = user,
 
-             ReservationHistory = from a in db.Reservations
+             ReservationHistory = (from a in db.Reservations
                          .Include(x => x.House)
                          where a.UserId == user.Id && a.Tenant == false && a.DepartureDate<DateTime.Now
-                         select a,
+                         select a).ToList(),
 
-            ReservationDelete = from a in db.Reservations
+            ReservationDelete = (from a in db.Reservations
                                  .Include(x => x.House)
                                  .Include(x => x.House.Pictures)
                                 where a.UserId == user.Id
-                                select a
+                                select a).ToList()
             };
             
 
