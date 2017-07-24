@@ -35,18 +35,18 @@
         </div>
         <div class="pagination-container">
           @Ajax.Pager(Model.Houses, new PagerOptions
-          {
-              PageIndexParameterName = "page",
-              ContainerTagName = "ul",
-              CssClass = "pagination",
-              CurrentPagerItemTemplate = "<li class=\"active\"><a href=\"#\">{0}</a></li>",
-              DisabledPagerItemTemplate = "<li class=\"disabled\"><a>{0}</a></li>",
-              PagerItemTemplate = "<li>{0}</li>",
-              NextPageText = "<i class='mdi mdi-chevron-right'></i>",
-              PrevPageText = "<i class='mdi mdi-chevron-left'></i>",
-              LastPageText = "<i class='mdi mdi-chevron-double-right'></i>",
-              FirstPageText = "<i class='mdi mdi-chevron-double-left'></i>"
-          }).AjaxOptions(a => a.SetUpdateTargetId("houses").SetDataFormId("searchForm").SetHttpMethod("Post"))
+     {
+         PageIndexParameterName = "page",
+         ContainerTagName = "ul",
+         CssClass = "pagination",
+         CurrentPagerItemTemplate = "<li class=\"active\"><a href=\"#\">{0}</a></li>",
+         DisabledPagerItemTemplate = "<li class=\"disabled\"><a>{0}</a></li>",
+         PagerItemTemplate = "<li>{0}</li>",
+         NextPageText = "<i class='mdi mdi-chevron-right'></i>",
+         PrevPageText = "<i class='mdi mdi-chevron-left'></i>",
+         LastPageText = "<i class='mdi mdi-chevron-double-right'></i>",
+         FirstPageText = "<i class='mdi mdi-chevron-double-left'></i>"
+     }).AjaxOptions(a => a.SetUpdateTargetId("houses").SetDataFormId("searchForm").SetHttpMethod("Post"))
         </div>
     </div>
 </div>

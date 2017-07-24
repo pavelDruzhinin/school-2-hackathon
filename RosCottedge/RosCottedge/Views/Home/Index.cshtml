@@ -11,7 +11,7 @@
     <form id ="searchForm" class="searchBox mainBox" method="post" @*action="/Home/Index" data-ajax="true" data-ajax-update="#houses" data-ajax-mode="replace"*@>
       <div class="mainField">
         <div class="area searchFields">
-          <input autocomplete="off" class="select firstItem" type="text" placeholder="Регион/Город" name="region">
+          <input autocomplete="off" class="select firstItem" type="text" placeholder="Город или район" name="region">
           <ul>
             @foreach (var x in Model.Regions)
             {
@@ -51,10 +51,6 @@
             <li>
               <input type="radio" id="r1" name="rr" checked>
               <label for="r1"><span></span>Сначала новые</label>
-            </li>
-            <li>
-              <input type="radio" id="r2" name="rr">
-              <label for="r2"><span></span>По дате</label>
             </li>
             <li>
               <input type="radio" id="r3" name="rr">

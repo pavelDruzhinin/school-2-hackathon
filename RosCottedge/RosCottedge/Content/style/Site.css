@@ -446,17 +446,17 @@ footer .bottomFooter span{
   display: inline-block;
 }
 .searchBox .area input{
-  width: 178px;
+  width: 300px;
 }
 .searchBox .dates input,
 .searchBox .prices input{
-  width: 134px;
+  width: 110px;
 }
 .searchBox .numPersons input{
-  width: 158px;
+  width: 130px;
 }
 .searchBox input[type="submit"]{
-  width: 148px;
+  width: 150px;
 }
 .addField{
   margin-top: 30px;
@@ -565,7 +565,7 @@ footer .bottomFooter span{
 }
 .mainField .area ul{
   position: absolute;
-  width: 178px;
+  width: 300px;
   background-color: #EEEEEE;
   left: 0;
   top: 45px;
@@ -1816,9 +1816,9 @@ label.valid {
     color: #fff;
     display: inline-block;
     padding-top: 9px;
-    white-space: nowrap; 
-    overflow: hidden; 
-    text-overflow: ellipsis; 
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 .houseBodyContainer a {
     opacity: 1;
@@ -2099,7 +2099,7 @@ label.valid {
 .personalInfo p {
     background-color: #fff;
     padding: 9px 15px 8px 15px;
-    
+
 }
 
 .photoUserPI a {
