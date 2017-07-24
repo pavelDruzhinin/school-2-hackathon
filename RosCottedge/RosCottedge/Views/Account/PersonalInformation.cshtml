@@ -5,11 +5,60 @@
 
 }
 
-<h2>Загрузить свой аватар</h2>
-@using (Html.BeginForm("AddAvatar", "Account", FormMethod.Post, new { enctype = "multipart/form-data" }))
+<div class="container">
+    <div class="row">
+        <div style="text-align: center;">
+            <div class="photoUserPI mainBox">
+                <div class="avaUser" style="background-image: url(@Model.Avatar)"></div>
+                @using (Html.BeginForm("AddAvatar", "Account", FormMethod.Post, new { enctype = "multipart/form-data", id = "uploadPhotoPI" }))
+                {
+                    <div class="file-uploadPI">
+                        <label>
+                            <input type="file" name="upload" accept="image/jpeg,image/png,image/bmp" id="fileUploadPI" /><br>
+                            <span>Изменить фотографию</span>
+                        </label>
+                    </div>
+                    <input id="submitFilePI" type="submit" value="Загрузить" style="display: none;" />
+                }
+                @Html.ActionLink("Изменить данные", "Edit")
+            </div>
+            <div style="display:inline-block">
+                <div class="personalInfo mainBox">
+                    <h3>@Html.DisplayNameFor(model => model.LastName)</h3>
+                    <p>@Html.DisplayFor(model => model.LastName)</p>
+                </div>
+                <div class="personalInfo mainBox">
+                    <h3>@Html.DisplayNameFor(model => model.FirstName)</h3>
+                    <p>@Html.DisplayFor(model => model.FirstName)</p>
+                </div>
+                <div class="personalInfo mainBox">
+                    <h3>@Html.DisplayNameFor(model => model.MiddleName)</h3>
+                    <p>@Html.DisplayFor(model => model.MiddleName)</p>
+                </div>
+                <div class="personalInfo mainBox">
+                    <h3>@Html.DisplayNameFor(model => model.Email)</h3>
+                    <p>@Html.DisplayFor(model => model.Email)</p>
+                </div>
+                <div class="personalInfo mainBox">
+                    <h3>@Html.DisplayNameFor(model => model.Phone)</h3>
+                    <p>@Html.DisplayFor(model => model.Phone)</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+@*<h2>Загрузить свой аватар</h2>
+@using (Html.BeginForm("AddAvatar", "Account", FormMethod.Post, new { enctype = "multipart/form-data", id = "uploadPhotoPI" }))
 {
-    <input type="file" name="upload" /><br>
-    <input type="submit" value="Загрузить" />
+    <div class="file-uploadPI">
+        <label>
+            <input type="file" name="upload" accept="image/jpeg,image/png,image/bmp" id="fileUploadPI" /><br>
+            <span>Добавить фото</span>
+        </label>
+    </div>
+    <input id="submitFilePI" type="submit" value="Загрузить"  style="display: none;"/>
 }
 
 <div><img src=@Model.Avatar width="100" hight="100"></div>
@@ -39,5 +88,15 @@
     </tr>
 
 </table>
-@Html.ActionLink("Изменить данные", "Edit")
+@Html.ActionLink("Изменить данные", "Edit")*@
 
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $('#fileUploadPI').on('change', function () {
+                $('#uploadPhotoPI').submit();
+            });
+
+        });
+    </script> 
+}
