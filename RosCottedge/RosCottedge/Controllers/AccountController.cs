@@ -358,9 +358,8 @@ namespace RosCottedge.Controllers
             }
             else
             {
-                //ModelState.AddModelError("","По этому дому есть бронь. Удаление невозможно");
-                ViewBag.Message = "По этому дому есть бронь. Удаление невозможно";
-                
+                TempData["message"] = string.Format("По этому дому есть бронь. Удаление невозможно");
+               
             }
            
             return RedirectToAction("MyHouse","Account");
