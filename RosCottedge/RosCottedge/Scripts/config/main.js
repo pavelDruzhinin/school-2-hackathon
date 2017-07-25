@@ -56,59 +56,41 @@ $(document).ready(function () {
     });
 
     //Select
+    var $selWrap = $('.mainField .area');
     var clickItem = false;
+    var $inputText;
     $('.mainField .area .select').keyup(function () {
 
-        var inputText = $(this).val();
-        var inputTextReg = new RegExp(inputText, "i");
-        var areaSelItem = $(this).parent('.area').children('ul').children('li');
-        clickItem = false;
+        $inputText = $(this).val(); clickItem = false;
 
-
-        areaSelItem.each(function () {
-            var text = $(this).text();
-            var searchText = text.search(inputTextReg);
-            if (searchText != -1) {
-                $(this).css('display', 'list-item');
-            } else {
-                $(this).css('display', 'none');
+        if ( $inputText.length >= 3 ){
+          $.getJSON('/Home/AutocompleteSearch',{ search : $inputText }, function(data){
+            if(data != ''){
+              $selWrap.children('ul').html('');
+              for(var i=0;i < data.length;i++){
+                $('.area ul').append('<li>'+data[i]+'</li>');
+              }
+              $selWrap.addClass('actArea');
             }
-        });
-
-        var activeItem = $('.mainField .area ul li[style="display: list-item;"]').length;
-
-        if ( inputText.length >= 3 ){
-
-          $.getJSON('/Home/AutocompleteSearch',{ search : inputText }, function(data){
-
-            $('.area ul').html('');
-
-            for(var i=0;i < data.length;i++){
-              $('.area ul').append('<li>'+data[i]+'</li>');
-              $('.area').addClass('actArea');
-            }
-
           });
-
         }else{
-          $('.area').removeClass('actArea');
+          $selWrap.removeClass('actArea');
         }
 
     });
 
-
-    $('.mainField .area ul').on('mousedown','li',function () {
+    $selWrap.children('ul').on('mousedown','li',function () {
       $('.mainField .area .select').val($(this).text());
-      $('.area').removeClass('actArea');
+      $selWrap.removeClass('actArea');
       clickItem = true;
     });
 
-    $('.mainField .area .select').blur(function () {
+    $selWrap.children('.select').blur(function () {
       if ( clickItem == false ) $(this).val('');
       $(this).parent('.area').removeClass('actArea');
     });
 
-    $('.mainField .area .select').focus(function () {
+    $selWrap.children('.select').focus(function () {
       $(this).val('');
     });
 
