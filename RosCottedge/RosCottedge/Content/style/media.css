@@ -74,6 +74,46 @@
         max-width: 508px;
     }
     /*Form Review end*/
+
+    /*Form Search start*/
+    #searchForm input{
+      margin-bottom: 15px !important;
+      margin: 0;
+    }
+    #searchForm input[type="submit"]{
+      margin-bottom: 0 !important;
+    }
+    .area{
+      width: 100%;
+      padding-right: 15px;
+    }
+    .searchBox .numPersons{
+      margin-top: 25px;
+    }
+    .prices,.dates {
+      width: 100%;
+      font-size: 0;
+    }
+    .cell50_inp{
+      width: 50%;
+      display: inline-block;
+      padding: 0 7.5px;
+    }
+    .cell100_inp{
+      width: 100%;
+      padding: 0 7.5px;
+    }
+    .searchBox .area input, .searchBox .area ul, .searchBox .numPersons,
+    .cell50_inp input, .cell100_inp input{
+      width: 100% !important;
+    }
+    #slider-range{
+      margin-top: 10px;
+    }
+    .searchBox .area ul{
+      width: calc(100% - 15px);
+    }
+    /*Form Search end*/
 }
 
 @media (min-width: 992px) and (max-width: 1199px) {
@@ -98,6 +138,20 @@
     .reviewItem .reviewUser {
         width: 35% !important;
     }
+
+    /*Form Search start*/
+    .searchBox .area input,
+    .mainField .area ul{
+      width: 170px;
+    }
+    .searchBox .prices input {
+      width: 90px;
+    }
+    .searchBox input[type="submit"]{
+      width: 120px;
+    }
+    /*Form Search end*/
+
     /*Form Review end*/
 
     /*Slider Start*/

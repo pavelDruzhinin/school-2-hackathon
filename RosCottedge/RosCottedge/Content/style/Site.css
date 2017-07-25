@@ -442,7 +442,8 @@ footer .bottomFooter span{
   margin: 0 7.5px;
 }
 .searchBox .searchFields,
-.searchBox input{
+.searchBox input,
+.cell50_inp, .cell100_inp{
   display: inline-block;
 }
 .searchBox .area input{

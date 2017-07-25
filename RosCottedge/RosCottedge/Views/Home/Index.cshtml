@@ -15,44 +15,56 @@
           <ul></ul>
         </div>
         <div class="dates searchFields">
-          <input type="text" placeholder="Заезд" name="arrivalDate" id="date1" class="date" readonly="readOnly">
-          <input type="text" placeholder="Выезд" name="departureDate" id="date2" class="date" readonly="readOnly">
+          <div class="cell50_inp">
+            <input type="text" placeholder="Заезд" name="arrivalDate" id="date1" class="date" readonly="readOnly">
+          </div>
+          <div class="cell50_inp">
+            <input type="text" placeholder="Выезд" name="departureDate" id="date2" class="date" readonly="readOnly">
+          </div>
         </div>
         <div class="prices searchFields">
-          <input type="text" id="minCost" class="cost1" placeholder="Цена от" name="startPrice" minVal="@ViewBag.MinPrice" readonly="readOnly">
-          <input type="text" id="maxCost" class="cost2" placeholder="Цена до" name="finishPrice" maxVal="@ViewBag.MaxPrice" readonly="readOnly">
+          <div class="cell50_inp">
+            <input type="text" id="minCost" class="cost1" placeholder="Цена от" name="startPrice" minVal="@ViewBag.MinPrice" readonly="readOnly">
+          </div>
+          <div class="cell50_inp">
+            <input type="text" id="maxCost" class="cost2" placeholder="Цена до" name="finishPrice" maxVal="@ViewBag.MaxPrice" readonly="readOnly">
+          </div>
           <div id="slider-range"></div>
         </div>
         <div class="numPersons searchFields">
-          <input type="text" placeholder="Кол. человек" name="numberOfPersons">
+          <div class="cell100_inp">
+            <input type="text" placeholder="Кол. человек" name="numberOfPersons">
+          </div>
         </div>
-        <input type="hidden" value=1 name="fromForm"/>
-        <input type="submit" value="Подобрать" class="red">
+        <input type="hidden" value=1 name="fromForm">
+        <div class="cell100_inp">
+          <input type="submit" value="Подобрать" class="red">
+        </div>
       </div>
       <div class="addField row selectNone">
-        <div class="sortingBox col-md-6">
+        <div class="sortingBox col-sm-6">
           <span class="sorting"></span>
           <span class="op87">Сортировка</span>
         </div>
-        <div class="totalItems col-md-6 op87">
+        <div class="totalItems col-sm-6 op87">
             Всего результатов: @Model.Houses.TotalItemCount
         </div>
-        <div class="col-md-12 sortingItems">
+        <div class="col-sm-12 sortingItems">
           <ul>
             <li>
-              <input type="radio" id="r1" name="rr" checked>
+              <input type="radio" id="r1" name="rr" checked value="1">
               <label for="r1"><span></span>Сначала новые</label>
             </li>
             <li>
-              <input type="radio" id="r3" name="rr">
+              <input type="radio" id="r3" name="rr" value="2">
               <label for="r3"><span></span>По рейтингу</label>
             </li>
             <li>
-              <input type="radio" id="r4" name="rr">
+              <input type="radio" id="r4" name="rr" value="3">
               <label for="r4"><span></span>Дешевле</label>
             </li>
             <li>
-              <input type="radio" id="r5" name="rr">
+              <input type="radio" id="r5" name="rr" value="4">
               <label for="r5"><span></span>Дороже</label>
             </li>
           </ul>
