@@ -15,7 +15,7 @@ namespace RosCottedge.Controllers
         private SiteContext db = new SiteContext();
 
         [OutputCache(NoStore = true, Duration = 0, VaryByParam = "*")]
-        public ActionResult Index(int? page, string region, int? startPrice, int? finishPrice, int? numberOfPersons, DateTime? arrivalDate, DateTime? departureDate, int? fromForm)
+        public ActionResult Index(int? page, string region, int? startPrice, int? finishPrice, int? numberOfPersons, DateTime? arrivalDate, DateTime? departureDate, int? fromForm, string rr)
         {
             int pageNumber = (page ?? 1);
             int pageSize = 8;
@@ -31,6 +31,7 @@ namespace RosCottedge.Controllers
                 numberOfPersons = numberOfPersons ?? oldFilter.NumberOfPersons;
                 arrivalDate = arrivalDate ?? oldFilter.ArrivalDate;
                 departureDate = departureDate ?? oldFilter.DepartureDate;
+                rr = rr ?? oldFilter.Sortparam;
             }
 
             if (!String.IsNullOrEmpty(region))
@@ -55,6 +56,26 @@ namespace RosCottedge.Controllers
                 houses = houses.Where(x => !x.Reservations.Any(r => r.ArrivalDate <= departureDate && arrivalDate <= r.DepartureDate));
             }
 
+            switch (rr)
+            {
+                case "1":
+                    houses = houses.OrderByDescending(x => x.Id);
+                    break;
+                case "2":
+                    houses = houses.OrderBy(x => x.Rating);
+                    break;
+                case "3":
+                    houses = houses.OrderBy(x => x.Price);
+                    break;
+                case "4":
+                    houses = houses.OrderByDescending(x => x.Price);
+                    break;
+                default:
+                    houses = houses.OrderByDescending(x => x.Id);
+                    break;
+
+            }
+
             var filter = new HomeFilter
             {
                 Region = region,
@@ -63,7 +84,8 @@ namespace RosCottedge.Controllers
                 NumberOfPersons = numberOfPersons,
                 ArrivalDate = arrivalDate,
                 DepartureDate = departureDate,
-                Page = pageNumber
+                Page = pageNumber,
+                Sortparam = rr
             };
 
             Session["Filter"] = filter;
@@ -107,7 +129,7 @@ namespace RosCottedge.Controllers
 
             var viewModel = new HomeIndexViewModel()
             {
-                Houses = houses.OrderByDescending(x => x.Id).ToPagedList(pageNumber, pageSize),
+                Houses = houses.ToPagedList(pageNumber, pageSize),
                 AllHouses = db.Houses.ToList(),
                 Regions = regions.OrderBy(x => x.Region).ToList(),
                 Localities = localities.OrderBy(x => x.Locality).ToList()

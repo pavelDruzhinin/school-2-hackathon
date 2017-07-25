@@ -14,6 +14,7 @@ namespace RosCottedge.Models
         public int? StartPrice { get; set; }
         public int? FinishPrice { get; set; }
         public int Page { get; set; }
+        public string Sortparam { get; set; }
 
     }
 }
