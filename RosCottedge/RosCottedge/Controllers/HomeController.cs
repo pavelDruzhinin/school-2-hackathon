@@ -115,24 +115,12 @@ namespace RosCottedge.Controllers
                     regions.Add(h);
                 }
             }
-
-            //Создаём лист регионов и населённых пунктов из базы (для окна фильтрации)
-
-            List<House> localities = new List<House>();
-            foreach (var h in db.Houses)
-            {
-                if (!localities.Any(x => x.Locality == h.Locality))
-                {
-                    localities.Add(h);
-                }
-            }
-
+            
             var viewModel = new HomeIndexViewModel()
             {
                 Houses = houses.ToPagedList(pageNumber, pageSize),
                 AllHouses = db.Houses.ToList(),
-                Regions = regions.OrderBy(x => x.Region).ToList(),
-                Localities = localities.OrderBy(x => x.Locality).ToList()
+                Regions = regions.OrderBy(x => x.Region).ToList()
             };
 
         var kappa = Request.IsAjaxRequest();
