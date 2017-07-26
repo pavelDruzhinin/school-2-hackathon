@@ -5,13 +5,15 @@
     Layout = "~/Views/Shared/_LayoutForm.cshtml";
 }
 
-<div class="Form FormRegistration mainBox">
-    @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { id = "validFormRegister" }))
+<div class="Form FormRegistration">
+
+    @Html.ValidationSummary(true, "")
+    @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { id = "validFormRegister", @class= "mainBox" }))
     {
         @Html.AntiForgeryToken()
 
 
-        @Html.ValidationSummary(true, "")
+        
 
         <div class="innerForm">
             <div class="fields">

@@ -881,8 +881,8 @@ label.valid {
     display: block;
     border-top: 1px solid #EBEBEB;
     font-size: 14px;
-    text-transform: uppercase;
-    font-weight: 500;
+    text-transform: none;
+    font-weight: 400;
 }
 /* REGISTRATION FORM*/
 .FormRegistration {
@@ -1825,6 +1825,7 @@ label.valid {
     background-color: #F31137;
 }
 
+
 .angleBox {
     width: 35px;
     height: 35px;
@@ -1908,10 +1909,11 @@ label.valid {
     opacity: 1;
     max-width: 100%;
     color: #fff;
-    padding: 10px 8px 8px 8px;
+    padding: 0px 8px; 
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    line-height: 35px;
 }
 .houseBodyContainer a {
     opacity: 1;
@@ -1942,7 +1944,7 @@ label.valid {
 
 .houseBodyRating {
     text-align: center;
-    padding-top: 9px;
+    line-height: 35px;
     height: 35px;
     width: 35px;
     display: inline-block;

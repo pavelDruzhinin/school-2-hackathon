@@ -21,18 +21,19 @@
                     </div>
                     <input id="submitFileEH" type="submit" value="Загрузить" style="display:none;" />
                 }
-                @using (Html.BeginForm("DeletePicture", "Account", FormMethod.Post, new { enctype = "multipart/form-data", id = "deletePhotoEH" }))
-                {
-                    <input type="hidden" value="" name="houseId" id="houseId" />
+                <div class="deleteButton">
+                    @using (Html.BeginForm("DeletePicture", "Account", FormMethod.Post, new { enctype = "multipart/form-data", id = "deletePhotoEH" }))
+                    {
+                        <input type="hidden" value="" name="houseId" id="houseId" />
                         <input type="hidden" value="" name="pictureId" id="pictureId" />
                         <input type="hidden" value="" name="path" id="path" />
-                        <input id="deleteFileEH" type="submit" value="Удалить" style="display:none;" />
-                }
-                <div class="deleteButton"><span class="close"></span></div>
+                        <input class="closeInput" id="deleteFileEH" type="submit" value="" title="Удалить фотографию"/>
+                    }
+                </div>
                 <div class="sliderEHBody owl-carousel">
                     @foreach (var p in Model.Pictures)
                     {
-                        <div class="sliderItemEH owl-item" style="background-image: url(@p.Adress)"></div>
+                        <div class="sliderItemEH item" style="background-image: url(@p.Adress)" id="@p.Id" houseid="@p.HouseId" adressimg="@p.Adress"></div>
                     }
 
                 </div>
@@ -229,16 +230,18 @@
                 $('#deletePhotoEH').submit();
             });
 
-            $('.owl-carousel').on('changed.owl.carousel', function (event) {
-                var current = event.item.index;
-                var id = $(this).find(".owl-item").eq(current).children(".item").attr('id');
-                var houseid = $('#' + id).attr("houseid");
-                var adressimg = $('#' + id).attr("adressimg");
-                $('#deletePhotoEH #houseId').attr('value', houseid);
-                $('#deletePhotoEH #pictureId').attr('value', id);
-                $('#deletePhotoEH #path').attr('value', adressimg);
-            })
+            
 
+        });
+
+        $('.owl-carousel').on('changed.owl.carousel', function (event) {
+            var current = event.item.index;
+            var id = $(this).find(".owl-item").eq(current).children(".item").attr('id');
+            var houseid = $('#' + id).attr("houseid");
+            var adressimg = $('#' + id).attr("adressimg");
+            $('#deletePhotoEH #houseId').attr('value', houseid);
+            $('#deletePhotoEH #pictureId').attr('value', id);
+            $('#deletePhotoEH #path').attr('value', adressimg);
         });
 
         $('#formEH').validate({

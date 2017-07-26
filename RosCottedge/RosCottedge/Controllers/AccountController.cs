@@ -554,37 +554,64 @@ namespace RosCottedge.Controllers
             return RedirectToAction("EditMyHouse", "Account", new { id = house.Id });
         }
         //Удаление броней из ЛК
-        [HttpPost]
-        public ActionResult DeleteReservationLandlord(int id, int houseId)
+        [HttpGet]
+        //public ActionResult DeleteReservationLandlord(int id, int houseId)
+        //{
+        //    if (User.Identity.IsAuthenticated == false)
+        //        return new HttpStatusCodeResult(HttpStatusCode.Unauthorized);
+        //    Reservation reserv = db.Reservations.Find(id);
+        //    reserv.Landlord = true;
+        //    db.SaveChanges();
+        //    return RedirectToAction("MyHouse", "Account", new { id = houseId });
+        //}
+        public JsonResult DeleteReservationLandlord(int id, int houseId)
         {
             if (User.Identity.IsAuthenticated == false)
-                return new HttpStatusCodeResult(HttpStatusCode.Unauthorized);
+                return Json(false, JsonRequestBehavior.AllowGet);
             Reservation reserv = db.Reservations.Find(id);
             reserv.Landlord = true;
             db.SaveChanges();
-            return RedirectToAction("MyHouse", "Account", new { id = houseId });
+            return Json(true, JsonRequestBehavior.AllowGet);
         }
         //Удаление отзывов из ЛК
-        [HttpPost]
-        public ActionResult DeleteReviews(int id, int houseId)
+        [HttpGet]
+        //public ActionResult DeleteReviews(int id, int houseId)
+        //{
+        //    if (User.Identity.IsAuthenticated == false)
+        //        return new HttpStatusCodeResult(HttpStatusCode.Unauthorized);
+        //    Review review = db.Reviews.Find(id);
+        //    review.Landlord = true;
+        //    db.SaveChanges();
+        //    return RedirectToAction("MyHouse", "Account", new { id = houseId });
+        //}
+        public JsonResult DeleteReviews(int id, int houseId)
         {
             if (User.Identity.IsAuthenticated == false)
-                return new HttpStatusCodeResult(HttpStatusCode.Unauthorized);
+                return Json(false, JsonRequestBehavior.AllowGet);
             Review review = db.Reviews.Find(id);
             review.Landlord = true;
             db.SaveChanges();
-            return RedirectToAction("MyHouse", "Account", new { id = houseId });
+            return Json(true, JsonRequestBehavior.AllowGet);
         }
         //Удаление оповещения об отмене брони
-        [HttpPost]
-        public ActionResult DeleteReservationNotif(int id, int houseId)
+        [HttpGet]
+        //public ActionResult DeleteReservationNotif(int id, int houseId)
+        //{
+        //    if (User.Identity.IsAuthenticated == false)
+        //        return new HttpStatusCodeResult(HttpStatusCode.Unauthorized);
+        //    ReservDelNotice reserv = db.ReservDelNotices.Find(id);
+        //    db.ReservDelNotices.Remove(reserv);
+        //    db.SaveChanges();
+        //    return RedirectToAction("MyHouse", "Account", new { id = houseId });
+        //}
+        public JsonResult DeleteReservationNotif(int id, int houseId)
         {
             if (User.Identity.IsAuthenticated == false)
-                return new HttpStatusCodeResult(HttpStatusCode.Unauthorized);
+                return Json(false, JsonRequestBehavior.AllowGet);
             ReservDelNotice reserv = db.ReservDelNotices.Find(id);
             db.ReservDelNotices.Remove(reserv);
             db.SaveChanges();
-            return RedirectToAction("MyHouse", "Account", new { id = houseId });
+            return Json(true, JsonRequestBehavior.AllowGet);
         }
         #endregion
 
@@ -618,21 +645,31 @@ namespace RosCottedge.Controllers
             return View(MyTripsViewModel);
         }
         // Удаление из истории моих поездок
-        public ActionResult DeleteReservationTenant(int id, int houseId)
+        //public ActionResult DeleteReservationTenant(int id, int houseId)
+        //{
+        //    if (User.Identity.IsAuthenticated == false)
+        //        return new HttpStatusCodeResult(HttpStatusCode.Unauthorized);
+
+        //    Reservation reserv = db.Reservations.Find(id);
+        //    reserv.Tenant = true;
+        //    db.SaveChanges();
+        //    return RedirectToAction("MyTrips", "Account", new { id = houseId });
+        //}
+        public JsonResult DeleteReservationTenant(int id, int houseId)
         {
             if (User.Identity.IsAuthenticated == false)
-                return new HttpStatusCodeResult(HttpStatusCode.Unauthorized);
+                return Json(false, JsonRequestBehavior.AllowGet);
 
             Reservation reserv = db.Reservations.Find(id);
             reserv.Tenant = true;
             db.SaveChanges();
-            return RedirectToAction("MyTrips", "Account", new { id = houseId });
+            return Json(true, JsonRequestBehavior.AllowGet);
         }
         // Отказ от брони
-        public ActionResult DeleteReservation(int id, int houseId)
+        public JsonResult DeleteReservation(int id, int houseId)
         {
             if (User.Identity.IsAuthenticated == false)
-                return new HttpStatusCodeResult(HttpStatusCode.Unauthorized);
+                return Json(false, JsonRequestBehavior.AllowGet);
 
             Reservation reserv = db.Reservations.Find(id);
 
@@ -653,7 +690,7 @@ namespace RosCottedge.Controllers
             db.SaveChanges();
 
 
-            return RedirectToAction("MyTrips", "Account", new { id = houseId });
+            return Json(true, JsonRequestBehavior.AllowGet);
         }
         #endregion
 
