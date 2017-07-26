@@ -7,12 +7,12 @@
 @Html.Partial("Profile")
 
 @*Выводит сообщение, что дом забронирован
-    <div>
-    @if (TempData["reserv"] != null)
-    {
-        <div>@TempData["reserv"]</div>
-    }
-</div>*@
+        <div>
+        @if (TempData["reserv"] != null)
+        {
+            <div>@TempData["reserv"]</div>
+        }
+    </div>*@
 <div class="container">
     <div class="row">
         <div class="col-md-8">
@@ -35,7 +35,7 @@
                             {
                                 <input type="hidden" value="@item.HouseId" name="houseId" />
                                 <input type="hidden" value="@item.Id" name="id" /><br>
-                                <input type="submit" value="Отказаться от брони" style="display: none;"/>
+                                <input type="submit" value="Отказаться от брони" style="display: none;" />
                             }
                         }
                     </div>
@@ -60,83 +60,15 @@
                                 }
                             </div>
                         </div>
-                    </div>  
+                    </div>
                 }
             </div>
-            
-                
+
+
         </div>
     </div>
 </div>
 
-
-
-@*<div class="houses">
-    <div class="container">
-        <div class="row">
-            @foreach (var item in Model.ReservationDelete)
-            {
-                <div class="col-md-6 houseItem">
-                    <div class="imgBox" style="background-image: url(@item.House.Pictures.Where(x => x.House.Id == item.HouseId).Select(x => x.Adress).FirstOrDefault())"></div>
-                    <div class="ContentBox">
-                        <h2 class="nameHouse"><a href="/House/Index?houseId=@item.House.Id">@item.House.Name</a></h2>
-                        <span class="address">@item.House.Locality, @item.House.Area</span>
-                        <div class="ratingHouse">
-                            <h2>Даты поездки:@item.ArrivalDate.ToString("dd.MM.yyyy")-@item.DepartureDate.ToString("dd.MM.yyyy")</h2>
-                            <h2><a href="/House/Index?houseId=@item.House.Id">Страница дома</a></h2>
-                            
-
-                            <ul>
-                                <li></li>
-                                <li></li>
-                                <li></li>
-                                <li></li>
-                                <li></li>
-                            </ul>
-                        </div>
-                        <div>@if (item.DepartureDate > DateTime.Now)
-                        {
-                            using (Html.BeginForm("DeleteReservation", "Account", FormMethod.Post, new { enctype = "multipart/form-data" }))
-                            {
-                                <input type="hidden" value="@item.HouseId" name="houseId" />
-                                <input type="hidden" value="@item.Id" name="id" /><br>
-                                <input type="submit" value="Отказаться от брони" />
-                            }
-                        }
-                            
-                        </div>
-                    </div>
-                </div>
-            }
-        </div>
-    </div>
-</div>*@
-@*<h3>История поездок</h3>
-
-<table>
-    @foreach (var item in Model.ReservationHistory)
-    {
-        <tr>
-            <td>
-                <a href="/House/Index?houseId=@item.House.Id">@item.House.Name</a> Даты поездки:@item.ArrivalDate.ToString("dd.MM.yyyy")-@item.DepartureDate.ToString("dd.MM.yyyy")
-            </td>
-
-        </tr>
-        <tr>
-            <td>
-                <div>
-                    @using (Html.BeginForm("DeleteReservationTenant", "Account", FormMethod.Post, new { enctype = "multipart/form-data" }))
-                    {
-                        <input type="hidden" value="@item.HouseId" name="houseId" />
-                        <input type="hidden" value="@item.Id" name="id" /><br>
-                        <input type="submit" value="Удалить из списка" />
-                    }
-                </div>
-            </td>
-        </tr>
-    }
-
-</table>*@
 
 @section Scripts {
     <script>

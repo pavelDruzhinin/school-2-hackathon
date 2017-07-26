@@ -13,6 +13,7 @@ using System.Web.Security;
 
 namespace RosCottedge.Controllers
 {
+
     public class AccountController : Controller
     {
         SiteContext db = new SiteContext();
@@ -34,20 +35,20 @@ namespace RosCottedge.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Login(User user)
         {
-            
-                var existingUser = db.Users.Where(x => x.Login == user.Login && x.Password == user.Password).FirstOrDefault();
 
-                if (existingUser != null)
-                {
-                    FormsAuthentication.SetAuthCookie(user.Login, true);
-                    return RedirectToAction("Index", "Home");
-                }
+            var existingUser = db.Users.Where(x => x.Login == user.Login && x.Password == user.Password).FirstOrDefault();
 
-                else
-                {
-                    ModelState.AddModelError("", "Неверный логин или пароль");
-                }
-            
+            if (existingUser != null)
+            {
+                FormsAuthentication.SetAuthCookie(user.Login, true);
+                return RedirectToAction("Index", "Home");
+            }
+
+            else
+            {
+                ModelState.AddModelError("", "Неверный логин или пароль");
+            }
+
             return View(user);
         }
         #endregion
@@ -72,6 +73,7 @@ namespace RosCottedge.Controllers
                 {
                     user.Avatar = "/Content/img/zlad.jpg";
                     user.RegistrationDate = DateTime.Now;
+                    user.RoleId = 2;
                     user.OldPassword = user.Password;
                     db.Users.Add(user);
                     db.SaveChanges();
@@ -137,6 +139,7 @@ namespace RosCottedge.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.Unauthorized);
             }
         }
+
         public ActionResult PersonalInformation()
         {
             if (User.Identity.IsAuthenticated)
@@ -190,6 +193,7 @@ namespace RosCottedge.Controllers
                 if (email == null || olduser.Email == user.Email)
                 {
                     user.Avatar = olduser.Avatar;
+                    user.RoleId = olduser.RoleId;
                     db.Set<User>().AddOrUpdate(user);
                     db.SaveChanges();
                     return RedirectToAction("PersonalInformation");
@@ -223,6 +227,7 @@ namespace RosCottedge.Controllers
                 {
                     user.Avatar = olduser.Avatar;
                     user.OldPassword = user.Password;
+                    user.RoleId = olduser.RoleId;
                     db.Set<User>().AddOrUpdate(user);
                     db.SaveChanges();
                     return RedirectToAction("PersonalInformation");
@@ -249,19 +254,19 @@ namespace RosCottedge.Controllers
 
             //Ищем дома, по которым пришла бронь
             var reservations = (from r in db.Reservations
-                                .Include(u => u.User).Include(u=>u.House)
-                               where r.House.UserId == user.Id && r.Landlord == false
-                               select r).ToList();
+                                .Include(u => u.User).Include(u => u.House)
+                                where r.House.UserId == user.Id && r.Landlord == false
+                                select r).ToList();
             //Ищем дома, по которым оставлен отзыв
             var reviews = (from c in db.Reviews
                      .Include(x => x.User).Include(x => x.House)
-                          where c.House.UserId == user.Id && c.Landlord == false
-                          select c).ToList();
+                           where c.House.UserId == user.Id && c.Landlord == false
+                           select c).ToList();
             //Ищем дома по которым пришла отмена брони
             var reservdelnotices = (from c in db.ReservDelNotices
                              .Include(x => x.User).Include(x => x.House)
-                                                           where c.House.UserId == user.Id
-                                                           select c).ToList();
+                                    where c.House.UserId == user.Id
+                                    select c).ToList();
 
             foreach (var r in reservations)
             {
@@ -312,7 +317,7 @@ namespace RosCottedge.Controllers
                 instanceGeneralClass.UserId = r.UserId;
                 instanceGeneralClass.HouseId = r.HouseId;
                 instanceGeneralClass.User = r.User;
-                instanceGeneralClass.House = r.House;                          
+                instanceGeneralClass.House = r.House;
                 instanceGeneralClass.Id = r.Id;
                 #endregion
                 genclass.Add(instanceGeneralClass);
@@ -321,19 +326,19 @@ namespace RosCottedge.Controllers
             // Выводим все дома, которые добавлял пользователь
             MyHouseViewModel myHouseModel = new MyHouseViewModel()
             {
-                User  =user,
+                User = user,
                 House = (from h in db.Houses
                         .Include(x => x.Pictures)
-                        where h.UserId == user.Id && h.Hide==false
-                        select h).ToList(),
-                
-                GeneralClass= (from g in genclass
-                              orderby g.Date descending
-                              select g).ToList()
+                         where h.UserId == user.Id && h.Hide == false
+                         select h).ToList(),
+
+                GeneralClass = (from g in genclass
+                                orderby g.Date descending
+                                select g).ToList()
 
             };
 
-            
+
             return View(myHouseModel);
         }
 
@@ -345,13 +350,13 @@ namespace RosCottedge.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.Unauthorized);
             House house = db.Houses.Find(id);
 
-            
-               var ho = (from h in db.Reservations
-                        where h.House.User.Login == User.Identity.Name && h.HouseId == house.Id
-                        orderby h.DepartureDate
+
+            var ho = (from h in db.Reservations
+                      where h.House.User.Login == User.Identity.Name && h.HouseId == house.Id
+                      orderby h.DepartureDate
                       select h).ToList().LastOrDefault();
 
-            if (house.Reservations == null || ho.DepartureDate<DateTime.Now)
+            if (house.Reservations == null || ho.DepartureDate < DateTime.Now)
             {
                 house.Hide = true;
                 db.SaveChanges();
@@ -359,10 +364,10 @@ namespace RosCottedge.Controllers
             else
             {
                 TempData["message"] = string.Format("По этому дому есть бронь. Удаление невозможно");
-               
+
             }
-           
-            return RedirectToAction("MyHouse","Account");
+
+            return RedirectToAction("MyHouse", "Account");
         }
         #endregion
 
@@ -413,7 +418,7 @@ namespace RosCottedge.Controllers
 
         public ActionResult EditMyHouse(int? id)
         {
- 
+
 
             if (User.Identity.IsAuthenticated)
             {
@@ -433,20 +438,20 @@ namespace RosCottedge.Controllers
                 //Вывод забронированных дат по выбранному дому
                 var reservations = (from r in db.Reservations
                                    .Include(x => x.User)
-                                   where r.House.UserId == user.Id && r.HouseId == house.Id && r.Landlord == false
-                                   select r).ToList();
+                                    where r.House.UserId == user.Id && r.HouseId == house.Id && r.Landlord == false
+                                    select r).ToList();
 
                 //Вывод комментариев по выбранному дому
                 var reviews = (from c in db.Reviews
                               .Include(x => x.User).Include(x => x.House)
-                              where c.House.UserId == user.Id && c.HouseId == house.Id && c.Landlord == false
-                              select c).ToList();
+                               where c.House.UserId == user.Id && c.HouseId == house.Id && c.Landlord == false
+                               select c).ToList();
 
                 //Вывод удалённых броней по выбранному дому
                 var reservdelnotices = (from r in db.ReservDelNotices
                                             .Include(x => x.User)
-                                   where r.House.UserId == user.Id && r.HouseId == house.Id
-                                   select r).ToList();
+                                        where r.House.UserId == user.Id && r.HouseId == house.Id
+                                        select r).ToList();
 
                 foreach (var r in reservations)
                 {
@@ -461,7 +466,7 @@ namespace RosCottedge.Controllers
                     instanceGeneralClass.UserId = r.UserId;
                     instanceGeneralClass.HouseId = r.HouseId;
                     instanceGeneralClass.User = r.User;
-                    instanceGeneralClass.House = r.House;                   
+                    instanceGeneralClass.House = r.House;
                     instanceGeneralClass.Reserv = true;
                     instanceGeneralClass.Id = r.Id;
                     #endregion
@@ -482,7 +487,7 @@ namespace RosCottedge.Controllers
                     instanceGeneralClass.Landlord = r.Landlord;
                     instanceGeneralClass.Id = r.Id;
                     instanceGeneralClass.Review = true;
-                    
+
                     #endregion
                     genclass.Add(instanceGeneralClass);
                 }
@@ -498,7 +503,7 @@ namespace RosCottedge.Controllers
                     instanceGeneralClass.UserId = r.UserId;
                     instanceGeneralClass.HouseId = r.HouseId;
                     instanceGeneralClass.User = r.User;
-                    instanceGeneralClass.House = r.House;                                             
+                    instanceGeneralClass.House = r.House;
                     instanceGeneralClass.Id = r.Id;
                     #endregion
                     genclass.Add(instanceGeneralClass);
@@ -512,21 +517,21 @@ namespace RosCottedge.Controllers
 
                     Reservations = (from r in db.Reservations
                            .Include(x => x.User)
-                                   where r.House.UserId == user.Id && r.HouseId == house.Id
-                                   orderby r.ArrivalDate ascending
-                                   select r).ToList(),
+                                    where r.House.UserId == user.Id && r.HouseId == house.Id
+                                    orderby r.ArrivalDate ascending
+                                    select r).ToList(),
 
 
                     GeneralClass = (from g in genclass
-                                   orderby g.Date descending
-                                   select g).ToList()
+                                    orderby g.Date descending
+                                    select g).ToList()
 
                 };
 
                 return View(viewModel);
 
             }
-            else{return new HttpStatusCodeResult(HttpStatusCode.Unauthorized);}
+            else { return new HttpStatusCodeResult(HttpStatusCode.Unauthorized); }
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -597,18 +602,18 @@ namespace RosCottedge.Controllers
             {
                 User = user,
 
-             ReservationHistory = (from a in db.Reservations
-                         .Include(x => x.House)
-                         where a.UserId == user.Id && a.Tenant == false && a.DepartureDate<DateTime.Now
-                         select a).ToList(),
+                ReservationHistory = (from a in db.Reservations
+                            .Include(x => x.House)
+                                      where a.UserId == user.Id && a.Tenant == false && a.DepartureDate < DateTime.Now
+                                      select a).ToList(),
 
-            ReservationDelete = (from a in db.Reservations
-                                 .Include(x => x.House)
-                                 .Include(x => x.House.Pictures)
-                                where a.UserId == user.Id
-                                select a).ToList()
+                ReservationDelete = (from a in db.Reservations
+                                     .Include(x => x.House)
+                                     .Include(x => x.House.Pictures)
+                                     where a.UserId == user.Id
+                                     select a).ToList()
             };
-            
+
 
             return View(MyTripsViewModel);
         }
@@ -642,7 +647,7 @@ namespace RosCottedge.Controllers
                 UserId = reserv.UserId
 
             };
-            
+
             db.Reservations.Remove(reserv);
             db.ReservDelNotices.Add(resDel);
             db.SaveChanges();

@@ -1,0 +1,84 @@
+﻿@if (User.IsInRole("admin"))
+{
+    @model IEnumerable<RosCottedge.Models.User>
+
+    {
+        ViewBag.Title = "Index";
+    }
+
+    @Html.Partial("AdminPanel")
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MiddleName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LastName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Phone)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Login)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RegistrationDate)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.FirstName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MiddleName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LastName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Phone)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Login)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.RegistrationDate)
+                </td>
+                <td>
+                    @Html.ActionLink("Редактировать", "UserPersonalInformation", "Admin", new { Id = item.Id }, null) |
+                    |
+
+                </td>
+                <td>
+                    @*<div>
+                            @using (Html.BeginForm("DeleteUser", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                            {
+
+                                <input type="hidden" value="@item.Id" name="id" /><br>
+                                <input type="submit" value="Удалить" />
+
+
+                            }
+                        </div>*@
+                </td>
+            </tr>
+
+        }
+
+    </table>
+}
