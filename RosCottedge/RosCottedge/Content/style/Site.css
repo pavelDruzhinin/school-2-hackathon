@@ -365,20 +365,45 @@ footer .bottomFooter span{
   font-size: 14px;
   color: #E32444;
   font-weight: 500;
-  padding-top: 4px;
+  margin-top: 4px;
+  display: inline-block;
 }
 .houses .contentBox p{
   padding-top: 10px;
 }
 .houses .characts{
   border-top: 1px solid #DBDBDB;
-  padding: 10px 7.5px;
+  padding: 0 7.5px;
   margin-top: 11px;
+  height: 35px;
+}
+.houses .houseItem .characts{
+  font-size: 0;
+}
+.houses .houseItem .colMan{
+  width: 50%;
+  display: inline-block;
+  font-size: 12px;
+  line-height: 35px;
+  vertical-align: top;
+}
+.houses .houseItem .colMan i{
+  font-size: 18px;
+  margin-right: 7px;
+}
+.houses .houseItem .colMan i,
+.houses .houseItem .colMan span{
+  display: inline-block;
+  vertical-align: top;
 }
 .houses .houseItem .ratingHouse{
   text-align: right;
+  width: 50%;
+  display: inline-block;
+  vertical-align: top;
 }
 .houses .houseItem .ratingHouse ul{
+  margin-top: 10px;
   font-size: 0;
 }
 .houses .houseItem .ratingHouse ul li{
