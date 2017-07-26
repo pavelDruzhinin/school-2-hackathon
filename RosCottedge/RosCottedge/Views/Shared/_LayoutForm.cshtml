@@ -15,10 +15,22 @@
     <link rel="stylesheet" href="../../Content/style/media.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
-<body>
+<body class="formPageWrap">
+    <div class="lol"></div>
+    <script>
+      var random = 1 + Math.floor(Math.random() * 3);
+      $('body.formPageWrap').css('background-image','url("../../Content/img/houseImg/house_'+random+'.jpg")');
+    </script>
     <div id="wrapper">
         @RenderBody()
     </div>
+
+    <script>
+      $('document').ready(function(){
+        $('.lol').fadeOut(700);
+      });
+    </script>
+
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
     <script src="../../Scripts/jquery.maskedinput.min.js"></script>
     <script src="../../Scripts/config/error.js" charset="utf-8"></script>
