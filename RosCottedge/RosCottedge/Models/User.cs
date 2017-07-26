@@ -32,6 +32,8 @@ namespace RosCottedge.Models
         [Display(Name = "Старый пароль")]
         public string OldPassword { get; set; }
         public string Avatar { get; set; }
+        public int RoleId { get; set; }
+        public Role Role { get; set; }
         public DateTime RegistrationDate { get; set; }
         public List<Reservation> Reservations { get; set; }
         public List<House>Houses { get; set; }

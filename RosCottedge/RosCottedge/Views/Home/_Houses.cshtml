@@ -17,7 +17,7 @@
                     <p class="op87">@item.Description</p>
                   </div>
                   <div class="characts">
-
+                    <div class="colMan"><i class="mdi mdi-account-multiple op54"></i><span class="op87">Дом на @item.NumberOfPersons чел.</span></div>
                     <div class="ratingHouse" rating="@item.Rating">
                         <ul>
                             <li ratingItem="1"></li>
@@ -31,33 +31,6 @@
                   </div>
                 </a>
               </div>
-              <!--  <div class="col-md-6 houseItem">
-                  <div class="itemWrap mainBox">
-                    <div class="imgBox" style="background-image: url(@item.Pictures.Where(x => x.HouseId == item.Id).Select(x => x.Adress).FirstOrDefault())"></div>
-                    <div class="ContentBox">
-                        <h2 class="nameHouse"><a href="/House/Index?houseId=@item.Id">@item.Name</a></h2>
-                        <span class="address">@item.Locality, @item.Area</span>
-                        <ul class="optionsHouse">
-                            <li><p><span class="man op54"></span>@item.NumberOfPersons</p></li>
-                            <li><p><span class="rub op54"></span>@item.Price руб./сутки</p></li>
-                            <br>
-                            <li><p><span class="com op54"></span>@item.Reviews.Count()</p></li>
-                            <br>
-                            @*<li><p><span>Регион</span>@item.Region</p></li>*@
-                        </ul>
-                        <div class="ratingHouse" rating="@item.Rating">
-                            <h2>Оценка пользователей</h2>
-                            <ul>
-                                <li ratingItem="1"></li>
-                                <li ratingItem="2"></li>
-                                <li ratingItem="3"></li>
-                                <li ratingItem="4"></li>
-                                <li ratingItem="5"></li>
-                            </ul>
-                        </div>
-                    </div>
-                  </div>
-                </div> -->
             }
         </div>
         <div class="pagination-container">

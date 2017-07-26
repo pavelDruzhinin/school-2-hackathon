@@ -48,7 +48,7 @@
                 }
             </div>
 
-            @using (Html.BeginForm("SaveHouse", "Account", FormMethod.Post, new { id = "formEH"}))
+            @using (Html.BeginForm("SaveHouse", "Account", FormMethod.Post, new { id = "formEH" }))
             {
                 @Html.AntiForgeryToken()
                 @Html.ValidationSummary(true, "")
@@ -350,5 +350,5 @@
             focusInvalid: false,
         });
 
-</script>
+    </script>
 }
