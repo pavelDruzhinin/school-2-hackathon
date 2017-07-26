@@ -70,7 +70,7 @@ namespace RosCottedge.Controllers
                 var existingUser = db.Users.Where(x => x.Login == user.Login).FirstOrDefault();
                 if (existingUser == null)//если такого пользователя нет, то добавляем в базу нового user
                 {
-                    user.Avatar = "/Content/img/zlad.jpg";
+                    user.Avatar = "/Content/img/UserDefault.png";
                     user.RegistrationDate = DateTime.Now;
                     user.OldPassword = user.Password;
                     db.Users.Add(user);
@@ -358,7 +358,7 @@ namespace RosCottedge.Controllers
             }
             else
             {
-                TempData["message"] = string.Format("По этому дому есть бронь. Удаление невозможно");
+                TempData["message"] = string.Format("По дому " + ho.House.Name + " есть бронь. Удаление невозможно");
                
             }
            

@@ -795,24 +795,26 @@ input[type="radio"]:checked + label span::before {
   background-color: #EEEEEE;
   padding-left: 15px;
 }
-.innerForm input[type="submit"]{
-  background-color: #69F0AE;
-  color: #fff;
-  cursor: pointer;
-  transition: .3s all;
+.innerForm input[type="submit"] {
+    background-color: #5EF199;
+    color: #fff;
+    cursor: pointer;
+    transition: .3s all;
 }
 .innerForm input[type="submit"]:hover {
-    background-color: #5EF199;
+    background-color: #27EE77;
 }
 .Form .validation-summary-errors {
     background-color: rgba(227,36,68,.6);
     margin-bottom: 15px;
     font-size: 14px;
     color: #fff;
-    display: none;
+    display: block;
     padding: 10px 15px;
 }
-
+.FormLogin .validation-summary-errors {
+    display: block;
+}
 label.error {
     width: 100%;
     font-size: 14px;
@@ -947,11 +949,11 @@ label.valid {
     padding: 15px;
 }
 .innerForm .ButtonCreate{
-  background-color: #69F0AE;
+    background-color: #69F0AE;
 	color: #fff;
 	width: 660px;
 	margin-top: 15px;
-  border-top: 1px solid #EBEBEB;
+    border-top: 1px solid #EBEBEB;
 }
 .manualInput {
     display: none;
@@ -1267,13 +1269,24 @@ label.valid {
     display: inline-block;
 }
 
-.fullDescription .descOwner .leftSideOwner img {
+.leftSideOwner div {
     vertical-align: top;
     display: inline-block;
     border-radius: 50%;
     height: 61px;
     width: 61px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
 }
+/*.fullDescription .descOwner .leftSideOwner img {
+    vertical-align: top;
+    display: inline-block;
+    border-radius: 50%;
+    height: 61px;
+    width: 61px;
+}*/
 
 .fullDescription .descOwner .rightSideOwner {
     padding-top: 15px;
@@ -1285,7 +1298,7 @@ label.valid {
 }
 
 .fullDescription .descOwner .rightSideOwner p {
-    padding-bottom: 15px;
+    padding-top: 8px;
 }
 
 .fullDescription .descOwner .rightSideOwner p:last-child {
@@ -1340,17 +1353,27 @@ label.valid {
     bottom: 15px;
 }
 
-.formReview .formRowTop img {
+.formReview .formRowTop div {
     position: relative;
     left: 0;
     top: 0;
 }
 
-.formReview .formRowTop img, .reviewItem .reviewUser img {
+/*.formReview .formRowTop img, .reviewItem .reviewUser img {
     display: inline-block;
     border-radius: 50%;
     height: 61px;
     width: 61px;
+}*/
+
+.formReview .formRowTop div, .reviewItem .reviewUser div {
+    display: inline-block;
+    border-radius: 50%;
+    height: 61px;
+    width: 61px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 .formReview .formRowTop textarea {
@@ -1460,7 +1483,7 @@ label.valid {
     position: relative;
 }
 
-.reviewItem .reviewUser img {
+.reviewItem .reviewUser div {
     vertical-align: top;
     display: inline-block;
 }
@@ -1484,7 +1507,7 @@ label.valid {
 }
 
 .reviewItem .reviewContent .ratingReview {
-    float: right;
+    text-align: right;
     padding-top: 30px;
     font-size: 14px;
     opacity: 1;
@@ -1534,6 +1557,8 @@ label.valid {
     vertical-align: top;
     font-size: 0;
     overflow-y: hidden;
+    background-color: #dbdbdb;
+    overflow-y: auto;
 }
 
 .itemReservEH {
@@ -1555,7 +1580,7 @@ label.valid {
 }
 
 .itemReservEH p {
-    margin: 17px 0 15px 15px;
+    margin: 18px 0 15px 15px;
     vertical-align: top;
 }
 
@@ -1620,45 +1645,36 @@ label.valid {
 
 .noticeItem {
     width: 100%;
-    margin-bottom: 1px;
     position: relative;
-    clear: both;
+    background-color: #dbdbdb;
 }
 
 .headerNotice {
-    height: 45px;
     width: 100%;
     background-color: #fff;
     font-size: 0;
-}
-
-.noticeColor {
-    width: 4px;
-    height: 45px;
-    display: inline-block;
+    padding: 15px 13px 13px 15px;
+    border-left: 4px solid;
 }
 
 .noticeColorGreen {
-    background-color: #5EF199;
+    border-color: #5EF199;
 }
 
 .noticeColorRed {
-    background-color: #E32444;
+    border-color: #E32444;
 }
 
 .noticeColorBlue {
-    background-color: #305075;
+    border-color: #305075;
 }
 
 .headerNotice p, .headerNotice span {
-    font-size: 14px;
     vertical-align: top;
-    margin-top: 14px;
 }
 
 .headerNotice p {
     display: inline-block;
-    margin-left: 15px;
 }
 
 .headerNotice span {
@@ -1668,7 +1684,7 @@ label.valid {
 .footerNotice {
     margin-top: 8px;
     margin-bottom: 15px;
-    float: right;
+    text-align: right;
 }
 
 .footerNotice span, .footerNotice form {
@@ -1689,9 +1705,9 @@ label.valid {
     background-color: #eee;
     height: 17px;
     color: #E32444;
-    font-size: 14px;
     transition: .3s all;
     opacity: .54;
+    text-transform: none;
 }
 
 .footerNotice form input:hover {
@@ -1828,7 +1844,7 @@ label.valid {
 
 /*My house and my trips start*/
 .houseContainer {
-    width: 360px;
+    width: 359px;
     height: 278px;
     background-color: #fff;
     font-size: 0;
@@ -1839,6 +1855,9 @@ label.valid {
     display: inline-block;
 }
 
+.houseContainer:nth-child(2n+1) {
+    margin-right: 27px;
+}
 .houseContainerHead {
     height: 35px;
     width: 100%;
@@ -1857,21 +1876,14 @@ label.valid {
     background-position: center;
     background-size: cover;
 }
-.houseContainerHead i {
-    font-size: 16px;
-    margin-left: 8px;
-    margin-right: 8px;
-    opacity: .54;
-}
 
 .houseContainerHead h3 {
-    opacity: 1;
-    max-width: 80%;
     font-size: 14px;
     font-weight: 400;
+    opacity: 1;
+    max-width: 100%;
     color: #fff;
-    display: inline-block;
-    padding-top: 9px;
+    padding: 10px 8px 8px 8px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -1913,21 +1925,27 @@ label.valid {
     vertical-align: top;
 }
 .houseDelButton {
+    display: inline-block;
+    vertical-align: top;
+}
+
+.closeInput {
     height: 35px;
     width: 35px;
-    display: inline-block;
     background-color: #E32444;
-    vertical-align: top;
+    background-image: url(/Content/img/icons/close.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 80% 80%;
     cursor: pointer;
     transition: .3s all;
 }
-
-.houseDelButton:hover {
+.closeInput:hover {
     background-color: #F31137;
 }
 .navHouseBody {
     position: absolute;
-    bottom: 18px;
+    bottom: 17px;
     left: 18px;
 }
 
@@ -1935,32 +1953,14 @@ label.valid {
     border-right: 1px solid #DBDBDB;
 }
 
-.houseContainerHead .numHouse {
-    height: 100%;
-    background-color: #E32444;
-    font-size: 16px;
-    color: #fff;
-    display: inline-block;
-    padding: 9px 8px 6px 8px;
-    vertical-align: top;
-    float: right;
-}
-
-.houseContainer:nth-child(2n+1) {
-    margin-right: 30px;
-}
-
-.houseContainer:nth-child(2n) {
-    float: right;
-}
-
 .allNoticeMyHouse {
     height: 600px;
-    overflow-y: hidden;
+    overflow-y: auto;
 }
 
 .myTripsDate {
-    margin-left: 15px;
+    margin-left: 7px;
+    display: inline-block;
 }
 .myTripsDate span {
     opacity: .54;
@@ -1985,20 +1985,24 @@ label.valid {
     right: 23px;
 }
 
-.historyArrivalBox {
+.historyArrivalItems {
     background-color: #fff;
     width: 100%;
-    height: 895px;
+    height: 523px;
     font-size: 0;
-    padding: 15px;
     overflow-y: auto;
+}
+
+.historyArrivalBox {
+    font-size: 0;
+    padding: 15px 0px 15px 15px;
 }
 
 .historyArrivalBody form input {
     background: none;
     height: 17px;
     color: #E32444;
-    font-size: 14px;
+    font-size: 12px;
     transition: .3s all;
 }
 .historyArrivalBody form input:hover{
@@ -2031,39 +2035,37 @@ label.valid {
     display: inline-block;
     margin-right: 15px;
     background-size: cover;
+    background-position: center;
     background-repeat: no-repeat;
 }
 
-.historyArrivalBox > h3 {
+.historyArrivalBox > h2 {
     margin-bottom: 15px;
 }
 
-.close {
-    position: absolute;
-    top: 7px;
-    right: 18px;
+.myTripsDelButton {
+    background-image: url(/Content/img/icons/close.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 80% 80%;
 }
 
-.close:before, .close:after {
-    position: absolute;
-    content: '';
-    height: 20px;
-    width: 2px;
-    background-color: #fff;
-}
-
-.close:before {
-    transform: rotate(45deg);
-}
-
-.close:after {
-    transform: rotate(-45deg);
-}
 
 .closeMyTrips {
-    position: absolute;
-    top: 15px;
-    right: 26px;
+    height: 35px;
+    width: 35px;
+    background-color: #E32444;
+    background-image: url(/Content/img/icons/close.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 80% 80%;
+    cursor: pointer;
+    transition: .3s all;
+}
+
+.closeInput:hover {
+    background-color: #F31137;
+}
 }
 
 .closeMyTrips:before, .closeMyTrips:after {
@@ -2086,8 +2088,9 @@ label.valid {
 /*Personal information start*/
 .avaUser {
     width: 300px;
-    height: 280px;
+    height: 299px;
     background-size: cover;
+    background-position: center;
     background-repeat: no-repeat;
 }
 
@@ -2096,18 +2099,18 @@ label.valid {
 }
 
 .file-uploadPI {
-    margin-top: 30px;
+    margin-top: 15px;
     position: relative;
     width: 300px;
     height: 45px;
-    background: #E32444;
+    background: #5EF199;
     color: #fff;
     text-align: center;
     transition: .3s all;
 }
 
 .file-uploadPI:hover {
-    background-color: #F31137;
+    background-color: #27EE77;
 }
 
 .file-uploadPI label {
@@ -2118,12 +2121,13 @@ label.valid {
     width: 100%;
     height: 100%;
     cursor: pointer;
+    text-transform: uppercase;
+    font-weight: 500;
 }
 
 .file-uploadPI span {
-    margin-top: -5px;
+    line-height: 13px;
     display: block;
-    font-size: 14px;
 }
 
 .photoUserPI {
@@ -2135,26 +2139,23 @@ label.valid {
     margin-right: 30px;
 }
 
-.photoUserPI h3 {
-    margin-bottom: 15px;
-    text-align: center;
-}
-
 .personalInfo {
     vertical-align: top;
     width: 330px;
-    margin-bottom: 15px;
-    text-align: left;
-}
-.personalInfo h3 {
-    padding: 9px 15px 7px 15px;
     margin-bottom: 1px;
+    padding: 15px;
+}
+
+.personalInfo:last-child{
+    margin-bottom:0;
+}
+.personalInfo h2 {
     background-color: #fff;
 }
 
 .personalInfo p {
     background-color: #fff;
-    padding: 9px 15px 8px 15px;
+    padding-top: 8px;
 
 }
 
@@ -2164,11 +2165,12 @@ label.valid {
     width: 100%;
     background-color: #E32444;
     color: #fff;
-    font-size: 14px;
-    padding-top: 14px;
+    padding-top: 15px;
     text-align: center;
     margin-top: 15px;
     transition: .3s ease;
+    text-transform: uppercase;
+    font-weight: 500;
 }
 
 .photoUserPI a:hover {
@@ -2224,6 +2226,8 @@ label.valid {
     background-color: #E32444;
     color: #fff;
     font-size: 14px;
+    text-transform: uppercase;
+    font-weight: 500;
     padding-top: 14px;
     text-align: center;
     margin-top: 15px;
@@ -2237,8 +2241,11 @@ label.valid {
 .formEditInfo a:visited {
     color: #fff;
 }
+
+.formEditPassword input[type=submit]{
+    margin: 0;
+}
 /*Form Edit and Change Password end*/
-/*CSS*/
 /*Menu Account start*/
 .menuPersonal {
     height: 91px;
@@ -2258,8 +2265,8 @@ label.valid {
     border-radius: 50%;
     margin-top: 15px;
     margin-right: 15px;
-    margin-left: 30px;
     background-size: cover;
+    background-position: center;
     background-repeat: no-repeat;
 }
 .menuPersonal ul li {
@@ -2289,15 +2296,15 @@ label.valid {
 
 .menuPersonal ul li i {
     margin-right: 15px;
-    margin-left: 30px;
     font-size: 25px;
     vertical-align: middle;
     color: #305075;
 }
 
-.menuPersonal ul li a{
+.menuPersonal ul li a {
     color: #000;
     opacity: .87;
+    margin-left: 30px;
 }
 
 .menuPersonal ul li a:visited {
@@ -2305,11 +2312,11 @@ label.valid {
     opacity: .87;
 }
 
-.menuPersonal ul li a:active {
+.menuPersonal ul li a:hover i, .menuPersonal ul li a:hover {
     color: #E32444;
 }
 
-.menuPersonal ul li a:hover {
+.menuPersonal ul .current a i, .menuPersonal ul .current a:visited {
     color: #E32444;
 }
 /*Menu Account end*/

@@ -244,6 +244,7 @@
     <Content Include="Content\img\icons\arrow-right.svg" />
     <Content Include="Content\img\icons\chevron-left.svg" />
     <Content Include="Content\img\icons\chevron-right.svg" />
+    <Content Include="Content\img\icons\close.svg" />
     <Content Include="Content\img\icons\com.svg" />
     <Content Include="Content\img\icons\man.svg" />
     <Content Include="Content\img\icons\noImgHouse.svg" />
@@ -255,6 +256,7 @@
     <Content Include="Content\img\mapMarkers\mm3.png" />
     <Content Include="Content\img\mapMarkers\mm4.png" />
     <Content Include="Content\img\mapMarkers\mm5.png" />
+    <Content Include="Content\img\UserDefault.png" />
     <Content Include="Content\img\zlad.jpg" />
     <Content Include="Scripts\config\error.js" />
     <Content Include="Scripts\jquery.maskedinput.min.js" />

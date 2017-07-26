@@ -21,16 +21,12 @@
                     </div>
                     <input id="submitFileEH" type="submit" value="Загрузить" style="display:none;" />
                 }
-                @foreach (var p in Model.Pictures)
+                @using (Html.BeginForm("DeletePicture", "Account", FormMethod.Post, new { enctype = "multipart/form-data", id = "deletePhotoEH" }))
                 {
-                    using (Html.BeginForm("DeletePicture", "Account", FormMethod.Post, new { enctype = "multipart/form-data", id = "deletePhotoEH" }))
-                    {
-                        <input type="hidden" value="@p.HouseId" name="houseId" />
-                        <input type="hidden" value="@p.Id" name="pictureId" />
-                        <input type="hidden" value="@p.Adress" name="path" />
+                    <input type="hidden" value="" name="houseId" id="houseId" />
+                        <input type="hidden" value="" name="pictureId" id="pictureId" />
+                        <input type="hidden" value="" name="path" id="path" />
                         <input id="deleteFileEH" type="submit" value="Удалить" style="display:none;" />
-                    }
-
                 }
                 <div class="deleteButton"><span class="close"></span></div>
                 <div class="sliderEHBody owl-carousel">
@@ -42,7 +38,7 @@
                 </div>
             </div>
 
-            <div class="reservBoxEH">
+            <div class="reservBoxEH mainBox">
                 @foreach (var i in Model.Reservations)
                 {
                     <div class="itemReservEH">
@@ -142,19 +138,19 @@
                     if (item.Reserv == true)
                     {
                         <div class="noticeItem mainBox">
-                            <div class="headerNotice">
-                                <div class="noticeColor noticeColorRed"></div>
+                            <div class="headerNotice noticeColorRed">
                                 <p><span>@item.User.FirstName</span>, забронировал(а) дом</p>
                             </div>
-                            <div class="footerNotice">
-                                <span>@item.Date.ToString("dd.MM.yyyy")</span>
-                                @using (Html.BeginForm("DeleteReservationLandlord", "Account", FormMethod.Post, new { enctype = "multipart/form-data" }))
-                                {
-                                    <input type="hidden" value="@item.HouseId" name="houseId" />
+                            
+                        </div>
+                        <div class="footerNotice">
+                            <span>@item.Date.ToString("dd.MM.yyyy")</span>
+                            @using (Html.BeginForm("DeleteReservationLandlord", "Account", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                            {
+                                <input type="hidden" value="@item.HouseId" name="houseId" />
                                     <input type="hidden" value="@item.Id" name="id" /><br>
                                     <input type="submit" value="Удалить" />
-                                }
-                            </div>
+                            }
                         </div>
 
 
@@ -162,39 +158,38 @@
                     else if (item.Review == true)
                     {
                         <div class="noticeItem mainBox">
-                            <div class="headerNotice">
-                                <div class="noticeColor noticeColorGreen"></div>
+                            <div class="headerNotice noticeColorGreen">
                                 <p><span>@item.User.FirstName</span>, оставил(а) отзыв к дому</p>
                             </div>
                             <div class="bodyNotice"> <p>@item.Comment</p><p>Оценка: <span>@item.Rating/5</span></p></div>
-                            <div class="footerNotice">
-                                <span>@item.Date.ToString("dd.MM.yyyy")</span>
-                                @using (Html.BeginForm("DeleteReviews", "Account", FormMethod.Post, new { enctype = "multipart/form-data" }))
-                                {
-                                    <input type="hidden" value="@item.HouseId" name="houseId" />
+                            
+                        </div>
+                        <div class="footerNotice">
+                            <span>@item.Date.ToString("dd.MM.yyyy")</span>
+                            @using (Html.BeginForm("DeleteReviews", "Account", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                            {
+                                <input type="hidden" value="@item.HouseId" name="houseId" />
                                     <input type="hidden" value="@item.Id" name="id" /><br>
                                     <input type="submit" value="Удалить" />
-                                }
-                            </div>
+                            }
                         </div>
 
                     }
                     else
                     {
                         <div class="noticeItem mainBox">
-                            <div class="headerNotice">
-                                <div class="noticeColor noticeColorBlue"></div>
+                            <div class="headerNotice noticeColorBlue">
                                 <p><span>@item.User.FirstName</span>, отменил(а) бронь</p>
                             </div>
-                            <div class="footerNotice">
-                                <span>@item.Date.ToString("dd.MM.yyyy")</span>
-                                @using (Html.BeginForm("DeleteReservationLandlord", "Account", FormMethod.Post, new { enctype = "multipart/form-data" }))
-                                {
-                                    <input type="hidden" value="@item.HouseId" name="houseId" />
+                        </div>
+                        <div class="footerNotice">
+                            <span>@item.Date.ToString("dd.MM.yyyy")</span>
+                            @using (Html.BeginForm("DeleteReservationLandlord", "Account", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                            {
+                                <input type="hidden" value="@item.HouseId" name="houseId" />
                                     <input type="hidden" value="@item.Id" name="id" /><br>
                                     <input type="submit" value="Удалить" />
-                                }
-                            </div>
+                            }
                         </div>
                     }
 
@@ -202,267 +197,6 @@
         </div>
     </div>
 </div>
-
-
-
-@*<h2>Редактирование дома</h2>
-
-<h4>Загрузить фото</h4>
-@using (Html.BeginForm("AddPictures", "Account", FormMethod.Post, new { enctype = "multipart/form-data" }))
-{
-    <input type="hidden" value="@Model.House.Id" name="houseId" />
-    <input type="file" name="upload" /><br>
-    <input type="submit" value="Загрузить" />
-}
-
-@foreach (var p in Model.Pictures)
-{
-    <img src=@p.Adress width="150" hight="150" alt="" />
-    using (Html.BeginForm("DeletePicture", "Account", FormMethod.Post, new { enctype = "multipart/form-data" }))
-    {
-        <input type="hidden" value="@p.HouseId" name="houseId" />
-        <input type="hidden" value="@p.Id" name="pictureId" />
-        <input type="hidden" value="@p.Adress" name="path" />
-        <input type="submit" value="Удалить" />
-    }
-}*@
-
-@*@using (Html.BeginForm("SaveHouse", "Account"))
-    {
-        @Html.AntiForgeryToken()
-
-        <div class="form-horizontal">
-            <h4>Редактирование дома</h4>
-            <hr />
-            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-            @Html.HiddenFor(model => model.House.Id)
-            @Html.HiddenFor(model => model.House.UserId)
-            @Html.HiddenFor(model => model.House.Rating)
-            @Html.HiddenFor(model => model.House.lat)
-            @Html.HiddenFor(model => model.House.lng)
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.House.Name, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.House.Name, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.House.Name, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.House.Price, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.House.Price, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.House.Price, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.House.NumberOfPersons, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.House.NumberOfPersons, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.House.NumberOfPersons, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.House.Region, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.House.Region, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.House.Region, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.House.Locality, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.House.Locality, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.House.Locality, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.House.Area, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.House.Area, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.House.Area, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.House.HouseNumber, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.House.HouseNumber, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.House.HouseNumber, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.House.Description, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.House.Description, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.House.Description, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.House.Food, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.House.Food, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.House.Food, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.House.Transfer, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.House.Transfer, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.House.Transfer, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.House.ServicesIncluded, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.House.ServicesIncluded, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.House.ServicesIncluded, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.House.AdditionalServices, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.House.AdditionalServices, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.House.AdditionalServices, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.House.Accomodations, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.House.Accomodations, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.House.Accomodations, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.House.BookingConditions, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.House.BookingConditions, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.House.BookingConditions, "", new { @class = "text-danger" })
-                </div>
-            </div>
-            <div class="form-group">
-                @Html.HiddenFor(model => model.User.Id, "UserId" @*htmlAttributes: new { @class = "control-label col-md-2" })*@
-
-        @*</div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
-            </div>
-        </div>
-    </div>
-}*@
-
-@*<table border="1">
-    @foreach (var i in Model.House.Reservations)
-    {
-    <tr>
-        <td>
-            @i.ArrivalDate.ToString("dd.MM.yyyy")-@i.DepartureDate.ToString("dd.MM.yyyy")
-        </td>
-        <td>
-            <img src=@i.User.Avatar alt="">
-        </td>
-    </tr>
-    }
-</table>
-
-<table>
-    @foreach (var item in Model.GeneralClass)
-    {
-        if (item.Reserv == true)
-        {
-            <tr>
-                <th>
-                    @item.User.Login забронировал(а) дом 
-                </th>
-
-            </tr>
-            <tr>
-                <td>
-                    @item.Date.ToString("dd.MM.yyyy")
-                    <div>
-                        @using (Html.BeginForm("DeleteReservationLandlord", "Account", FormMethod.Post, new { enctype = "multipart/form-data" }))
-                    {
-                            <input type="hidden" value="@item.HouseId" name="houseId" />
-                            <input type="hidden" value="@item.Id" name="id" /><br>
-                            <input type="submit" value="Удалить" />
-                        }
-                    </div>
-                </td>
-            </tr>
-        }
-        else if (item.Review == true)
-        {
-            <tr>
-                <th>
-                    @item.User.Login оставил(а) отзыв к дому
-                </th>
-
-            </tr>
-            <tr>
-                <td>
-                    @item.Comment
-                </td>
-
-            </tr>
-            <tr>
-                <td>
-                    Оценка:  @item.Rating
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    @item.Date.ToString("dd.MM.yyyy")
-                    <div>
-                        @using (Html.BeginForm("DeleteReviews", "Account", FormMethod.Post, new { enctype = "multipart/form-data" }))
-                    {
-                            <input type="hidden" value="@item.HouseId" name="houseId" />
-                            <input type="hidden" value="@item.Id" name="id" /><br>
-                            <input type="submit" value="Удалить" />
-                        }
-                    </div>
-                </td>
-
-            </tr>
-        }
-        else
-        {
-            <tr>
-                <th>
-                    @item.User.Login отказался(ась) от брони
-                </th>
-
-            </tr>
-            <tr>
-                <td>
-                    @item.Date.ToString("dd.MM.yyyy")
-                    <div>
-                        @using (Html.BeginForm("DeleteReservationNotif", "Account", FormMethod.Post, new { enctype = "multipart/form-data" }))
-                    {
-                            <input type="hidden" value="@item.HouseId" name="houseId" />
-                            <input type="hidden" value="@item.Id" name="id" /><br>
-                            <input type="submit" value="Удалить" />
-                        }
-                    </div>
-                </td>
-            </tr>
-        }
-
-    }
-</table>*@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
@@ -494,6 +228,16 @@
             $('.deleteButton').on('click', function () {
                 $('#deletePhotoEH').submit();
             });
+
+            $('.owl-carousel').on('changed.owl.carousel', function (event) {
+                var current = event.item.index;
+                var id = $(this).find(".owl-item").eq(current).children(".item").attr('id');
+                var houseid = $('#' + id).attr("houseid");
+                var adressimg = $('#' + id).attr("adressimg");
+                $('#deletePhotoEH #houseId').attr('value', houseid);
+                $('#deletePhotoEH #pictureId').attr('value', id);
+                $('#deletePhotoEH #path').attr('value', adressimg);
+            })
 
         });
 

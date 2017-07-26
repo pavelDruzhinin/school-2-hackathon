@@ -1,12 +1,13 @@
 ﻿$(document).ready(function () {
-
+    initMap();
     //AjaxReservation
 
     var redirectData = "";
     $('#reservation').submit(function () {
         $.post('/House/AddReservation', $('#reservation').serialize(), function (data) {
             $('.errorBoxDate').html(data);
-            $('.errorBoxDate').css("display", "block");
+            console.log($('.errorBoxDate').text());
+            $('.errorBoxDate').css("display", "none");
         });
         return false;
     });

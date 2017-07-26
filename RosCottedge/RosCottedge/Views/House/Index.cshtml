@@ -44,7 +44,8 @@
             <div class="fullDescription">
                 <div class="descOwner">
                     <div class="leftSideOwner">
-                        <img src=@Model.House.User.Avatar alt="">
+                        <div style="background-image: url(@Model.House.User.Avatar);"></div>
+                        @*<img src=@Model.House.User.Avatar alt="">*@
                         <h3>@Model.House.User.FirstName<br>@Model.House.User.LastName</h3>
                     </div>
                     <div class="rightSideOwner">
@@ -92,7 +93,8 @@
                 <form @*method="post"*@ class="formReview mainBox" id="formReviewId" @*action="AddReview" data-ajax="true" data-ajax-update="#comments" data-ajax-mode="replace"*@>
                     <input type="hidden" value="@Model.House.Id" name="HouseId">
                     <div class="formRowTop">
-                        <img src=@Model.User.Avatar alt="">
+                        <div style="background-image: url(@Model.User.Avatar);"></div>
+                        @*<img src=@Model.User.Avatar alt="">*@
                         <textarea name="Comment" id="Comment" cols="30" rows="5" placeholder="Ваш отзыв:"></textarea>
                     </div>
                     <div class="formRowBottom">
@@ -171,6 +173,6 @@
     
     @Scripts.Render("/Scripts/libs/owl-carousel/js/owl.carousel.min.js")
     @Scripts.Render("/Scripts/config/House.js")
-    <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDJZlsRr82NdMVjqUPb1fVy-t49lPdTgrw&callback=initMap"></script>
+    <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDJZlsRr82NdMVjqUPb1fVy-t49lPdTgrw"></script>
     @{Html.RegisterMvcPagerScriptResource();}
 }

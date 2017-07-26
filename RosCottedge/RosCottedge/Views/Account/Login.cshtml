@@ -17,7 +17,7 @@
 
             <div class="innerForm">
                 <div class="fields">
-                    <div>@Html.EditorFor(model => model.Login, new { htmlAttributes = new { @class = "firstItemForm field", @placeholder = "Логин" } })</div>
+                    @Html.EditorFor(model => model.Login, new { htmlAttributes = new { @class = "firstItemForm field", @placeholder = "Логин" } })
 
                     @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "field", @placeholder = "Пароль" } })
                     <input type="submit" value="Войти" />

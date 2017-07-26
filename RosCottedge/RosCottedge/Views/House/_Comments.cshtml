@@ -5,7 +5,8 @@
 {
     <div class="reviewItem">
         <div class="reviewUser">
-            <img src=@review.User.Avatar alt="">
+            <div style="background-image: url(@review.User.Avatar);"></div>
+            @*<img src=@review.User.Avatar alt="">*@
             <h3>@review.User.FirstName<br>@review.User.LastName</h3>
         </div>
         <div class="reviewContent">
