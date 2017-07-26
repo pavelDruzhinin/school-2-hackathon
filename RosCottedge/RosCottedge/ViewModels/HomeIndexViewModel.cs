@@ -12,5 +12,6 @@ namespace RosCottedge.ViewModels
         public PagedList<House> Houses { get; set; }
         public List<House> AllHouses { get; set; }
         public List<House> Regions { get; set; }
+        public User User { get; set; }
     }
 }

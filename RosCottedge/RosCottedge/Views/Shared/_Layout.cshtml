@@ -28,6 +28,10 @@
             <li>@Html.ActionLink("Добавить дом", "Create", "House", new { area = "" }, new { @class = "navbar-brand" })</li>
             <li>@Html.ActionLink("Личный кабинет", "PersonalInformation", "Account", new { area = "" }, new { @class = "navbar-brand" })</li>
 
+              if (User.IsInRole("admin"))
+              {
+                <li>@Html.ActionLink("Админпанель", "ShowAllUsers", "Admin", new { area = "" }, new { @class = "navbar-brand" })</li>
+              }
           }
           else
           {
