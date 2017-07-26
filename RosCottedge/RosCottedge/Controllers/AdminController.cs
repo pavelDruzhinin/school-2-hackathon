@@ -105,13 +105,27 @@ namespace RosCottedge.Controllers
             return View(user);
 
         }
-        [HttpPost]
-        public ActionResult DeleteUser(int? id)
+        public ActionResult DeleteUser(int id)
         {
+
             User user = db.Users.Find(id);
-            db.Users.Remove(user);
-            db.SaveChanges();
+            if (user.Login != User.Identity.Name)
+            {
+                db.Entry(user)
+                   .Collection(c => c.Houses).Load();
+                db.Users.Remove(user);
+                db.SaveChanges();
+
+            }
             return RedirectToAction("ShowAllUsers");
+        }
+        [HttpPost]
+        public ActionResult DeleteComment(int id, int houseId)
+        {
+            var review = db.Reviews.Find(id);
+            db.Reviews.Remove(review);
+            db.SaveChanges();
+            return RedirectToAction("Index", "House", new { houseId = houseId });
         }
 
         #endregion

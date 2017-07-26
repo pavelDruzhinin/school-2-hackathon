@@ -15,7 +15,9 @@ namespace RosCottedge.Providers
             using (var db = new SiteContext())
             {
                 // Получаем пользователя
-                var user = db.Users.FirstOrDefault(u => u.Login == username);
+                User user = (from u in db.Users
+                             where u.Login == username
+                             select u).FirstOrDefault();
                 if (user != null)
                 {
                     // получаем роль
@@ -35,7 +37,9 @@ namespace RosCottedge.Providers
             using (var db = new SiteContext())
             {
                 // Получаем пользователя
-                var user = db.Users.FirstOrDefault(u => u.Email == username);
+                User user = (from u in db.Users
+                             where u.Email == username
+                             select u).FirstOrDefault();
                 if (user != null)
                 {
                     // получаем роль

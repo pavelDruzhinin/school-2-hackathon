@@ -65,16 +65,17 @@
 
                 </td>
                 <td>
-                    @*<div>
-                            @using (Html.BeginForm("DeleteUser", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
-                            {
+                    <div>
+                        @using (Html.BeginForm("DeleteUser", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                        {
 
-                                <input type="hidden" value="@item.Id" name="id" /><br>
-                                <input type="submit" value="Удалить" />
+                            <input type="hidden" value="@item.Id" name="id" /><br>
+                            <input type="submit" value="Удалить" />
 
 
-                            }
-                        </div>*@
+                        }
+                    </div>
+
                 </td>
             </tr>
 
