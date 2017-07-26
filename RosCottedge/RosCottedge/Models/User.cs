@@ -24,6 +24,7 @@ namespace RosCottedge.Models
         [Display(Name = "Телефон")]
         [Required]
         public string Phone { get; set; }
+        [Display(Name = "Логин")]
         public string Login { get; set; }
         [Required]
         [Display(Name = "Пароль")]
@@ -32,8 +33,10 @@ namespace RosCottedge.Models
         [Display(Name = "Старый пароль")]
         public string OldPassword { get; set; }
         public string Avatar { get; set; }
+        [Display(Name = "Группа пользователей")]
         public int RoleId { get; set; }
         public Role Role { get; set; }
+        [Display(Name = "Дата регистрации")]
         public DateTime RegistrationDate { get; set; }
         public List<Reservation> Reservations { get; set; }
         public List<House>Houses { get; set; }

@@ -56,61 +56,77 @@
             {
                 if (item.Reserv == true)
                 {
-                    <div class="noticeItem mainBox">
-                        <div class="headerNotice noticeColorRed">
-                            <p><span>@item.User.FirstName</span>, забронировал(а) дом "@item.House.Name"</p>
+                    <div class="classDelete">
+                        <div class="noticeItem mainBox">
+                            <div class="headerNotice noticeColorRed">
+                                <p><span>@item.User.FirstName</span>, забронировал(а) дом "@item.House.Name"</p>
+                            </div>
+
                         </div>
-                        
-                    </div>
-                    <div class="footerNotice">
-                        <span>@item.Date.ToString("dd.MM.yyyy")</span>
-                        @using (Html.BeginForm("DeleteReservationLandlord", "Account", FormMethod.Post, new { enctype = "multipart/form-data" }))
-                        {
-                            <input type="hidden" value="@item.HouseId" name="houseId" />
+                        <div class="footerNotice">
+                            <span>@item.Date.ToString("dd.MM.yyyy")</span>
+                            @*@using (Html.BeginForm("DeleteReservationLandlord", "Account", FormMethod.Post, new { enctype = "multipart/form-data", id = "" }))
+                          {*@
+                            <form id="DeleteReservationLandlord">
+                                <input type="hidden" value="@item.HouseId" name="houseId" />
                                 <input type="hidden" value="@item.Id" name="id" /><br>
-                                <input type="submit" value="Удалить" />
-                        }
+                                <input class="subRemove1" type="button" value="Удалить" />
+                            </form>
+
+                            @*}*@
+                        </div>
                     </div>
+
 
 
                 }
                 else if (item.Review == true)
                 {
-                    <div class="noticeItem mainBox">
-                        <div class="headerNotice noticeColorGreen">
-                            <p><span>@item.User.FirstName</span>, оставил(а) отзыв к дому "@item.House.Name"</p>
+                    <div class="classDelete">
+                        <div class="noticeItem mainBox">
+                            <div class="headerNotice noticeColorGreen">
+                                <p><span>@item.User.FirstName</span>, оставил(а) отзыв к дому "@item.House.Name"</p>
+                            </div>
+
                         </div>
-                        
+                        <div class="footerNotice">
+                            <span>@item.Date.ToString("dd.MM.yyyy")</span>
+                            @*@using (Html.BeginForm("DeleteReviews", "Account", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                            {*@
+                                <form id="DeleteReviews">
+                                    <input type="hidden" value="@item.HouseId" name="houseId" />
+                                    <input type="hidden" value="@item.Id" name="id" /><br>
+                                    <input  class="subRemove2" type="button" value="Удалить" />
+                                </form>
+                            @*}*@
+                                
                     </div>
-                    <div class="footerNotice">
-                        <span>@item.Date.ToString("dd.MM.yyyy")</span>
-                        @using (Html.BeginForm("DeleteReviews", "Account", FormMethod.Post, new { enctype = "multipart/form-data" }))
-                        {
-                            <input type="hidden" value="@item.HouseId" name="houseId" />
-                                <input type="hidden" value="@item.Id" name="id" /><br>
-                                <input type="submit" value="Удалить" />
-                        }
-                    </div>
+                   </div>
 
                 }
                 else
                 {
-                    <div class="noticeItem mainBox">
-                        <div class="headerNotice noticeColorBlue">
-                            <p><span>@item.User.FirstName</span>, отменил(а) бронь "@item.House.Name"</p>
+                    <div class="classDelete">
+                        <div class="noticeItem mainBox">
+                            <div class="headerNotice noticeColorBlue">
+                                <p><span>@item.User.FirstName</span>, отменил(а) бронь "@item.House.Name"</p>
+                            </div>
+
                         </div>
-                        
-                    </div>
-                    <div class="footerNotice">
-                        <span>@item.Date.ToString("dd.MM.yyyy")</span>
-                        @using (Html.BeginForm("DeleteReservationNotif", "Account", FormMethod.Post, new { enctype = "multipart/form-data" }))
-                        {
-                            <input type="hidden" value="@item.HouseId" name="houseId" />
+                        <div class="footerNotice">
+                            <span>@item.Date.ToString("dd.MM.yyyy")</span>
+                            @*@using (Html.BeginForm("DeleteReservationNotif", "Account", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                            {*@
+                            <form id="DeleteReservationNotif">
+                                <input type="hidden" value="@item.HouseId" name="houseId" />
                                 <input type="hidden" value="@item.Id" name="id" /><br>
-                                <input type="submit" value="Удалить" />
-                        }
+                                <input class="subRemove3" type="button" value="Удалить" />
+                            </form>
+                                @*}*@
+                        </div>
                     </div>
                 }
+
 
             }
         </div>
@@ -131,6 +147,30 @@
         }
         $('.houseDelButton').on('click', function () {
             $('#delHouse').submit();
+        });
+
+        $('.subRemove1').parent('form').click(function () {
+            var $DelResLan = $(this);
+            $.getJSON("/Account/DeleteReservationLandlord", $(this).serialize(), function (data) {
+                $DelResLan.parents('.classDelete').remove();
+            });
+            return false;
+        });
+
+        $('.subRemove2').parent('form').click(function () {
+            var $DelResLan = $(this);
+            $.getJSON("/Account/DeleteReviews", $(this).serialize(), function (data) {
+                $DelResLan.parents('.classDelete').remove();
+            });
+            return false;
+        });
+
+        $('.subRemove3').parent('form').click(function () {
+            var $DelResLan = $(this);
+            $.getJSON("/Account/DeleteReservationNotif", $(this).serialize(), function (data) {
+                $DelResLan.parents('.classDelete').remove();
+            });
+            return false;
         });
     });
     </script>

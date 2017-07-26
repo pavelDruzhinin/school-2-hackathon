@@ -39,7 +39,7 @@ namespace RosCottedge.Models
                 LastName = "admin",
                 MiddleName = "admin",
                 Login = "admin",
-                Phone = "+7900000000",
+                Phone = "+79000000000",
                 Password = "admin",
                 OldPassword = "admin",
                 RegistrationDate = DateTime.Now,

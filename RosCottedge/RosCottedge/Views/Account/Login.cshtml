@@ -4,15 +4,16 @@
     ViewBag.Title = "Вход на сайт";
     Layout = "~/Views/Shared/_LayoutForm.cshtml";
 }
-    <div class="Form FormLogin mainBox">
+    
+    <div class="Form FormLogin ">
 
-        @using (Html.BeginForm("Login", "Account", FormMethod.Post, new { id = "validFormLogin" }))
+        @Html.ValidationSummary(true, "")
+        @using (Html.BeginForm("Login", "Account", FormMethod.Post, new { id = "validFormLogin", @class= "mainBox" }))
         {
 
             @Html.AntiForgeryToken();
 
-            //ServerError
-            @Html.ValidationSummary(true, "")
+            
 
 
             <div class="innerForm">

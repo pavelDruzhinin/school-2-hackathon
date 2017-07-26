@@ -13,6 +13,17 @@
             <p class="travelTime">Отзыв оставлен: @review.CommentDate</p>
             <p>@review.Comment</p>
             <p class="ratingReview">Оценка: <span>@review.Rating/5</span></p>
+            <p class="ratingReview">
+                @if (User.IsInRole("admin"))
+                {
+                    using (Html.BeginForm("DeleteComment", "Admin", FormMethod.Post))
+                    {
+                        <input type="hidden" value="@review.HouseId" name="houseId" /><br>
+                        <input type="hidden" value="@review.Id" name="id" /><br>
+                        <input type="submit" value="Удалить" />
+                    }
+                }
+            </p>
         </div>
     </div>
 }

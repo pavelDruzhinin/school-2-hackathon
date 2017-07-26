@@ -24,16 +24,19 @@
                         <div class="myTripsDelButton">@*<span class="closeMyTrips"></span>*@
                         @if (item.DepartureDate > DateTime.Now)
                         {
-                            using (Html.BeginForm("DeleteReservation", "Account", FormMethod.Post, new { enctype = "multipart/form-data", id = "delReserv"}))
-                            {
-                                <input type="hidden" value="@item.HouseId" name="houseId" />
-                                <input type="hidden" value="@item.Id" name="id" /><br>
-                                <input class="closeMyTrips" type="submit" value="" title="Отказаться от брони"/>
-                            }
+                            //using (Html.BeginForm(new {id = ""}))
+                            //{ 
+                               <form id="DeleteReservation">
+                                   <input type="hidden" value="@item.HouseId" name="houseId" />
+                                   <input type="hidden" value="@item.Id" name="id" /><br>
+                                   <input class="closeMyTrips subRemove1" type="button" value="" title="Отказаться от брони" />
+                               </form>
+                                
+                            //}
                         }
                         else
                         {
-                            <input class="closeMyTrips" type="submit" value="" title="Отказаться от брони" />
+                            <input class="closeMyTrips" type="button" value="" title="Отказаться от брони" />
                         }
                         </div>
                     </div>
@@ -59,12 +62,14 @@
                             <div class="historyArrivalBody">
                                 <p><span>Даты поездки:</span> @item.ArrivalDate.ToString("dd.MM.yyyy") - @item.DepartureDate.ToString("dd.MM.yyyy")</p>
                                 <div>
-                                    @using (Html.BeginForm("DeleteReservationTenant", "Account", FormMethod.Post, new { enctype = "multipart/form-data" }))
-                                    {
+                                    @*@using (Html.BeginForm("DeleteReservationTenant", "Account", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                                    {*@
+                                    <form id="DeleteReservationTenant">
                                         <input type="hidden" value="@item.HouseId" name="houseId" />
                                         <input type="hidden" value="@item.Id" name="id" /><br>
-                                        <input type="submit" value="Удалить из списка" />
-                                    }
+                                        <input class="subRemove2" type="button" value="Удалить из списка" />
+                                    </form>
+                                    @*}*@
                                 </div>
                             </div>
                         </div>
@@ -87,8 +92,23 @@
             $c.text(c);
         }
 
-        $('.myTripsDelButton').on('click', function () {
-            $('#delReserv').submit();
+        //$('.myTripsDelButton').on('click', function () {
+        //    $('#delReserv').submit();
+        //});
+
+        $('.subRemove1').parent('form').click(function () {
+            var $DelResLan = $(this);
+            $.getJSON("/Account/DeleteReservation", $(this).serialize(), function (data) {
+                $DelResLan.parents('.houseContainer').remove();
+                console.log("Good");
+            });
+        });
+
+        $('.subRemove2').parent('form').click(function () {
+            var $DelResLan = $(this);
+            $.getJSON("/Account/DeleteReservationTenant", $(this).serialize(), function (data) {
+                $DelResLan.parents('.historyArrivalItem').remove();
+            });
         });
     });
     </script>
