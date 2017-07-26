@@ -358,9 +358,8 @@ namespace RosCottedge.Controllers
             }
             else
             {
-                //ModelState.AddModelError("","По этому дому есть бронь. Удаление невозможно");
-                ViewBag.Message = "По этому дому есть бронь. Удаление невозможно";
-                
+                TempData["message"] = string.Format("По этому дому есть бронь. Удаление невозможно");
+               
             }
            
             return RedirectToAction("MyHouse","Account");
@@ -380,15 +379,19 @@ namespace RosCottedge.Controllers
                 string fileName = System.IO.Path.GetFileName(upload.FileName);
                 DirectoryInfo Dir = new DirectoryInfo(Request.MapPath("/Content/img/users"));
                 Dir.CreateSubdirectory(user.Login);
-                upload.SaveAs(Server.MapPath("~/Content/img/users/" + user.Login + "/" + fileName));
-
-                var picture = new Picture
+                //Проверка на существование на сервере файла с идентичным именем
+                FileInfo file = new FileInfo(Server.MapPath("/Content/img/users/" + user.Login + "/" + fileName));
+                if (!file.Exists)
                 {
-                    Adress = "/Content/img/users/" + user.Login + "/" + fileName,
-                    HouseId = houseId
-                };
-                db.Pictures.Add(picture);
-                db.SaveChanges();
+                    upload.SaveAs(Server.MapPath("~/Content/img/users/" + user.Login + "/" + fileName));
+                    var picture = new Picture
+                    {
+                        Adress = "/Content/img/users/" + user.Login + "/" + fileName,
+                        HouseId = houseId
+                    };
+                    db.Pictures.Add(picture);
+                    db.SaveChanges();
+                }
             }
             return RedirectToAction("EditMyHouse", "Account", new { id = houseId });
         }

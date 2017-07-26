@@ -95,7 +95,8 @@ namespace RosCottedge.Controllers
                     db.Reservations.Add(reservation);
                     
                     db.SaveChanges();
-                    return "<script> document.location.href = '/Home/Index' </script>";
+                    //TempData["reserv"] = string.Format("Дом забронирован");
+                    return "<script> document.location.href = '/Account/MyTrips' </script>";
                 }
             }
             else
@@ -153,7 +154,8 @@ namespace RosCottedge.Controllers
                 house.UserId = user.Id;
                 db.Houses.Add(house);
                 db.SaveChanges();
-                return RedirectToAction("Index", "Home");
+                //TempData["create"] = string.Format("Дом добавлен");
+                return RedirectToAction("MyHouse", "Account");
             }
 
             return View(house);

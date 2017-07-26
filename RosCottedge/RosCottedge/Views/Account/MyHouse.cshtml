@@ -5,6 +5,22 @@
     ViewBag.Title = "MyHouse";
 }
 @Html.Partial("Profile")
+
+<div>
+    @if (TempData["message"] != null)
+    {
+        <div>@TempData["message"]</div>
+    }
+</div>
+
+@*Выводит сообщение о добавлении дома
+    <div>
+    @if (TempData["create"] != null)
+    {
+        <div>@TempData["create"]</div>
+    }
+</div>*@
+
 <div class="container">
     <div class="row">
         <div class="col-md-8">
@@ -22,19 +38,22 @@
                             <a href="/Account/EditMyHouse/@item.Id" class="remoteHouse"><p>Управление</p></a>
                             <a href="/House/Index?houseId=@item.Id"><p>Страница дома</p></a>
                             <div class="houseDelButton"><span class="close"></span></div>
+                                
                         </div>
                             @using (Html.BeginForm("DeleteHouse", "Account", FormMethod.Post, new { enctype = "multipart/form-data", id = "delHouse" }))
                             {
                                 <input type="hidden" value="@item.Id" name="id" /><br>
                                 <input type="submit" value="Удалить дом" style="display: none;"/>
-                                //Html.ValidationSummary(true);
-                                //Html.ValidationMessageFor(Model => Model.House, "", new { @class = "text-danger" });
+                                
                                
                             }
+                            
                         </div>
                         
                     </div>
             }
+            
+
         </div>
         <div class="col-md-4 allNoticeMyHouse">
 
@@ -103,6 +122,7 @@
 
     </div>
 </div>
+
 
 
 @section Scripts {
