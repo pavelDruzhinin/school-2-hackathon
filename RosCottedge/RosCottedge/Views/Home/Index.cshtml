@@ -42,14 +42,14 @@
         </div>
       </div>
       <div class="addField row selectNone">
-        <div class="sortingBox col-sm-6">
+        <div class="sortingBox col-xs-6">
           <span class="sorting"></span>
           <span class="op87">Сортировка</span>
         </div>
-        <div class="totalItems col-sm-6 op87">
-            Всего результатов: @Model.Houses.TotalItemCount
+        <div class="totalItems col-xs-6 op87">
+            Всего <span>результатов</span>: @Model.Houses.TotalItemCount
         </div>
-        <div class="col-sm-12 sortingItems">
+        <div class="col-xs-12 sortingItems">
           <ul>
             <li>
               <input type="radio" id="r1" name="rr" checked value="1">
@@ -89,5 +89,6 @@
 <script src="../../Scripts/libs/markerclusterer/markerclusterer.js"></script>
 @section scripts {
     @Scripts.Render("/Scripts/config/main.js")
+    @Scripts.Render("/Scripts/libs/masonry.pkgd.min/masonry.pkgd.min.js")
     @{Html.RegisterMvcPagerScriptResource();}
 }

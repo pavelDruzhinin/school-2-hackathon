@@ -240,6 +240,14 @@
   <ItemGroup>
     <Content Include="Content\img\chubaka.jpg" />
     <Content Include="Content\img\error.png" />
+    <Content Include="Content\img\icons\arrow-left.svg" />
+    <Content Include="Content\img\icons\arrow-right.svg" />
+    <Content Include="Content\img\icons\chevron-left.svg" />
+    <Content Include="Content\img\icons\chevron-right.svg" />
+    <Content Include="Content\img\icons\com.svg" />
+    <Content Include="Content\img\icons\man.svg" />
+    <Content Include="Content\img\icons\noImgHouse.svg" />
+    <Content Include="Content\img\icons\rub.svg" />
     <Content Include="Content\img\icons\shareBtn.svg" />
     <Content Include="Content\img\mapMarkers\map_marker.png" />
     <Content Include="Content\img\mapMarkers\mm1.png" />

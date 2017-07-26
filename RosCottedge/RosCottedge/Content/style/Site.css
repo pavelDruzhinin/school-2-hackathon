@@ -7,21 +7,21 @@ i {
     font-family: fontawesome !important;
 }
 body {
-  font-size: 16px;
+  font-size: 14px;
   background-color: #EEEEEE;
 }
 input, textarea, select, button{
-  font-size: 16px;
+  font-size: 14px;
 }
 p{
-  font-size: 16px;
+  font-size: 14px;
 }
 h1{
   font-weight: 700;
 }
 h2{
   font-weight: 500;
-  font-size: 20px;
+  font-size: 16px;
 }
 h3{
   font-size: 20px;
@@ -38,7 +38,9 @@ ul li{
   list-style: none;
 }
 .mainBox{
+  border-radius: 2px;
   box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.14);
+  background-color: #fff;
 }
 /*Forms*/
 input{
@@ -50,9 +52,11 @@ input:not([type="submit"]) {
   background-color: #EEEEEE;
   padding-left: 15px;
 }
-input[type="submit"]{
+input[type="submit"], button{
   color: #fff;
   cursor: pointer;
+  font-weight: 500;
+  text-transform: uppercase;
 }
 input[type="submit"].red{
   background-color: #E32444;
@@ -83,7 +87,7 @@ input.date{
 
 /*Calendar*/
 .ui-datepicker table{
-  font-size: 16px !important;
+  font-size: 14px !important;
 }
 .ui-datepicker table thead tr th{
   font-weight: 500 !important;
@@ -130,7 +134,8 @@ input.date{
 }
 .ui-datepicker-title span{
   line-height: 45px;
-  font-size: 16px;
+  font-size: 14px;
+  font-weight: 500;
 }
 .ui-datepicker-title{
   -webkit-user-select: none;
@@ -214,8 +219,10 @@ input.date{
   font-size: 0;
 }
 .mainMenu ul li{
-  font-size: 16px;
+  font-size: 14px;
   display: inline-block;
+  font-weight: 500;
+  text-transform: uppercase;
 }
 .mainMenu ul li a{
   display: inline-block;
@@ -245,7 +252,7 @@ footer{
 footer span{
   opacity: .7;
 }
-footer h3{
+footer h2{
   margin-bottom: 15px;
 }
 footer ul.mainList li{
@@ -335,11 +342,77 @@ footer .bottomFooter span{
   height: 475px;
   margin-bottom: 45px;
 }
+
+.houses .col-md-4{
+  margin-bottom: 30px;
+}
+.houses .houseItem{
+  display: block;
+  color: #000;
+  overflow: hidden;
+}
+.houses .imgBox{
+  height: 200px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  position: relative;
+}
+.houses .contentBox{
+  padding: 7.5px;
+}
+.houses span.address{
+  font-size: 14px;
+  color: #E32444;
+  font-weight: 500;
+  padding-top: 4px;
+}
+.houses .contentBox p{
+  padding-top: 10px;
+}
+.houses .characts{
+  border-top: 1px solid #DBDBDB;
+  padding: 10px 7.5px;
+  margin-top: 11px;
+}
+.houses .houseItem .ratingHouse{
+  text-align: right;
+}
+.houses .houseItem .ratingHouse ul{
+  font-size: 0;
+}
+.houses .houseItem .ratingHouse ul li{
+  display: inline-block;
+  width: 15px;
+  height: 15px;
+  border-radius: 20px;
+  background-color: #E32444;
+  margin-left: 5px;
+  opacity: .5;
+}
+.houses .houseItem .ratingHouse ul li:first-child{
+  margin-left: 0;
+}
+.houses .houseItem .price{
+  position: absolute;
+  right: 7.5px;
+  top: 7.5px;
+  padding: 8px;
+  background-color: #E32444;
+  border-radius: 2px;
+  color: #fff;
+  font-weight: 500;
+}
+/*
 .houses .houseItem{
   margin-bottom: 30px;
   font-size: 0;
 }
-.houses .houseItem div{
+.houses .itemWrap{
+  background-color: #fff;
+  padding: 7.5px;
+}
+.houses .houseItem .itemWrap div{
   display: inline-block;
   font-size: 16px;
   vertical-align: top;
@@ -425,6 +498,7 @@ footer .bottomFooter span{
   background-image: url(../../Content/img/icons/com.svg);
   width: 18.9px;
 }
+*/
 /*Search*/
 .searchBox{
   background-color: #fff;
@@ -585,7 +659,7 @@ footer .bottomFooter span{
   color: #fff;
 }
 .mainField .area ul li{
-  font-size: 16px;
+  font-size: 14px;
   padding: 12px 15px;
   cursor: pointer;
 }
@@ -725,7 +799,6 @@ input[type="radio"]:checked + label span::before {
   background-color: #69F0AE;
   color: #fff;
   cursor: pointer;
-  font-size: 16px;
   transition: .3s all;
 }
 .innerForm input[type="submit"]:hover {
@@ -780,7 +853,9 @@ label.valid {
     color: #E32444;
     display: block;
     border-top: 1px solid #EBEBEB;
-    font-size: 16px;
+    font-size: 14px;
+    text-transform: uppercase;
+    font-weight: 500;
 }
 /* REGISTRATION FORM*/
 .FormRegistration {
@@ -809,8 +884,6 @@ label.valid {
 .innerForm .signUpButton {
     background-color: #69F0AE;
     color: #fff;
-    cursor: pointer;
-    font-size: 16px;
     width: 445px;
     margin-top: 15px;
 }
@@ -876,8 +949,6 @@ label.valid {
 .innerForm .ButtonCreate{
   background-color: #69F0AE;
 	color: #fff;
-	cursor: pointer;
-	font-size: 16px;
 	width: 660px;
 	margin-top: 15px;
   border-top: 1px solid #EBEBEB;
@@ -914,20 +985,11 @@ label.valid {
     font-size: 0;
 }
 
-.formReservation span {
-    display: inline-block;
-    font-size: 16px;
-    width: 50%;
-    margin-bottom: 8px;
-    opacity: .87;
-}
-
 .formReservation input {
     width: 48%;
     height: 45px;
     background-color: #EEE;
     display: inline-block;
-    font-size: 16px;
     padding-left: 15px;
 }
 
@@ -948,7 +1010,6 @@ label.valid {
     background-color: #EEE;
     border:none;
     max-height: 200px;
-    font-size: 16px;
     padding-top: 8px;
     padding-left: 15px;
 }
@@ -960,7 +1021,6 @@ label.valid {
 .btnReservation {
     width: 100%;
     margin-top: 15px;
-    font-size: 16px;
     height: 45px;
     background-color: #E32444;
     color: #fff;
@@ -1093,7 +1153,7 @@ label.valid {
 }
 
 .slider .sliderFooter .sliderRating span {
-    font-size: 16px;
+    font-size: 14px;
 }
 
 .slider .sliderFooter .sliderRating .separate {
@@ -1301,7 +1361,6 @@ label.valid {
     border: none;
     background-color: #EEEEEE;
     width: 643px;
-    font-size: 16px;
     padding-top: 8px;
     padding-left: 15px;
 }
@@ -1315,7 +1374,6 @@ label.valid {
 }
 
 .formReview .formRowBottom .btnSendReview {
-    font-size: 16px;
     width: 152px;
     height: 45px;
     color: #fff;
@@ -1344,7 +1402,7 @@ label.valid {
 
 
 .formReview .formRowBottom .formSelect #selectRating {
-    font-size: 16px;
+    font-size: 14px;
     border: none;
     height: 45px;
     padding-left: 10px;
@@ -1593,7 +1651,7 @@ label.valid {
 }
 
 .headerNotice p, .headerNotice span {
-    font-size: 16px;
+    font-size: 14px;
     vertical-align: top;
     margin-top: 14px;
 }
@@ -1697,7 +1755,7 @@ label.valid {
 .file-upload span {
     display: block;
     margin-top: 8px;
-    font-size: 16px;
+    font-size: 14px;
 }
 
 .deletePhotoEH {
@@ -2065,7 +2123,7 @@ label.valid {
 .file-uploadPI span {
     margin-top: -5px;
     display: block;
-    font-size: 16px;
+    font-size: 14px;
 }
 
 .photoUserPI {
@@ -2106,7 +2164,7 @@ label.valid {
     width: 100%;
     background-color: #E32444;
     color: #fff;
-    font-size: 16px;
+    font-size: 14px;
     padding-top: 14px;
     text-align: center;
     margin-top: 15px;
@@ -2165,7 +2223,7 @@ label.valid {
     width: 100%;
     background-color: #E32444;
     color: #fff;
-    font-size: 16px;
+    font-size: 14px;
     padding-top: 14px;
     text-align: center;
     margin-top: 15px;
@@ -2225,7 +2283,7 @@ label.valid {
 
 .menuPersonal ul {
     margin-top: 23px;
-    font-size: 16px;
+    font-size: 14px;
     height: 45px;
 }
 

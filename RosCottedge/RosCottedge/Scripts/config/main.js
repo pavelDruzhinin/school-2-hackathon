@@ -98,6 +98,13 @@ $(document).ready(function () {
     $('.sortingBox').click(function(){
       $(this).parent('.addField').toggleClass('actSort');
     });
+
+    /*$('.houses .row').masonry({
+      // options
+      itemSelector: '.col-md-4',
+      columnWidth: '.widthMas'
+    });*/
+
 });
 
 var mapStyles = [

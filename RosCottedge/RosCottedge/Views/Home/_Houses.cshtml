@@ -6,7 +6,33 @@
         <div class="row">
             @foreach (var item in Model.Houses)
             {
-                <div class="col-md-6 houseItem">
+              <div class="col-md-4 col-sm-6 col-xs-12 widthMas">
+                <a href="/House/Index?houseId=@item.Id" class="houseItem mainBox">
+                  <div class="imgBox" style="background-image: url(@item.Pictures.Where(x => x.HouseId == item.Id).Select(x => x.Adress).FirstOrDefault())">
+                    <span class="price">@item.Price руб.</span>
+                  </div>
+                  <div class="contentBox">
+                    <h2>@item.Name</h2>
+                    <span class="address">@item.Locality, @item.Area</span>
+                    <p class="op87">@item.Description</p>
+                  </div>
+                  <div class="characts">
+
+                    <div class="ratingHouse" rating="@item.Rating">
+                        <ul>
+                            <li ratingItem="1"></li>
+                            <li ratingItem="2"></li>
+                            <li ratingItem="3"></li>
+                            <li ratingItem="4"></li>
+                            <li ratingItem="5"></li>
+                        </ul>
+                    </div>
+
+                  </div>
+                </a>
+              </div>
+              <!--  <div class="col-md-6 houseItem">
+                  <div class="itemWrap mainBox">
                     <div class="imgBox" style="background-image: url(@item.Pictures.Where(x => x.HouseId == item.Id).Select(x => x.Adress).FirstOrDefault())"></div>
                     <div class="ContentBox">
                         <h2 class="nameHouse"><a href="/House/Index?houseId=@item.Id">@item.Name</a></h2>
@@ -30,7 +56,8 @@
                             </ul>
                         </div>
                     </div>
-                </div>
+                  </div>
+                </div> -->
             }
         </div>
         <div class="pagination-container">
@@ -53,10 +80,17 @@
 
 <script type="text/javascript">
     $(document).ready(function(){
+
       $('.houseItem .imgBox').each(function(){
         if ( $(this).attr('style') == 'background-image: url()' ){
           $(this).attr('style','background-image: url(../../Content/img/icons/noImgHouse.svg)')
         }
       });
+
+      $('.houses .row').masonry({
+        itemSelector: '.col-md-4',
+        columnWidth: '.widthMas'
+      });
+
     });
 </script>

@@ -1,9 +1,9 @@
 @media (max-width: 767px) {
   /*footer start*/
-  footer h3{
+  footer h2{
     margin-top: 30px;
   }
-  footer .row .col-md-3:first-child h3{
+  footer .row .col-md-3:first-child h2{
     margin-top: 0;
   }
   footer .share{
@@ -40,14 +40,88 @@
         padding-left: 4px !important;
     }*/
     /*Slider End*/
+    /*Form Search start*/
+    #searchForm input{
+      margin-bottom: 15px !important;
+      margin: 0;
+    }
+    #searchForm input[type="submit"]{
+      margin-bottom: 0 !important;
+    }
+    .area{
+      width: 100%;
+      padding-right: 15px;
+    }
+    .searchBox .numPersons{
+      margin-top: 25px;
+    }
+    .prices,.dates {
+      width: 100%;
+      font-size: 0;
+    }
+    .cell50_inp{
+      width: 50%;
+      display: inline-block;
+      padding: 0 7.5px;
+    }
+    .cell100_inp{
+      width: 100%;
+      padding: 0 7.5px;
+    }
+    .searchBox .area input, .searchBox .numPersons,
+    .cell50_inp input, .cell100_inp input{
+      width: 100% !important;
+    }
+    #slider-range{
+      margin-top: 10px;
+    }
+    .searchBox .area ul{
+      width: calc(100% - 15px);
+    }
+    .totalItems span{
+      display: none;
+    }
+    #searchForm .sortingItems ul li{
+      margin-left: 0;
+      margin-bottom: 15px;
+      float: none;
+    }
+    #searchForm .sortingItems ul li:last-child{
+      margin-bottom: 0;
+    }
+    .houses .houseItem div{
+      display: block;
+    }
+    .houses .houseItem .imgBox{
+      width: 100%;
+    }
+    .houses .houseItem .ContentBox{
+      width: 100%;
+      padding: 0;
+      height: auto;
+    }
+    .houses .houseItem .ContentBox .nameHouse{
+      margin-top: 10px;
+    }
+    .houses .houseItem .ContentBox .ratingHouse{
+      position: static;
+      margin-top: 15px;
+    }
+    .optionsHouse br{
+      display: none;
+    }
+    .houses .houseItem .optionsHouse li{
+      margin-right: 15px;
+    }
+    /*Form Search end*/
 }
 
 @media (min-width: 768px) and (max-width: 991px) {
   /*footer start*/
-  footer h3{
+  footer h2{
     margin-top: 30px;
   }
-  footer .row .col-md-3:first-child h3{
+  footer .row .col-md-3:first-child h2{
     margin-top: 0;
   }
   footer .share{
@@ -103,7 +177,7 @@
       width: 100%;
       padding: 0 7.5px;
     }
-    .searchBox .area input, .searchBox .area ul, .searchBox .numPersons,
+    .searchBox .area input, .searchBox .numPersons,
     .cell50_inp input, .cell100_inp input{
       width: 100% !important;
     }

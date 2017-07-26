@@ -18,7 +18,7 @@ namespace RosCottedge.Controllers
         public ActionResult Index(int? page, string region, int? startPrice, int? finishPrice, int? numberOfPersons, DateTime? arrivalDate, DateTime? departureDate, int? fromForm)
         {
             int pageNumber = (page ?? 1);
-            int pageSize = 8;
+            int pageSize = 9;
 
             var houses = db.Houses.Include(x => x.Reviews).Include(x => x.Reservations).Include(x => x.Pictures).Where(x=>x.Hide==false);
 
