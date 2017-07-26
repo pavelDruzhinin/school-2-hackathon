@@ -48,12 +48,12 @@ $(document).ready(function () {
     $( "#slider-range span.ui-state-default:last").css('margin-left','-7.5px');
 
     //RatingItemIndex
-    $('.ratingHouse').each(function () {
+    /*$('.ratingHouse').each(function () {
         var rating = Math.round(+$(this).attr('rating').replace(',', '.'));
         for (var i = 1; i <= rating; i++) {
             $(this).children('ul').children('li[ratingItem=' + i + ']').css('opacity', '1');
         }
-    });
+    });*/
 
     //Select
     var $selWrap = $('.mainField .area');

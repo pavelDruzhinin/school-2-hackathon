@@ -89,7 +89,16 @@
 
       $('.houses .row').masonry({
         itemSelector: '.col-md-4',
-        columnWidth: '.widthMas'
+        columnWidth: '.widthMas',
+        horizontalOrder: true
+      });
+
+      //RatingItemIndex
+      $('.ratingHouse').each(function () {
+          var rating = Math.round(+$(this).attr('rating').replace(',', '.'));
+          for (var i = 1; i <= rating; i++) {
+              $(this).children('ul').children('li[ratingItem=' + i + ']').css('opacity', '1');
+          }
       });
 
     });
