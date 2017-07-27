@@ -28,7 +28,8 @@ namespace RosCottedge.Controllers
         {
             if (User.Identity.IsAuthenticated)
                 return RedirectToAction("Profile");
-
+            DirectoryInfo houseImg = new DirectoryInfo(Request.MapPath("/Content/img/houseImg/"));
+            TempData["houseImg"] = string.Format("{0}", houseImg.GetFiles().Count());
             return View();
         }
         [HttpPost]
@@ -37,7 +38,8 @@ namespace RosCottedge.Controllers
         {
 
             var existingUser = db.Users.Where(x => x.Login == user.Login && x.Password == user.Password).FirstOrDefault();
-
+            DirectoryInfo houseImg = new DirectoryInfo(Request.MapPath("/Content/img/houseImg/"));
+            TempData["houseImg"] = string.Format("{0}", houseImg.GetFiles().Count());
             if (existingUser != null)
             {
                 FormsAuthentication.SetAuthCookie(user.Login, true);
@@ -58,6 +60,8 @@ namespace RosCottedge.Controllers
         {
             if (User.Identity.IsAuthenticated)
                 return new HttpStatusCodeResult(HttpStatusCode.Found);
+            DirectoryInfo houseImg = new DirectoryInfo(Request.MapPath("/Content/img/houseImg/"));
+            TempData["houseImg"] = string.Format("{0}", houseImg.GetFiles().Count());
             return View();
         }
         [HttpPost]
@@ -66,6 +70,8 @@ namespace RosCottedge.Controllers
         {
             if (User.Identity.IsAuthenticated)
                 return new HttpStatusCodeResult(HttpStatusCode.Unauthorized);
+            DirectoryInfo houseImg = new DirectoryInfo(Request.MapPath("/Content/img/houseImg/"));
+            TempData["houseImg"] = string.Format("{0}", houseImg.GetFiles().Count());
             if (ModelState.IsValid)//если модель проходит валидацию, то в базе ищем логин
             {
                 var existingUser = db.Users.Where(x => x.Login == user.Login).FirstOrDefault();

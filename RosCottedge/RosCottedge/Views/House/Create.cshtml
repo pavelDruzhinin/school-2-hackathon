@@ -40,6 +40,8 @@
                     <input class="smallInputCreate floatInput" type="text" name="HouseNumber" id="HouseNumber" value="" placeholder="Дом" />
                 </div>
 
+                <input class="largeInputCreate" type="text" name="city" id="city" placeholder="Город" />
+
                 @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control", @placeholder = "Описание" } })
 
                 @Html.EditorFor(model => model.Food, new { htmlAttributes = new { @class = "form-control", @placeholder = "Питание" } })
@@ -62,20 +64,23 @@
 
             </div>
         </div>
-        <a href="/" class="goToHome">Вернуться на главную</a>
+        <a href="/" class="goToHome"> @TempData["houseImg"]Вернуться на главную</a>
     }
 </div>
 
 
 
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
+@Scripts.Render("~/bundles/jqueryval")
+<script src="~/Scripts/config/jquery.kladr.min.js"></script>
 <script async defer
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDJZlsRr82NdMVjqUPb1fVy-t49lPdTgrw&callback=init">
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDJZlsRr82NdMVjqUPb1fVy-t49lPdTgrw">
 </script>
 <script>
     $(document).ready(function () {
-
+        $('#city').kladr({
+            type: $.kladr.type.city
+        });
+        init();
         $('.manualAddress').on('click', function () {
             $('.manualInput').css('display', 'block');
             $('.searchHouse').css('display', 'none');

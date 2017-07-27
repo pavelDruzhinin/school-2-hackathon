@@ -10,6 +10,7 @@ using Microsoft.Ajax.Utilities;
 using RosCottedge.Models;
 using RosCottedge.ViewModels;
 using Webdiyer.WebControls.Mvc;
+using System.IO;
 
 namespace RosCottedge.Controllers
 {
@@ -108,6 +109,8 @@ namespace RosCottedge.Controllers
         
         public ActionResult Create()
         {
+            DirectoryInfo houseImg = new DirectoryInfo(Request.MapPath("/Content/img/houseImg/"));
+            TempData["houseImg"] = string.Format("{0}", houseImg.GetFiles().Count());
             ViewBag.UserId = new SelectList(db.Users, "Id", "FirstName");
             return View();
         }
@@ -146,11 +149,12 @@ namespace RosCottedge.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(House house)
         {
+            DirectoryInfo houseImg = new DirectoryInfo(Request.MapPath("/Content/img/houseImg/"));
+            TempData["houseImg"] = string.Format("{0}", houseImg.GetFiles().Count());
+
             if (ModelState.IsValid)
             {
-                User user
-                 = db.Users.Where
-                        (x => x.Login == User.Identity.Name).FirstOrDefault();
+                User user = db.Users.Where(x => x.Login == User.Identity.Name).FirstOrDefault();
                 house.UserId = user.Id;
                 db.Houses.Add(house);
                 db.SaveChanges();
