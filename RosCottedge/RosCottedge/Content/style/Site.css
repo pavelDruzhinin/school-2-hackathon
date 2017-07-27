@@ -1463,6 +1463,7 @@ label.valid {
   color: #000;
   opacity: .87;
   transition: .4s;
+  outline: none;
 }
 .formSelect ul{
   font-size: 0;
@@ -2242,7 +2243,7 @@ button[disabled]{
 .closeMyTrips {
     height: 35px;
     width: 35px;
-    background-color: #E32444;
+    background-color: #E32444 !important;
     background-image: url(/Content/img/icons/close.svg);
     background-repeat: no-repeat;
     background-position: center;
@@ -2251,26 +2252,10 @@ button[disabled]{
     transition: .3s all;
 }
 
-.closeInput:hover {
+.closeMyTrips:hover {
     background-color: #F31137;
 }
-}
 
-.closeMyTrips:before, .closeMyTrips:after {
-    position: absolute;
-    content: '';
-    height: 20px;
-    width: 2px;
-    background-color: #fff;
-}
-
-.closeMyTrips:before {
-    transform: rotate(45deg);
-}
-
-.closeMyTrips:after {
-    transform: rotate(-45deg);
-}
 /*My house and my trips end*/
 
 /*Personal information start*/
