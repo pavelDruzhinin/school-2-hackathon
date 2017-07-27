@@ -103,7 +103,7 @@ $(document).ready(function () {
       // options
       itemSelector: '.col-md-4',
       columnWidth: '.widthMas'
-    });*/
+    });*/    
 
 });
 

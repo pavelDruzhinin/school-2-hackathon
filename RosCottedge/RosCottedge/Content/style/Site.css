@@ -1377,7 +1377,148 @@ label.valid {
 }
 /*Map End*/
 /*Review Start*/
-.formReview {
+.formReview{
+  margin-bottom: 30px;
+}
+.formRowTop{
+  font-size: 0;
+}
+.formReview .userLogo{
+  width: 60px;
+  height: 60px;
+  display: inline-block;
+  border-radius: 60px;
+  vertical-align: top;
+  margin-right: 20px;
+}
+.formReview #comment{
+  font-size: 14px;
+  resize: vertical;
+  padding: 10px 13px 13px 13px;
+  height: 60px;
+  position: relative;
+  width: 100%;
+  background-color: #EEEEEE;
+  border: none;
+  border-radius: 4px;
+  outline: none;
+}
+.wrapTexta{
+  display: inline-block;
+  vertical-align: top;
+  width: calc(100% - 80px) !important;
+  position: relative;
+  z-index: 1;
+  border: 1px solid #305075;
+  min-height: 60px;
+  border-radius: 4px;
+}
+.formReview .wrapTexta::before{
+  content: '';
+  display: block;
+  width: 15px;
+  height: 15px;
+  border-radius: 2px;
+  border: 1px solid #305075;
+  position: absolute;
+  left: -6.5px;
+  top: 22.5px;
+  z-index: 0;
+  transform: rotate(45deg);
+}
+.formReview .wrapTexta::after{
+  content: '';
+  display: block;
+  width: 13px;
+  height: 13px;
+  border-radius: 2px;
+  background-color: #EEEEEE;
+  position: absolute;
+  left: -5.5px;
+  top: 23.5px;
+  z-index: 0;
+  transform: rotate(45deg);
+}
+.formRowBottom{
+  margin-top: 15px;
+  margin-left: 80px;
+  font-size: 0;
+}
+.formSelect{
+  width: 50%;
+  text-align: left;
+  display: inline-block;
+  vertical-align: middle;
+}
+.btnSendReviewWrap{
+  width: 50%;
+  text-align: right;
+  display: inline-block;
+  vertical-align: middle;
+  font-size: 12px;
+}
+.btnSendReviewWrap button{
+  background: none;
+  border: none;
+  color: #000;
+  opacity: .87;
+  transition: .4s;
+}
+.formSelect ul{
+  font-size: 0;
+  cursor: pointer;
+}
+.formSelect ul li{
+  width: 15px;
+  height: 15px;
+  border-radius: 7.5px;
+  background-color: #E32444;
+  opacity: .5;
+  margin-right: 5px;
+  display: inline-block;
+}
+.formSelect ul li.actRatItem{
+  opacity: 1;
+}
+button[disabled]{
+  cursor: default;
+  opacity: .26;
+}
+/***************************/
+.commentWrap{
+  display: inline-block;
+  vertical-align: top;
+  width: calc(100% - 80px) !important;
+  position: relative;
+  z-index: 1;
+  min-height: 60px;
+  border-radius: 4px;
+  background-color: #305075;
+  color: #fff;
+  padding: 10px 13px 13px 13px;
+}
+.commentWrap::before{
+  content: '';
+  display: block;
+  width: 15px;
+  height: 15px;
+  border-radius: 2px;
+  background-color: #305075;
+  position: absolute;
+  left: -6.5px;
+  top: 22.5px;
+  z-index: 0;
+  transform: rotate(45deg);
+}
+.userName{
+  font-size: 10px;
+  text-transform: uppercase;
+  margin-bottom: 5px;
+  display: block;
+  opacity: .54;
+}
+
+/*.formReview {
     width: 100%;
     background-color: #fff;
     padding: 15px;
@@ -1411,7 +1552,7 @@ label.valid {
     width: 61px;
 }*/
 
-.formReview .formRowTop div, .reviewItem .reviewUser div {
+/*.formReview .formRowTop div, .reviewItem .reviewUser div {
     display: inline-block;
     border-radius: 50%;
     height: 61px;
@@ -1505,7 +1646,7 @@ label.valid {
 .formReview .formRowBottom .formSelect #selectRating option {
     outline: none;
 }
-
+*/
 .reviewItem .reviewUser {
     vertical-align: top;
     display: inline-block;

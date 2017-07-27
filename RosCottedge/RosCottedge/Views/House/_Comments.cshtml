@@ -3,10 +3,35 @@
 
 @foreach (var review in Model.Reviews)
 {
-    <div class="reviewItem">
+  <div class="formReview" id="formReviewId">
+      <input type="hidden" value="@Model.House.Id" name="HouseId">
+      <div class="formRowTop">
+          <div class="userLogo" style="background-image: url(@review.User.Avatar);"></div>
+          <div class="commentWrap">
+            <span class="userName">@review.User.FirstName @review.User.LastName</span>
+            <p>@review.Comment</p>
+          </div>
+      </div>
+      <div class="formRowBottom">
+
+          <div class="ratingHouse formSelect" rating="@review.Rating">
+            <ul>
+              <li ratingItem="1"></li>
+              <li ratingItem="2"></li>
+              <li ratingItem="3"></li>
+              <li ratingItem="4"></li>
+              <li ratingItem="5"></li>
+            </ul>
+              <select style="display: none;" name="Rating" id="selectRating"></select>
+          </div>
+          <div class="btnSendReviewWrap op54">
+              Отзыв оставлен: @review.CommentDate
+          </div>
+      </div>
+  </div>
+  <!--  <div class="reviewItem">
         <div class="reviewUser">
             <div style="background-image: url(@review.User.Avatar);"></div>
-            @*<img src=@review.User.Avatar alt="">*@
             <h3>@review.User.FirstName<br>@review.User.LastName</h3>
         </div>
         <div class="reviewContent">
@@ -25,8 +50,20 @@
                 }
             </p>
         </div>
-    </div>
+    </div> -->
 }
+<script>
+  $(document).ready(function(){
+
+    $('.ratingHouse').each(function () {
+        var rating = $(this).attr('rating');
+        for (var i = 1; i <= rating; i++) {
+            $(this).children('ul').children('li[ratingItem=' + i + ']').css('opacity', '1');
+        }
+    });
+
+  });
+</script>
 
 <div class="pagination-container">
     @Ajax.Pager(Model.Reviews, new PagerOptions
@@ -44,4 +81,3 @@
     }).AjaxOptions(a => a.SetUpdateTargetId("comments").DisableHistorySupport())
 </div>
 <input type="hidden" id="tempRating2" value="@Model.House.Rating" />
-

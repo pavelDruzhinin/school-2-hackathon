@@ -17,7 +17,7 @@
             $('#comments').html(data);
             $('#totalCount').text(parseInt($('#totalCount').text()) + 1 + ' отзывов');
             $('#numberSliderRating').text($('#tempRating2').val());
-            ratingHouse();    
+            ratingHouse();
             $('#formReviewId').each(function () {
                 this.reset();
             });
@@ -32,7 +32,7 @@
 
     ratingHouse();
 
-    
+
     var totalItems = $('.item').length;
     if (totalItems == 0) {
         $('.slider').css('height', '77px');
@@ -59,7 +59,41 @@
         return false;
     });
 
-    
+    //comment
+    var actRat = false;
+    var actCom = false;
+
+    function actBtn(actRat, actCom) {
+      if (actRat == true && actCom == true){
+        $('.btnSendReview').removeAttr('disabled');
+      }
+      else{
+        $('.btnSendReview').attr('disabled','true');
+      }
+    }
+
+    $('.mainRat ul li').click(function(){
+      $('.mainRat ul li').removeClass('actRatItem');
+      actRat = true;
+      actBtn(actRat, actCom);
+      var itemRat = $(this).attr('rating');
+      $('#selectRating').html('').append('<option selected value="'+itemRat+'"></option>');
+      for (var i=1;i<=itemRat;i++){
+          $('.mainRat ul li[rating="'+i+'"]').addClass('actRatItem');
+      }
+    });
+
+    $('#comment').keyup(function(){
+      if ( $(this).val() != '' ){
+        actCom = true;
+      }else{
+        actCom = false;
+      }
+      console.log(actCom);
+      actBtn(actRat, actCom);
+    });
+
+    $('textarea').autosize();
 
 
 });
@@ -80,6 +114,7 @@ function initMap() {
         map: map,
         position: Latlng
     });
+
 }
 
 var styleArray = [

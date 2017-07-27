@@ -90,24 +90,29 @@
 
             @if (User.Identity.IsAuthenticated && Model.AllowComments)
             {
-                <form @*method="post"*@ class="formReview mainBox" id="formReviewId" @*action="AddReview" data-ajax="true" data-ajax-update="#comments" data-ajax-mode="replace"*@>
+                <form @*method="post"*@ class="formReview" id="formReviewId" @*action="AddReview" data-ajax="true" data-ajax-update="#comments" data-ajax-mode="replace"*@>
                     <input type="hidden" value="@Model.House.Id" name="HouseId">
                     <div class="formRowTop">
-                        <div style="background-image: url(@Model.User.Avatar);"></div>
-                        @*<img src=@Model.User.Avatar alt="">*@
-                        <textarea name="Comment" id="Comment" cols="30" rows="5" placeholder="Ваш отзыв:"></textarea>
+                        <div class="userLogo" style="background-image: url(@Model.User.Avatar);"></div>
+                        <div class="wrapTexta">
+                            <textarea name="Comment" id="comment" cols="30" rows="5" placeholder="Оставьте отзыв"></textarea>
+                        </div>
                     </div>
                     <div class="formRowBottom">
-                        <div class="formSelect">
-                            <select name="Rating" id="selectRating">
-                                <option value="5">Отлично</option>
-                                <option value="4">Хорошо</option>
-                                <option selected value="3">Удовлетворительно</option>
-                                <option value="2">Плохо</option>
-                                <option value="1">Ужасно</option>
-                            </select>
+
+                        <div class="formSelect mainRat">
+                          <ul>
+                            <li rating="1"></li>
+                            <li rating="2"></li>
+                            <li rating="3"></li>
+                            <li rating="4"></li>
+                            <li rating="5"></li>
+                          </ul>
+                            <select style="display: none;" name="Rating" id="selectRating"></select>
                         </div>
-                        <button class="btnSendReview" type="submit">Оставить отзыв</button>
+                        <div class="btnSendReviewWrap">
+                            <button disabled class="btnSendReview" type="submit">Отправить</button>
+                        </div>
                     </div>
                 </form>
             }
@@ -170,7 +175,7 @@
 
 
 @section scripts {
-    
+    @Scripts.Render("/Scripts/libs/autoresize.jquery/jquery.autosize.min.js")
     @Scripts.Render("/Scripts/libs/owl-carousel/js/owl.carousel.min.js")
     @Scripts.Render("/Scripts/config/House.js")
     <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDJZlsRr82NdMVjqUPb1fVy-t49lPdTgrw"></script>
