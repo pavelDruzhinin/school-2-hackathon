@@ -1001,7 +1001,7 @@ label.valid {
     border-top: 1px solid #EBEBEB;
 }
 .manualInput {
-    display: none;
+    display: block;
 }
 .textManualAddress {
     font-size: 14px;
