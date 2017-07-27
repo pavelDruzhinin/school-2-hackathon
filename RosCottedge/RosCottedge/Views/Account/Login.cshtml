@@ -4,7 +4,7 @@
     ViewBag.Title = "Вход на сайт";
     Layout = "~/Views/Shared/_LayoutForm.cshtml";
 }
-
+@TempData["houseImg"]
     <div class="Form FormLogin">
 
         @Html.ValidationSummary(true, "")
@@ -23,7 +23,7 @@
                     @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "field", @placeholder = "Пароль" } })
                     <input type="submit" value="Войти" />
                 </div>
-                <a class="questBox" href="/Account/Register">У вас еще нет аккаунта?</a>
+                <a class="questBox" href="/Account/Register"> @TempData["houseImg"] У вас еще нет аккаунта?</a>
             </div>
         }
 
