@@ -15,7 +15,7 @@ namespace RosCottedge.Controllers
         private SiteContext db = new SiteContext();
 
         [OutputCache(NoStore = true, Duration = 0, VaryByParam = "*")]
-        public ActionResult Index(int? page, string region, int? startPrice, int? finishPrice, int? numberOfPersons, DateTime? arrivalDate, DateTime? departureDate, int? fromForm, string rr)
+        public ActionResult Index(int? page, string region, int? startPrice, int? finishPrice, int? numberOfPersons, DateTime? arrivalDate, DateTime? departureDate, int? fromForm, string sortBy)
         {
             int pageNumber = (page ?? 1);
             int pageSize = 9;
@@ -31,7 +31,7 @@ namespace RosCottedge.Controllers
                 numberOfPersons = numberOfPersons ?? oldFilter.NumberOfPersons;
                 arrivalDate = arrivalDate ?? oldFilter.ArrivalDate;
                 departureDate = departureDate ?? oldFilter.DepartureDate;
-                rr = rr ?? oldFilter.Sortparam;
+                sortBy = sortBy ?? oldFilter.Sortparam;
             }
 
             if (!String.IsNullOrEmpty(region))
@@ -56,18 +56,18 @@ namespace RosCottedge.Controllers
                 houses = houses.Where(x => !x.Reservations.Any(r => r.ArrivalDate <= departureDate && arrivalDate <= r.DepartureDate));
             }
 
-            switch (rr)
+            switch (sortBy)
             {
-                case "1":
+                case "new":
                     houses = houses.OrderByDescending(x => x.Id);
                     break;
-                case "2":
+                case "rating":
                     houses = houses.OrderBy(x => x.Rating);
                     break;
-                case "3":
+                case "price":
                     houses = houses.OrderBy(x => x.Price);
                     break;
-                case "4":
+                case "priceDesc":
                     houses = houses.OrderByDescending(x => x.Price);
                     break;
                 default:
@@ -85,7 +85,7 @@ namespace RosCottedge.Controllers
                 ArrivalDate = arrivalDate,
                 DepartureDate = departureDate,
                 Page = pageNumber,
-                Sortparam = rr
+                Sortparam = sortBy
             };
 
             Session["Filter"] = filter;
