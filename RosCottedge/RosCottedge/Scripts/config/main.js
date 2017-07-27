@@ -384,7 +384,7 @@ $.getJSON("/House/HouseObject", function (data) {
                 '<p class="titInfo">' + name + '</p>' +
                 '<p class="addressInfo">' + locality + ', ' + area + '</p>' +
                 '<ul class="charact">' +
-                '<li class="personsInfo"><i class="mdi mdi-human-handsdown"></i>' + persons + '</li>' +
+                '<li class="personsInfo op54"><i class="mdi mdi-account-multiple"></i>' + persons + '</li>' +
                 '<li class="priceInfo"><i class="mdi mdi-currency-rub"></i>' + price + ' руб./сутки</li>' +
                 '<li class="ratingInfo"><i class="mdi mdi-star-circle"></i>' + rating + '/5</li>' +
                 '</ul>' +
