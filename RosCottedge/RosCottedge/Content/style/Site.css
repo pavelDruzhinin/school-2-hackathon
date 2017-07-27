@@ -792,6 +792,27 @@ input[type="radio"]:checked + label span::before {
 }
 /*INDEX END*/
 /*FORM PAGES*/
+.goToHome{
+  padding: 15px;
+  text-align: center;
+  margin: 0 auto;
+  margin-top: 15px;
+  border-radius: 2px;
+  display: block;
+  color: #000;
+  position: relative;
+  overflow: hidden;
+  background-color: rgba(255,255,255, .7);
+  font-weight: 500;
+  color: rgba(0,0,0, .65);
+  transition: background-color .4s;
+  text-transform: uppercase;
+  font-size: 14px;
+}
+.goToHome:hover{
+  background-color: rgba(255,255,255, 1);
+}
+
 .Form {
     margin: 0 auto;
 }

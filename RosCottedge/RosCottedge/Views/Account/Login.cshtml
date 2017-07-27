@@ -4,19 +4,19 @@
     ViewBag.Title = "Вход на сайт";
     Layout = "~/Views/Shared/_LayoutForm.cshtml";
 }
-    
-    <div class="Form FormLogin ">
+
+    <div class="Form FormLogin">
 
         @Html.ValidationSummary(true, "")
-        @using (Html.BeginForm("Login", "Account", FormMethod.Post, new { id = "validFormLogin", @class= "mainBox" }))
+        @using (Html.BeginForm("Login", "Account", FormMethod.Post, new { id = "validFormLogin" }))
         {
 
             @Html.AntiForgeryToken();
 
-            
 
 
-            <div class="innerForm">
+
+            <div class="innerForm mainBox">
                 <div class="fields">
                     @Html.EditorFor(model => model.Login, new { htmlAttributes = new { @class = "firstItemForm field", @placeholder = "Логин" } })
 
@@ -26,6 +26,9 @@
                 <a class="questBox" href="/Account/Register">У вас еще нет аккаунта?</a>
             </div>
         }
+
+        <a href="/" class="goToHome">Вернуться на главную</a>
+
     </div>
     @section Scripts {
         @Scripts.Render("~/bundles/jqueryval")

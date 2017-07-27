@@ -7,7 +7,7 @@
 
 
 
-<div class="Form FormCreate mainBox">
+<div class="Form FormCreate">
     @using (Html.BeginForm("Create", "House", FormMethod.Post, new { id = "validCreateHouse" }))
     {
         @Html.AntiForgeryToken()
@@ -16,7 +16,7 @@
         @Html.ValidationSummary(true, "")
 
 
-        <div class="innerForm">
+        <div class="innerForm mainBox">
             <div class="fields">
                 @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control largeInputCreate largeInputCreateTop", @placeholder = "Название дома" } })
 
@@ -56,12 +56,13 @@
 
                 <input class="ButtonCreate" type="submit" value="Разместить дом" />
 
-                
+
                 @*<label>Широта (latitude): </label>*@<input id="latitude" name="lat" type="hidden" />
                 @*<label>Длогота (longitude): </label>*@<input id="longitude" name="lng" type="hidden" />
 
             </div>
         </div>
+        <a href="/" class="goToHome">Вернуться на главную</a>
     }
 </div>
 

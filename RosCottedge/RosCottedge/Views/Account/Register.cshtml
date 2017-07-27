@@ -8,14 +8,14 @@
 <div class="Form FormRegistration">
 
     @Html.ValidationSummary(true, "")
-    @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { id = "validFormRegister", @class= "mainBox" }))
+    @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { id = "validFormRegister"}))
     {
         @Html.AntiForgeryToken()
 
 
-        
 
-        <div class="innerForm">
+
+        <div class="innerForm mainBox">
             <div class="fields">
 
                 @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "firstItemForm field largeInputForm", @placeholder = "Фамилия" } })
@@ -37,7 +37,7 @@
             </div>
             <a class="questBox" href="/Account/Login">У вас уже есть аккаунт?</a>
         </div>
-
+        <a href="/" class="goToHome">Вернуться на главную</a>
     }
 </div>
 @section Scripts {
