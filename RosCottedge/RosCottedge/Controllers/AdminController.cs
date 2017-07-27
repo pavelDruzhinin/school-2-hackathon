@@ -119,12 +119,32 @@ namespace RosCottedge.Controllers
             }
             return RedirectToAction("ShowAllUsers");
         }
+
         [HttpPost]
         public ActionResult DeleteComment(int id, int houseId)
         {
             var review = db.Reviews.Find(id);
+
+            var house = db.Houses.Find(houseId);
+            var reviews = db.Reviews.Where(x => x.HouseId == houseId).ToList();
+            reviews.Remove(review);
+
+            if (house != null)
+            {
+                if (reviews.Count == 0)
+                {
+                    house.Rating = 0;
+                }
+                else
+                {
+                    house.Rating = reviews.Sum(x => x.Rating) / reviews.Count();
+                }
+            }
             db.Reviews.Remove(review);
+            
+            
             db.SaveChanges();
+
             return RedirectToAction("Index", "House", new { houseId = houseId });
         }
 
