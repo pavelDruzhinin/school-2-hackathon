@@ -27,7 +27,7 @@
                 </div>
 
                 <div class="smallInputCreate">
-                    <input numField="1" class="locality" type="text" name="Region" id="Region" value="" placeholder="Регион/Область" />
+                    <input numField="1" class="locality" type="text" name="Region" id="Region" value="" placeholder="Регион" />
                 </div>
 
                 <div class="smallInputCreate floatInput">
@@ -35,11 +35,11 @@
                 </div>
 
                 <div class="smallInputCreate">
-                    <input numField="3" class="locality noActRow" type="text" name="Area" id="Area" value="" placeholder="Улица" />
+                    <input numField="3" class="locality noActRow optional" type="text" name="Area" id="Area" value="" placeholder="Улица" />
                 </div>
 
                 <div class="smallInputCreate floatInput">
-                    <input numField="4" class="locality noActRow" type="text" name="HouseNumber" id="HouseNumber" value="" placeholder="Дом" />
+                    <input numField="4" class="locality noActRow optional" type="text" name="HouseNumber" id="HouseNumber" value="" placeholder="Дом" />
                 </div>
 
                 <div id="map_canvas" style="width:100%; height:400px; margin-bottom:0; margin-top: 15px;"></div>
@@ -91,14 +91,30 @@
           $('#Area').kladr('type', $.kladr.type.street);
           $('#HouseNumber').kladr('type', $.kladr.type.building);
 
-          var loc = 'Москва';
+
+          var loc = 'Москва',
+              filledItem = 0;
+
           $('.locality').on('blur', function(){
               loc = $('#Region').val()+" "+$('#Locality').val()+" "+$('#Area').val()+" "+$('#HouseNumber').val();
-              MapGoogle();
+
+              $('.locality').each(function(){
+                if ( $(this).val() != 0 ) filledItem++;
+              });
+              switch (filledItem) {
+                case 1: filledItem = 6; break;
+                case 2: filledItem = 9; break;
+                case 3: filledItem = 14; break;
+                case 4: filledItem = 17; break;
+                default: filledItem = 1; break;
+              }
+              MapGoogle(filledItem);
             });
 
 
-            function MapGoogle() {
+            function MapGoogle(zoomMap) {
+                filledItem = 0;
+                console.log(loc);
                 geocoder.geocode({ 'address': loc }, function (results, status) {
                     if (status == google.maps.GeocoderStatus.OK) {
                         if (results[0]) {
@@ -108,6 +124,7 @@
                             var location = new google.maps.LatLng(latitude, longitude);
                             marker.setPosition(location);
                             map.setCenter(location);
+                            map.setZoom(zoomMap);
                             $('#latitude').val(latitude);
                             $('#longitude').val(longitude);
                         }
@@ -319,9 +336,9 @@
         var marker;
         function initMap() {
             var map = new google.maps.Map(document.getElementById('map_canvas'), {
-                zoom: 14,
+                zoom: 3,
                 scrollwheel: false,
-                center: { lat: 61.787571, lng: 34.342087 },
+                center: { lat: 61.52401, lng: 105.318756 },
                 styles: styleArray
             });
 

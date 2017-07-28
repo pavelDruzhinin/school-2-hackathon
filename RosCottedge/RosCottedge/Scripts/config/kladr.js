@@ -556,7 +556,6 @@
 				$ac
 					.on('touchstart' + eventNamespace + ' mousedown' + eventNamespace, 'li, a', function (event) {
 						event.preventDefault();
-
 						isActive = true;
 						mouseSelect(this);
 						isActive = false;
@@ -781,7 +780,6 @@
 				}
 
 				$ac.empty().hide();
-				console.log('close');
 				trigger('close');
 				///////////
 				$input.removeAttr('style');
@@ -1354,8 +1352,11 @@
 			 */
 			function error(error, typeEr) {
 					if (error){
-						$input.addClass('kladr-error')
-						if (typeEr != 'eng') $input.val('');
+						if (typeEr != 'eng'){
+							$input.not('.optional').val('');
+						}else{
+							$input.addClass('kladr-error')
+						}
 					}else{
 						$input.removeClass('kladr-error');
 					}
