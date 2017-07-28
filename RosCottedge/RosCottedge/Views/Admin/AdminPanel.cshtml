@@ -1,11 +1,11 @@
 ﻿@if (User.IsInRole("admin"))
 {
-    <div class="menuPersonal">
+    <div class="menuAdmin">
         <div class="container">
             <div class="row">
                 <ul>
-                    <li>Администратор</li>
-                    <li><i class='mdi mdi-account-box-outline'></i>@Html.ActionLink("Показать всех пользователей", "ShowAllUsers", "Admin")</li>
+                    <li><h2>Панель Администратора</h2></li>
+                    <li><i class='mdi mdi-account-box-outline'></i>@Html.ActionLink("Пользователи", "ShowAllUsers", "Admin")</li>
                     <li><i class='mdi mdi-home'></i>@Html.ActionLink("Все дома", "UsersHouse", "Admin") </li>
                     <li><i class='mdi mdi-note-text'></i>@Html.ActionLink("Все брони", "Trips", "Admin") </li>
                 </ul>
