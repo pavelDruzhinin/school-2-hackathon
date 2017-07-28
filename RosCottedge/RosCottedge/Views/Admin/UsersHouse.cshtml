@@ -1,8 +1,8 @@
-﻿@if (User.IsInRole("admin"))
+﻿@using Webdiyer.WebControls.Mvc
+@model RosCottedge.ViewModels.MyHouseViewModel
+
+@if (User.IsInRole("admin"))
 {
-    @model RosCottedge.ViewModels.MyHouseViewModel
-
-
     {
         ViewBag.Title = "UserHouse";
     }
@@ -35,13 +35,24 @@
 
 
                             }
-
                         </div>
-
                     </div>
                 }
-
-
+                <div class="pagination-container">
+                    @Html.Pager(Model.House, new PagerOptions
+                    {
+                        PageIndexParameterName = "page",
+                        ContainerTagName = "ul",
+                        CssClass = "pagination",
+                        CurrentPagerItemTemplate = "<li class=\"active\"><a href=\"#\">{0}</a></li>",
+                        DisabledPagerItemTemplate = "<li class=\"disabled\"><a>{0}</a></li>",
+                        PagerItemTemplate = "<li>{0}</li>",
+                        NextPageText = "<i class='mdi mdi-chevron-right'></i>",
+                        PrevPageText = "<i class='mdi mdi-chevron-left'></i>",
+                        LastPageText = "<i class='mdi mdi-chevron-double-right'></i>",
+                        FirstPageText = "<i class='mdi mdi-chevron-double-left'></i>"
+                    })
+                </div>
             </div>
 
         </div>

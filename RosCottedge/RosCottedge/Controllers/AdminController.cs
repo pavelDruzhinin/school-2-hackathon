@@ -10,6 +10,7 @@ using System.Data.Entity;
 using System.Data.Entity.Migrations;
 using System.IO;
 using System.Web.Security;
+using Webdiyer.WebControls.Mvc;
 
 namespace RosCottedge.Controllers
 {
@@ -152,8 +153,12 @@ namespace RosCottedge.Controllers
 
         #region Дома пользователей
 
-        public ActionResult UsersHouse()
+        public ActionResult UsersHouse(int? page)
         {
+
+            int pageNumber = (page ?? 1);
+            int pageSize = 8;
+
             if (User.Identity.IsAuthenticated == false)
                 return new HttpStatusCodeResult(HttpStatusCode.Unauthorized);
 
@@ -167,7 +172,7 @@ namespace RosCottedge.Controllers
                 User = user,
                 House = (from h in db.Houses
                         .Include(x => x.Pictures)
-                         select h).ToList(),
+                         select h).OrderBy(x => x.Id).ToPagedList(pageNumber, pageSize),
 
             };
             return View(myHouseModel);

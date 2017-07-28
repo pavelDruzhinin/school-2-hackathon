@@ -1,5 +1,6 @@
 ﻿@model RosCottedge.ViewModels.MyHouseViewModel
 @using RosCottedge.Models;
+@using Webdiyer.WebControls.Mvc
 
 @{
     ViewBag.Title = "MyHouse";
@@ -20,19 +21,19 @@
         }
     </div>
     <div class="row">
-        <div class="col-md-8">
+        <div class="col-md-8" id="houses">
             @foreach (var item in Model.House)
             {                  
-                 <div class="houseContainer mainBox">
+                <div class="houseContainer mainBox">
                     <div class="houseContainerHead">
                         <h3>@item.Name</h3>
                     </div>
                     <div class="houseBodyContainer">
                         <div class="houseBodyIMG" style="background-image: url(@item.Pictures.Where(x => x.HouseId == item.Id).Select(x => x.Adress).FirstOrDefault());"></div>
                         <div class="navHouseBody">
-                        <div class="houseBodyRating"><span class="numberRating">@item.Rating</span></div>
-                        <a href="/Account/EditMyHouse/@item.Id" class="remoteHouse"><p>Управление</p></a>
-                        <a href="/House/Index?houseId=@item.Id"><p>Страница дома</p></a>
+                            <div class="houseBodyRating"><span class="numberRating">@item.Rating</span></div>
+                            <a href="/Account/EditMyHouse/@item.Id" class="remoteHouse"><p>Управление</p></a>
+                            <a href="/House/Index?houseId=@item.Id"><p>Страница дома</p></a>
                             <div class="houseDelButton">
                                 @using (Html.BeginForm("DeleteHouse", "Account", FormMethod.Post, new { enctype = "multipart/form-data", id = "delHouse" }))
                                 {
@@ -40,15 +41,26 @@
                                     <input class="closeInput" type="submit" value="" title="Удалить дом"/>
                                 }
                             </div>
-                    </div>
+                        </div>
                         @*<span class="close"></span>*@
-                            
                     </div>
-                        
                 </div>
             }
-            
-
+            <div class="pagination-container">
+                @Html.Pager(Model.House, new PagerOptions
+                {
+                    PageIndexParameterName = "page",
+                    ContainerTagName = "ul",
+                    CssClass = "pagination",
+                    CurrentPagerItemTemplate = "<li class=\"active\"><a href=\"#\">{0}</a></li>",
+                    DisabledPagerItemTemplate = "<li class=\"disabled\"><a>{0}</a></li>",
+                    PagerItemTemplate = "<li>{0}</li>",
+                    NextPageText = "<i class='mdi mdi-chevron-right'></i>",
+                    PrevPageText = "<i class='mdi mdi-chevron-left'></i>",
+                    LastPageText = "<i class='mdi mdi-chevron-double-right'></i>",
+                    FirstPageText = "<i class='mdi mdi-chevron-double-left'></i>"
+                })
+            </div>
         </div>
         <div class="col-md-4 allNoticeMyHouse">
 

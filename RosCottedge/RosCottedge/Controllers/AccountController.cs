@@ -10,6 +10,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
+using Webdiyer.WebControls.Mvc;
 
 namespace RosCottedge.Controllers
 {
@@ -246,11 +247,13 @@ namespace RosCottedge.Controllers
         #endregion
 
         #region Мои дома
-        public ActionResult MyHouse()
+        public ActionResult MyHouse(int? page)
         {
             if (User.Identity.IsAuthenticated == false)
                 return new HttpStatusCodeResult(HttpStatusCode.Unauthorized);
 
+            int pageNumber = (page ?? 1);
+            int pageSize = 4;
 
             User user = (from u in db.Users
                          where u.Login == User.Identity.Name
@@ -330,13 +333,14 @@ namespace RosCottedge.Controllers
             }
 
             // Выводим все дома, которые добавлял пользователь
+            
             MyHouseViewModel myHouseModel = new MyHouseViewModel()
             {
                 User = user,
                 House = (from h in db.Houses
                         .Include(x => x.Pictures)
                          where h.UserId == user.Id && h.Hide == false
-                         select h).ToList(),
+                         select h).OrderBy(x => x.Id).ToPagedList(pageNumber, pageSize),
 
                 GeneralClass = (from g in genclass
                                 orderby g.Date descending
