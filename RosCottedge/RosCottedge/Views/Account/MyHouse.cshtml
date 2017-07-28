@@ -77,15 +77,11 @@
                         </div>
                         <div class="footerNotice">
                             <span>@item.Date.ToString("dd.MM.yyyy")</span>
-                            @*@using (Html.BeginForm("DeleteReservationLandlord", "Account", FormMethod.Post, new { enctype = "multipart/form-data", id = "" }))
-                          {*@
                             <form id="DeleteReservationLandlord">
                                 <input type="hidden" value="@item.HouseId" name="houseId" />
                                 <input type="hidden" value="@item.Id" name="id" /><br>
                                 <input class="subRemove1" type="button" value="Удалить" />
                             </form>
-
-                            @*}*@
                         </div>
                     </div>
 
@@ -103,14 +99,11 @@
                         </div>
                         <div class="footerNotice">
                             <span>@item.Date.ToString("dd.MM.yyyy")</span>
-                            @*@using (Html.BeginForm("DeleteReviews", "Account", FormMethod.Post, new { enctype = "multipart/form-data" }))
-                            {*@
                                 <form id="DeleteReviews">
                                     <input type="hidden" value="@item.HouseId" name="houseId" />
                                     <input type="hidden" value="@item.Id" name="id" /><br>
                                     <input  class="subRemove2" type="button" value="Удалить" />
                                 </form>
-                            @*}*@
                                 
                     </div>
                    </div>
@@ -127,14 +120,11 @@
                         </div>
                         <div class="footerNotice">
                             <span>@item.Date.ToString("dd.MM.yyyy")</span>
-                            @*@using (Html.BeginForm("DeleteReservationNotif", "Account", FormMethod.Post, new { enctype = "multipart/form-data" }))
-                            {*@
                             <form id="DeleteReservationNotif">
                                 <input type="hidden" value="@item.HouseId" name="houseId" />
                                 <input type="hidden" value="@item.Id" name="id" /><br>
                                 <input class="subRemove3" type="button" value="Удалить" />
                             </form>
-                                @*}*@
                         </div>
                     </div>
                 }

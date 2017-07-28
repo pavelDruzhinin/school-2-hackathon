@@ -21,18 +21,14 @@
                 <div class="houseContainer mainBox">
                     <div class="houseContainerHead">
                         <h3 class="myTripsDate"><span>Даты поездки:</span> @item.ArrivalDate.ToString("dd.MM.yyyy") - @item.DepartureDate.ToString("dd.MM.yyyy")</h3>
-                        <div class="myTripsDelButton">@*<span class="closeMyTrips"></span>*@
+                        <div class="myTripsDelButton">
                         @if (item.DepartureDate > DateTime.Now)
                         {
-                            //using (Html.BeginForm(new {id = ""}))
-                            //{ 
                                <form id="DeleteReservation">
                                    <input type="hidden" value="@item.HouseId" name="houseId" />
                                    <input type="hidden" value="@item.Id" name="id" /><br>
                                    <input class="closeMyTrips subRemove1" type="button" value="" title="Отказаться от брони" />
                                </form>
-                                
-                            //}
                         }
                         else
                         {
@@ -62,14 +58,11 @@
                             <div class="historyArrivalBody">
                                 <p><span>Даты поездки:</span> @item.ArrivalDate.ToString("dd.MM.yyyy") - @item.DepartureDate.ToString("dd.MM.yyyy")</p>
                                 <div>
-                                    @*@using (Html.BeginForm("DeleteReservationTenant", "Account", FormMethod.Post, new { enctype = "multipart/form-data" }))
-                                    {*@
                                     <form id="DeleteReservationTenant">
                                         <input type="hidden" value="@item.HouseId" name="houseId" />
                                         <input type="hidden" value="@item.Id" name="id" /><br>
                                         <input class="subRemove2" type="button" value="Удалить из списка" />
                                     </form>
-                                    @*}*@
                                 </div>
                             </div>
                         </div>
@@ -91,10 +84,6 @@
             c = c.toFixed(1);
             $c.text(c);
         }
-
-        //$('.myTripsDelButton').on('click', function () {
-        //    $('#delReserv').submit();
-        //});
 
         $('.subRemove1').parent('form').click(function () {
             var $DelResLan = $(this);

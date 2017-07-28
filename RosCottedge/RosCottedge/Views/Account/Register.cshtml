@@ -20,9 +20,13 @@
 
                 @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "firstItemForm field largeInputForm", @placeholder = "Фамилия" } })
 
-                @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "field smallInputForm", @placeholder = "Имя" } })
-                @Html.EditorFor(model => model.MiddleName, new { htmlAttributes = new { @class = "field smallInputForm floatInput", @placeholder = "Отчество" } })
-                <div id="forTwoFields"></div>
+                <div class="smallInputForm">
+                    @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "field", @placeholder = "Имя" } })
+                </div>
+
+                <div class="smallInputForm floatInput">
+                    @Html.EditorFor(model => model.MiddleName, new { htmlAttributes = new { @class = "field", @placeholder = "Отчество" } })
+                </div>
 
                 @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "field largeInputForm", @placeholder = "E-mail" } })
 
@@ -30,9 +34,14 @@
 
                 @Html.EditorFor(model => model.Login, new { htmlAttributes = new { @class = "field largeInputForm", @placeholder = "Логин" } })
 
-                @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "field smallInputForm", @placeholder = "Пароль" } })
-                <input id="PasswordConfirm" type="password" name="PasswordConfirm" value="" class="field smallInputForm floatInput" placeholder="Подтвердите пароль" />
-                <div id="forTwoFields2"></div>
+                <div class="smallInputForm">
+                    @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "field", @placeholder = "Пароль" } })
+                </div>
+
+                <div class="smallInputForm floatInput">
+                    <input id="PasswordConfirm" type="password" name="PasswordConfirm" value="" class="field" placeholder="Подтвердите пароль" />
+                </div>
+
                 <input class="signUpButton" type="submit" value="Регистрация" />
             </div>
             <a class="questBox" href="/Account/Login"> @TempData["houseImg"]У вас уже есть аккаунт?</a>

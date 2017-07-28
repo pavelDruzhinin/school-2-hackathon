@@ -22,19 +22,6 @@
     });
 
     $('#validFormRegister').validate({
-        errorPlacement: function (error, element) {
-            if (element.attr("name") == "FirstName") {
-                error.insertAfter("#forTwoFields");
-            } else if (element.attr("name") == "MiddleName") {
-                error.insertAfter("#FirstName-error");
-            } else if (element.attr("name") == "Password") {
-                error.insertAfter("#forTwoFields2");
-            } else if (element.attr("name") == "PasswordConfirm") {
-                error.insertAfter("#Password-error");
-            } else {
-                error.insertAfter(element);
-            }
-        },
         rules: {
             FirstName: {
                 required: true,
@@ -136,17 +123,6 @@
     });
 
     $('#validCreateHouse').validate({
-        errorPlacement: function (error, element) {
-            if (element.attr("name") == "Price") {
-                error.insertAfter("#forTwoFields");
-            } else if (element.attr("name") == "NumberOfPersons") {
-                error.insertAfter("#Price-error");
-            } else if (element.attr("name") == "Region" || element.attr("name") == "Locality" || element.attr("name") == "Area") {
-                error.insertAfter(".manualInput");
-            } else {
-                error.insertAfter(element);
-            }
-        },
         rules: {
             Name: {
                 required: true,
@@ -258,6 +234,87 @@
 
     $('.validation-summary-errors').on('click', function () {
         $('.validation-summary-errors').css('display', 'none');
+    });
+
+    $('#validFormEdit').validate({
+        rules: {
+            FirstName: {
+                required: true,
+                rangelength: [2, 15],
+                lettersonly: true
+            },
+            MiddleName: {
+                required: true,
+                rangelength: [2, 15],
+                lettersonly: true
+            },
+            LastName: {
+                required: true,
+                rangelength: [2, 15],
+                lettersonly: true
+            },
+            Email: {
+                required: true,
+                email: true
+            },
+            Phone: {
+                required: true,
+                checkMask: true
+            }
+        },
+        messages: {
+            FirstName: {
+                required: "Введите ваше Имя",
+                rangelength: "Длина Имени, должна быть от 2 до 15 символов",
+                lettersonly: "Имя не может содержать цифры"
+            },
+            MiddleName: {
+                required: "Введите ваше Отчество",
+                rangelength: "Длина Отчества, должна быть от 2 до 15 символов",
+                lettersonly: "Отчество не может содержать цифры"
+            },
+            LastName: {
+                required: "Введите вашу Фамилию",
+                rangelength: "Длина Фамилии, должна быть от 2 до 15 символов",
+                lettersonly: "Фамилия не может содержать цифры"
+            },
+            Email: {
+                required: "Введите ваш e-mail адрес",
+                email: "Неверно введен email"
+            },
+            Phone: {
+                required: "Введите ваш номер телефона",
+                checkMask: "Введите полный номер телефона"
+            }
+        },
+        focusCleanup: true,
+        focusInvalid: false
+    });
+
+    $('#validFormEditPassword').validate({
+        rules: {
+            Password: {
+                required: true,
+                minlength: 5
+            },
+            OldPassword: {
+                required: true,
+                remote: '/Account/IsPassAvailable'
+            }
+        },
+        messages: {
+            Password: {
+                required: "Введите новый пароль",
+                minlength: "Минимальная длина пароля от 5 символов"
+            },
+            OldPassword: {
+                required: "Введите старый пароль",
+                remote: "Неверный пароль"
+            }
+
+        },
+        focusCleanup: true,
+        focusInvalid: false
     });
     
 });

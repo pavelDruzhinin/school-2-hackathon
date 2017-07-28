@@ -22,9 +22,7 @@
                 <div class="owl-carousel">
                     @foreach (var p in Model.Pictures)
                     {
-                        <div class="item" style="background-image: url(@p.Adress);">
-                            @*<img src=@p.Adress alt="">*@
-                        </div>
+                        <div class="item" style="background-image: url(@p.Adress);"></div>
                     }
                 </div>
                 <div class="sliderFooter">
@@ -34,8 +32,6 @@
                     <p>@Model.House.Price руб. / сутки</p>
                     <div class="separate"></div>
                     <p id="totalCount">@Model.Reviews.TotalItemCount отзывов</p>
-                    @*<div class="separate"></div>
-                    <p>Свободен до 15.05</p>*@
                     <div class="sliderRating">
                         <span id="textSliderRating">Нет оценки</span><div class="separate"></div><p id="numberSliderRating">@Model.House.Rating</p>
                     </div>
@@ -45,7 +41,6 @@
                 <div class="descOwner">
                     <div class="leftSideOwner">
                         <div style="background-image: url(@Model.House.User.Avatar);"></div>
-                        @*<img src=@Model.House.User.Avatar alt="">*@
                         <h3>@Model.House.User.FirstName<br>@Model.House.User.LastName</h3>
                     </div>
                     <div class="rightSideOwner">
@@ -90,7 +85,7 @@
 
             @if (User.Identity.IsAuthenticated && Model.AllowComments)
             {
-                <form @*method="post"*@ class="formReview" id="formReviewId" @*action="AddReview" data-ajax="true" data-ajax-update="#comments" data-ajax-mode="replace"*@>
+                <form class="formReview" id="formReviewId">
                     <input type="hidden" value="@Model.House.Id" name="HouseId">
                     <div class="formRowTop">
                         <div class="userLogo" style="background-image: url(@Model.User.Avatar);"></div>
