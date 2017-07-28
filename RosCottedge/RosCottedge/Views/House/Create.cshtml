@@ -24,23 +24,19 @@
 
                 @Html.EditorFor(model => model.NumberOfPersons, new { htmlAttributes = new { @class = "form-control smallInputCreate floatInput", @placeholder = "Количество человек" } })
                 <div id="forTwoFields"></div>
+                <!--<div id="errorMap" style="width:100%; margin-top: 4px; display:none;"><p style="font-size: 14px; color: #E32444;">Неверно выбран адрес</p></div>-->
 
-                <div class="searchHouse"><label>Адрес для поиска: </label><input id="address" style="width:100%;" type="text" placeholder="Найдите ваш дом" /></div>
-                <div id="map_canvas" style="width:100%; height:400px; margin-bottom:0; margin-top: 15px;"></div>
-                <div id="errorMap" style="width:100%; margin-top: 4px; display:none;"><p style="font-size: 14px; color: #E32444;">Неверно выбран адрес</p></div>
-
-                <div class="textManualAddress">
+                <!--<div class="textManualAddress">
                     <p>Поиск не помогает, укажите на карте местоположение дома и введите адрес вручную. <br /></p>
                     <span class="manualAddress">Ввести вручную?</span>
-                </div>
+                </div>-->
                 <div class="manualInput">
-                    <input class="smallInputCreate" type="text" name="Region" id="Region" value="" placeholder="Область" />
-                    <input class="smallInputCreate floatInput" type="text" name="Locality" id="Locality" value="" placeholder="Город" />
-                    <input class="smallInputCreate" type="text" name="Area" id="Area" value="" placeholder="Улица" />
-                    <input class="smallInputCreate floatInput" type="text" name="HouseNumber" id="HouseNumber" value="" placeholder="Дом" />
+                    <input numField="1" class="smallInputCreate locality" type="text" name="Region" id="Region" value="" placeholder="Область" />
+                    <input numField="2" class="smallInputCreate floatInput locality noActRow" type="text" name="Locality" id="Locality" value="" placeholder="Город" />
+                    <input numField="3" class="smallInputCreate locality noActRow" type="text" name="Area" id="Area" value="" placeholder="Улица" />
+                    <input numField="4" class="smallInputCreate floatInput locality noActRow" type="text" name="HouseNumber" id="HouseNumber" value="" placeholder="Дом" />
                 </div>
-
-                <input class="largeInputCreate" type="text" name="city" id="city" placeholder="Город" />
+                <div id="map_canvas" style="width:100%; height:400px; margin-bottom:0; margin-top: 15px;"></div>
 
                 @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control", @placeholder = "Описание" } })
 
@@ -77,19 +73,46 @@
 </script>
 <script>
     $(document).ready(function () {
-        $('#city').kladr({
-            type: $.kladr.type.city
-        });
-        init();
-        $('.manualAddress').on('click', function () {
-            $('.manualInput').css('display', 'block');
-            $('.searchHouse').css('display', 'none');
-            $('.manualInput input').val('');
-            $('.textManualAddress').css('display', 'none');
-        });
 
-        $(function () {
+      $.kladr.setDefault({
+        parentInput: '#validCreateHouse',
+        verify: true,
+        limit: 5
+      });
+
+      $('#Region').kladr('type', $.kladr.type.region);
+      $('#Locality').kladr('type', $.kladr.type.city);
+      $('#Area').kladr('type', $.kladr.type.street);
+      $('#HouseNumber').kladr('type', $.kladr.type.building);
+
+      var Test = 'Москва';
+      $('#kladr_autocomplete ul').on('mousedown','li', function(){
+        Test = $('#Region').val()+" "+$('#Locality').val()+" "+$('#Area').val()+" "+$('#HouseNumber').val();
+        MapGoogle();
+        console.log(Test);
+      });
+
+        init();
+
+        ////////////////////////////////////
+
+        function MapGoogle() {
+            geocoder.geocode({ 'address': Test }, function (results, status) {
+                if (status == google.maps.GeocoderStatus.OK) {
+                    if (results[0]) {
+                        var addr = results[0].address_components;
+                        var latitude = results[0].geometry.location.lat();
+                        var longitude = results[0].geometry.location.lng();
+                        var location = new google.maps.LatLng(latitude, longitude);
+                        marker.setPosition(location);
+                        map.setCenter(location);
+                    }
+                }
+            });
+        }
+      /*  $(function () {
             $("#address").autocomplete({
+
                 //Определяем значение для адреса при геокодировании
                 source: function (request, response) {
                     geocoder.geocode({ 'address': request.term }, function (results, status) {
@@ -113,18 +136,12 @@
                     MapGoogle();
                 }
             });
-        });
+
+        }); */
 
         //Добавляем слушателя события обратного геокодирования для маркера при его перемещении
-        google.maps.event.addListener(marker, 'drag', function () {
-            MapGoogle();
-        });
-        google.maps.event.addListener(map, 'click', function (event) {
-            placeMarker(event.latLng);
-            MapGoogle();
-        });
 
-        function MapGoogle() {
+    /*    function MapGoogle() {
             geocoder.geocode({ 'latLng': marker.getPosition() }, function (results, status) {
                 if (status == google.maps.GeocoderStatus.OK) {
                     if (results[0]) {
@@ -139,7 +156,8 @@
                     }
                 }
             });
-        }
+        } */
+
 
         function placeMarker(location) {
             if (marker) {
