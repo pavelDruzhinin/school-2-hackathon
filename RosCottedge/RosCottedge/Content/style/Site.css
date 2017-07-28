@@ -2493,3 +2493,101 @@ button[disabled]{
     color: #E32444;
 }
 /*Menu Account end*/
+
+/* ADMIN PANEL start*/
+.menuAdmin {
+    height: 91px;
+    width: 100%;
+    background: white;
+    margin-bottom: 30px;
+}
+.menuAdmin ul {
+    margin-top: 23px;
+    height: 45px;
+    display: inline-block;
+    font-size: 14px;
+}
+.menuAdmin ul li {
+    display: inline-block;
+    height: 45px;
+    line-height: 45px;
+    margin-left: 30px;
+    border-left: 2px solid #EEEEEE;
+}
+.menuAdmin ul li h2{
+    opacity: 0.5;
+}
+.menuAdmin ul li:first-child {
+    margin-left: 0px;
+    border: none;
+}
+.menuAdmin ul li a {
+    color: black;
+}
+.menuAdmin ul li a:visited {
+    color: black;
+}
+.menuAdmin ul li i {
+    margin-right: 15px;
+    font-size: 25px;
+    vertical-align: middle;
+    color: #305075;
+    margin-left: 15px;
+    opacity: .87;
+}
+.AdminPanel {
+    background-color: white;
+    border-radius: 2px;
+    box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.14);
+    background-color: #fff;
+}
+
+.AdminPanel th, td {
+    text-align: center;
+    padding: 0 5px;
+    height: 45px;
+    width: 150px;
+}
+.AdminPanel th:first-child, td:first-child {
+    padding: 0;
+}
+.AdminPanel th{
+    padding: 8px;
+    font-size: 16px;
+}
+.AdminPanel td{
+    font-size: 14px;
+}
+.AdminPanel .AdminEditButton {
+    margin: 10px 15px;
+    width: 150px;
+    height: 35px;
+    background-color: #69F0AE;
+    transition: 0.3s ease;
+}
+.AdminPanel .AdminEditButton a {
+    color: white;
+    height: 35px;
+    line-height: 35px;
+    text-transform: uppercase;
+    font-weight: 500;
+}
+.AdminPanel .AdminEditButton a:visited {
+    color: white;
+}
+.AdminPanel .AdminEditButton:hover{
+    background-color: #5EF199;
+}
+#AdminDeleteButton {
+    color: white;
+    width: 150px;
+    height: 35px;
+    background-color: #E32444;
+    line-height: 35px;
+    transition: 0.3s ease;
+}
+#AdminDeleteButton:hover {
+    background-color: #F31137;
+}
+
+/* ADMIN PANEL end*/
