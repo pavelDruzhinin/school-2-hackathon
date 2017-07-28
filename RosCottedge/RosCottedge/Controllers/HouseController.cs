@@ -165,7 +165,7 @@ namespace RosCottedge.Controllers
             return View(house);
         }
 
-        public ActionResult GetDates(int houseId)
+        public ActionResult GetDates(int? houseId)
         {
             var reservations = db.Reservations.Where(r => r.HouseId == houseId);
             List<string> reservedDates = new List<string>();

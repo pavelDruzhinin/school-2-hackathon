@@ -19,6 +19,7 @@
       <ul>
           @if (User.Identity.IsAuthenticated)
           {
+            <li>@Html.Action("Index", "GetUser", new { area = "" })</li>
             <li><a href="javascript:document.getElementById('logoutForm').submit()">Выйти (@User.Identity.Name)</a></li>
               using (Html.BeginForm("Logout", "Account", FormMethod.Post, new { id = "logoutForm" }))
               {
