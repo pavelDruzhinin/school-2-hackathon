@@ -14,11 +14,11 @@ namespace RosCottedge.Controllers
     {
         private SiteContext db = new SiteContext();
 
-        [OutputCache(NoStore = true, Duration = 0, VaryByParam = "*")]
-        public ActionResult Index(int? page, string region, int? startPrice, int? finishPrice, int? numberOfPersons, DateTime? arrivalDate, DateTime? departureDate, int? fromForm, string sortBy)
+        
+        public ActionResult Index(int? page, string region, int? startPrice, int? finishPrice, int? numberOfPersons, DateTime? arrivalDate, DateTime? departureDate, string sortBy)
         {
             int pageNumber = (page ?? 1);
-            int pageSize = 2;
+            int pageSize = 9;
 
             var houses = db.Houses.Include(x => x.Reviews).Include(x => x.Reservations).Include(x => x.Pictures).Where(x=>x.Hide==false);
 
@@ -96,9 +96,7 @@ namespace RosCottedge.Controllers
                 AllHouses = db.Houses.ToList(),
                 Regions = regions.OrderBy(x => x.Region).ToList()
             };
-
-        var kappa = Request.IsAjaxRequest();
-
+            
             return Request.IsAjaxRequest()
                 ? (ActionResult)PartialView("_Houses", viewModel)
                 : View(viewModel);
