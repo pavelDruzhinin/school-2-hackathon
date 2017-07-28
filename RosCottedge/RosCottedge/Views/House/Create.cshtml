@@ -16,7 +16,7 @@
 
         <div class="innerForm mainBox">
             <div class="fields">
-                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control largeInputCreate largeInputCreateTop", @placeholder = "Название дома" } })
+                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control largeInputCreate largeInputCreateTop", @placeholder = "Название дома"} })
 
                 <div class="smallInputCreate">
                     @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-control ", @placeholder = "Стоимость" } })
@@ -73,7 +73,9 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
-    <script src="~/Scripts/config/jquery.kladr.min.js"></script>
+    <script src="~/Scripts/config/core.js"></script>
+    <script src="~/Scripts/config/kladr.js"></script>
+
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDJZlsRr82NdMVjqUPb1fVy-t49lPdTgrw"></script>
     <script>
         $(document).ready(function () {
@@ -89,17 +91,15 @@
           $('#Area').kladr('type', $.kladr.type.street);
           $('#HouseNumber').kladr('type', $.kladr.type.building);
 
-          var Test = 'Москва';
-          $('#kladr_autocomplete ul').on('mousedown','li', function(){
-            Test = $('#Region').val()+" "+$('#Locality').val()+" "+$('#Area').val()+" "+$('#HouseNumber').val();
-            MapGoogle();
-            console.log(Test);
-          });
+          var loc = 'Москва';
+          $('.locality').on('blur', function(){
+              loc = $('#Region').val()+" "+$('#Locality').val()+" "+$('#Area').val()+" "+$('#HouseNumber').val();
+              MapGoogle();
+            });
 
-            ////////////////////////////////////
 
             function MapGoogle() {
-                geocoder.geocode({ 'address': Test }, function (results, status) {
+                geocoder.geocode({ 'address': loc }, function (results, status) {
                     if (status == google.maps.GeocoderStatus.OK) {
                         if (results[0]) {
                             var addr = results[0].address_components;

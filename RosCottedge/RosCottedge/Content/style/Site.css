@@ -1466,15 +1466,19 @@ input:focus {
     display: inline-block;
     height: 12px;
     vertical-align: top;
-    
+
 }
 .btnSendReviewWrap form input[type=submit] {
-    height: 13px;    
+    height: 13px;
     background-color: #eeeeee;
-    color: #000;
     font-size: 12px;
     display: inline-block;
-    margin-right: 15px;
+    margin-left: 15px;
+    color: #E32444;
+    opacity: .54;
+}
+.btnSendReviewWrap form input[type=submit]:hover{
+  opacity: 1;
 }
 .formSelect ul {
     font-size: 0;
@@ -2369,13 +2373,13 @@ button[disabled]{
     background-color: #fff;
 }
 
-.AdminPanel th, td {
+.AdminPanel th, .AdminPanel td {
     text-align: center;
     padding: 0 5px;
     height: 45px;
     width: 150px;
 }
-.AdminPanel th:first-child, td:first-child {
+.AdminPanel th:first-child, .AdminPanel td:first-child {
     padding: 0;
 }
 .AdminPanel th{
