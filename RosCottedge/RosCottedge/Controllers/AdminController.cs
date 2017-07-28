@@ -75,6 +75,8 @@ namespace RosCottedge.Controllers
             User user = (from u in db.Users
                          where u.Id == Id
                          select u).FirstOrDefault();
+            SelectList role = new SelectList(db.Roles, "Id", "Name");
+            ViewBag.Role = role;
             return View(user);
 
         }
@@ -85,16 +87,15 @@ namespace RosCottedge.Controllers
             User olduser = (from u in db.Users
                             where u.Id == user.Id
                             select u).FirstOrDefault();
-
-
-            if (ModelState.IsValid)
-            {
-
+            SelectList role = new SelectList(db.Roles, "Id", "Name");
+            ViewBag.Role = role;
+            
                 User email = db.Users.Where(e => e.Email == user.Email).FirstOrDefault();
                 if (email == null || olduser.Email == user.Email)
                 {
                     user.Avatar = olduser.Avatar;
                     user.OldPassword = user.Password;
+                   
                     db.Set<User>().AddOrUpdate(user);
                     db.SaveChanges();
                     return RedirectToAction("ShowAllUsers");
@@ -102,7 +103,7 @@ namespace RosCottedge.Controllers
                 }
                 else { ModelState.AddModelError("Email", "Такой E-mail уже зарегистрирован"); }
 
-            }
+            
             return View(user);
 
         }

@@ -28,7 +28,7 @@ namespace RosCottedge.Controllers
         public ActionResult Login()
         {
             if (User.Identity.IsAuthenticated)
-                return RedirectToAction("Profile");
+                return RedirectToAction("PersonalInformation");
             DirectoryInfo houseImg = new DirectoryInfo(Request.MapPath("/Content/img/houseImg/"));
             TempData["houseImg"] = string.Format("{0}", houseImg.GetFiles().Count());
             return View();
