@@ -4,9 +4,7 @@
     ViewBag.Title = "Добавление дома";
     Layout = "~/Views/Shared/_LayoutForm.cshtml";
 }
-
-
-
+<div style="display: none;" class="colimg">@TempData["houseImg"]</div>
 <div class="Form FormCreate">
     @using (Html.BeginForm("Create", "House", FormMethod.Post, new { id = "validCreateHouse" }))
     {
@@ -68,7 +66,7 @@
 
             </div>
         </div>
-        <a href="/" class="goToHome"> @TempData["houseImg"]Вернуться на главную</a>
+        <a href="/" class="goToHome">Вернуться на главную</a>
     }
 </div>
 

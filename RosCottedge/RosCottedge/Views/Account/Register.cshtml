@@ -4,7 +4,7 @@
     ViewBag.Title = "Регистрация";
     Layout = "~/Views/Shared/_LayoutForm.cshtml";
 }
-
+<div style="display: none;" class="colimg">@TempData["houseImg"]</div>
 <div class="Form FormRegistration">
 
     @Html.ValidationSummary(true, "")
@@ -44,7 +44,7 @@
 
                 <input class="signUpButton" type="submit" value="Регистрация" />
             </div>
-            <a class="questBox" href="/Account/Login"> @TempData["houseImg"]У вас уже есть аккаунт?</a>
+            <a class="questBox" href="/Account/Login">У вас уже есть аккаунт?</a>
         </div>
         <a href="/" class="goToHome">Вернуться на главную</a>
     }
