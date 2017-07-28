@@ -24,7 +24,8 @@
             </ul>
               <select style="display: none;" name="Rating" id="selectRating"></select>
           </div>
-          <div class="btnSendReviewWrap op54">
+          <div class="btnSendReviewWrap">
+              <span class="op54">Отзыв оставлен: @review.CommentDate</span>
               @if (User.IsInRole("admin"))
                 {
                     using (Html.BeginForm("DeleteComment", "Admin", FormMethod.Post))
@@ -34,7 +35,6 @@
                       <input type="submit" value="Удалить" />
                   }
               }
-              Отзыв оставлен: @review.CommentDate
           </div>
       </div>
   </div>
