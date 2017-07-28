@@ -869,20 +869,21 @@ label.error {
     margin-top: 5px;
 }
 
-input.error {
-    outline: 1px solid;
-    outline-color: #E32444;
+input.error, textarea.error {
+    outline: 1px solid !important;
+    outline-color: #E32444 !important;
 }
-/*input.valid {
+
+    /*input.valid {
     outline: 1px solid;
     outline-color: #69F0AE;
 }
 input:focus {
     outline:none;
 }*/
-label.valid {
-    display: none;
-}
+    label.valid {
+        display: none;
+    }
 
 .text-danger {
     font-size: 14px;
@@ -908,6 +909,14 @@ label.valid {
 .FormRegistration {
     width: 475px;
     font-size: 0;
+}
+
+.FormRegistration .field{
+    width: 100%;
+}
+
+.FormRegistration .smallInputForm {
+    vertical-align: top;
 }
 
 .innerForm .largeInputForm {
@@ -966,6 +975,10 @@ label.valid {
     margin-bottom: 45px;
 }
 
+.FormCreate input{
+    width: 100%;
+}
+
 .topCreate {
     height: 90px;
     background-color: blue;
@@ -974,6 +987,7 @@ label.valid {
 .innerForm .smallInputCreate {
     width: 48.86%;
     display: inline-block;
+    vertical-align: top;
 }
 
 .innerForm .largeInputCreate {
@@ -999,24 +1013,6 @@ label.valid {
 	width: 660px;
 	margin-top: 15px;
     border-top: 1px solid #EBEBEB;
-}
-.manualInput {
-    display: none;
-}
-.textManualAddress {
-    font-size: 14px;
-    opacity: .87;
-    text-align: center;
-    padding-top: 5px;
-}
-
-.textManualAddress  p {
-    font-size: 14px;
-    padding-bottom: 8px;
-}
-.manualAddress {
-    color: #E32444;
-    cursor: pointer;
 }
 /*Page-Home Start*/
 .briefDescription {
@@ -1465,9 +1461,24 @@ label.valid {
   transition: .4s;
   outline: none;
 }
-.formSelect ul{
-  font-size: 0;
-  cursor: pointer;
+
+.btnSendReviewWrap form {
+    display: inline-block;
+    height: 12px;
+    vertical-align: top;
+    
+}
+.btnSendReviewWrap form input[type=submit] {
+    height: 13px;    
+    background-color: #eeeeee;
+    color: #000;
+    font-size: 12px;
+    display: inline-block;
+    margin-right: 15px;
+}
+.formSelect ul {
+    font-size: 0;
+    cursor: pointer;
 }
 .formSelect ul li{
   width: 15px;
@@ -1517,191 +1528,6 @@ button[disabled]{
   margin-bottom: 5px;
   display: block;
   opacity: .54;
-}
-
-/*.formReview {
-    width: 100%;
-    background-color: #fff;
-    padding: 15px;
-    margin-bottom: 1px;
-    min-height: 151px;
-    position: relative;
-    font-size: 0;
-}
-
-.formRowTop {
-    width: 100%;
-    margin-bottom: 50px;
-}
-
-.formRowBottom {
-    position: absolute;
-    right: 15px;
-    bottom: 15px;
-}
-
-.formReview .formRowTop div {
-    position: relative;
-    left: 0;
-    top: 0;
-}
-
-/*.formReview .formRowTop img, .reviewItem .reviewUser img {
-    display: inline-block;
-    border-radius: 50%;
-    height: 61px;
-    width: 61px;
-}*/
-
-/*.formReview .formRowTop div, .reviewItem .reviewUser div {
-    display: inline-block;
-    border-radius: 50%;
-    height: 61px;
-    width: 61px;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-}
-
-.formReview .formRowTop textarea {
-    display: inline-block;
-    resize: none;
-    height: 61px;
-    margin-left: 15px;
-    border: none;
-    background-color: #EEEEEE;
-    width: 643px;
-    padding-top: 8px;
-    padding-left: 15px;
-}
-
-.formReview .formRowTop textarea:focus {
-    outline: none;
-}
-
-.formReview .formRowTop textarea::placeholder {
-    opacity: .87;
-}
-
-.formReview .formRowBottom .btnSendReview {
-    width: 152px;
-    height: 45px;
-    color: #fff;
-    background-color: #5EF199;
-    border: none;
-    margin-left: 15px;
-    cursor: pointer;
-    transition: all .5s ease;
-}
-
-.formReview .formRowBottom .btnSendReview:hover {
-    background-color: #27EE77;
-}
-
-.formReview .formRowBottom .btnSendReview:focus {
-    outline: none;
-}
-
-.formReview .formRowBottom .formSelect {
-    width: 200px;
-    height: 45px;
-    background-color: #fff;
-    position: relative;
-    display: inline-block;
-}
-
-
-.formReview .formRowBottom .formSelect #selectRating {
-    font-size: 14px;
-    border: none;
-    height: 45px;
-    padding-left: 10px;
-    background-color: #EEEEEE;
-    cursor: pointer;
-    color: #444;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-    width: 100%;
-    height: 100%;
-}
-
-.formReview .formRowBottom .formSelect:after {
-    content: "";
-    border-style: solid;
-    border-width: 6px 6px 0 6px;
-    border-color: #000 transparent transparent transparent;
-    opacity: .54;
-    pointer-events: none;
-    position: absolute;
-    top: 50%;
-    right: 10px;
-    z-index: 1;
-    margin-top: -2px;
-    }
-
-.formReview .formRowBottom .formSelect #selectRating:focus {
-    outline: none;
-}
-
-.formReview .formRowBottom .formSelect #selectRating option {
-    outline: none;
-}
-*/
-.reviewItem .reviewUser {
-    vertical-align: top;
-    display: inline-block;
-    width:30%;
-
-}
-
-.reviewItem .reviewUser h3 {
-    display: inline-block;
-    font-size: 16px;
-    font-weight: 400;
-    padding-left: 15px;
-    padding-right: 15px;
-    padding-top: 10px;
-}
-
-.reviewItem .reviewContent {
-    display: inline-block;
-    width: 70%;
-    position: relative;
-}
-
-.reviewItem .reviewUser div {
-    vertical-align: top;
-    display: inline-block;
-}
-
-.reviewItem .reviewContent p {
-    opacity: .87;
-}
-
-.reviewItem {
-    width: 100%;
-    background-color: #fff;
-    padding: 15px;
-    margin-bottom: 1px;
-    font-size: 0;
-}
-
-.reviewItem .reviewContent .travelTime {
-    font-size: 14px;
-    opacity: .54;
-    padding-bottom: 8px;
-}
-
-.reviewItem .reviewContent .ratingReview {
-    text-align: right;
-    padding-top: 30px;
-    font-size: 14px;
-    opacity: 1;
-}
-
-.reviewItem .reviewContent .ratingReview span {
-    color: #5EF199;
 }
 
 .defaultReview {
@@ -2361,7 +2187,7 @@ button[disabled]{
 }
 
 .formEditInfo label{
-    font-size: 16px;
+    font-size: 14px;
     width: 100%;
     padding-left: 0;
     margin-bottom: 8px;
@@ -2377,7 +2203,8 @@ button[disabled]{
 }
 
 .formEditInfo label[class="error"] {
-    margin-top: -7px;
+    display: block;
+    margin-top: -10px;
     margin-bottom: 15px;
 }
 

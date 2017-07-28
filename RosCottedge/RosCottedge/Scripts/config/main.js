@@ -103,7 +103,7 @@ $(document).ready(function () {
       // options
       itemSelector: '.col-md-4',
       columnWidth: '.widthMas'
-    });*/    
+    });*/
 
 });
 
@@ -386,7 +386,7 @@ $.getJSON("/House/HouseObject", function (data) {
                 '<ul class="charact">' +
                 '<li class="personsInfo op54"><i class="mdi mdi-account-multiple"></i>' + persons + '</li>' +
                 '<li class="priceInfo"><i class="mdi mdi-currency-rub"></i>' + price + ' руб./сутки</li>' +
-                '<li class="ratingInfo"><i class="mdi mdi-star-circle"></i>' + rating + '/5</li>' +
+                '<li class="ratingInfo"><i class="mdi mdi-star-circle"></i>' + parseInt(rating) + '/5</li>' +
                 '</ul>' +
 
                 '</a>';

@@ -124,7 +124,7 @@
                         @Html.EditorFor(model => model.House.BookingConditions, new { htmlAttributes = new { @class = "form-control largeInputEH", @placeholder = "Условия бронирования", @aria_required = "true", @aria_invalid = "false" } })
                         @Html.ValidationMessageFor(model => model.House.BookingConditions, "", new { @class = "text-danger" })
 
-                        @Html.HiddenFor(model => model.User.Id, "UserId" @*htmlAttributes: new { @class = "control-label col-md-2" }*@)
+                        @Html.HiddenFor(model => model.User.Id, "UserId")
 
                         <input class="ButtonSaveEH" type="submit" value="Сохранить" />
 
@@ -147,14 +147,11 @@
                             </div>
                             <div class="footerNotice">
                                 <span>@item.Date.ToString("dd.MM.yyyy")</span>
-                                @*@using (Html.BeginForm("DeleteReservationLandlord", "Account", FormMethod.Post, new { enctype = "multipart/form-data" }))
-                                    {*@
                                 <form id="DeleteReservationLandlord">
                                     <input type="hidden" value="@item.HouseId" name="houseId" />
                                     <input type="hidden" value="@item.Id" name="id" /><br>
                                     <input class="subRemove1" type="submit" value="Удалить" />
                                 </form>
-                                @*}*@
                             </div>
                         </div>
 
@@ -172,14 +169,11 @@
                             </div>
                             <div class="footerNotice">
                                 <span>@item.Date.ToString("dd.MM.yyyy")</span>
-                                @*@using (Html.BeginForm("DeleteReviews", "Account", FormMethod.Post, new { enctype = "multipart/form-data" }))
-                                    {*@
                                 <form id="DeleteReviews">
                                     <input type="hidden" value="@item.HouseId" name="houseId" />
                                     <input type="hidden" value="@item.Id" name="id" /><br>
                                     <input class="subRemove2" type="submit" value="Удалить" />
                                 </form>
-                                @*}*@
                             </div>
                         </div>
 
@@ -194,14 +188,11 @@
                             </div>
                             <div class="footerNotice">
                                 <span>@item.Date.ToString("dd.MM.yyyy")</span>
-                                @*@using (Html.BeginForm("DeleteReservationNotif", "Account", FormMethod.Post, new { enctype = "multipart/form-data" }))
-                                    {*@
                                 <form id="DeleteReservationNotif">
                                     <input type="hidden" value="@item.HouseId" name="houseId" />
                                     <input type="hidden" value="@item.Id" name="id" /><br>
                                     <input class="subRemove3" type="submit" value="Удалить" />
                                 </form>
-                                @*}*@
                             </div>
                         </div>
                     }

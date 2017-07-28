@@ -8,7 +8,7 @@
 <div id="map_canvas"></div>
 <section id="search">
   <div class="container">
-    <form id ="searchForm" class="searchBox mainBox" method="post" @*action="/Home/Index" data-ajax="true" data-ajax-update="#houses" data-ajax-mode="replace"*@>
+    <form id ="searchForm" class="searchBox mainBox" method="get" @*action="/Home/Index" data-ajax="true" data-ajax-update="#houses" data-ajax-mode="replace"*@>
       <div class="mainField">
         <div class="area searchFields">
           <input autocomplete="off" class="select firstItem" type="text" placeholder="Город или район" name="region">
@@ -36,7 +36,6 @@
             <input type="text" placeholder="Кол. человек" name="numberOfPersons">
           </div>
         </div>
-        <input type="hidden" value=1 name="fromForm">
         <div class="cell100_inp">
           <input type="submit" value="Подобрать" class="red">
         </div>

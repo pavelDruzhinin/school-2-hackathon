@@ -14,25 +14,13 @@ namespace RosCottedge.Controllers
     {
         private SiteContext db = new SiteContext();
 
-        [OutputCache(NoStore = true, Duration = 0, VaryByParam = "*")]
-        public ActionResult Index(int? page, string region, int? startPrice, int? finishPrice, int? numberOfPersons, DateTime? arrivalDate, DateTime? departureDate, int? fromForm, string sortBy)
+        
+        public ActionResult Index(int? page, string region, int? startPrice, int? finishPrice, int? numberOfPersons, DateTime? arrivalDate, DateTime? departureDate, string sortBy)
         {
             int pageNumber = (page ?? 1);
             int pageSize = 9;
 
             var houses = db.Houses.Include(x => x.Reviews).Include(x => x.Reservations).Include(x => x.Pictures).Where(x=>x.Hide==false);
-
-            if (Session["Filter"] != null && fromForm != 1)
-            {
-                var oldFilter = (HomeFilter)Session["Filter"];
-                region = region ?? oldFilter.Region;
-                startPrice = startPrice ?? oldFilter.StartPrice;
-                finishPrice = finishPrice ?? oldFilter.FinishPrice;
-                numberOfPersons = numberOfPersons ?? oldFilter.NumberOfPersons;
-                arrivalDate = arrivalDate ?? oldFilter.ArrivalDate;
-                departureDate = departureDate ?? oldFilter.DepartureDate;
-                sortBy = sortBy ?? oldFilter.Sortparam;
-            }
 
             if (!String.IsNullOrEmpty(region))
             {
@@ -76,20 +64,6 @@ namespace RosCottedge.Controllers
 
             }
 
-            var filter = new HomeFilter
-            {
-                Region = region,
-                StartPrice = startPrice,
-                FinishPrice = finishPrice,
-                NumberOfPersons = numberOfPersons,
-                ArrivalDate = arrivalDate,
-                DepartureDate = departureDate,
-                Page = pageNumber,
-                Sortparam = sortBy
-            };
-
-            Session["Filter"] = filter;
-
             //Определяем максимальную и минимальную цену аренды
 
             int max = 0;
@@ -122,9 +96,7 @@ namespace RosCottedge.Controllers
                 AllHouses = db.Houses.ToList(),
                 Regions = regions.OrderBy(x => x.Region).ToList()
             };
-
-        var kappa = Request.IsAjaxRequest();
-
+            
             return Request.IsAjaxRequest()
                 ? (ActionResult)PartialView("_Houses", viewModel)
                 : View(viewModel);

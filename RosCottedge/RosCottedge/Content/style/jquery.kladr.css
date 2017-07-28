@@ -1,0 +1,43 @@
+.kladr-error {
+    color: #cb3e27;
+}
+
+#kladr_autocomplete ul {
+    border-top: #263F5C 1px solid;
+    position: absolute;
+    display: block;
+    background-color: #305075;
+    z-index: 9999;
+    overflow-x: hidden;
+    overflow-y: auto;
+    min-width: 200px;
+    max-height: 420px;
+    color: #fff;
+}
+
+#kladr_autocomplete li {
+    display: list-item;
+    list-style-type: none;
+    margin: 0;
+    padding: 13px 15px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+#kladr_autocomplete li:hover {
+    background-color: #263F5C;
+    cursor: pointer;
+}
+
+#kladr_autocomplete li.active {
+    background-color: #e9e9e9;
+}
+
+#kladr_autocomplete a {
+    text-decoration: none;
+}
+
+#kladr_autocomplete strong {
+    color: #038ebd;
+}
