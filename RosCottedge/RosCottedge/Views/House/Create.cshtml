@@ -20,22 +20,30 @@
             <div class="fields">
                 @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control largeInputCreate largeInputCreateTop", @placeholder = "Название дома" } })
 
-                @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-control smallInputCreate", @placeholder = "Стоимость" } })
-
-                @Html.EditorFor(model => model.NumberOfPersons, new { htmlAttributes = new { @class = "form-control smallInputCreate floatInput", @placeholder = "Количество человек" } })
-                <div id="forTwoFields"></div>
-                <!--<div id="errorMap" style="width:100%; margin-top: 4px; display:none;"><p style="font-size: 14px; color: #E32444;">Неверно выбран адрес</p></div>-->
-
-                <!--<div class="textManualAddress">
-                    <p>Поиск не помогает, укажите на карте местоположение дома и введите адрес вручную. <br /></p>
-                    <span class="manualAddress">Ввести вручную?</span>
-                </div>-->
-                <div class="manualInput">
-                    <input numField="1" class="smallInputCreate locality" type="text" name="Region" id="Region" value="" placeholder="Область" />
-                    <input numField="2" class="smallInputCreate floatInput locality noActRow" type="text" name="Locality" id="Locality" value="" placeholder="Город" />
-                    <input numField="3" class="smallInputCreate locality noActRow" type="text" name="Area" id="Area" value="" placeholder="Улица" />
-                    <input numField="4" class="smallInputCreate floatInput locality noActRow" type="text" name="HouseNumber" id="HouseNumber" value="" placeholder="Дом" />
+                <div class="smallInputCreate">
+                    @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-control ", @placeholder = "Стоимость" } })
                 </div>
+
+                <div class="smallInputCreate floatInput">
+                    @Html.EditorFor(model => model.NumberOfPersons, new { htmlAttributes = new { @class = "form-control ", @placeholder = "Количество человек" } })
+                </div>
+
+                <div class="smallInputCreate">
+                    <input numField="1" class="locality" type="text" name="Region" id="Region" value="" placeholder="Регион/Область" />
+                </div>
+
+                <div class="smallInputCreate floatInput">
+                    <input numField="2" class="locality noActRow" type="text" name="Locality" id="Locality" value="" placeholder="Населенный пункт" />
+                </div>
+
+                <div class="smallInputCreate">
+                    <input numField="3" class="locality noActRow" type="text" name="Area" id="Area" value="" placeholder="Улица" />
+                </div>
+
+                <div class="smallInputCreate floatInput">
+                    <input numField="4" class="locality noActRow" type="text" name="HouseNumber" id="HouseNumber" value="" placeholder="Дом" />
+                </div>
+
                 <div id="map_canvas" style="width:100%; height:400px; margin-bottom:0; margin-top: 15px;"></div>
 
                 @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control", @placeholder = "Описание" } })
@@ -55,8 +63,8 @@
                 <input class="ButtonCreate" type="submit" value="Разместить дом" />
 
 
-                @*<label>Широта (latitude): </label>*@<input id="latitude" name="lat" type="hidden" />
-                @*<label>Длогота (longitude): </label>*@<input id="longitude" name="lng" type="hidden" />
+                <input id="latitude" name="lat" type="hidden" />
+                <input id="longitude" name="lng" type="hidden" />
 
             </div>
         </div>
@@ -65,159 +73,273 @@
 </div>
 
 
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="~/Scripts/config/jquery.kladr.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDJZlsRr82NdMVjqUPb1fVy-t49lPdTgrw"></script>
+    <script>
+        $(document).ready(function () {
 
-@Scripts.Render("~/bundles/jqueryval")
-<script src="~/Scripts/config/jquery.kladr.min.js"></script>
-<script async defer
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDJZlsRr82NdMVjqUPb1fVy-t49lPdTgrw">
-</script>
-<script>
-    $(document).ready(function () {
+          $.kladr.setDefault({
+            parentInput: '#validCreateHouse',
+            verify: true,
+            limit: 5
+          });
 
-      $.kladr.setDefault({
-        parentInput: '#validCreateHouse',
-        verify: true,
-        limit: 5
-      });
+          $('#Region').kladr('type', $.kladr.type.region);
+          $('#Locality').kladr('type', $.kladr.type.city);
+          $('#Area').kladr('type', $.kladr.type.street);
+          $('#HouseNumber').kladr('type', $.kladr.type.building);
 
-      $('#Region').kladr('type', $.kladr.type.region);
-      $('#Locality').kladr('type', $.kladr.type.city);
-      $('#Area').kladr('type', $.kladr.type.street);
-      $('#HouseNumber').kladr('type', $.kladr.type.building);
+          var Test = 'Москва';
+          $('#kladr_autocomplete ul').on('mousedown','li', function(){
+            Test = $('#Region').val()+" "+$('#Locality').val()+" "+$('#Area').val()+" "+$('#HouseNumber').val();
+            MapGoogle();
+            console.log(Test);
+          });
 
-      var Test = 'Москва';
-      $('#kladr_autocomplete ul').on('mousedown','li', function(){
-        Test = $('#Region').val()+" "+$('#Locality').val()+" "+$('#Area').val()+" "+$('#HouseNumber').val();
-        MapGoogle();
-        console.log(Test);
-      });
+            ////////////////////////////////////
 
-        init();
-
-        ////////////////////////////////////
-
-        function MapGoogle() {
-            geocoder.geocode({ 'address': Test }, function (results, status) {
-                if (status == google.maps.GeocoderStatus.OK) {
-                    if (results[0]) {
-                        var addr = results[0].address_components;
-                        var latitude = results[0].geometry.location.lat();
-                        var longitude = results[0].geometry.location.lng();
-                        var location = new google.maps.LatLng(latitude, longitude);
-                        marker.setPosition(location);
-                        map.setCenter(location);
+            function MapGoogle() {
+                geocoder.geocode({ 'address': Test }, function (results, status) {
+                    if (status == google.maps.GeocoderStatus.OK) {
+                        if (results[0]) {
+                            var addr = results[0].address_components;
+                            var latitude = results[0].geometry.location.lat();
+                            var longitude = results[0].geometry.location.lng();
+                            var location = new google.maps.LatLng(latitude, longitude);
+                            marker.setPosition(location);
+                            map.setCenter(location);
+                            $('#latitude').val(latitude);
+                            $('#longitude').val(longitude);
+                        }
                     }
-                }
-            });
-        }
-      /*  $(function () {
-            $("#address").autocomplete({
-
-                //Определяем значение для адреса при геокодировании
-                source: function (request, response) {
-                    geocoder.geocode({ 'address': request.term }, function (results, status) {
-                        response($.map(results, function (item) {
-                            return {
-                                label: item.formatted_address,
-                                value: item.formatted_address,
-                                latitude: item.geometry.location.lat(),
-                                longitude: item.geometry.location.lng()
-                            }
-                        }));
-                    })
-                },
-                //Выполняется при выборе конкретного адреса
-                select: function (event, ui) {
-                    $("#latitude").val(ui.item.latitude);
-                    $("#longitude").val(ui.item.longitude);
-                    var location = new google.maps.LatLng(ui.item.latitude, ui.item.longitude);
-                    marker.setPosition(location);
-                    map.setCenter(location);
-                    MapGoogle();
-                }
-            });
-
-        }); */
-
-        //Добавляем слушателя события обратного геокодирования для маркера при его перемещении
-
-    /*    function MapGoogle() {
-            geocoder.geocode({ 'latLng': marker.getPosition() }, function (results, status) {
-                if (status == google.maps.GeocoderStatus.OK) {
-                    if (results[0]) {
-                        var addr = results[0].address_components;
-                        $('#address').val(results[0].formatted_address);
-                        $('#latitude').val(marker.getPosition().lat());
-                        $('#longitude').val(marker.getPosition().lng());
-                        $('#Region').val(addr[4].short_name);
-                        $('#Locality').val(addr[2].short_name);
-                        $('#Area').val(addr[1].short_name);
-                        $('#HouseNumber').val(addr[0].short_name);
-                    }
-                }
-            });
-        } */
-
-
-        function placeMarker(location) {
-            if (marker) {
-                marker.setPosition(location);
-            } else {
-                marker = new google.maps.Marker({
-                    position: location,
-                    map: map
                 });
             }
-        }
-
-    });
-
-
-
-    var styleArray = [
-        {
-            "featureType": "landscape.natural",
-            "elementType": "geometry",
-            "stylers": [
-                {
-                    "color": "#bff0ca"
+            function placeMarker(location) {
+                if (marker) {
+                    marker.setPosition(location);
+                } else {
+                    marker = new google.maps.Marker({
+                        position: location,
+                        map: map,
+                        icon: {
+                            url: "../../Content/img/mapMarkers/map_marker.png"
+                        }
+                    });
                 }
-            ]
-        },
-        {
-            "featureType": "water",
-            "elementType": "geometry",
-            "stylers": [
-                {
-                    "color": "#81d4fa"
-                }
-            ]
-        }
-    ];
+            }
 
-    var geocoder;
-    var map;
-    var marker;
-
-    function init() {
-        //Определение карты
-        var latlng = new google.maps.LatLng(61.7930796, 34.3755158);
-        var options = {
-            zoom: 15,
-            center: latlng,
-            scrollwheel: false,
-            styles: styleArray
-        };
-
-        map = new google.maps.Map(document.getElementById("map_canvas"), options);
-
-        //Определение геокодера
-        geocoder = new google.maps.Geocoder();
-
-        marker = new google.maps.Marker({
-            map: map,
-            draggable: true
         });
-    };
-</script>
+
+
+
+        var styleArray = [
+            {
+                "featureType": "water",
+                "elementType": "all",
+                "stylers": [
+                    {
+                        "hue": "#7fc8ed"
+                    },
+                    {
+                        "saturation": 55
+                    },
+                    {
+                        "lightness": -6
+                    },
+                    {
+                        "visibility": "on"
+                    }
+                ]
+            },
+            {
+                "featureType": "water",
+                "elementType": "labels",
+                "stylers": [
+                    {
+                        "hue": "#7fc8ed"
+                    },
+                    {
+                        "saturation": 55
+                    },
+                    {
+                        "lightness": -6
+                    },
+                    {
+                        "visibility": "off"
+                    }
+                ]
+            },
+            {
+                "featureType": "poi.park",
+                "elementType": "geometry",
+                "stylers": [
+                    {
+                        "hue": "#83cead"
+                    },
+                    {
+                        "saturation": 1
+                    },
+                    {
+                        "lightness": -15
+                    },
+                    {
+                        "visibility": "on"
+                    }
+                ]
+            },
+            {
+                "featureType": "landscape",
+                "elementType": "geometry",
+                "stylers": [
+                    {
+                        "hue": "#f3f4f4"
+                    },
+                    {
+                        "saturation": -84
+                    },
+                    {
+                        "lightness": 59
+                    },
+                    {
+                        "visibility": "on"
+                    }
+                ]
+            },
+            {
+                "featureType": "landscape",
+                "elementType": "labels",
+                "stylers": [
+                    {
+                        "hue": "#ffffff"
+                    },
+                    {
+                        "saturation": -100
+                    },
+                    {
+                        "lightness": 100
+                    },
+                    {
+                        "visibility": "off"
+                    }
+                ]
+            },
+            {
+                "featureType": "road",
+                "elementType": "geometry",
+                "stylers": [
+                    {
+                        "hue": "#ffffff"
+                    },
+                    {
+                        "saturation": -100
+                    },
+                    {
+                        "lightness": 100
+                    },
+                    {
+                        "visibility": "on"
+                    }
+                ]
+            },
+            {
+                "featureType": "road",
+                "elementType": "labels",
+                "stylers": [
+                    {
+                        "hue": "#bbbbbb"
+                    },
+                    {
+                        "saturation": -100
+                    },
+                    {
+                        "lightness": 26
+                    },
+                    {
+                        "visibility": "on"
+                    }
+                ]
+            },
+            {
+                "featureType": "road.arterial",
+                "elementType": "geometry",
+                "stylers": [
+                    {
+                        "hue": "#ffcc00"
+                    },
+                    {
+                        "saturation": 100
+                    },
+                    {
+                        "lightness": -35
+                    },
+                    {
+                        "visibility": "simplified"
+                    }
+                ]
+            },
+            {
+                "featureType": "road.highway",
+                "elementType": "geometry",
+                "stylers": [
+                    {
+                        "hue": "#ffcc00"
+                    },
+                    {
+                        "saturation": 100
+                    },
+                    {
+                        "lightness": -22
+                    },
+                    {
+                        "visibility": "on"
+                    }
+                ]
+            },
+            {
+                "featureType": "poi.school",
+                "elementType": "all",
+                "stylers": [
+                    {
+                        "hue": "#d7e4e4"
+                    },
+                    {
+                        "saturation": -60
+                    },
+                    {
+                        "lightness": 23
+                    },
+                    {
+                        "visibility": "on"
+                    }
+                ]
+            }
+        ];
+
+        var geocoder;
+        var marker;
+        function initMap() {
+            var map = new google.maps.Map(document.getElementById('map_canvas'), {
+                zoom: 14,
+                scrollwheel: false,
+                center: { lat: 61.787571, lng: 34.342087 },
+                styles: styleArray
+            });
+
+            geocoder = new google.maps.Geocoder();
+
+            marker = new google.maps.Marker({
+                map: map,
+                icon: {
+                    url: "../../Content/img/mapMarkers/map_marker.png"
+                }
+            });
+
+            return map;
+
+        }
+        var map = initMap();
+
+    </script>
 }

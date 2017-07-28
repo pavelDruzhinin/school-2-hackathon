@@ -33,7 +33,6 @@ else
         console.log(location);
         $('.menuPers li').each(function () {
             var link = $(this).find('a').attr('href');
-            //console.log($(this).find('a').attr('href'));
             if (location.indexOf(link) + 1) {
                 $(this).addClass('current');
                 $('#menuMyHouse').removeClass('current');

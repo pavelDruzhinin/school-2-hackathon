@@ -25,32 +25,19 @@
               <select style="display: none;" name="Rating" id="selectRating"></select>
           </div>
           <div class="btnSendReviewWrap op54">
+              @if (User.IsInRole("admin"))
+                {
+                    using (Html.BeginForm("DeleteComment", "Admin", FormMethod.Post))
+                    {
+                      <input type="hidden" value="@review.HouseId" name="houseId" />
+                      <input type="hidden" value="@review.Id" name="id" />
+                      <input type="submit" value="Удалить" />
+                  }
+              }
               Отзыв оставлен: @review.CommentDate
           </div>
       </div>
   </div>
-  <!--  <div class="reviewItem">
-        <div class="reviewUser">
-            <div style="background-image: url(@review.User.Avatar);"></div>
-            <h3>@review.User.FirstName<br>@review.User.LastName</h3>
-        </div>
-        <div class="reviewContent">
-            <p class="travelTime">Отзыв оставлен: @review.CommentDate</p>
-            <p>@review.Comment</p>
-            <p class="ratingReview">Оценка: <span>@review.Rating/5</span></p>
-            <p class="ratingReview">
-                @if (User.IsInRole("admin"))
-                {
-                    using (Html.BeginForm("DeleteComment", "Admin", FormMethod.Post))
-                    {
-                        <input type="hidden" value="@review.HouseId" name="houseId" /><br>
-                        <input type="hidden" value="@review.Id" name="id" /><br>
-                        <input type="submit" value="Удалить" />
-                    }
-                }
-            </p>
-        </div>
-    </div> -->
 }
 <script>
   $(document).ready(function(){
