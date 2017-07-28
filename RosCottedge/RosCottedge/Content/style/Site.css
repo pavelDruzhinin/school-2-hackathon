@@ -243,6 +243,27 @@ input.date{
 .mainMenu #logoutForm{
     display:none;
 }
+.mainMenu ul li.userLogo div{
+  display: inline-block;
+  width: 35px;
+  height: 35px;
+  border-radius: 20px;
+  background-position: center;
+  background-size: cover;
+  vertical-align: middle;
+  margin-right: 10px;
+}
+.mainMenu ul li.userLogo span{
+  display: inline-block;
+  vertical-align: middle;
+  color: #fff;
+  text-align: left;
+  font-size: 12px;
+  text-transform: none;
+}
+.btnMenu{
+  display: none;
+}
 /*footer*/
 footer{
   color: #fff;

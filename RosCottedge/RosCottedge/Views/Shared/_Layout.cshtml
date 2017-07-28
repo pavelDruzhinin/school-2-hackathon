@@ -16,28 +16,26 @@
 <body>
   <div id="wrapper">
     <div class="mainMenu">
+      <i class="mdi mdi-menu btnMenu"></i>
       <ul>
           @if (User.Identity.IsAuthenticated)
           {
-            <li>@Html.Action("Index", "GetUser", new { area = "" })</li>
+            <!--<li class="userLogo">@Html.Action("Index", "GetUser", new { area = "" })</li>-->
+            if (User.IsInRole("admin"))
+            {
+              <li>@Html.ActionLink("Админпанель", "ShowAllUsers", "Admin", new { area = "" }, new { @class = "navbar-brand" })</li>
+            }
             <li><a href="javascript:document.getElementById('logoutForm').submit()">Выйти (@User.Identity.Name)</a></li>
               using (Html.BeginForm("Logout", "Account", FormMethod.Post, new { id = "logoutForm" }))
               {
                 @Html.AntiForgeryToken()
               }
-            <li>@Html.ActionLink("На главную", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })</li>
-            <li>@Html.ActionLink("Добавить дом", "Create", "House", new { area = "" }, new { @class = "navbar-brand" })</li>
             <li>@Html.ActionLink("Личный кабинет", "PersonalInformation", "Account", new { area = "" }, new { @class = "navbar-brand" })</li>
-
-              if (User.IsInRole("admin"))
-              {
-                <li>@Html.ActionLink("Админпанель", "ShowAllUsers", "Admin", new { area = "" }, new { @class = "navbar-brand" })</li>
-              }
+            <li>@Html.ActionLink("Добавить дом", "Create", "House", new { area = "" }, new { @class = "navbar-brand" })</li>
           }
           else
           {
             <li>@Html.ActionLink("Вход", "Login", "Account", new { area = "" }, new { @class = "navbar-brand" })</li>
-            <li>@Html.ActionLink("На главную", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })</li>
             <li>@Html.ActionLink("Регистрация", "Register", "Account", new { area = "" }, new { @class = "navbar-brand" })</li>
             <li>@Html.ActionLink("Добавить дом", "Login", "Account", new { area = "" }, new { @class = "navbar-brand" })</li>
           }

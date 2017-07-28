@@ -105,6 +105,11 @@ $(document).ready(function () {
       columnWidth: '.widthMas'
     });*/
 
+    //SiteMenu
+    $('.btnMenu').click(function(){
+      $('.mainMenu ul').toggleClass('activeMenu');
+    });
+
 });
 
 var mapStyles = [

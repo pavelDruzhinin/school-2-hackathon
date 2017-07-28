@@ -1,4 +1,28 @@
 @media (max-width: 767px) {
+  .mainMenu ul{
+    position: fixed;
+    width: 100%;
+    top: 50px;
+    border-top: 1px solid #263F5C;
+    display: none;
+  }
+  .mainMenu .activeMenu{
+    display: block;
+  }
+  .mainMenu ul li{
+    display: block;
+    width: 100%;
+    background-color: #305075;
+    text-align: left;
+  }
+  .btnMenu{
+    display: block;
+    line-height: 50px;
+    font-size: 25px;
+    color: #fff;
+    cursor: pointer;
+    margin-right: 15px;
+  }
   /*footer start*/
   footer h2{
     margin-top: 30px;
@@ -117,6 +141,30 @@
 }
 
 @media (min-width: 768px) and (max-width: 991px) {
+  .mainMenu ul{
+    position: fixed;
+    width: 100%;
+    top: 50px;
+    border-top: 1px solid #263F5C;
+    display: none;
+  }
+  .mainMenu .activeMenu{
+    display: block;
+  }
+  .mainMenu ul li{
+    display: block;
+    width: 100%;
+    background-color: #305075;
+    text-align: left;
+  }
+  .btnMenu{
+    display: block;
+    line-height: 50px;
+    font-size: 25px;
+    color: #fff;
+    cursor: pointer;
+    margin-right: 15px;
+  }
   /*footer start*/
   footer h2{
     margin-top: 30px;
