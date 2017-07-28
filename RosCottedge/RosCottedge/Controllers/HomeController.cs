@@ -13,7 +13,6 @@ namespace RosCottedge.Controllers
     public class HomeController : Controller
     {
         private SiteContext db = new SiteContext();
-
         
         public ActionResult Index(int? page, string region, int? startPrice, int? finishPrice, int? numberOfPersons, DateTime? arrivalDate, DateTime? departureDate, string sortBy)
         {
@@ -123,7 +122,7 @@ namespace RosCottedge.Controllers
 
               return Json(RegionsAndLocalities, JsonRequestBehavior.AllowGet);
         }
-
+        
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
