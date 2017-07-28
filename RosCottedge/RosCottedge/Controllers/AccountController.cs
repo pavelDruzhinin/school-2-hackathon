@@ -165,7 +165,8 @@ namespace RosCottedge.Controllers
         [HttpGet]
         public ActionResult Edit()
         {
-
+            DirectoryInfo houseImg = new DirectoryInfo(Request.MapPath("/Content/img/houseImg/"));
+            TempData["houseImg"] = string.Format("{0}", houseImg.GetFiles().Count());
             if (User.Identity.IsAuthenticated)
             {
                 User user = (from u in db.Users
@@ -185,7 +186,8 @@ namespace RosCottedge.Controllers
         {
             if (User.Identity.IsAuthenticated == false)
                 return new HttpStatusCodeResult(HttpStatusCode.Unauthorized);
-
+            DirectoryInfo houseImg = new DirectoryInfo(Request.MapPath("/Content/img/houseImg/"));
+            TempData["houseImg"] = string.Format("{0}", houseImg.GetFiles().Count());
 
             User olduser = (from u in db.Users
                             where u.Login == User.Identity.Name
@@ -216,6 +218,8 @@ namespace RosCottedge.Controllers
         {
             if (User.Identity.IsAuthenticated == false)
                 return new HttpStatusCodeResult(HttpStatusCode.Unauthorized);
+            DirectoryInfo houseImg = new DirectoryInfo(Request.MapPath("/Content/img/houseImg/"));
+            TempData["houseImg"] = string.Format("{0}", houseImg.GetFiles().Count());
             User user = db.Users.Find(id);
 
             return View(user);
@@ -224,6 +228,8 @@ namespace RosCottedge.Controllers
         [HttpPost]
         public ActionResult ChangePassword(User user)
         {
+            DirectoryInfo houseImg = new DirectoryInfo(Request.MapPath("/Content/img/houseImg/"));
+            TempData["houseImg"] = string.Format("{0}", houseImg.GetFiles().Count());
             if (ModelState.IsValid)
             {
                 User olduser = (from u in db.Users
