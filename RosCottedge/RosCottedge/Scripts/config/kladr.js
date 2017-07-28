@@ -863,10 +863,11 @@
 				}
 
 				$li.addClass('active');
-				$input.blur();
+
 
 				select();
 				close();
+				$input.blur();
 			}
 
 			/**

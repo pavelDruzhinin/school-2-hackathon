@@ -1,8 +1,144 @@
 ﻿@{
-    ViewBag.Title = "About";
+    ViewBag.Title = "О Нас";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<h2>@ViewBag.Title.</h2>
-<h3>@ViewBag.Message</h3>
+<style>
+    .imgBox {
+        border-style: none;
+        border-color: transparent;
+        border-width: medium;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        border-radius: 100px;
+        width: 200px;
+        height: 200px;
+        float: left;
+        margin: 7px 7px 7px 0;
+    }
 
-<p>Use this area to provide additional information.</p>
+    .ContentBox {
+        margin-top: 100px;
+    }
+
+    .buttonStyle {
+        border-style: none;
+        border-color: transparent;
+        border-width: medium;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: 100%;
+        border-radius: 100px;
+        width: 25px;
+        height: 25px;
+        margin-left: 3px;
+    }
+</style>
+<h1>
+    <a href='@Url.Action("Index")'>
+        <img src="~/Content/img/icons/Button_Back.png" class="buttonStyle" />
+    </a>
+    О Нас
+</h1>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="imgBox" style="background-image: url('../../Content/img/Programmers/chubaka.jpg')"></div>
+            <div class="ContentBox">
+                <h2>Павел Дружинин</h2>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="imgBox" style="background-image: url('../../Content/img/Programmers/chubaka.jpg')"></div>
+            <div class="ContentBox">
+                <h2>Роман Труфанов</h2>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="imgBox" style="background-image: url('../../Content/img/Programmers/laptop.png')"></div>
+            <div class="ContentBox">
+                <h2>Александр Медведев</h2>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="imgBox" style="background-image: url('../../Content/img/Programmers/Arthur_Klimov.jpg')"></div>
+            <div class="ContentBox">
+                <h2>Артур Климов</h2>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="imgBox" style="background-image: url('../../Content/img/Programmers/laptop.png')"></div>
+            <div class="ContentBox">
+                <h2>Алекс Мэн</h2>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="imgBox" style="background-image: url('../../Content/img/Programmers/laptop.png')"></div>
+            <div class="ContentBox">
+                <h2>Владимир Левичев</h2>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="imgBox" style="background-image: url('../../Content/img/Programmers/laptop.png')"></div>
+            <div class="ContentBox">
+                <h2>Дмитрий</h2>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="imgBox" style="background-image: url('../../Content/img/Programmers/laptop.png')"></div>
+            <div class="ContentBox">
+                <h2>Кирилл Румянцев</h2>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="imgBox" style="background-image: url('../../Content/img/Programmers/laptop.png')"></div>
+            <div class="ContentBox">
+                <h2>Максим Чернинов</h2>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="imgBox" style="background-image: url('../../Content/img/Programmers/Stepan_Samutichev.jpg')"></div>
+            <div class="ContentBox">
+                <h2>Степан Самутичев</h2>
+            </div>
+        </div>
+    </div>
+</div>
+

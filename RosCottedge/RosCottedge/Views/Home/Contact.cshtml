@@ -1,18 +1,71 @@
 ﻿@{
-    ViewBag.Title = "Contact";
+    ViewBag.Title = "Помощь";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<h2>@ViewBag.Title.</h2>
-<h3>@ViewBag.Message</h3>
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="Windows-1251">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script>
+        $(function () {
+            $("#accordion").accordion({
+                collapsible: true
+            });
+        });
+    </script>
+</head>
+<body>
 
-<address>
-    One Microsoft Way<br />
-    Redmond, WA 98052-6399<br />
-    <abbr title="Phone">P:</abbr>
-    425.555.0100
-</address>
+    <style>
+        .buttonStyle {
+            border-style: none;
+            border-color: transparent;
+            border-width: medium;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: 100%;
+            border-radius: 100px;
+            width: 25px;
+            height: 25px;
+            margin-left: 3px;
+        }
+    </style>
+    <h1>
+        <a href='@Url.Action("Index")'>
+            <img src="~/Content/img/icons/Button_Back.png" class="buttonStyle" />
+        </a>
+        Помощь
+    </h1>
 
-<address>
-    <strong>Support:</strong>   <a href="mailto:Support@example.com">Support@example.com</a><br />
-    <strong>Marketing:</strong> <a href="mailto:Marketing@example.com">Marketing@example.com</a>
-</address>
+    <div id="accordion">
+        <h3>Вопрос 1</h3>
+        <div>
+            <p>Ответ на вопрос 1</p>
+        </div>
+        <h3>Вопрос 2</h3>
+        <div>
+            <p>Ответ на вопрос 2</p>
+        </div>
+        <h3>Вопрос 3</h3>
+        <div>
+            <p>Ответ на вопрос 3</p>
+        </div>
+        <h3>Вопрос 4</h3>
+        <div>
+            <p>Ответ на вопрос 4</p>
+        </div>
+        <h3>Вопрос 5</h3>
+        <div>
+            <p>Ответ на вопрос 5</p><p>Продолжение к ответу на вопрос 5</p>
+            <ul>
+                <li>1 Дополнение к ответу на вопрос 5</li>
+                <li>2 Дополнение к ответу на вопрос 5</li>
+                <li>3 Дополнение к ответу на вопрос 5</li>
+            </ul>
+        </div>
+    </div>
+
+
+</body>
+</html>

@@ -252,6 +252,7 @@
     <Content Include="Content\img\houseImg\house_2.jpg" />
     <Content Include="Content\img\icons\arrow-left.svg" />
     <Content Include="Content\img\icons\arrow-right.svg" />
+    <Content Include="Content\img\icons\Button_Back.png" />
     <Content Include="Content\img\icons\chevron-left.svg" />
     <Content Include="Content\img\icons\chevron-right.svg" />
     <Content Include="Content\img\icons\close.svg" />
@@ -266,6 +267,10 @@
     <Content Include="Content\img\mapMarkers\mm3.png" />
     <Content Include="Content\img\mapMarkers\mm4.png" />
     <Content Include="Content\img\mapMarkers\mm5.png" />
+    <Content Include="Content\img\Programmers\Arthur_Klimov.jpg" />
+    <Content Include="Content\img\Programmers\chubaka.jpg" />
+    <Content Include="Content\img\Programmers\laptop.png" />
+    <Content Include="Content\img\Programmers\Stepan_Samutichev.jpg" />
     <Content Include="Content\img\UserDefault.png" />
     <Content Include="Content\img\zlad.jpg" />
     <Content Include="Scripts\config\error.js" />
