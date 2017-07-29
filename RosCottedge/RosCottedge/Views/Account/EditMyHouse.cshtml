@@ -117,7 +117,7 @@
                         @Html.ValidationMessageFor(model => model.House.ServicesIncluded, "", new { @class = "text-danger" })
 
                         @Html.LabelFor(model => model.House.AdditionalServices, htmlAttributes: new { @class = "control-label largeInputEH" })
-                        @Html.EditorFor(model => model.House.AdditionalServices, new { htmlAttributes = new { @class = "form-control largeInputEH", @placeholder = "Услуга за отдельную плату", @aria_required = "true", @aria_invalid = "false" } })
+                        @Html.EditorFor(model => model.House.AdditionalServices, new { htmlAttributes = new { @class = "form-control largeInputEH", @placeholder = "Услуги за отдельную плату", @aria_required = "true", @aria_invalid = "false" } })
                         @Html.ValidationMessageFor(model => model.House.AdditionalServices, "", new { @class = "text-danger" })
 
                         @Html.LabelFor(model => model.House.Accomodations, htmlAttributes: new { @class = "control-label largeInputEH" })

@@ -56,7 +56,7 @@ namespace RosCottedge.Controllers
                 Reviews = db.Reviews.Include(u => u.User).Where(r => r.HouseId == houseId).OrderByDescending(r => r.CommentDate).ToPagedList(pageNumber, pageSize),
                 Pictures = db.Pictures.Where(p => p.HouseId == houseId).ToList(),
                 User = db.Users.Where(x => x.Login == User.Identity.Name).FirstOrDefault(),
-                AllowComments = true
+                AllowComments = allowComments
             };
 
             var kappa = Request.IsAjaxRequest();

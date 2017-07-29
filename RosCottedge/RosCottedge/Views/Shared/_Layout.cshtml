@@ -22,7 +22,7 @@
               <ul>
                   @if (User.Identity.IsAuthenticated)
                   {
-            <!--<li class="userLogo">@Html.Action("Index", "GetUser", new { area = "" })</li>-->
+            @*<li class="userLogo">@/*Html.Action("Index", "GetUser", new { area = "" })*/</li>*@
                       if (User.IsInRole("admin"))
                       {
                           <li>@Html.ActionLink("Админпанель", "ShowAllUsers", "Admin", new { area = "" }, new { @class = "navbar-brand" })</li>

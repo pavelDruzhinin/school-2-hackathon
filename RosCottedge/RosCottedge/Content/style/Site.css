@@ -1423,6 +1423,9 @@ input:focus {
   border-radius: 60px;
   vertical-align: top;
   margin-right: 20px;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 .formReview #comment{
   font-size: 14px;
