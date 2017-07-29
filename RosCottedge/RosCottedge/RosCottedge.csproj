@@ -228,6 +228,7 @@
       <DependentUpon>201707261338358_Role.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\DateModelBinder.cs" />
     <Compile Include="Models\HomeFilter.cs" />
     <Compile Include="Models\House.cs" />
     <Compile Include="Models\Picture.cs" />
