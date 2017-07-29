@@ -15,33 +15,36 @@
 </head>
 <body>
   <div id="wrapper">
-    <div class="mainMenu">
-      <i class="mdi mdi-menu btnMenu"></i>
-      <ul>
-          @if (User.Identity.IsAuthenticated)
-          {
+      <div class="content">
+          <div class="mainMenu">
+              <a class="logotype" style="background-image: url(../../Content/img/logo4.svg)" href="/" alt="Роскоттедж"></a>
+              <i class="mdi mdi-menu btnMenu"></i>
+              <ul>
+                  @if (User.Identity.IsAuthenticated)
+                  {
             <!--<li class="userLogo">@Html.Action("Index", "GetUser", new { area = "" })</li>-->
-            if (User.IsInRole("admin"))
-            {
-              <li>@Html.ActionLink("Админпанель", "ShowAllUsers", "Admin", new { area = "" }, new { @class = "navbar-brand" })</li>
-            }
-            <li><a href="javascript:document.getElementById('logoutForm').submit()">Выйти (@User.Identity.Name)</a></li>
-              using (Html.BeginForm("Logout", "Account", FormMethod.Post, new { id = "logoutForm" }))
-              {
-                @Html.AntiForgeryToken()
-              }
-            <li>@Html.ActionLink("Личный кабинет", "PersonalInformation", "Account", new { area = "" }, new { @class = "navbar-brand" })</li>
-            <li>@Html.ActionLink("Добавить дом", "Create", "House", new { area = "" }, new { @class = "navbar-brand" })</li>
-          }
-          else
-          {
-            <li>@Html.ActionLink("Вход", "Login", "Account", new { area = "" }, new { @class = "navbar-brand" })</li>
-            <li>@Html.ActionLink("Регистрация", "Register", "Account", new { area = "" }, new { @class = "navbar-brand" })</li>
-            <li>@Html.ActionLink("Добавить дом", "Login", "Account", new { area = "" }, new { @class = "navbar-brand" })</li>
-          }
-      </ul>
-    </div>
-    @RenderBody()
+                      if (User.IsInRole("admin"))
+                      {
+                          <li>@Html.ActionLink("Админпанель", "ShowAllUsers", "Admin", new { area = "" }, new { @class = "navbar-brand" })</li>
+                      }
+                      <li><a href="javascript:document.getElementById('logoutForm').submit()">Выйти (@User.Identity.Name)</a></li>
+                      using (Html.BeginForm("Logout", "Account", FormMethod.Post, new { id = "logoutForm" }))
+                      {
+                          @Html.AntiForgeryToken()
+                      }
+                      <li>@Html.ActionLink("Личный кабинет", "PersonalInformation", "Account", new { area = "" }, new { @class = "navbar-brand" })</li>
+                      <li>@Html.ActionLink("Добавить дом", "Create", "House", new { area = "" }, new { @class = "navbar-brand" })</li>
+                  }
+                  else
+                  {
+                      <li>@Html.ActionLink("Вход", "Login", "Account", new { area = "" }, new { @class = "navbar-brand" })</li>
+                      <li>@Html.ActionLink("Регистрация", "Register", "Account", new { area = "" }, new { @class = "navbar-brand" })</li>
+                      <li>@Html.ActionLink("Добавить дом", "Login", "Account", new { area = "" }, new { @class = "navbar-brand" })</li>
+                  }
+              </ul>
+          </div>
+          @RenderBody()
+      </div>
     <footer>
       <div class="container">
         <div class="mainFooter">

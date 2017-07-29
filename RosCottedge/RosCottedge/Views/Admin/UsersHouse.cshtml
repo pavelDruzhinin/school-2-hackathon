@@ -14,27 +14,29 @@
             <div class="col-md-8">
                 @foreach (var item in Model.House)
                 {
-                    <div class="houseContainer mainBox">
-                        <div class="houseContainerHead">
-                            <h3><i class="fa fa-map-marker" aria-hidden="true"></i><span id="Country" style="display:none;">Россия</span><span id="Region">@item.Region</span>, <span id="City">@item.Locality</span>, <span id="Street">@item.Area</span>, <span id="House">@item.HouseNumber</span></h3>
-                            <div class="numHouse">№ @item.Id</div>
-                        </div>
-                        <div class="houseBodyContainer">
-                            <div class="houseBodyIMG" style="background-image: url(@item.Pictures.Where(x => x.HouseId == item.Id).Select(x => x.Adress).FirstOrDefault());"></div>
-                            <div class="navHouseBody">
-                                <div class="houseBodyRating"><span class="numberRating">@item.Rating</span></div>
-                                <a href="/Admin/EditAllHouse/@item.Id" class="remoteHouse"><p>Управление</p></a>
-                                <a href="/House/Index?houseId=@item.Id"><p>Страница дома</p></a>
-                                <div class="houseDelButton"><span class="close"></span></div>
-
+                    <div class="houseWrap">
+                        <div class="houseContainer mainBox">
+                            <div class="houseContainerHead">
+                                <h3><i class="fa fa-map-marker" aria-hidden="true"></i><span id="Country" style="display:none;">Россия</span><span id="Region">@item.Region</span>, <span id="City">@item.Locality</span>, <span id="Street">@item.Area</span>, <span id="House">@item.HouseNumber</span></h3>
+                                <div class="numHouse">№ @item.Id</div>
                             </div>
-                            @using (Html.BeginForm("DeleteHouse", "Admin", FormMethod.Post, new { enctype = "multipart/form-data", id = "delHouse" }))
-                            {
-                                <input type="hidden" value="@item.Id" name="id" /><br>
-                                <input type="submit" value="Удалить дом" style="display: none;" />
+                            <div class="houseBodyContainer">
+                                <div class="houseBodyIMG" style="background-image: url(@item.Pictures.Where(x => x.HouseId == item.Id).Select(x => x.Adress).FirstOrDefault());"></div>
+                                <div class="navHouseBody">
+                                    <div class="houseBodyRating"><span class="numberRating">@item.Rating</span></div>
+                                    <a href="/Admin/EditAllHouse/@item.Id" class="remoteHouse"><p>Управление</p></a>
+                                    <a href="/House/Index?houseId=@item.Id"><p>Страница дома</p></a>
+                                    <div class="houseDelButton"><span class="close"></span></div>
+
+                                </div>
+                                @using (Html.BeginForm("DeleteHouse", "Admin", FormMethod.Post, new { enctype = "multipart/form-data", id = "delHouse" }))
+                                {
+                                    <input type="hidden" value="@item.Id" name="id" /><br>
+                                    <input type="submit" value="Удалить дом" style="display: none;" />
 
 
-                            }
+                                }
+                            </div>
                         </div>
                     </div>
                 }

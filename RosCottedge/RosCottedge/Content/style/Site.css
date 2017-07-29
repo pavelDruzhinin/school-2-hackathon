@@ -200,8 +200,23 @@ input.date{
 /*LAYOUT START*/
 
 /*wrapper*/
-#wrapper{
-  margin-top: 50px;
+#wrapper {
+    margin-top: 50px;
+    display: flex;
+    min-height: calc(100vh - 50px);
+    flex-direction: column;
+}
+.content {
+    flex: 1;
+}
+.logotype {
+    position: absolute;
+    left: 0;
+    top: 0;
+    background-repeat: no-repeat;
+    z-index: 9999999999999;
+    height: 50px;
+    width: 207px;
 }
 
 /*mainMenu*/
@@ -215,6 +230,7 @@ input.date{
   text-align: right;
   z-index: 99999;
 }
+
 .mainMenu ul{
   font-size: 0;
 }
@@ -265,10 +281,10 @@ input.date{
   display: none;
 }
 /*footer*/
-footer{
-  color: #fff;
-  background-color: #305075;
-  margin-top: 80px;
+footer {
+    color: #fff;
+    background-color: #305075;
+    margin-top: 80px;
 }
 footer span{
   opacity: .7;
@@ -1875,26 +1891,40 @@ button[disabled]{
 }
 
 .allNoticeHouse {
-    height: 1687px;
+    height: 1819px;
     overflow-y: auto;
 }
 
 /*Edit My House End*/
 
 /*My house and my trips start*/
+.houseWrap {
+    vertical-align: top;
+    display: inline-block;
+    font-size: 0;
+    margin-bottom: 30px;
+}
+.errorDelHouse {
+    display: block;
+    min-height: 35px;
+    width: 100%;
+    background-color: #E32444;
+    opacity: .8;
+    text-align: center;
+    color: #fff;
+    margin-bottom: 15px;
+    line-height: 35px;
+    cursor: pointer;
+}
 .houseContainer {
     width: 359px;
     height: 278px;
     background-color: #fff;
-    font-size: 0;
     position: relative;
-    vertical-align: top;
     padding: 8px;
-    margin-bottom: 30px;
-    display: inline-block;
 }
 
-.houseContainer:nth-child(2n+1) {
+.houseWrap:nth-child(2n+1) {
     margin-right: 27px;
 }
 .houseContainerHead {
@@ -1983,6 +2013,13 @@ button[disabled]{
 .closeInput:hover {
     background-color: #F31137;
 }
+.closeInput[disabled] {
+    background-color: #dbdbdb;
+    cursor: default;
+}
+.closeInput[disabled]:hover {
+    background-color: #dbdbdb;
+}
 .navHouseBody {
     position: absolute;
     bottom: 17px;
@@ -2005,20 +2042,7 @@ button[disabled]{
 .myTripsDate span {
     opacity: .54;
 }
-.myTripsDelButton {
-    height: 35px;
-    width: 35px;
-    display: inline-block;
-    background-color: #E32444;
-    vertical-align: top;
-    cursor: pointer;
-    float: right;
-    transition: .3s all;
-}
 
-.myTripsDelButton:hover{
-    background-color: #F31137;
-}
 .navMyTripsBody {
     position: absolute;
     bottom: 23px;
@@ -2084,17 +2108,14 @@ button[disabled]{
 }
 
 .myTripsDelButton {
-    background-image: url(/Content/img/icons/close.svg);
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: 80% 80%;
+    display: inline-block;
+    float: right;
 }
 
-
-.closeMyTrips {
+#DeleteReservation .closeMyTrips {
     height: 35px;
     width: 35px;
-    background-color: #E32444 !important;
+    background-color: #E32444;
     background-image: url(/Content/img/icons/close.svg);
     background-repeat: no-repeat;
     background-position: center;
@@ -2103,7 +2124,7 @@ button[disabled]{
     transition: .3s all;
 }
 
-.closeMyTrips:hover {
+#DeleteReservation .closeMyTrips:hover {
     background-color: #F31137;
 }
 

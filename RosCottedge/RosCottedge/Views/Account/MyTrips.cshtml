@@ -7,42 +7,44 @@
 @Html.Partial("Profile")
 
 @*Выводит сообщение, что дом забронирован*@
-<div>
+@*<div>
     @if (TempData["reserv"] != null)
     {
         <div>@TempData["reserv"]</div>
     }
-</div>
+</div>*@
 <div class="container">
     <div class="row">
         <div class="col-md-8">
             @foreach (var item in Model.ReservationDelete)
             {
-                <div class="houseContainer mainBox">
-                    <div class="houseContainerHead">
-                        <h3 class="myTripsDate"><span>Даты поездки:</span> @item.ArrivalDate.ToString("dd.MM.yyyy") - @item.DepartureDate.ToString("dd.MM.yyyy")</h3>
-                        <div class="myTripsDelButton">
-                        @if (item.DepartureDate > DateTime.Now)
-                        {
-                               <form id="DeleteReservation">
-                                   <input type="hidden" value="@item.HouseId" name="houseId" />
-                                   <input type="hidden" value="@item.Id" name="id" /><br>
-                                   <input class="closeMyTrips subRemove1" type="button" value="" title="Отказаться от брони" />
-                               </form>
-                        }
-                        else
-                        {
-                            <input class="closeMyTrips" type="button" value="" title="Отказаться от брони" />
-                        }
+                <div class="houseWrap">
+                    <div class="houseContainer mainBox">
+                        <div class="houseContainerHead">
+                            <h3 class="myTripsDate"><span>Даты поездки:</span> @item.ArrivalDate.ToString("dd.MM.yyyy") - @item.DepartureDate.ToString("dd.MM.yyyy")</h3>
+                            <div class="myTripsDelButton">
+                                @if (item.DepartureDate > DateTime.Now)
+                                {
+                                    <form id="DeleteReservation">
+                                        <input type="hidden" value="@item.HouseId" name="houseId" />
+                                        <input type="hidden" value="@item.Id" name="id" /><br>
+                                        <input class="closeMyTrips subRemove1" type="button" value="" title="Отказаться от брони" />
+                                    </form>
+                                }
+                                else
+                                {
+                                    <input class="closeMyTrips" type="button" value="" title="Отказаться от брони" />
+                                }
+                            </div>
                         </div>
-                    </div>
-                    <div class="houseBodyContainer">
-                        <div class="houseBodyIMG" style="background-image: url(@item.House.Pictures.Where(x => x.HouseId == item.House.Id).Select(x => x.Adress).FirstOrDefault());"></div>
-                        <div class="navMyTripsBody">
-                            <div class="houseBodyRating"><span class="numberRating">@item.House.Rating</span></div>
-                            <a href="/House/Index?houseId=@item.House.Id"><p>Страница дома</p></a>
+                        <div class="houseBodyContainer">
+                            <div class="houseBodyIMG" style="background-image: url(@item.House.Pictures.Where(x => x.HouseId == item.House.Id).Select(x => x.Adress).FirstOrDefault());"></div>
+                            <div class="navMyTripsBody">
+                                <div class="houseBodyRating"><span class="numberRating">@item.House.Rating</span></div>
+                                <a href="/House/Index?houseId=@item.House.Id"><p>Страница дома</p></a>
+                            </div>
+
                         </div>
-                        
                     </div>
                 </div>
             }

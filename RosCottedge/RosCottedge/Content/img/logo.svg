@@ -1,0 +1,22 @@
+<svg id="Group_409" data-name="Group 409" xmlns="http://www.w3.org/2000/svg" viewBox="4380 8273 206 50">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #263f5c;
+      }
+
+      .cls-2, .cls-3 {
+        fill: #fff;
+      }
+
+      .cls-3 {
+        font-size: 22px;
+        font-family: Roboto-Bold, Roboto;
+        font-weight: 700;
+      }
+    </style>
+  </defs>
+  <rect id="Rectangle_1218" data-name="Rectangle 1218" class="cls-1" width="50" height="50" transform="translate(4380 8273)"/>
+  <path id="Path_664" data-name="Path 664" class="cls-2" d="M22.686,8.5,8.122,6.133,1.4,16.377v1.106l1.51.444L2.906,28,17.479,33.1l11.048-3.6V17.336l1.984.588.886-.908Zm-6.1.168,2.671.427v2.879L17.6,14.914V9.948l-2.412-.406ZM27.449,28.537l-2.725.863V21.407l-3.4,1.064v8.045L17.9,31.639l0-11.217-.884,1.721-9.039-2.7V18.29l8.416,2.51L22.37,9.958l5.082,4.977Z" transform="translate(4388.602 8278.867)"/>
+  <text id="РОСКОТТЕДЖ" class="cls-3" transform="translate(4440 8306)"><tspan x="0" y="0">РОСКОТТЕДЖ</tspan></text>
+</svg>

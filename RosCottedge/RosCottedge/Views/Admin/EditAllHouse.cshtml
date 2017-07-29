@@ -105,6 +105,10 @@
                             @Html.EditorFor(model => model.House.Description, new { htmlAttributes = new { @class = "form-control largeInputEH", @placeholder = "Описание", @aria_required = "true", @aria_invalid = "false" } })
                             @Html.ValidationMessageFor(model => model.House.Description, "", new { @class = "text-danger" })
 
+                            @Html.LabelFor(model => model.House.briefDescription, htmlAttributes: new { @class = "control-label largeInputEH" })
+                            @Html.EditorFor(model => model.House.briefDescription, new { htmlAttributes = new { @class = "form-control largeInputEH", @placeholder = "Описание", @aria_required = "true", @aria_invalid = "false" } })
+                            @Html.ValidationMessageFor(model => model.House.briefDescription, "", new { @class = "text-danger" })
+
                             @Html.LabelFor(model => model.House.Food, htmlAttributes: new { @class = "control-label largeInputEH" })
                             @Html.EditorFor(model => model.House.Food, new { htmlAttributes = new { @class = "form-control largeInputEH", @placeholder = "Питание", @aria_required = "true", @aria_invalid = "false" } })
                             @Html.ValidationMessageFor(model => model.House.Food, "", new { @class = "text-danger" })
@@ -201,6 +205,11 @@
                     required: true,
                     minlength: 3
                 },
+                "House.briefDescription": {
+                    required: true,
+                    minlength: 3,
+                    maxlength: 255
+                },
                 "House.Food": {
                     required: true,
                     minlength: 3
@@ -253,6 +262,11 @@
                 "House.Description": {
                     required: "Введите описание дома",
                     minlength: "Минимальная длина описания дома, от 3 символов"
+                },
+                "House.briefDescription": {
+                    required: "Введите краткое описание дома",
+                    minlength: "Минимальная длина краткого описания дома, 3 символа",
+                    maxlength: "Максимальная длина краткого описания дома, 255 символов"
                 },
                 "House.Food": {
                     required: "Введите описание предоставляемого питания",

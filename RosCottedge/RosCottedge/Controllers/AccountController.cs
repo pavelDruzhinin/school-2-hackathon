@@ -359,11 +359,11 @@ namespace RosCottedge.Controllers
         }
 
         //Удаление дома
-        [HttpPost]
-        public ActionResult DeleteHouse(int id)
+        [HttpGet]
+        public JsonResult DeleteHouse(int id)
         {
             if (User.Identity.IsAuthenticated == false)
-                return new HttpStatusCodeResult(HttpStatusCode.Unauthorized);
+                return Json(false, JsonRequestBehavior.AllowGet);
             House house = db.Houses.Find(id);
 
 
@@ -379,11 +379,11 @@ namespace RosCottedge.Controllers
             }
             else
             {
-                TempData["message"] = string.Format("По дому " + ho.House.Name + " есть бронь. Удаление невозможно");
-               
+                return Json(false, JsonRequestBehavior.AllowGet);
+
             }
 
-            return RedirectToAction("MyHouse", "Account");
+            return Json(true, JsonRequestBehavior.AllowGet);
         }
         #endregion
 

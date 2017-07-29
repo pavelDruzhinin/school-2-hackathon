@@ -36,6 +36,10 @@ namespace RosCottedge.Models
         [UIHint("MultilineText")]
         public string Description { get; set; }
 
+        [Display(Name = "Краткое описание")]
+        [UIHint("MultilineText")]
+        public string briefDescription { get; set; }
+
         [Display(Name = "Питание")]
         [UIHint("MultilineText")]
         public string Food { get; set; }

@@ -227,6 +227,10 @@
     <Compile Include="Migrations\201707261338358_Role.Designer.cs">
       <DependentUpon>201707261338358_Role.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201707290029145_Add briefDescription in the model House.cs" />
+    <Compile Include="Migrations\201707290029145_Add briefDescription in the model House.Designer.cs">
+      <DependentUpon>201707290029145_Add briefDescription in the model House.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\DateModelBinder.cs" />
     <Compile Include="Models\HomeFilter.cs" />
@@ -262,6 +266,7 @@
     <Content Include="Content\img\icons\noImgHouse.svg" />
     <Content Include="Content\img\icons\rub.svg" />
     <Content Include="Content\img\icons\shareBtn.svg" />
+    <Content Include="Content\img\logo.svg" />
     <Content Include="Content\img\mapMarkers\map_marker.png" />
     <Content Include="Content\img\mapMarkers\mm1.png" />
     <Content Include="Content\img\mapMarkers\mm2.png" />
@@ -407,6 +412,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201707261338358_Role.resx">
       <DependentUpon>201707261338358_Role.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201707290029145_Add briefDescription in the model House.resx">
+      <DependentUpon>201707290029145_Add briefDescription in the model House.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
