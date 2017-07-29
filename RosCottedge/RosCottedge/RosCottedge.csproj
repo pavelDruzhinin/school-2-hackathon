@@ -279,6 +279,8 @@
     <Content Include="Content\img\Programmers\Stepan_Samutichev.jpg" />
     <Content Include="Content\img\UserDefault.png" />
     <Content Include="Content\img\zlad.jpg" />
+    <Content Include="Content\style\Manteka.css" />
+    <Content Include="fonts\Manteka\Manteka.svg" />
     <Content Include="Scripts\config\error.js" />
     <Content Include="Scripts\config\jquery.kladr.min.js" />
     <Content Include="Scripts\jquery.maskedinput.min.js" />
@@ -308,6 +310,10 @@
     <Content Include="Scripts\libs\font-awesome\fonts\fontawesome-webfont.woff" />
     <Content Include="Scripts\libs\font-awesome\fonts\fontawesome-webfont.woff2" />
     <Content Include="Scripts\libs\font-awesome\fonts\FontAwesome.otf" />
+    <Content Include="fonts\Manteka\Manteka.eot" />
+    <Content Include="fonts\Manteka\Manteka.ttf" />
+    <Content Include="fonts\Manteka\Manteka.woff" />
+    <Content Include="fonts\Manteka\Manteka.woff2" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
