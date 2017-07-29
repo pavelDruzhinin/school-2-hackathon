@@ -8,32 +8,32 @@
 <div id="map_canvas"></div>
 <section id="search">
   <div class="container">
-    <form id ="searchForm" class="searchBox mainBox" method="get" @*action="/Home/Index" data-ajax="true" data-ajax-update="#houses" data-ajax-mode="replace"*@>
+    <form id ="searchForm" class="searchBox mainBox" method="post" @*action="/Home/Index" data-ajax="true" data-ajax-update="#houses" data-ajax-mode="replace"*@>
       <div class="mainField">
         <div class="area searchFields">
-          <input autocomplete="off" class="select firstItem" type="text" placeholder="Город или район" name="region">
+          <input autocomplete="off" class="select firstItem" type="text" placeholder="Город или район" name="region" value="@ViewBag.Region">
           <ul></ul>
         </div>
         <div class="dates searchFields">
           <div class="cell50_inp">
-            <input type="text" placeholder="Заезд" name="arrivalDate" id="date1" class="date" readonly="readOnly">
+            <input type="text" placeholder="Заезд" name="arrivalDate" id="date1" class="date" readonly="readOnly" value="@ViewBag.ArrivalDate">
           </div>
           <div class="cell50_inp">
-            <input type="text" placeholder="Выезд" name="departureDate" id="date2" class="date" readonly="readOnly">
+            <input type="text" placeholder="Выезд" name="departureDate" id="date2" class="date" readonly="readOnly" value="@ViewBag.DepartureDate">
           </div>
         </div>
         <div class="prices searchFields">
           <div class="cell50_inp">
-            <input type="text" id="minCost" class="cost1" placeholder="Цена от" name="startPrice" minVal="@ViewBag.MinPrice" readonly="readOnly">
+            <input type="text" id="minCost" class="cost1" placeholder="Цена от" name="startPrice" minVal="@ViewBag.MinPrice" readonly="readOnly" value="@ViewBag.StartPrice">
           </div>
           <div class="cell50_inp">
-            <input type="text" id="maxCost" class="cost2" placeholder="Цена до" name="finishPrice" maxVal="@ViewBag.MaxPrice" readonly="readOnly">
+            <input type="text" id="maxCost" class="cost2" placeholder="Цена до" name="finishPrice" maxVal="@ViewBag.MaxPrice" readonly="readOnly" value="@ViewBag.FinishPrice">
           </div>
           <div id="slider-range"></div>
         </div>
         <div class="numPersons searchFields">
           <div class="cell100_inp">
-            <input type="text" placeholder="Кол. человек" name="numberOfPersons">
+            <input type="text" placeholder="Кол. человек" name="numberOfPersons" value="@ViewBag.NumberOfPersons">
           </div>
         </div>
         <div class="cell100_inp">

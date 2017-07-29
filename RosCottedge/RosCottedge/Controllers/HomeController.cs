@@ -77,6 +77,21 @@ namespace RosCottedge.Controllers
             ViewBag.MaxPrice = max;
             ViewBag.MinPrice = min;
 
+            //Автоподставление полученных данных в форму после совершения фильтрации
+            ViewBag.Region = region;
+            ViewBag.StartPrice = startPrice;
+            ViewBag.FinishPrice = finishPrice;
+            ViewBag.NumberOfPersons = numberOfPersons;
+            if (arrivalDate.HasValue)
+            {
+                ViewBag.ArrivalDate = arrivalDate.Value.ToString("dd.MM.yyyy");
+            }
+
+            if (departureDate.HasValue)
+            {
+                ViewBag.DepartureDate = departureDate.Value.ToString("dd.MM.yyyy");
+            }
+
             //Создаём лист регионов из базы
 
             List<House> regions = new List<House>();
